@@ -10,3 +10,13 @@ Replace the contents of this file with the completed assignments, as described i
 
 - [app map & wireframe instructions](instructions-0a-app-map-wireframes.md).
 - [prototype instructions](instructions-0b-prototyping.md)
+
+# Manga Bookshelf Annotations
+
+## My Profile Wireframe 
+
+1. Edit profile button will allow the user to edit their profile, including their profile picture, name, and bio. 
+
+2. Users will be able to add their favorite manga to the favorite section by clicking on the yellow star. In addition, there will be a feature where the users can add and remove the manga that they are currently reading, wanting to read, or finished reading. 
+
+3. By clicking on the follower and the following button, the users can see the profiles that they are following as well as their current followers, similar how instagram implements these features. 
