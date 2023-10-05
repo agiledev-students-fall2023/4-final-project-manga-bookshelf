@@ -29,6 +29,12 @@
 
 ## Other User Profile
 
+1. Follow user button will allow the user to follow another specific user and add to their following list.
+
+2. User will be able to view what other users are currently reading, wanting to read, finished reading. User will also be able to add their favorite manga to the favorite section by clicking on the yellow star.
+
+3. User can view other users' following and followers list by clicking on the follower and following button.
+
 ![Other User Profile](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/User%20Profile%20Wireframe.png)
 
 ## Manga Info
