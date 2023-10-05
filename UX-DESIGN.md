@@ -13,6 +13,16 @@ Replace the contents of this file with the completed assignments, as described i
 
 # Manga Bookshelf Annotations
 
+## Home Page
+1. Users will be able to scroll horizontally to view all the trending, recently updated, and "My List" manga.
+
+2. Under each manga, the name of the manga will be displayed. In the top right corner of each manga, there is a star button for users to add that manga to their favorite list.
+
+3. Every time a user clicks the Logo, it will bring them back to the home page.
+
+4. There is also a search button in the header for users to search for manga, and the top-right hamburger menu is for users to visit their profile page.
+
+
 ## My Profile Wireframe 
 
 1. Edit profile button will allow the user to edit their profile, including their profile picture, name, and bio. 
