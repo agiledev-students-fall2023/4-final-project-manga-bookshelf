@@ -39,6 +39,16 @@
 
 ## Manga Info
 
+1. User can see the profile/information for each manga work on the site in this format. Relevant information include manga title, author, info, and summary.
+
+2. User will be able to edit last read chapter as they read.
+
+3. User is able to "star" the work by clicking the star icon on the cover.
+
+4. Bottom of page will include a forum consisting other users and their messages.
+
+5. Header works the same way on other pages (logo brings user to home, my list navigates to user profile).
+
 ![Manga Info](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Manga%20Info%20Wireframe.png)
 
 ## App Map
