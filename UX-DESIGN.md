@@ -14,7 +14,7 @@
 
 4. There is also a search button in the header for users to search for manga, and the top-right hamburger menu is for users to visit their profile page.
 
-![Home Screen](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Home%20Screen%20Wireframe.png?raw=true)
+![Home Screen](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Home%20Screen%20Wireframe.png)
 
 
 ## My Profile 
@@ -25,15 +25,15 @@
 
 3. By clicking on the follower and the following button, the users can see the profiles that they are following as well as their current followers, similar how instagram implements these features. 
 
-![My Profile](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Your%20Profile%20Wireframe.png?raw=true)
+![My Profile](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Your%20Profile%20Wireframe.png)
 
 ## Other User Profile
 
-![Other User Profile](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/User%20Profile%20Wireframe.png?raw=true)
+![Other User Profile](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/User%20Profile%20Wireframe.png)
 
 ## Manga Info
 
-![Manga Info](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Manga%20Info%20Wireframe.png?raw=true)
+![Manga Info](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Manga%20Info%20Wireframe.png)
 
 ## App Map
 
@@ -45,4 +45,4 @@
 
 4. The number of manga titles is unbounded since there are always new titles coming out, hence the stack in the diagram. This also applies to other user profiles as new users keep creating accounts.
 
-![App Map](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Manga%20Bookshelf%20App%20Map.png?raw=true)
+![App Map](https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf/blob/master/ux-design/Manga%20Bookshelf%20App%20Map.png)
