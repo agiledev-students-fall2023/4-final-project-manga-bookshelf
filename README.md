@@ -8,6 +8,7 @@ The manga bookshelf project is an application to track readers' reading progress
 - trending manga on the home page
 - following other users to see their lists
 - following authors to see all their works and possibly find
+- search for manga and other user profiles
 
 ## Member Information
 - [Christine Lei](https://github.com/Christine-Lei)
