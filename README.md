@@ -1,19 +1,20 @@
-# Project Repository
+# Manga Bookshelf Project
 
-This repository will be used for team projects.
+## Project Description
+The manga bookshelf project is an application to track readers' reading progress for manga and share what they've read or are reading with other users on the platform through their profile pages after logging in. The vision for the future revolves around features like:
+- user logins and profiles with three lists divided into "reading", "finished", and "want to read"
+- favorite manga within the lists that get pushed to the front of each displayed list for easy access
+- chapter tracker on each manga page
+- trending manga on the home page
+- following other users to see their lists
+- following authors to see all their works and possibly find
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+## Member Information
+- [Christine Lei](https://github.com/Christine-Lei)
+- [Steven Liu](https://github.com/ltaoming)
+- [Robert Jiang](https://github.com/robert-juang)
+- [Carol Tsao](https://github.com/cmtsao)
+- [Gloria Zhu](https://github.com/gzhu725)
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
-
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
-
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
-
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
-
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
-
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
-
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+## Project History
+This project was first proposed by Christine Lei for the Agile Development and DevOps class at New York University. Afterwards, teams were formed and the members listed above were selected to build this project. Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) document on how to contribute to this project.
