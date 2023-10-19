@@ -1,1 +1,1 @@
-hello do you see this?
+This is similar to the public folder
