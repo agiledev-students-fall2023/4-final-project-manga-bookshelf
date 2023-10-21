@@ -1,63 +1,57 @@
 import React from 'react'
-import "./Header"
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link
-} from "react-router-dom";
+import "./Header.css"
+import { Outlet } from "react-router-dom";
 
-function Home() {
-    return <h2>Home</h2>;
+//TODO: add number after the profile route and manga route 
+
+export default function Header() {
+    return (
+        <>
+            <div className="Header-sidebar">
+                <h1>Manga Bookshelf for the Nerds</h1>
+                <div>
+                    <form id="search-form" role="search">
+                        <input
+                            id="q"
+                            aria-label="Search contacts"
+                            placeholder="Search"
+                            type="search"
+                            name="q"
+                        />
+                        <div
+                            id="search-spinner"
+                            aria-hidden
+                            hidden={true}
+                        />
+                        <div
+                            className="sr-only"
+                            aria-live="polite"
+                        ></div>
+                    </form>
+                    <form method="post">
+                        <button type="submit">New</button>
+                    </form>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href={`/dashboard`}>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href={`/manga/1`}>Mangas</a>
+                        </li>
+                        <li>
+                            <a href={`/profile/1`}>My Profile</a>
+                        </li>
+                        <li>
+                            <a href={`/setting`}>Setting</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="detail">
+                <Outlet />
+            </div>
+        </>
+    );
 }
-
-function About() {
-    return <h2>About</h2>;
-}
-
-function Users() {
-    return <h2>Users</h2>;
-}
-
-
-function Header() {
-  return (
-
-    <>
-      <Router>
-          <div>
-              <nav>
-                  <ul>
-                      <li>
-                          <Link to="/">Home</Link>
-                      </li>
-                      <li>
-                          <Link to="/about">About</Link>
-                      </li>
-                      <li>
-                          <Link to="/users">Users</Link>
-                      </li>
-                  </ul>
-              </nav>
-
-              {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-                <Routes>
-                    <Route path="/about">
-                        About component
-                    </Route>
-                    <Route path="/users">
-                        User component
-                    </Route>
-                    <Route path="/">
-                        Home component
-                    </Route>
-                </Routes>
-          </div>
-      </Router>
-    
-    </>
-  )
-}
-
-export default Header
