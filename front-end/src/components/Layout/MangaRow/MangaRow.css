@@ -1,0 +1,8 @@
+.MangaRow-main{
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: nowrap;  
+    overflow-x: auto; 
+    min-width: 50vw; 
+    max-width: 100%; 
+}
