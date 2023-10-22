@@ -1,0 +1,13 @@
+.MangaIcon-main{
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    max-width: 25%; 
+    padding: 20px; 
+    margin: 10px; 
+}
+
+.MangaIcon-main img{
+    height: 200px;
+}
+

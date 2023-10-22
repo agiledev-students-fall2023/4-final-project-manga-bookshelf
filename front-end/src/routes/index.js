@@ -11,8 +11,9 @@ import {
 } from "react-router-dom";
 
 import Header from "../components/Elements/Header/Header";
-import Profile from "../components/Layout/Profile/Profile"
+import Profile from "../pages/Profile/profile";
 import Error from "../pages/Error/Error";
+import Home from "../pages/Home/home"
 
 const router = createBrowserRouter([
     {
@@ -21,8 +22,12 @@ const router = createBrowserRouter([
         errorElement: <Error />,
         children: [
             {
+                path: "/",
+                element: <Home />,
+            },
+            {
                 path: "/dashboard",
-                element: <div>dashboard</div>,
+                element: <Home/>,
             },
             {
                 path: "/profile/:profileId",

@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
+import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
+import MangaRow from '../../components/Layout/MangaRow/MangaRow'
+
+import "./home.css"
+
+const titles = ["Trending", "Recently Updated", "My List"]
 
 function home() {
+
   return (
-    <div>This is the home page</div>
+    <div className="home-main">
+      {titles.map(t => (
+        <MangaRow title={t}/>
+      ))}
+    </div>
   )
 }
 
