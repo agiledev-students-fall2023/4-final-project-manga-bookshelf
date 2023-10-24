@@ -2,12 +2,7 @@
     display: flex;
     align-items: center; 
     padding: 10px 0;
-    /* border-bottom: 2px solid #e6e6e6;  */
 }
-
-/* .user-item:first-child {
-    border-top: px solid #e6e6e6;
-} */
 
 .user-item img {
     width: 40px;

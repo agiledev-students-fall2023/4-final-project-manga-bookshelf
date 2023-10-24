@@ -10,10 +10,11 @@
 }
 
 .follow-list h2 {
-    font-size: 32px;
+    font-size: 28px;
     color: #262626;
     margin-bottom: 20px; 
     text-align: center;
+    padding: none;
 }
 
 .follow-list ul {
@@ -27,8 +28,4 @@
 
 .follow-list li {
     border-bottom: 2px solid #e6e6e6;
-}
-
-.follow-list li + li {
-    margin-top: 10px;
 }
