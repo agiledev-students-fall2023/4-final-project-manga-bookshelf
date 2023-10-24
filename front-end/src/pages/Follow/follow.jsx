@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React } from 'react'
 import FollowList from '../../components/Layout/FollowList/FollowList'
 import { useNavigate, useParams } from 'react-router-dom'
 
