@@ -1,0 +1,11 @@
+.Manga {
+    flex: 1; /* each Manga consumes the same width in the row */
+    text-align: center;
+    margin: 10px; /* spacing around each Manga article */
+    cursor: pointer; /* change the cursor to make it look like a link */
+  }
+ 
+  .Manga-img {
+    /* styles for the image inside each Manga article */
+    max-width: 100%; /* restrict the image width to fit inside the article */
+  }
