@@ -14,6 +14,7 @@ import Header from "../components/Elements/Header/Header";
 import Profile from "../pages/Profile/profile";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
+import Follow from "../pages/Follow/follow";
 
 const router = createBrowserRouter([
     {
@@ -34,13 +35,21 @@ const router = createBrowserRouter([
                 element: <Profile />,
             },
             {
+                path: "profile/:profileId/follower",
+                element: <Follow title='follower'/>,
+            },
+            {
+                path: "profile/:profileId/following",
+                element: <Follow title='following'/>,
+            },
+            {
                 path: "/manga/:mangaId",
                 element: <div>Manga</div>,
             },
             {
                 path: "/setting",
                 element: <div>Configure Buncha Settings</div>,
-            }
+            },
         ]
     }
 ]);

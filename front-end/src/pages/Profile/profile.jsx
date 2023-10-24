@@ -56,6 +56,12 @@ export default function Profile() {
                     >
                         <button type="submit">Delete</button>
                     </Form>
+                    <Form action="follower">
+                        <button type="submit">Follower</button>
+                    </Form>
+                    <Form action="following">
+                        <button type="submit">Following</button>
+                    </Form>
                 </div>
             </div>
         </div>
