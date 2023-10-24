@@ -36,11 +36,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile/:profileId/follower",
-                element: <Follow title='follower'/>,
+                element: <Follow title='Follower'/>,
             },
             {
                 path: "profile/:profileId/following",
-                element: <Follow title='following'/>,
+                element: <Follow title='Following'/>,
             },
             {
                 path: "/manga/:mangaId",
