@@ -25,7 +25,7 @@ function MangaIcon({name, imgLink}) {
       <div className="MangaIcon-favorite" onClick={handleFavorite}>
         <Star contact={fav}/>
       </div>
-      <img src={testimg} onClick={handleOnClick}/>
+      <img src={imgLink} onClick={handleOnClick}/>
       <span>{name}</span>
     </div>
   )

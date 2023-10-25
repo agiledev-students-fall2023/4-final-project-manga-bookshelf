@@ -1,3 +1,4 @@
 export * from "./Circle"
-export * from "./Header"
+export * from "./MangaIcon"
 export * from "./Star"
+export * from "./UserItem"

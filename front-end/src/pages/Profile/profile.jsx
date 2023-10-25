@@ -97,11 +97,11 @@ function profile() {
 
                 
             </div>
-        <section className = "MangaList">
+        {/* <section className = "MangaList">
             {titles.map(t => (
             <MangaRow title={t}/>
       ))}
-        </section>    
+        </section>     */}
       
       </div>  
     </main>

@@ -8,12 +8,15 @@
 }
 
 .MangaIcon-main img{
-    height: 200px;
+    height: 300px;
+    width: 200px;
+    border-radius: 5%;
+    box-shadow: 10px 5px 5px #c7c7c7;
 }
 
 .MangaIcon-favorite{
     position:relative; 
-    left: 45px; 
+    left: 80px; 
     top: 40px;
     z-index: 1; 
 }

@@ -1,0 +1,87 @@
+{
+    "data": [
+        {
+            "node": {
+                "id": 2,
+                "title": "Berserk",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/790/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/1/157931l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 92299,
+                "title": "Berserk: Shinen no Kami 2",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/110/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/1/162254l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 101249,
+                "title": "Isekai Guild no Berserk",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/908/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/1/199709l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 99059,
+                "title": "Kuro no Shoukanshi",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/631/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/2/178493l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 103579,
+                "title": "Majutsu Gakuen Ryouiki no Berserker",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/1023/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/2/190013l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 101263,
+                "title": "Tales of Berseria",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/420/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/1/195540l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 105783,
+                "title": "Tantei Akechi wa Kyouransu",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/279/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/2/206563l.jpg"
+                }
+            }
+        },
+        {
+            "node": {
+                "id": 9114,
+                "title": "D.Gray-man: Reverse",
+                "main_picture": {
+                    "medium": "https://picsum.photos/id/122/200/300",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/3/12458l.jpg"
+                }
+            }
+        }
+    ],
+    "paging": {
+        "next": "https://api.myanimelist.net/v2/manga?offset=10&q=berserk"
+    }
+}
