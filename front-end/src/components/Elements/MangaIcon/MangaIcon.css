@@ -1,6 +1,5 @@
 .MangaIcon-main{
     display:flex; 
-    position:relative; 
     flex-direction:column; 
     align-items:center; 
     max-width: 25%; 
@@ -13,8 +12,8 @@
 }
 
 .MangaIcon-favorite{
-    position:absolute; 
-    right: 4px; 
-    top: 20px;
+    position:relative; 
+    left: 45px; 
+    top: 40px;
     z-index: 1; 
 }
