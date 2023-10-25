@@ -1,18 +1,22 @@
-.login-main{
-  height: 100%;
-  overflow-y: auto; 
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* Internet Explorer */
+.login-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 .login-form {
-  margin-top: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 
 .form-group {
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .form-group label {
@@ -29,8 +33,6 @@
   border-radius: 4px;
 }
 
-h1{
+h1 {
   text-align: center;
 }
-
-
