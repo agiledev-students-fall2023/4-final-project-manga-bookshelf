@@ -10,7 +10,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import Header from "../components/Elements/Header/Header";
+import Header from "../components/Layout/Header/Header";
 import Profile from "../pages/Profile/profile";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
