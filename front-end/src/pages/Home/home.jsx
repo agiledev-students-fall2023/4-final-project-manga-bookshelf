@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
 
 import "./home.css"

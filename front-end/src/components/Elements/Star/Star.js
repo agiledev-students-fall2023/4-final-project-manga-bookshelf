@@ -2,10 +2,22 @@ import React from 'react'
 
 import "./Star.css"
 
-function Star() {
+function Star({ contact }) {
+  // yes, this is a `let` for later
+  let favorite = contact.favorite;
   return (
-    <div className="Star-main">This is a star component</div>
-  )
+      <button
+        name="favorite"
+        value={favorite ? "false" : "true"}
+        aria-label={
+          favorite
+            ? "Remove from favorites"
+            : "Add to favorites"
+        }
+      >
+        {favorite ? "★" : "☆"}
+      </button>
+  );
 }
 
 export default Star

@@ -3,7 +3,9 @@ import Manga from "../Works/Manga" // for each manga
 import MangaList from "../../components/Elements/MangaList"
 import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
-import "./profile"
+import Star from "../../components/Elements/Star/Star";
+
+import "./profile.css"
 const titles = ["Currently Reading", "Done", "Want to Read"]
 
 function profile() {
@@ -40,7 +42,7 @@ function profile() {
 
     return (
         <main className="Profile">
-            <div id="contact">
+            <div className="profile-contact">
                 <div>
                     <img
                         key={contact.avatar}
@@ -58,7 +60,7 @@ function profile() {
                         ) : (
                             <i>No Name</i>
                         )}{" "}
-                        <Favorite contact={contact} />
+                        <Star contact={contact} />
                     </h1>
 
                     {contact.twitter && (
@@ -101,28 +103,9 @@ function profile() {
       ))}
         </section>    
       
-        
+      </div>  
     </main>
     );
 }
 export default profile 
 
-function Favorite({ contact }) {
-    // yes, this is a `let` for later
-    let favorite = contact.favorite;
-    return (
-        <Form method="post">
-            <button
-                name="favorite"
-                value={favorite ? "false" : "true"}
-                aria-label={
-                    favorite
-                        ? "Remove from favorites"
-                        : "Add to favorites"
-                }
-            >
-                {favorite ? "★" : "☆"}
-            </button>
-        </Form>
-    );
-}
