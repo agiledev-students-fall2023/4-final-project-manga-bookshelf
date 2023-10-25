@@ -19,12 +19,12 @@ export default function Header() {
                             name="q"
                         />
                         <div
-                            id="search-spinner"
+                            className="Header-search-spinner"
                             aria-hidden
                             hidden={true}
                         />
                         <div
-                            className="sr-only"
+                            className="Header-sr-only"
                             aria-live="polite"
                         ></div>
                     </form>

@@ -11,3 +11,9 @@
     height: 200px;
 }
 
+.MangaIcon-favorite{
+    position:relative; 
+    left: 45px; 
+    top: 40px;
+    z-index: 1; 
+}

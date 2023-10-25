@@ -10,7 +10,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import Header from "../components/Elements/Header/Header";
+import Header from "../components/Layout/Header/Header";
 import Profile from "../pages/Profile/profile";
 import Login from "../pages/LogIn/login";
 import Error from "../pages/Error/Error";
@@ -42,11 +42,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile/:profileId/follower",
-                element: <Follow title='follower'/>,
+                element: <Follow title='Follower'/>,
             },
             {
                 path: "profile/:profileId/following",
-                element: <Follow title='following'/>,
+                element: <Follow title='Following'/>,
             },
             {
                 path: "/manga/:mangaId",

@@ -1,0 +1,26 @@
+.follow-main {
+    margin-top: 20px;
+}
+
+.return-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    padding: 10px 20px; 
+    margin-bottom: 15px;
+    color: #3992ff;
+}
+
+.return-button:hover {
+    text-shadow: 0.2px 0.5px rgb(65, 181, 243);
+    color: rgb(65, 181, 243);
+    box-shadow: none;
+    cursor: pointer;
+}
+
+
+.return-arrow {
+    margin-right: 10px;
+}
+
