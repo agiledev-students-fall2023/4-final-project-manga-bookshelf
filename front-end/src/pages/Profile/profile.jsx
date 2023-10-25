@@ -73,17 +73,23 @@ function profile() {
 
                     {contact.bio && <p>{contact.bio}</p>}
 
-                    <div>
-                        <Form action="edit">
-                            <button type="submit">Edit</button>
-                        </Form>
-                        <Form
-                            method="post"
-                            action="destroy"
-                        >
-                            <button type="submit">Delete</button>
-                        </Form>
-                    </div>
+
+                <div>
+                    <Form action="edit">
+                        <button type="submit">Edit</button>
+                    </Form>
+                    <Form
+                        method="post"
+                        action="destroy"
+                    >
+                        <button type="submit">Delete</button>
+                    </Form>
+                    <Form action="follower">
+                        <button type="submit">Follower</button>
+                    </Form>
+                    <Form action="following">
+                        <button type="submit">Following</button>
+                    </Form>
                 </div>
                 
 
