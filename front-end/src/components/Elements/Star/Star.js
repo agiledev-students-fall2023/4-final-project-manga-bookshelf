@@ -4,7 +4,7 @@ import "./Star.css"
 
 function Star({ contact }) {
   // yes, this is a `let` for later
-  let favorite = contact.favorite;
+  const favorite = contact.favorite;
   return (
       <button
         name="favorite"

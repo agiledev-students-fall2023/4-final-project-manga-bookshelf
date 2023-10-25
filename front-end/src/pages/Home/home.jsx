@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
+import sampleMangaList from "../../assets/sampleMangaList.json"
 
 import "./home.css"
 
 const titles = ["Trending", "Recently Updated", "My List"]
 
-function home() {
+function Home() {
+
+  useEffect(()=>{
+    console.log(sampleMangaList.data)
+  }, [])
 
   return (
     <div className="home-main">
       {titles.map(t => (
-        <MangaRow title={t}/>
+        <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
       ))}
     </div>
   )
 }
 
-export default home
+export default Home

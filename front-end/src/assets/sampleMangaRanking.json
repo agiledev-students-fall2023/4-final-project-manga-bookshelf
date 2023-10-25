@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "node": {
+                "id": 2,
+                "title": "Berserk",
+                "main_picture": {
+                    "medium": "https://myanimelist.cdn-dena.com/images/manga/1/157931.jpg",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/1/157931l.jpg"
+                }
+            },
+            "ranking": {
+                "rank": 1
+            }
+        },
+        {
+            "node": {
+                "id": 1706,
+                "title": "JoJo no Kimyou na Bouken Part 7: Steel Ball Run",
+                "main_picture": {
+                    "medium": "https://myanimelist.cdn-dena.com/images/manga/3/179882.jpg",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/3/179882l.jpg"
+                }
+            },
+            "ranking": {
+                "rank": 2
+            }
+        },
+        {
+            "node": {
+                "id": 25,
+                "title": "Fullmetal Alchemist",
+                "main_picture": {
+                    "medium": "https://myanimelist.cdn-dena.com/images/manga/1/27600.jpg",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/1/27600l.jpg"
+                }
+            },
+            "ranking": {
+                "rank": 3
+            }
+        },
+        {
+            "node": {
+                "id": 1,
+                "title": "Monster",
+                "main_picture": {
+                    "medium": "https://myanimelist.cdn-dena.com/images/manga/3/54525.jpg",
+                    "large": "https://myanimelist.cdn-dena.com/images/manga/3/54525l.jpg"
+                }
+            },
+            "ranking": {
+                "rank": 4
+            }
+        }
+    ],
+    "paging": {
+        "next": "https://api.myanimelist.net/v2/manga/ranking?offset=4&ranking_type=all&limit=4"
+    }
+}
