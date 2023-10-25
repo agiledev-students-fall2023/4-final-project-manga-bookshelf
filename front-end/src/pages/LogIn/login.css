@@ -4,13 +4,10 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  margin: auto;
 }
 
 .login-form {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
   align-items: center;
 }
 
