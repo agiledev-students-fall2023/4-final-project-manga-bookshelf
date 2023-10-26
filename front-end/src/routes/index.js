@@ -16,6 +16,7 @@ import Login from "../pages/LogIn/login";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
 import Follow from "../pages/Follow/follow";
+import Manga from "../pages/Works/Manga";
 
 const router = createBrowserRouter([
     {
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/manga/:mangaId",
-                element: <div>Manga</div>,
+                element: <Manga />,
             },
             {
                 path: "/setting",
