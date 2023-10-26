@@ -1,14 +1,21 @@
 .follow-main {
-    margin-top: 20px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 .return-button {
+    align-items: flex-start;
+    align-self: flex-start;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: none;
     padding: 10px 20px; 
     margin-bottom: 15px;
+    margin-left: 40px;
     color: #3992ff;
 }
 
@@ -23,4 +30,3 @@
 .return-arrow {
     margin-right: 10px;
 }
-
