@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from "react"
 import MangaRow from "../../components/Layout/MangaRow/MangaRow"
 import sampleMangaList from "../../assets/sampleMangaList.json"
 
