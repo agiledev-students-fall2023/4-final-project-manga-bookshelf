@@ -51,6 +51,7 @@ function Follow({ title }) {
                 Return to Profile Page
             </button>
             <FollowList title={title} users={users}/>
+            
         </div>
     )
 }
