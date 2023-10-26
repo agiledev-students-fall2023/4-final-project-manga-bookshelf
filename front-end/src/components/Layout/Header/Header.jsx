@@ -38,7 +38,7 @@ export default function Header() {
                             <a href={`/dashboard`}>Dashboard</a>
                         </li>
                         <li>
-                            <a href={`/manga/1`}>Mangas</a>
+                            <a href={`/manga`}>Mangas</a>
                         </li>
                         <li>
                             <a href={`/profile/1`}>My Profile</a>

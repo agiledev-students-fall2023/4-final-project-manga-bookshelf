@@ -17,6 +17,7 @@ import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
 import Follow from "../pages/Follow/follow";
 import Manga from "../pages/Works/Manga";
+import MangaWorks from "../pages/MangaWorks/MangaWorks";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "profile/:profileId/following",
                 element: <Follow title='Following'/>,
+            },
+            {
+                path: "/manga",
+                element: <MangaWorks />,
             },
             {
                 path: "/manga/:mangaId",
