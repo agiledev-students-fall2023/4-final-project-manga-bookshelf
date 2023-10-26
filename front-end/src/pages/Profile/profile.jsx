@@ -101,9 +101,7 @@ function profile() {
                 <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
             ))}
             </section>
-        
-      
-      
+            
     </main>
     );
 }
