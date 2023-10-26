@@ -4,6 +4,7 @@ import MangaList from "../../components/Elements/MangaList"
 import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
 import Star from "../../components/Elements/Star/Star";
+import sampleMangaList from "../../assets/sampleMangaList.json"
 
 import "./profile.css"
 const titles = ["Currently Reading", "Done", "Want to Read"]
@@ -74,9 +75,9 @@ function profile() {
                     )}
 
                     {contact.bio && <p>{contact.bio}</p>}
+                </div>  
 
-
-                <div>
+                <div className = "button-container">
                     <Form action="edit">
                         <button type="submit">Edit</button>
                     </Form>
@@ -97,13 +98,15 @@ function profile() {
 
                 
             </div>
-        {/* <section className = "MangaList">
-            {titles.map(t => (
-            <MangaRow title={t}/>
-      ))}
-        </section>     */}
+
+            <section className="myList">
+                {titles.map(t => (
+                <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
+            ))}
+            </section>
+        
       
-      </div>  
+      
     </main>
     );
 }
