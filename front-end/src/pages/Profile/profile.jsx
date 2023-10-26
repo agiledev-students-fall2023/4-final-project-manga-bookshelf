@@ -94,9 +94,6 @@ function profile() {
                         <button type="submit">Following</button>
                     </Form>
                 </div>
-                
-
-                
             </div>
 
             <section className="myList">
