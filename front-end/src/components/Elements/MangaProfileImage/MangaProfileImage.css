@@ -1,0 +1,13 @@
+.MangaProfileImage-main img{
+    height: 400px;
+    width: 300px;
+    border-radius: 5%;
+    box-shadow: 10px 5px 5px #c7c7c7;
+}
+
+.MangaProfileImage-favorite{
+    position:relative; 
+    left: 250px; 
+    top: 50px;
+    z-index: 1; 
+}
