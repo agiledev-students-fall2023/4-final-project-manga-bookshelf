@@ -86,3 +86,17 @@ button:active {
 form[action$="destroy"] button {
   color: #f44250;
 }
+
+/* for mobile screens */
+@media screen and (max-width: 650px)  {
+  #root{
+    color: red; 
+  }
+}
+
+/* for medium screenes */
+@media screen and (min-width: 650px) and (max-width: 1090px){
+  #root{
+    color: green; 
+  }
+}

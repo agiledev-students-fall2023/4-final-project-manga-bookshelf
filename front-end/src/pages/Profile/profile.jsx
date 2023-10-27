@@ -1,5 +1,5 @@
 import { Form } from "react-router-dom";
-import Manga from "../Works/Manga" // for each manga 
+import Works from "../Works/Works" // for each manga 
 import MangaList from "../../components/Elements/MangaList"
 import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'

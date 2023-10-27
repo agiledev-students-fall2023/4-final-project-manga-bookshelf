@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import testimg from "../../../assets/testimg.jpeg"
 import Star from '../Star/Star'
-import Manga from "../../../pages/Works/Manga"
+import Works from "../../../pages/Works/Works"
 
 import "./MangaIcon.css"
 //TODO: import in the correct information for manga pages 
 
-const fav = {favorite: false}
 
 function MangaIcon({name, imgLink}) {
 
+  // This will make styles more consistent
+  const fav = { favorite: false }
   const [favorite, setFavorite] = useState(false)
-  
-  const navigate= useNavigate()
+
+  const navigate = useNavigate()
 
   const handleOnClick = () => {
     navigate("/manga/:mangaId")
