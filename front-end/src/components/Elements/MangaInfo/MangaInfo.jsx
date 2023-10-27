@@ -17,10 +17,10 @@ function MangaInfo({mangaData}) {
     }
 
     return (
-        <div> 
+        <div className="MangaInfo-main"> 
             <h1> {title} </h1>
             <MangaProfileImage imgLink= {"https://cdn.myanimelist.net/images/manga/1/157897.jpg"}/>
-            <div class= "chapter-tracker">
+            <div class= "MangaInfo-chapter-tracker">
                 <label> Chapter: </label>
                 <input
                     type="text"

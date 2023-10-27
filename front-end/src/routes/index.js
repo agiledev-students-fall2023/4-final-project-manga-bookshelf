@@ -12,11 +12,11 @@ import {
 
 import Header from "../components/Layout/Header/Header";
 import Profile from "../pages/Profile/profile";
-import Login from "../pages/LogIn/login";
+import Login from "../pages/Auth/LogIn/login";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
 import Follow from "../pages/Follow/follow";
-import Manga from "../pages/Works/Manga";
+import Works from "../pages/Works/Works";
 import MangaWorks from "../pages/MangaWorks/MangaWorks";
 
 const router = createBrowserRouter([
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/manga/:mangaId",
-                element: <Manga />,
+                element: <Works />,
             },
             {
                 path: "/setting",

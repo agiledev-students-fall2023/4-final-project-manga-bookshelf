@@ -9,7 +9,7 @@ const titles = ["Trending", "Recently Updated", "My List"]
 function Home() {
 
   useEffect(()=>{
-    console.log(sampleMangaList.data)
+    console.log(sampleMangaList)
   }, [])
 
   return (

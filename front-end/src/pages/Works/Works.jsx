@@ -2,15 +2,15 @@ import React from "react"
 import sampleMangaDetail from "../../assets/sampleMangaDetail.json"
 import MangaInfo from "../../components/Elements/MangaInfo/MangaInfo"
 
-import "./Manga.css"
+import "./Works.css"
 
 
-function Manga() { 
+function Works() { 
     return (
-        <div>
+        <div className="Works-main">
             <MangaInfo mangaData={sampleMangaDetail} />
         </div>
     )
 }
 
-export default Manga
+export default Works
