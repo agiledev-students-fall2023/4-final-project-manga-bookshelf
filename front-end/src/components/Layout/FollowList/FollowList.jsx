@@ -11,7 +11,7 @@ function FollowList({ title, users }) {
                 <ul>
                     {users.map(user => (
                         <li key={user.id}>
-                            <UserItem user={user}/>
+                            <UserItem title = {title} user={user}/>
                         </li>
                     ))}
                 </ul>
