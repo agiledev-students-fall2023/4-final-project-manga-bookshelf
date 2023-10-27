@@ -12,8 +12,9 @@ function UserItem({ title, user }) {
 
     return (
         <div className='user-item'>
-        <img src={userImage} alt={user.name} />
+            <img src={userImage} alt={user.name} />
             <span>{user.name}</span>
+
             {title === 'Follower' && (
                 <button 
                     className={`follow-button ${isFollowed ? 'followed' : ''}`}
@@ -22,8 +23,10 @@ function UserItem({ title, user }) {
                     {isFollowed ? 'Followed' : 'Follow +'}
                 </button>
             )}
-        
-        <button className='remove-button'>Remove</button>
+            
+            <button className='remove-button'> 
+                {(title === 'Follower') ? 'Remove' : 'Unfollow'} 
+            </button>
         </div>
     )
 }
