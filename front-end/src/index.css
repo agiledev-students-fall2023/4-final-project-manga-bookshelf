@@ -84,15 +84,52 @@ button:active {
 }
 
 /* for mobile screens */
-@media screen and (max-width: 650px)  {
+@media screen and (max-width: 768px)  {
   #root{
-    color: red; 
+    /* color: red;  */
+    flex-direction:column;
   }
+
+  #detail{
+    width: 100%;
+  }
+
+  .Header-sidebar{
+    width:100%;
+  }
+
+  #root .Header-sidebar h1{
+    display:none; 
+  }
+
+  #root .Header-sidebar .Header-nav{
+    display:none; 
+  }
+
+  #root .Header-sidebar .Header-navigation-sm{
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+  }
+
 }
 
 /* for medium screenes */
-@media screen and (min-width: 650px) and (max-width: 1090px){
-  #root{
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  /* #root{
     color: green; 
+  } */
+
+  #root .Header-sidebar .Header-navigation-sm {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  /* #root{
+    color: blue; 
+  } */
+
+  #root .Header-sidebar .Header-navigation-sm{
+    display:none; 
   }
 }
