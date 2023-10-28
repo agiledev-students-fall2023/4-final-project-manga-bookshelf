@@ -29,7 +29,7 @@ export default function Header() {
                         ></div>
                     </form>
                     <form method="post">
-                        <button type="submit">New</button>
+                        <button type="submit">Submit</button>
                     </form>
                 </div>
                 <nav>

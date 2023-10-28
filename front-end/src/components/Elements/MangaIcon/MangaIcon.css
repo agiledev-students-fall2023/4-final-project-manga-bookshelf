@@ -10,6 +10,14 @@
     width: 200px;
     border-radius: 5%;
     box-shadow: 10px 5px 5px #c7c7c7;
+    cursor: pointer;
+    transition: transform .5s;
+        /* Animation */
+}
+
+.MangaIcon-main img:hover{
+    transform: scale(1.05);
+        /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .MangaIcon-favorite{
@@ -17,4 +25,8 @@
     left: 80px; 
     top: 40px;
     z-index: 1; 
+}
+
+.MangeIcon-favorite button{
+    
 }

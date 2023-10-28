@@ -7,6 +7,7 @@ function Star({ contact }) {
   const favorite = contact.favorite;
   return (
       <button
+        className="Star-button"
         name="favorite"
         value={favorite ? "false" : "true"}
         aria-label={
