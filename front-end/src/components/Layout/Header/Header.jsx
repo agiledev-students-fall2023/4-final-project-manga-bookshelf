@@ -3,7 +3,10 @@ import "./Header.css"
 import { Outlet } from "react-router-dom";
 
 import Hamburger from "hamburger-react"
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import PersonIcon from '@mui/icons-material/Person';
+import SettingsIcon from '@mui/icons-material/Settings';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
@@ -13,7 +16,8 @@ export default function Header() {
     return (
         <>
             <div className="Header-sidebar">
-                <h1>Manga Bookshelf for the Nerds</h1>
+                <div>
+
                 <div>
                     <div className="Header-navigation-sm">
                         <Hamburger toggled={isOpen} toggle={setOpen} />
@@ -39,46 +43,48 @@ export default function Header() {
                     <form method="post">
                         <button type="submit">Submit</button>
                     </form>
-
                 </div>
+
                 <div className="Header-nav">
                     <nav>
                         <ul>
                             <li>
-                                <a href={`/dashboard`}>Dashboard</a>
+                                <a href={`/dashboard`}><DashboardIcon />Dashboard</a>
                             </li>
                             <li>
-                                <a href={`/manga`}>Mangas</a>
+                                <a href={`/manga`}><MenuBookIcon />Mangas</a>
                             </li>
                             <li>
-                                <a href={`/profile/1`}>My Profile</a>
+                                <a href={`/profile/1`}> <PersonIcon />My Profile</a>
                             </li>
                             <li>
-                                <a href={`/setting`}>Setting</a>
+                                <a href={`/setting`}><SettingsIcon /> Setting</a>
                             </li>
                         </ul>
                     </nav>
+                </div>
                 </div>
                 <div className="Header-navigation-sm">
                     {isOpen ? (
                         <nav>
                             <ul>
                                 <li>
-                                    <a href={`/dashboard`}>Dashboard</a>
+                                    <a href={`/dashboard`}><DashboardIcon />Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href={`/manga`}>Mangas</a>
+                                    <a href={`/manga`}><MenuBookIcon />Mangas</a>
                                 </li>
                                 <li>
-                                    <a href={`/profile/1`}>My Profile</a>
+                                    <a href={`/profile/1`}> <PersonIcon />My Profile</a>
                                 </li>
                                 <li>
-                                    <a href={`/setting`}>Setting</a>
+                                    <a href={`/setting`}><SettingsIcon /> Setting</a>
                                 </li>
                             </ul>
                         </nav>
                     ) : <div></div>}
                 </div>
+                <h1>Manga Bookshelf for the Nerds</h1>
             </div>
             <div id="detail">
                 <Outlet />
