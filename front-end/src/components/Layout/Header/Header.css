@@ -1,9 +1,9 @@
 .Header-sidebar {
-    width: 22rem;
     background-color: #f7f7f7;
     border-right: solid 1px #e3e3e3;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .Header-sidebar>* {
@@ -30,7 +30,7 @@
     top: 1px;
 }
 
-.Header-sidebar>div {
+.Header-sidebar>div>div{
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -113,7 +113,7 @@ i {
 .Header-sidebar nav a {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow: hidden;
 
     white-space: pre;
