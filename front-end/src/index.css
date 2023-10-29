@@ -96,6 +96,24 @@ button:active {
 
   .Header-sidebar{
     width:100%;
+    position: fixed;
+    z-index: 10;
+  }
+
+  .Works-main {
+    margin-top: 60px;
+  }
+
+  .home-main {
+    margin-top: 60px;
+  }
+
+  .Profile {
+    margin-top: 60px;
+  }
+
+  .follow-main {
+    margin-top: 40px;
   }
 
   #root .Header-sidebar h1{
@@ -114,6 +132,7 @@ button:active {
   .Header-sidebar > div > div{
     border-bottom: none;
     padding-bottom: 0;
+    /* position: fixed; */
   }
 
 }
