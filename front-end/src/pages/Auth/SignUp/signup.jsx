@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import Alert from "@mui/material/Alert";
+import AlertTitle from '@mui/material/AlertTitle';
+
 
 import "../LogIn/login.css"
 
@@ -12,17 +15,22 @@ const SignUp = () => {
     useState(false);
     const invalidPunctuation = ["=", "&", "_", "'", "-", "+", ",", "<", ">"];
     const regex = /\.{2,}/; // Regular expression to match two or more consecutive periods
-    const emailIsDisabled = () =>
+    const emailIsDisabled = (email) => !email.includes("@") || 
       invalidPunctuation.some((character) => email.indexOf(character) !== -1) ||
       regex.test(email);
 
   const handleClick = () => {
     if(password !== passwordConf) {
         //replace with alerts!
-        console.log("Password: " + password + " and conf: " + passwordConf);
+        <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        This is an error alert — <strong>check it out!</strong>
+      </Alert>
+        console.log("passwords bad");
     }
-    else if(emailIsDisabled) {
+    else if(emailIsDisabled(email)) {
         //replace with alerts!
+        console.log(emailIsDisabled);
     }
     else if(hasTypedPassword && hasTypedPasswordConf && hasTypedEmail) {
         window.history.replaceState("", "", "/login");
