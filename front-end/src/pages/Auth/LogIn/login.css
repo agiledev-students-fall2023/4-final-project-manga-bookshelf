@@ -33,3 +33,17 @@
 h1 {
   text-align: center;
 }
+
+a{
+  font-size:13px;
+  margin-bottom: 15px;
+  color:  blue;
+}
+
+a:hover{
+  color: rgb(235, 93, 93);
+}
+
+a:active{
+  color: rgb(255, 0, 0);
+}
