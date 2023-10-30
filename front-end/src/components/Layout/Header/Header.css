@@ -134,7 +134,7 @@ i {
 }
 
 .Header-sidebar nav a.pending {
-    color: hsl(224, 98%, 58%);
+    color: #2b63fd;
 }
 
 .Header-search-spinner {
