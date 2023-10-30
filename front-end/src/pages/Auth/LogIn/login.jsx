@@ -18,8 +18,6 @@ function login() {
         </div>
         <div>
             <a class="form-group" href="https://www.google.com/">New? Sign Up!</a>
-            <br></br>
-            <a class ="form-group" href="https://www.gmail.com">Forgot password?</a> 
         </div>
 
         <div class="form-group">
