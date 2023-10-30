@@ -30,3 +30,14 @@
 .return-arrow {
     margin-right: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .return-button {
+        margin-left: 0px;
+    }
+
+    #detail {
+        width: 100%;
+        padding: 5%;
+    }
+}
