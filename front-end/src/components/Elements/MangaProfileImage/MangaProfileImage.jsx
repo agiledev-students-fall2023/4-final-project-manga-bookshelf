@@ -17,10 +17,12 @@ function MangaProfileImage({imgLink}) {
 
     return (
         <div className="MangaProfileImage-main">
-        <div className="MangaProfileImage-favorite" onClick={handleFavorite}>
-            <Star contact={fav}/>
-        </div>
-        <img src={imgLink} />
+            <div className="MangaProfileImage-favorite" onClick={handleFavorite}>
+                <Star contact={fav}/>
+            </div>
+            <div className= "image1"> 
+                <img src={imgLink} />
+            </div>
         </div>
     )
 }

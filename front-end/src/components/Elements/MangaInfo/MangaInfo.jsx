@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import MangaProfileImage from "../MangaProfileImage/MangaProfileImage"
+import ForumPost from "../ForumPost/ForumPost"
 
 import "./MangaInfo.css"
 
@@ -36,6 +37,8 @@ function MangaInfo({mangaData}) {
             <p> {genreNames} </p>
             <h3> Synopsis: </h3>
             <p> {synopsis} </p>
+            <h3> Comments: </h3>
+            <ForumPost username= "Username goes here"/>
         </div>  
     )
 }

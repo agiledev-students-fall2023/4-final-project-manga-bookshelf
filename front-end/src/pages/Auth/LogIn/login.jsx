@@ -17,7 +17,7 @@ function login() {
             <input type="password" id="password" name="password" placeholder="Enter your password" required />
         </div>
         <div>
-            <a class="login-form-group" href="/SignUp">New? Sign Up!</a>
+          <a class="login-form-group" href="/SignUp">New? Sign Up!</a>
         </div>
         <div class="login-form-group">
             <button onClick={window.history.replaceState("", "", "/")}>Login</button>
