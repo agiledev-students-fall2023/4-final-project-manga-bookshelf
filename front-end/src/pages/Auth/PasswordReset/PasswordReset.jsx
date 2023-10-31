@@ -10,7 +10,7 @@ function PasswordReset() {
   };
 
   return (
-    <div class="passwordreset-container">
+    <div className="passwordreset-container">
       {sentEmail && (
         <Alert severity="success" onClose={handleClose}>
           <AlertTitle>Success</AlertTitle>
