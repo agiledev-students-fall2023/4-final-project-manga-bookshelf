@@ -1,5 +1,8 @@
 import React, { useState , useEffect} from 'react';
 import Comments from "../../components/Elements/Comments/Comments"
+
+import "./forum.css"
+
 const userProfileImages = {
     Killua: 'killua.jpg',
     Gon: 'killua.jpg',
@@ -68,7 +71,7 @@ function Forum() {
   const groupedComments = groupCommentsByTopic();
 
   return (
-    <div>
+    <div className='forum-main'>
       <h1>Forum</h1>
       <Comments addComment={addComment} />
       <h2>All Threads</h2>

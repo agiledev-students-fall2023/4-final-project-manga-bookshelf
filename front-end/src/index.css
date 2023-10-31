@@ -101,7 +101,6 @@ button:active {
   }
 
   .Works-main {
-
     margin-top: 60px;
   }
 
@@ -115,6 +114,11 @@ button:active {
 
   .follow-main {
     margin-top: 40px;
+  }
+
+  .follow-list {
+    width: 100%;
+    padding: 0;
   }
 
   #root .Header-sidebar h1{
@@ -133,7 +137,6 @@ button:active {
   .Header-sidebar > div > div{
     border-bottom: none;
     padding-bottom: 0;
-    /* position: fixed; */
   }
 
   

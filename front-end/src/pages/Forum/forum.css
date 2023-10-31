@@ -1,4 +1,9 @@
-
 ul {
     list-style: none; /* Remove bullet points */
+}
+
+@media screen and (max-width: 768px) {
+  .forum-main {
+    margin-top: 60px;
   }
+}
