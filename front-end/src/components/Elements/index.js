@@ -10,5 +10,8 @@ export * from "./UserItem"
 //manga information
 export * from "./MangaInfo" 
 
-//Idk what this is help
+//manga image in manga works
 export * from "./MangeProfileImage" 
+
+//forum layout for comments on manga works
+export * from "./ForumPost"

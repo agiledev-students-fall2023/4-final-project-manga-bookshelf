@@ -136,6 +136,13 @@ button:active {
     /* position: fixed; */
   }
 
+  
+  .ForumPost-col-lables, .ForumPost-col-entries, .ForumPost-row> input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+  
+
 }
 
 /* for medium screenes */
@@ -147,6 +154,14 @@ button:active {
   #root .Header-sidebar .Header-navigation-sm {
     display: none;
   }
+
+
+  .ForumPost-col-lables, .ForumPost-col-entries, .ForumPost-row> input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+  
+
 }
 
 @media screen and (min-width: 1024px){
