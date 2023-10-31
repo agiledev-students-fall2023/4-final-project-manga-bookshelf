@@ -20,9 +20,7 @@ function MangaProfileImage({imgLink}) {
             <div className="MangaProfileImage-favorite" onClick={handleFavorite}>
                 <Star contact={fav}/>
             </div>
-            <div className= "image1"> 
-                <img src={imgLink} />
-            </div>
+            <img src={imgLink} />
         </div>
     )
 }

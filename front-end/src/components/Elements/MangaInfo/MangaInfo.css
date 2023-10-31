@@ -1,9 +1,46 @@
-
-
-.MangaInfo-main{
-   
+.MangaInfo-main {
+    display: flex;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #0000001a;
+    border-radius: 5px;
+}
+  
+.MangaInfo-left {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.MangaInfo-right {
+    flex: 1;
+    padding: 20px;
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
 }
 
-.MangaInfo-chatper-tracker{
+.MangaInfo-comments{
+    width: 100%;
+    padding: 20px;
+}
+  
+.MangaInfo-container h1 {
+    font-size: 40px;
+    margin: 0;
+}
 
+.MangaInfo input[type="text"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.MangaInfo-chapter-tracker{
+    z-index: 1;
 }

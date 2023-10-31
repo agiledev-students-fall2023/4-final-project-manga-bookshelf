@@ -144,7 +144,14 @@ button:active {
     width: 100%;
     margin-top: 0;
   }
-  
+
+  .MangaInfo-main{
+    display: flex;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #0000001a;
+    border-radius: 5px;
+    flex-direction:column;
+  }  
 
 }
 
@@ -163,7 +170,14 @@ button:active {
     width: 100%;
     margin-top: 0;
   }
-  
+
+  .MangaInfo-main{
+    display: flex;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #0000001a;
+    border-radius: 5px;
+    flex-direction:column;
+  }  
 
 }
 

@@ -1,55 +1,19 @@
-/* @media(max-width: 1170px) {
-    .MangaProfileImage-main img{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5%;
-        box-shadow: 10px 5px 5px #c7c7c7;
-    }
-} */
-
-/* 
 .MangaProfileImage-main img{
-    height: 400px;
+    height: 375x;
     width: 300px;
-    position:relative; 
-    border: 5px solid red;
-    border-radius: 5%;
-    box-shadow: 10px 5px 5px #c7c7c7;
-}
-
-img{
-    height: 400px;
-    width: 300px;
-    display:flex;
-    justify-content: center;
-    border: 5px solid black;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5%;
-    box-shadow: 10px 5px 5px #c7c7c7;
-} 
-
-.MangaProfileImage-favorite{
-    position:relative; 
-    left:60%;
-    top:13%;
-    position:absolute;
-    left: 250px; 
-    top: 50px;
-    z-index: 1; 
-} */
-
-.MangaProfileImage-main img{
-    height: 400px;
-    width: 300px;
+    justify-content:left;
     border-radius: 5%;
     box-shadow: 10px 5px 5px #c7c7c7;
 }
 
 .MangaProfileImage-favorite{
-    position:relative; 
+    position:relative;
+    width:fit-content; 
     left: 250px; 
     top: 50px;
     z-index: 1; 
+}
+
+.MangaProfileImage-main{
+    width:fit-content;
 }
