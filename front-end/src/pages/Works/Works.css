@@ -1,5 +1,7 @@
 .Works-main{
     height: 100%;
+    padding-right:4rem;
+    padding-top:2rem;
     overflow-y: auto; 
     overflow-x: hidden; 
 }
