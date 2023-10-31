@@ -13,6 +13,7 @@ import {
 import Header from "../components/Layout/Header/Header";
 import Profile from "../pages/Profile/profile";
 import Login from "../pages/Auth/LogIn/login";
+import SignUp from "../pages/Auth/SignUp/signup";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
 import Follow from "../pages/Follow/follow";
@@ -27,9 +28,9 @@ const router = createBrowserRouter([
         errorElement: <Error />,
     },
     {
-        path: "/passwordreset",
-        element: <PasswordReset />,
-        errorElement: <Error />
+        path: '/signup',
+        element: <SignUp />,
+        errorElement: <Error />,
     },
     {
         path: '/',
