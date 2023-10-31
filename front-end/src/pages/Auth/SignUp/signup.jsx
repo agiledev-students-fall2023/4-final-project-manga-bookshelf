@@ -35,7 +35,7 @@ const SignUp = () => {
   };
 
   return (
-    <div class="login-main">
+    <div class="signin-main">
       <h2>Sign Up</h2>
       {error && (
         <Alert severity="error">
@@ -43,8 +43,8 @@ const SignUp = () => {
           {error}
         </Alert>
       )}
-      <form class="login-form">
-        <div class="form-group">
+      <form class="signin-form">
+        <div class="signin-form-group">
           <label>First Name:</label>
           <input
             type="text"
@@ -54,7 +54,7 @@ const SignUp = () => {
             required
           />
         </div>
-        <div class="form-group">
+        <div class="signin-form-group">
           <label>Last Name:</label>
           <input
             type="text"
@@ -65,7 +65,7 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <div class="form-group">
+          <div class="signin-form-group">
             <label>Email:</label>
             <input
               type="text"
@@ -80,7 +80,7 @@ const SignUp = () => {
             />
           </div>
         </div>
-        <div class="form-group">
+        <div class="signin-form-group">
           <label>Set Password:</label>
           <input
             type="password"
@@ -94,7 +94,7 @@ const SignUp = () => {
             }}
           />
         </div>
-        <div class="form-group">
+        <div class="signin-form-group">
           <label>Confirm Password:</label>
           <input
             type="password"
@@ -108,7 +108,7 @@ const SignUp = () => {
             }}
           />
         </div>
-        <div class="form-group">
+        <div class="signin-form-group">
           <button onClick={(e) => handleClick(e)}>Sign Up!</button>
         </div>
       </form>

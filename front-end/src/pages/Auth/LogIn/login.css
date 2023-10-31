@@ -1,4 +1,4 @@
-.login-main {
+.login-main, .signin-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,22 +7,22 @@
   margin: auto;
 }
 
-.login-form {
+.login-form, .signin-form {
   align-items: center;
 }
 
-.login-form-group {
+.login-form-group, .signin-form-group {
   margin-bottom: 15px;
   width: 100%;
 }
 
-.login-form-group label {
+.login-form-group label, .signin-form-group label {
   display: block;
   margin-bottom: 5px;
   color: #555;
 }
 
-.login-form-group input {
+.login-form-group input, .signin-form-group input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
