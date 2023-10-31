@@ -1,4 +1,4 @@
-.login-main, .signin-main {
+.login-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,22 +7,18 @@
   margin: auto;
 }
 
-.login-form, .signin-form {
-  align-items: center;
-}
-
-.login-form-group, .signin-form-group {
+.login-main>form>div{
   margin-bottom: 15px;
   width: 100%;
 }
 
-.login-form-group label, .signin-form-group label {
+.login-main>form>div> label {
   display: block;
   margin-bottom: 5px;
   color: #555;
 }
 
-.login-form-group input, .signin-form-group input {
+.login-main>form>div>input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -30,20 +26,20 @@
   border-radius: 4px;
 }
 
-h1 {
+.login-main > h2 {
   text-align: center;
 }
 
-a{
+.login-main>form>div> a{
   font-size:13px;
   margin-bottom: 15px;
   color:  blue;
 }
 
-a:hover{
+.login-main > form > div > a:hover{
   color: rgb(235, 93, 93);
 }
 
-a:active{
+.login-main > form > div > a:active{
   color: rgb(255, 0, 0);
 }
