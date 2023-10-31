@@ -18,12 +18,18 @@ import Home from "../pages/Home/home"
 import Follow from "../pages/Follow/follow";
 import Works from "../pages/Works/Works";
 import MangaWorks from "../pages/MangaWorks/MangaWorks";
+import PasswordReset from "../pages/Auth/PasswordReset/PasswordReset";
 
 const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />,
         errorElement: <Error />,
+    },
+    {
+        path: "/passwordreset",
+        element: <PasswordReset />,
+        errorElement: <Error />
     },
     {
         path: '/',
