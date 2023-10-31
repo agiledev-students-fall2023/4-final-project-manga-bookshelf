@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
+import './PasswordReset.css';
+
 function PasswordReset() {
   const [sentEmail, setSentEmail] = useState(false);
   const handleClose = () => {
@@ -8,7 +10,7 @@ function PasswordReset() {
   };
 
   return (
-    <div class="container">
+    <div class="passwordreset-container">
       {sentEmail && (
         <Alert severity="success" onClose={handleClose}>
           <AlertTitle>Success</AlertTitle>
