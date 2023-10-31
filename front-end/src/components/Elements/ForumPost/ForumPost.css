@@ -1,4 +1,4 @@
-teaxtarea {
+.ForumPost-col-entries> textarea {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -6,13 +6,13 @@ teaxtarea {
     vertical-align: top;
   }
   
-  label {
+ .ForumPost-col-labels> label {
     padding: 12px 12px 12px 0;
     display: inline-block;
   }
   
-  input[type=submit] {
-    background-color: #2b63fd;
+.ForumPost-row> input[type=submit] {
+    background-color: var(--button-color-primary);
     color: white;
     padding: 12px 20px 15 px;
     border: none;
@@ -21,33 +21,27 @@ teaxtarea {
     float: right;
   }
   
-  .forum {
+  .ForumPost-forum {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 25px;
   }
   
-  .col-labels {
+  .ForumPost-col-labels {
     float: left;
     width: 25%;
     margin-top: 6px;
   }
   
-  .col-entries {
+  .ForumPost-col-entries {
     float: left;
     width: 75%;
     margin-top: 6px;
   }
   
-  .row::after {
+  .ForumPost-row::after {
     content: "";
     display: table;
     clear: both;
   }
 
-@media screen and (max-width: 1172px) {
-    .col-lables, .col-entries, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  } 
