@@ -3,7 +3,7 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { useNavigate } from "react-router-dom";
 
-import "../LogIn/login.css";
+import "./signup.css"; 
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const SignUp = () => {
   };
 
   return (
-    <div class="signin-main">
+    <div class="signup-main">
       <h2>Sign Up</h2>
       {error && (
         <Alert severity="error">
@@ -43,8 +43,8 @@ const SignUp = () => {
           {error}
         </Alert>
       )}
-      <form class="signin-form">
-        <div class="signin-form-group">
+      <form>
+        <div>
           <label>First Name:</label>
           <input
             type="text"
@@ -54,7 +54,7 @@ const SignUp = () => {
             required
           />
         </div>
-        <div class="signin-form-group">
+        <div>
           <label>Last Name:</label>
           <input
             type="text"
@@ -65,7 +65,6 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <div class="signin-form-group">
             <label>Email:</label>
             <input
               type="text"
@@ -78,9 +77,8 @@ const SignUp = () => {
                 setHasTypedEmail(true);
               }}
             />
-          </div>
         </div>
-        <div class="signin-form-group">
+        <div>
           <label>Set Password:</label>
           <input
             type="password"
@@ -94,7 +92,7 @@ const SignUp = () => {
             }}
           />
         </div>
-        <div class="signin-form-group">
+        <div>
           <label>Confirm Password:</label>
           <input
             type="password"
@@ -108,7 +106,7 @@ const SignUp = () => {
             }}
           />
         </div>
-        <div class="signin-form-group">
+        <div>
           <button onClick={(e) => handleClick(e)}>Sign Up!</button>
         </div>
       </form>
