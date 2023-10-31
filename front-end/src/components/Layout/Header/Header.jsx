@@ -7,6 +7,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
+import ForumIcon from '@mui/icons-material/Forum';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
@@ -55,6 +56,9 @@ export default function Header() {
                                 <a href={`/manga`}><MenuBookIcon />Mangas</a>
                             </li>
                             <li>
+                                <a href={`/forum`}><ForumIcon />Forum</a>
+                            </li>
+                            <li>
                                 <a href={`/profile/1`}> <PersonIcon />My Profile</a>
                             </li>
                             <li>
@@ -73,6 +77,9 @@ export default function Header() {
                                 </li>
                                 <li>
                                     <a href={`/manga`}><MenuBookIcon />Mangas</a>
+                                </li>
+                                <li>
+                                <a href={`/forum`}><ForumIcon />Forum</a>
                                 </li>
                                 <li>
                                     <a href={`/profile/1`}> <PersonIcon />My Profile</a>

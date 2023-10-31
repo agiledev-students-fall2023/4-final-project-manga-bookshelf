@@ -18,6 +18,7 @@ import Error from "../pages/Error/Error";
 import Home from "../pages/Home/home"
 import Follow from "../pages/Follow/follow";
 import Works from "../pages/Works/Works";
+import Forum from "../pages/Forum/forum";
 import MangaWorks from "../pages/MangaWorks/MangaWorks";
 import PasswordReset from "../pages/Auth/PasswordReset/PasswordReset";
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile/:profileId",
                 element: <Profile />,
+            },
+            {
+                path: "/forum",
+                element: <Forum />,
             },
             {
                 path: "profile/:profileId/follower",
