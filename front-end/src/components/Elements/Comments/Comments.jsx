@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Comments.css';
 
 function Comments({userProfileImages }) {
   const [name, setName] = useState('');
@@ -29,7 +30,7 @@ function Comments({userProfileImages }) {
   };
 
   return (
-    <div>
+    <div className='comment-main'>
       <h2>Start a New Thread</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -52,7 +53,7 @@ function Comments({userProfileImages }) {
             required
           />
         </div>
-        <div>
+        <div className='comment-section'>
           <label htmlFor="comment">Comment:</label>
           <textarea
             id="comment"
@@ -62,7 +63,7 @@ function Comments({userProfileImages }) {
             required
           ></textarea>
         </div>
-        <div>
+        <div className='submit-section'>
           <button type="submit">Submit</button>
         </div>
       </form>
