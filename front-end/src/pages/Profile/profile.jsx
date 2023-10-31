@@ -42,7 +42,7 @@ function profile() {
     ]
 
     return (
-        <main className="Profile">
+        <main className="profile-main">
             <div className="profile-contact">
                 <div>
                     <img
@@ -101,7 +101,7 @@ function profile() {
                 <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
             ))}
             </section>
-            
+
     </main>
     );
 }

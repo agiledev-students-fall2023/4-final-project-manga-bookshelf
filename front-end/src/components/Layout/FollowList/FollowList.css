@@ -29,3 +29,8 @@
 .follow-list li {
     border-bottom: 2px solid #e6e6e6;
 }
+
+.follow-button.followed {
+    background-color: rgb(221, 219, 219);
+    color: gray;
+}
