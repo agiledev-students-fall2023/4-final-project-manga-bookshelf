@@ -2,6 +2,11 @@ ul {
     list-style: none; /* Remove bullet points */
 }
 
+.forum-main{
+  height: 100%;
+  overflow-y: auto;
+}
+
 @media screen and (max-width: 768px) {
   .forum-main {
     margin-top: 60px;

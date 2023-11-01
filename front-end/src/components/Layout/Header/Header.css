@@ -172,7 +172,7 @@ i {
 /* Connecting to Outlet which is reactjs component */
 #detail {
     padding-left: 4rem;
-    width: 100%;
+    width: 75%;
 }
 
 #detail.loading {
