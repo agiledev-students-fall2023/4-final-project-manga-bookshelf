@@ -1,5 +1,30 @@
 ul {
-    list-style: none; /* Remove bullet points */
+    list-style: none; 
+    padding: 0;
+}
+
+#detail {
+  padding: 50px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+
+.forum-main {
+  padding: 10px;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+.forum-main img {
+  margin-right: 10px;
 }
 
 .forum-main{

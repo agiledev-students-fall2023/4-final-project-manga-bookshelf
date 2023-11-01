@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from 'react';
 import Comments from "../../components/Elements/Comments/Comments"
+import ForumPost from "../../components/Elements/ForumPost/ForumPost"
 
 import "./forum.css"
 
@@ -73,7 +74,8 @@ function Forum() {
   return (
     <div className='forum-main'>
       <h1>Forum</h1>
-      <Comments addComment={addComment} />
+      {/* <Comments addComment={addComment} /> */}
+      <ForumPost username="Username goes here"/>
       <h2>All Threads</h2>
       {Object.keys(groupedComments).map((topic) => (
         <div key={topic}>
