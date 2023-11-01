@@ -1,4 +1,4 @@
-//Login page 
+// Login/ChangePassword/CreateUser
 export * from Auth
 
 //Error page for client side error

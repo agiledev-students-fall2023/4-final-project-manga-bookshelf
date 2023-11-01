@@ -1,18 +1,46 @@
-.MangaRow-main{
-    display: flex; 
-    flex-direction: row;
-    flex-wrap: nowrap;  
-    overflow: auto; 
-    
-    
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+.MangaRow-container {
+    position: relative;
+    /* Establishes a new positioning context for absolute children */
+    width: 100%;
 }
 
-/* remove scrollbar but keep functionality*/
+.MangaRow-main {
+    display: flex;
+    overflow-x: auto;
+    width: calc(100% - 40px);
+    /* Adjust the width to allow space for arrows */
+    margin: 0 20px;
+    /* This margin makes space for the arrows */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Remove scrollbar but keep functionality */
 .MangaRow-main::-webkit-scrollbar {
     display: none;
 }
 
+.MangaRow-arrowLeft,
+.MangaRow-arrowRight {
+    position: absolute;
+    /* Positioned absolute relative to MangaRow-container */
+    top: 50%;
+    /* Center vertically */
+    z-index: 10;
+    /* Ensure the icons are above other content */
+    cursor: pointer;
+    /* Change the cursor to a pointer to indicate clickable items */
+    transition: 'transform 0.3s ease-in-out'; 
+
+    opacity: 0.5; 
+}
+
+.MangaRow-arrowLeft {
+    left: 0px;
+    /* Align to the left side of the MangaRow-container */
+}
+
+.MangaRow-arrowRight {
+    right: -5px;
+    /* Align to the right side of the MangaRow-container */
+}
