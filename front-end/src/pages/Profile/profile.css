@@ -4,6 +4,7 @@
 }
 
 .profile-contact h1 {
+    text-align: left;
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
@@ -48,34 +49,34 @@
     gap: 0.5rem;
 }
 
-Form:hover {
-    cursor: pointer;
-}
-
-.profile-contact .follow-section{
+.profile-contact .follow-section {
     margin-top: 8px;
     text-align: right;
 }
 
-.profile-contact .follow-section .follower-button{
+.profile-contact .follow-section .follower-button {
     display: inline-block;
     margin-right: auto;
 }
 
-.profile-contact .follow-section .follower-button button{
+.profile-contact .follow-section button {
     width: 100px;
 }
 
-.profile-contact .follow-section .following-button{
+.profile-contact .follow-section .following-button {
     display: inline-block;
 }
 
-.profile-contact .follow-section .following-button button{
-    width: 100px;
+.profile-contact .button-container {
+    margin-left: 30px;
 }
 
-.profile-contact .button-container{
+.profile-contact .button-container {
     margin-left: 30px;
+}
+
+.profile-contact button:hover {
+    cursor: pointer;
 }
 
 .mylist{
@@ -96,6 +97,10 @@ Form:hover {
     overflow-y: auto;
     height: 100%;
     scrollbar-width: none;
+}
+
+.profile-main::-webkit-scrollbar {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
