@@ -63,7 +63,7 @@
     width: 100px;
 }
 
-.profile-contact .button-container {
+.profile-contact .edit-section {
     margin-left: 30px;
 }
 
@@ -114,10 +114,11 @@
         justify-content: left;
     }
 
-    .profile-contact .button-container{
+    .profile-contact .edit-section{
         grid-row: 2;
         grid-column: 2;
         align-items: center;
+        margin-left: 0px;
     }
 
     .profile-contact img {
@@ -136,9 +137,5 @@
         font-size: 1rem;
         color: #3992ff;
         text-decoration: none;
-    }
-
-    .profile-contact .button-container {
-        margin-left: 0px;
     }
 }

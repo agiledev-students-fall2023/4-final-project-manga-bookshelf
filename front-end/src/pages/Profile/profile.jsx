@@ -84,7 +84,7 @@ function profile() {
                     {contact.bio && <p>{contact.bio}</p>}
                 </div>  
 
-                <div className = "button-container">
+                <div className = "edit-section">
                     <Form action="edit">
                         <button type="submit">Edit Profile</button>
                     </Form>
