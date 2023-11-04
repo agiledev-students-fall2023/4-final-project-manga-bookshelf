@@ -15,3 +15,7 @@ maybe one folder for forum
 etc 
 
 import the helper function to use the jikan api 
+
+alright thsi is hard than i thought cjs is disgusting 
+
+just write all the routes in app.mjs for now 

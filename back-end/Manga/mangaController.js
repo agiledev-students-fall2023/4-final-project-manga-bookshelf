@@ -1,8 +1,9 @@
-import express from "express"
-import app from "app"
+import app from "../app.mjs"
 
-const BASE_ROUTE = "user"
+const BASE_ROUTE_MANGA = "manga"
 
-app.get(`/${BASE_ROUTE}`, (req, res) => {
-    res.send("get some users!");
+app.get(`/`, (req, res) => {
+    res.send("get some mangas!");
 })
+
+
