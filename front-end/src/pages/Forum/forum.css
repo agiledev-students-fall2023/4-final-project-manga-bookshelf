@@ -1,4 +1,4 @@
-ul {
+.forum-main ul {
     list-style: none; 
     padding: 0;
 }
@@ -7,7 +7,7 @@ ul {
   padding: 50px;
 }
 
-li {
+.forum-main li {
   display: flex;
   align-items: center;
 }
@@ -19,7 +19,7 @@ li {
   scrollbar-width: none;
 }
 
-h1 {
+.forum-main h1 {
   text-align: center;
 }
 
