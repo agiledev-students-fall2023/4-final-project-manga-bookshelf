@@ -26,9 +26,12 @@
     cursor: pointer;
 }
 
-
 .return-arrow {
     margin-right: 10px;
+}
+
+.follow-main::-webkit-scrollbar {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {

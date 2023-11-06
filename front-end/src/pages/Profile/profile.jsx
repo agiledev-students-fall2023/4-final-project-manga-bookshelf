@@ -44,7 +44,7 @@ function profile() {
     return (
         <main className="profile-main">
             <div className="profile-contact">
-                <div>
+                <div className='profile-image'>
                     <img
                         key={contact.avatar}
                         src={contact.avatar || null}
@@ -52,7 +52,7 @@ function profile() {
                     />
                 </div>
 
-                <div>
+                <div className='profile-bio'>
                     <h1>
                         {contact.name ? (
                             <>
@@ -61,38 +61,39 @@ function profile() {
                         ) : (
                             <i>No Name</i>
                         )}{" "}
-                        <Star contact={contact} />
+                        {/* <Star contact={contact} /> */}
                     </h1>
-
+                    
                     {contact.twitter && (
-                        <p>
-                            <a
-                                href={`https://twitter.com/${contact.twitter}`}
-                            >
+                        <p className='profile-link'>
+                            <a href={`https://twitter.com/${contact.twitter}`}>
                                 {contact.twitter}
                             </a>
                         </p>
                     )}
 
+                    <div className='follow-section'>
+                        <Form action="follower" className='follower-button'>
+                            <button type="submit">Follower</button>
+                        </Form>
+                        <Form action="following" className="following-button">
+                            <button type="submit">Following</button>
+                        </Form>
+                    </div>
+
                     {contact.bio && <p>{contact.bio}</p>}
                 </div>  
 
-                <div className = "button-container">
+                <div className = "edit-section">
                     <Form action="edit">
-                        <button type="submit">Edit</button>
+                        <button type="submit">Edit Profile</button>
                     </Form>
-                    <Form
+                    {/* <Form
                         method="post"
                         action="destroy"
                     >
                         <button type="submit">Delete</button>
-                    </Form>
-                    <Form action="follower">
-                        <button type="submit">Follower</button>
-                    </Form>
-                    <Form action="following">
-                        <button type="submit">Following</button>
-                    </Form>
+                    </Form> */}
                 </div>
             </div>
 

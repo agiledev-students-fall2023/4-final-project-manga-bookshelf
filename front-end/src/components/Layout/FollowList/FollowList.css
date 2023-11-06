@@ -1,7 +1,6 @@
 .follow-list {
     display: flex; 
     flex-direction: column;
-    overflow-y: auto;
     width: 80%;
     padding: 2%;
     background-color: #fff; 
@@ -33,4 +32,8 @@
 .follow-button.followed {
     background-color: rgb(221, 219, 219);
     color: gray;
+}
+
+.follow-list ul::-webkit-scrollbar {
+    display: none;
 }
