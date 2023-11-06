@@ -3,6 +3,7 @@ import mutler from "multer"
 import morgan from "morgan" 
 import url from 'url';
 import path from 'path';
+import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
 
 //Start Server and specify port 
 const app = express()
@@ -28,7 +29,6 @@ app.get("/", (req,res)=>{
 //Sample route which sends back image 
 app.get("/puppy", (req,res) => {
     const imagePath = path.join(__dirname, 'public/maltese_puppy.jpeg');
-    // Send the image file to the client
     res.sendFile(imagePath);
 })
 
@@ -37,9 +37,25 @@ app.get(`/${BASE_ROUTE_AUTH}`, (req, res) => {
 })
 
 app.get(`/${BASE_ROUTE_MANGA}`, (req, res) => {
-    res.json({ content: "Why not send some json again" })
+    res.json({ content: "use this route format to send some json" })
 })
 
+app.get(`/${BASE_ROUTE_MANGA}/search/:entry`, async (req, res) => {
+    const payload = await Jikan.getMangaSearch(req.params.entry)
+    res.json({result: payload})
+})
+
+app.get(`/${BASE_ROUTE_MANGA}/search/id/:id`, async (req, res) => {
+    const payload = await Jikan.getMangaInfoById(req.params.id);
+    res.json({result: payload})
+})
+
+// Need to set up route which gives a recommendation based on a specific entry (like action, romance, etc)
+
+app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
+    const payload = await Jikan.getMangaRecommendations(num)
+    return payload 
+})
 //Write more routes here: 
         
 export default app; 
