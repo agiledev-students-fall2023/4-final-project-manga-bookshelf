@@ -1,5 +1,6 @@
 //Github link: https://github.com/rizzzigit/jikan4.js
 //Documentation link: https://rizzzigit.github.io/jikan4.js/classes/v4.PersonMeta.html
+// TODO: Write unit tests for these functions
 
 import Jikan from 'jikan4.js'
 
@@ -80,17 +81,32 @@ async function getMangaRecommendations(...num){
     if (num !== undefined){
         entries = num
     }
-    const result = await client.recommendations.getMangaRecommendations(0, entries);
-    return result
+    const payload = await client.recommendations.getMangaRecommendations(0, entries);
+
+    //written by gpt
+    let transformed = [];
+    // Loop through each result in the payload
+    payload.forEach(result => {
+        // Loop through each entry within the current result
+        result.entries.forEach(entry => {
+            // Construct the new object format and push it into the transformed array
+            transformed.push({
+                __id: entry.id,
+                title: entry.title,
+                image: entry.image.jpg.default
+            });
+        });
+    });
+    return {"result": transformed}
 }
 
-async function printSearch(search) {
-    const result = await client.recommendations.getMangaRecommendations(0, 10); 
+// async function printSearch(search) {
+//     const result = await client.recommendations.getMangaRecommendations(0, 10); 
 
-    console.log(result)
-}
+//     console.log(result)
+// }
 
-printSearch(1)
+// printSearch(1)
 
 export {
     getMangaSearch,
