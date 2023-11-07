@@ -1,1 +1,2 @@
-//Don't worry about this right now it's not important 
+export const BACKEND_URL = "http://localhost:8080" 
+

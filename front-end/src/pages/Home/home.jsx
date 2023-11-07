@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
-import sampleMangaList from "../../assets/sampleMangaList.json"
 
 import "./home.css"
 
-const titles = ["Trending", "Recently Updated", "My List"]
-
 function Home() {
 
-  useEffect(()=>{
-    console.log(sampleMangaList)
+  const [trending, setTrending] = useState([])
+
+  //get a list of recommendation (trending) 
+  useEffect(() => {
+    async function getListRecommendation() {
+      const response = await fetch("http://localhost:8080/manga/recommendation/10");
+      const data = await response.json()
+      console.log(data)
+      setTrending([data.result]);
+    }
+    getListRecommendation()
   }, [])
+
+  // TODO: get a list of recently updated: 
+
+  // TODO: get a list of things that the user has added to their profile 
 
   return (
     <div className="home-main">
-      {titles.map(t => (
-        <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
-      ))}
+      <MangaRow title={"Trending"} MangaList={trending}/>
+      <MangaRow title={"Recently Updated"} MangaList={[]} />
+      <MangaRow title={"My List"} MangaList={[]} />
     </div>
   )
 }
