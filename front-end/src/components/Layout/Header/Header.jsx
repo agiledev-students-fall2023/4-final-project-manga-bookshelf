@@ -8,6 +8,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ForumIcon from '@mui/icons-material/Forum';
+import Turnstone from 'turnstone'
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
@@ -31,15 +32,6 @@ export default function Header() {
                             type="search"
                             name="q"
                         />
-                        <div
-                            className="Header-search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="Header-sr-only"
-                            aria-live="polite"
-                        ></div>
                     </form>
                     <form method="post">
                         <button type="submit">Submit</button>
