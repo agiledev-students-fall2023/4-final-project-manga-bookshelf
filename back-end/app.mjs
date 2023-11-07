@@ -39,6 +39,9 @@ app.get(`/${BASE_ROUTE_AUTH}`, (req, res) => {
 app.get(`/${BASE_ROUTE_MANGA}`, (req, res) => {
     res.json({ content: "Why not send some json again" })
 })
+app.get(`/${BASE_ROUTE_COMMENT}`, (req, res) => {
+    res.json({ content: "Why not send some json again again" })
+})
 
 //Write more routes here: 
         
