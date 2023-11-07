@@ -98,9 +98,9 @@ function profile() {
             </div>
 
             <section className="myList">
-                {titles.map(t => (
-                <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
-            ))}
+                {/* {titles.map(t => (
+                <MangaRow title={t} MangaList={[]}/>
+            ))} */}
             </section>
 
     </main>
