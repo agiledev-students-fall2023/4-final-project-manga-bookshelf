@@ -99,7 +99,7 @@ function profile() {
 
             <section className="myList">
                 {titles.map(t => (
-                <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
+            <MangaRow title={t} MangaList={[sampleMangaList.result]} />
             ))}
             </section>
 
