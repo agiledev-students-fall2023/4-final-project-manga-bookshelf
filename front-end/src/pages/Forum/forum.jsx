@@ -1,62 +1,36 @@
 import React, { useState , useEffect} from 'react';
 import Comments from "../../components/Elements/Comments/Comments"
 import ForumPost from "../../components/Elements/ForumPost/ForumPost"
-
+import MockComments from "../../"
 import "./forum.css"
 
-const userProfileImages = {
-    Killua: 'killua.jpg',
-    Gon: 'killua.jpg',
-    Hisoka: 'killua.jpg',
-    Illumi: 'killua.jpg',
-    Chrollo: 'killua.jpg',
-    User1: 'killua.jpg',
-    User2: 'killua.jpg',
-  };
-  // sample comments for now
-const sampleComments = [
-  {
-    "name": "Killua",
-    "comment": "I love HUNTERxHUNTER",
-    "topic": "HUNTERxHUNTER"
-  },
-  {
-    "name": "Gon",
-    "comment": "I agree with Killua. It's awesome!",
-    "topic": "HUNTERxHUNTER"
-  },
-  {
-    "name": "Hisoka",
-    "comment": "I have a different opinion.",
-    "topic": "HUNTERxHUNTER"
-  },
-  {
-    "name": "Illumi",
-    "comment": "What's your opinion, Hisoka?",
-    "topic": "HUNTERxHUNTER"
-  },
-  {
-    "name": "Chrollo",
-    "comment": "Hisoka, Shut up.",
-    "topic": "HUNTERxHUNTER"
-  }
-];
-const ulStyle = {
-    listStyle: 'none',
-  };
+import { useNavigate } from 'react-router-dom';
 
 function Forum() {
-  const [comments, setComments] = useState(sampleComments);
+  const navigate = useNavigate();
+  const [data, setData] = useState({ userProfileImages: {}, sampleComments: [] });
+  const [isLoading, setIsLoading] = useState(true);
 
-  
-  const addComment = (comment) => {
-    setComments([...comments, comment]);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/MockComments');
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const groupCommentsByTopic = () => {
     const groupedComments = {};
 
-    comments.forEach((comment) => {
+    data.sampleComments.forEach((comment) => {
       const topic = comment.topic || 'Other';
 
       if (!groupedComments[topic]) {
@@ -71,21 +45,25 @@ function Forum() {
 
   const groupedComments = groupCommentsByTopic();
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className='forum-main'>
+      <button onClick={() => navigate(-1)}>Return to Previous Page</button>
       <h1>Forum</h1>
-      {/* <Comments addComment={addComment} /> */}
       <ForumPost username="Username goes here"/>
       <h2>All Threads</h2>
       {Object.keys(groupedComments).map((topic) => (
         <div key={topic}>
           <h3>{topic}</h3>
-          <ul style={ulStyle}> {/* getting rid of dots*/}
+          <ul style={{ listStyleType: 'none' }}> {/* Inline style for demonstration */}
             {groupedComments[topic].map((comment, index) => (
               <li key={index}>
                 <div>
                   <img
-                    src={userProfileImages[comment.name]}
+                    src={data.userProfileImages[comment.name] || 'default.jpg'}
                     alt={`${comment.name}'s Profile`}
                     width="50"
                     height="50"
@@ -103,6 +81,10 @@ function Forum() {
 }
 
 export default Forum;
+
+
+
+
 
 
 

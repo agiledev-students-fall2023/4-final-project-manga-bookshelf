@@ -6,6 +6,7 @@ import path from 'path';
 import cors from "cors" 
 import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
 import * as User from "./helpers/User.js"
+import forumData from './public/MockComments.json' assert { type: 'json' };
 
 //Start Server and specify port 
 const app = express()
@@ -71,5 +72,9 @@ app.get(`/${BASE_ROUTE_USER}/:id/following`, async (req, res) => {
     const following = await User.getUserFollowing(req.params.id)
     res.json({result: following})
 })
+app.get('/MockComments', (req, res) => {
+
+    res.json(forumData);
+  });
         
 export default app; 
