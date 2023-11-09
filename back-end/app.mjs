@@ -5,8 +5,8 @@ import url from 'url';
 import path from 'path';
 import cors from "cors" 
 import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
-
 //Start Server and specify port 
+import sampleProfileList from "./public/sampleProfileList.json" assert { type: 'json' }
 const app = express()
 
 //Define middleware here
@@ -58,6 +58,12 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
     const payload = await Jikan.getMangaRecommendations(req.params.num)
     res.json({result: payload})  
 })
+
+//get the profile lists 
+app.get(`/getProfileLists`, async (req,res) => {
+    res.json(sampleProfileList);
+})
+
 //Write more routes here: 
         
 export default app; 

@@ -1,0 +1,42 @@
+{
+  "result": {
+    "result": [
+      {
+        "__id": 2,
+        "title": "SpyxFamily",
+        "list": "Currently Reading",
+        "image": "https://cdn.myanimelist.net/images/anime/1441/122795.jpg"
+      },
+      {
+        "__id": 92299,
+        "title": "Jujutsu Kaisen",
+        "list": "Currently Reading",
+        "image": "https://cdn.myanimelist.net/images/anime/1171/109222.jpg"
+      },
+      {
+        "__id": 101249,
+        "title": "One Piece",
+        "list": "Want to Read",
+        "image": "https://cdn.myanimelist.net/images/anime/1081/137690.jpg"
+      },
+      {
+        "__id": 99059,
+        "title": "Naruto",
+        "list": "Done",
+        "image": "https://cdn.myanimelist.net/images/anime/1565/111305.jpg"
+      },
+      {
+        "__id": 103579,
+        "title": "Majutsu Gakuen Ryouiki no Berserker",
+        "list": "Want to Read",
+        "image": "https://cdn.myanimelist.net/images/manga/2/190013.jpg"
+      },
+      {
+        "__id": 101263,
+        "title": "Tales of Berseria",
+        "list": "Done",
+        "image": "https://cdn.myanimelist.net/images/manga/1/195540.jpg"
+      }
+    ]
+  }
+}
