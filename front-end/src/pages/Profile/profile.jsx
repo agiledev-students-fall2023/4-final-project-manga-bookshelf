@@ -17,14 +17,21 @@ function Profile() {
     async function getProfileLists() {
       const response = await fetch("http://localhost:8080/getProfileLists");
       const data = await response.json()
-      console.log(data)
+      //console.log(data)
       setProfileLists([data.result]);
+      //console.log([data.result])
+      
     }
     getProfileLists()
   }, [])
 
-  function sortListsByTitle(title) {
-
+  const groupListsByTitle = (title) => {
+    // Filter profileLists based on the "list" property matching the provided "title"
+    const filteredLists = profileLists.map(profile => ({
+      result: profile.result.filter(item => item.list === title)
+    }));
+  
+    return filteredLists;
   }
 
     const contact = {
@@ -91,9 +98,9 @@ function Profile() {
                 </div>
             </div>
 
-            <section className="myList">                
+            <section className="myList">     
             {titles.map(t => (
-    <MangaRow title={t} MangaList={profileLists} />
+    <MangaRow title={t} MangaList={groupListsByTitle(t)} />
 ))}
             </section>
 
