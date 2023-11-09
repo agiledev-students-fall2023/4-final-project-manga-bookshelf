@@ -43,7 +43,6 @@ function Follow({ title }) {
         const fetchFollowers = async() => {
             const response = await fetch(`http://localhost:8080/user/${profileId}/followers`)
             const data = await response.json()
-            console.log(data)
             setFollowers(data.result)
         }
         const fetchFollowing = async() => {

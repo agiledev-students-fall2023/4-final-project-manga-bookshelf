@@ -1,19 +1,155 @@
 {
-    "users": [
-      { "id": "1", "name": "Alice", "following": [2, 3, 5, 7, 9, 11], "followers": [2, 3, 11, 13] },
-      { "id": "2", "name": "Bob", "following": [1, 4, 7, 9, 10, 13], "followers": [1] },
-      { "id": "3", "name": "Jogn", "following": [1, 4, 7, 10, 13], "followers": [1] },
-      { "id": "4", "name": "Aiut", "following": [], "followers": [2, 3] },
-      { "id": "5", "name": "Bgrtb", "following": [6], "followers": [1] },
-      { "id": "6", "name": "Zijf", "following": [], "followers": [5, 8, 9] },
-      { "id": "7", "name": "Padfi", "following": [1, 9], "followers": [1, 2, 3] },
-      { "id": "8", "name": "Odsaf", "following": [6], "followers": [] },
-      { "id": "9", "name": "Ldsaf", "following": [6], "followers": [1, 2, 7] },
-      { "id": "10", "name": "JKfdas", "following": [], "followers": [2, 3] },
-      { "id": "11", "name": "aasf", "following": [1], "followers": [1] },
-      { "id": "12", "name": "erwt", "following": [], "followers": [] },
-      { "id": "13", "name": "weinanshike", "following": [1], "followers": [2, 3] },
-      { "id": "14", "name": "hetrh", "following": [], "followers": [] },
-      { "id": "15", "name": "iot", "following": [], "followers": [] }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "name": "Alice",
+      "following": [
+        2,
+        5,
+        7,
+        9
+      ],
+      "followers": [
+        2,
+        3,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Bob",
+      "following": [
+        1,
+        4,
+        7,
+        9,
+        10,
+        13
+      ],
+      "followers": [
+        1
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Jogn",
+      "following": [
+        1,
+        4,
+        7,
+        10,
+        13
+      ],
+      "followers": []
+    },
+    {
+      "id": "4",
+      "name": "Aiut",
+      "following": [],
+      "followers": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Bgrtb",
+      "following": [
+        6
+      ],
+      "followers": [
+        1
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Zijf",
+      "following": [],
+      "followers": [
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Padfi",
+      "following": [
+        1,
+        9
+      ],
+      "followers": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Odsaf",
+      "following": [
+        6
+      ],
+      "followers": []
+    },
+    {
+      "id": "9",
+      "name": "Ldsaf",
+      "following": [
+        6
+      ],
+      "followers": [
+        1,
+        2,
+        7
+      ]
+    },
+    {
+      "id": "10",
+      "name": "JKfdas",
+      "following": [],
+      "followers": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "11",
+      "name": "aasf",
+      "following": [
+        1
+      ],
+      "followers": []
+    },
+    {
+      "id": "12",
+      "name": "erwt",
+      "following": [],
+      "followers": []
+    },
+    {
+      "id": "13",
+      "name": "weinanshike",
+      "following": [
+        1
+      ],
+      "followers": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "14",
+      "name": "hetrh",
+      "following": [],
+      "followers": []
+    },
+    {
+      "id": "15",
+      "name": "iot",
+      "following": [],
+      "followers": []
+    }
+  ]
 }

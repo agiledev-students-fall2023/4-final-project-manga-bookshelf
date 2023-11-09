@@ -63,13 +63,29 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
 //Write more routes here: 
 
 app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
-    const followers = await User.getUserFollower(req.params.id)
-    res.json({result: followers})
+    // try {
+        const followers = await User.getUserFollower(req.params.id);
+        res.json({ result: followers });
+    // } catch (error) {
+    //     res.status(404).send({ message: error.message });
+    // }
 })
 
 app.get(`/${BASE_ROUTE_USER}/:id/following`, async (req, res) => {
     const following = await User.getUserFollowing(req.params.id)
     res.json({result: following})
+})
+
+// to follow a user
+app.post(`/${BASE_ROUTE_USER}/:id/follow`, async (req, res) => {
+    await User.followUser(req.params.id, req.body.followingId)
+    res.send('seccess follow')
+})
+
+// to unfollow a user
+app.post(`/${BASE_ROUTE_USER}/:id/unfollow`, async (req, res) => {
+    await User.unfollowUser(req.params.id, req.body.unfollowingId)
+    res.send('success unfollow')
 })
         
 export default app; 
