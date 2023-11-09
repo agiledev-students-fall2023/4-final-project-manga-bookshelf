@@ -87,5 +87,13 @@ app.post(`/${BASE_ROUTE_USER}/:id/unfollow`, async (req, res) => {
     await User.unfollowUser(req.params.id, req.body.unfollowingId)
     res.send('success unfollow')
 })
+
+// to remove a user
+app.post(`/${BASE_ROUTE_USER}/:id/remove`, async (req, res) => {
+    // await User.removeUser(req.params.id)
+    // await User.unfollowUser(req.params.id, req.body.removingId)
+    await User.removeUser(req.params.id, req.body.removingId)
+    res.send('success remove')
+})
         
 export default app; 

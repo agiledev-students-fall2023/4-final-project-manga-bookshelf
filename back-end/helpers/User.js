@@ -67,6 +67,31 @@ async function unfollowUser(userId, unfollowId) {
     await saveUserData(data)
 }
 
+async function removeUser(userId, removeId) {
+    const data = await getUserData()
+    const user = data.users.find(user => user.id === userId)
+    if (!user) {
+        return res.status(404).send({ message: 'User not found.' });
+    }
+
+    const removeUser = data.users.find(user => user.id === removeId)
+    if (!removeUser) {
+        return res.status(404).send({ message: 'User not found.' });
+    }
+
+    if (!user.followers.includes(parseInt(removeId, 10))) {
+        return res.status(400).send({ message: 'User is not following you.' });
+    }
+
+    user.following = user.following.filter(id => id !== parseInt(removeId, 10))
+    removeUser.followers = removeUser.followers.filter(id => id !== parseInt(userId))
+
+    user.followers = user.followers.filter(id => id !== parseInt(removeId, 10))
+    removeUser.following = removeUser.following.filter(id => id !== parseInt(userId))
+    await saveUserData(data)
+
+}
+
 async function getUserFollower(userId) {
     const data = await getUserData()
     const user = data.users.find(user => user.id === userId)
@@ -98,5 +123,6 @@ export {
     getUserFollower,
     getUserFollowing,
     followUser,
-    unfollowUser
+    unfollowUser,
+    removeUser
 }

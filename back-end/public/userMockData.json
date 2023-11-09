@@ -4,11 +4,15 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        2
+        3,
+        7,
+        11,
+        13
       ],
       "followers": [
         2,
         3,
+        5,
         11,
         13
       ],
@@ -18,29 +22,29 @@
       "id": "2",
       "name": "Bob",
       "following": [
-        1,
         4,
         7,
         9,
         10,
-        13
-      ],
-      "followers": [
+        13,
         1
       ],
+      "followers": [],
       "bio": "This is a bio for Bob."
     },
     {
       "id": "3",
       "name": "Jogn",
       "following": [
-        1,
         4,
         7,
         10,
-        13
+        13,
+        1
       ],
-      "followers": [],
+      "followers": [
+        1
+      ],
       "bio": "This is a bio for Jogn."
     },
     {
@@ -57,7 +61,8 @@
       "id": "5",
       "name": "Bgrtb",
       "following": [
-        6
+        6,
+        1
       ],
       "followers": [],
       "bio": "This is a bio for Bgrtb."
@@ -77,12 +82,12 @@
       "id": "7",
       "name": "Padfi",
       "following": [
-        1,
         9
       ],
       "followers": [
         2,
-        3
+        3,
+        1
       ],
       "bio": "This is a bio for Padfi."
     },
@@ -123,7 +128,9 @@
       "following": [
         1
       ],
-      "followers": [],
+      "followers": [
+        1
+      ],
       "bio": "This is a bio for aasf."
     },
     {
@@ -141,7 +148,8 @@
       ],
       "followers": [
         2,
-        3
+        3,
+        1
       ],
       "bio": "This is a bio for weinanshike."
     },

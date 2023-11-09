@@ -57,9 +57,13 @@ function UserItem({ title, user, onUnfollowClick }) {
 
         setLoading(true)
 
-        const actionUrl = `http://localhost:8080/user/${profileId}/unfollow`
+        const actionUrl = (title === 'Following')
+            ? `http://localhost:8080/user/${profileId}/unfollow`
+            : `http://localhost:8080/user/${profileId}/remove`
 
-        const payload = { unfollowingId: user.id }
+        const payload = (title === 'Following')
+            ? { unfollowingId: user.id }
+            : { removingId: user.id }
 
         axios.post(actionUrl, payload)
             .then(response => {
