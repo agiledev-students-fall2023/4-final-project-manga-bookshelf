@@ -6,8 +6,11 @@ import path from 'path';
 import cors from "cors" 
 import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
 import * as User from "./helpers/User.js"
+import forumData from './public/MockComments.json' assert { type: 'json' };
 
 //Start Server and specify port 
+import sampleProfileList from "./public/sampleProfileList.json" assert { type: 'json' }
+import sampleProfileData from "./public/sampleProfileData.json" assert { type: 'json' }
 const app = express()
 
 //Define middleware here
@@ -24,6 +27,7 @@ const __dirname = path.dirname(__filename);
 const BASE_ROUTE_AUTH = "auth"
 const BASE_ROUTE_MANGA = "manga" 
 const BASE_ROUTE_USER = "user"
+const BASE_ROUTE_COMMENT = "comment"
 
 //Sample route 
 app.get("/", (req,res)=>{
@@ -55,12 +59,10 @@ app.get(`/${BASE_ROUTE_MANGA}/search/id/:id`, async (req, res) => {
 })
 
 // Need to set up route which gives a recommendation based on a specific entry (like action, romance, etc)
-
 app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
     const payload = await Jikan.getMangaRecommendations(req.params.num)
     res.json({result: payload})  
 })
-//Write more routes here: 
 
 app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
     // try {
@@ -95,5 +97,18 @@ app.post(`/${BASE_ROUTE_USER}/:id/remove`, async (req, res) => {
     await User.removeUser(req.params.id, req.body.removingId)
     res.send('success remove')
 })
-        
+
+app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
+
+    res.json(forumData);
+  });
+
+//get the profile lists 
+app.get('/getProfileLists', (req,res) => {
+    res.json(sampleProfileList);
+})
+
+app.get('/getProfile', (req, res) => {
+    res.json(sampleProfileData);
+})
 export default app; 
