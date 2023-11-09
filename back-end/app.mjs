@@ -25,6 +25,7 @@ const __dirname = path.dirname(__filename);
 const BASE_ROUTE_AUTH = "auth"
 const BASE_ROUTE_MANGA = "manga" 
 const BASE_ROUTE_USER = "user"
+const BASE_ROUTE_COMMENT = "comment"
 
 //Sample route 
 app.get("/", (req,res)=>{
