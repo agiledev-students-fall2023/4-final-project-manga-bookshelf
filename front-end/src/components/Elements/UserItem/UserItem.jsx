@@ -1,13 +1,81 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import userImage from "../../../assets/userImage.png"
 
 import "./UserItem.css"
 
-function UserItem({ title, user }) {
+function UserItem({ title, user, onUnfollowClick }) {
     const[isFollowed, setIsFollowed] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const { profileId } = useParams()
+
+    const renderFollowButton = () => {
+        user.followers.forEach(follower => {
+            const followerString = follower.toString()
+            if (followerString === profileId) {
+                setIsFollowed(true)
+            }
+        })
+    }
+
+    useEffect(() => {
+        renderFollowButton()
+    })
 
     const handleFollowClick = () => {
-        setIsFollowed(!isFollowed)
+        if (loading) {
+            return
+        }
+
+        setLoading(true)
+    
+        const actionUrl = isFollowed 
+            ? `http://localhost:8080/user/${profileId}/unfollow` 
+            : `http://localhost:8080/user/${profileId}/follow`
+    
+        const payload = isFollowed
+            ? { unfollowingId: user.id }
+            : { followingId: user.id }
+    
+        axios.post(actionUrl, payload)
+            .then(response => {
+                setIsFollowed(!isFollowed)
+            })
+            .catch(err => {
+                console.error(`Error in ${isFollowed ? 'unfollow' : 'follow'} request: `, err)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+    }
+
+    const handleUnfollowClick = () => {
+        if (loading) {
+            return
+        }
+
+        setLoading(true)
+
+        const actionUrl = (title === 'Following')
+            ? `http://localhost:8080/user/${profileId}/unfollow`
+            : `http://localhost:8080/user/${profileId}/remove`
+
+        const payload = (title === 'Following')
+            ? { unfollowingId: user.id }
+            : { removingId: user.id }
+
+        axios.post(actionUrl, payload)
+            .then(response => {
+                setIsFollowed(false)        
+                onUnfollowClick()       
+            })
+            .catch(err => {
+                console.error(`Error in unfollow request: `, err)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
@@ -24,7 +92,7 @@ function UserItem({ title, user }) {
                 </button>
             )}
             
-            <button className='remove-button'> 
+            <button className='remove-button' onClick={handleUnfollowClick}> 
                 {(title === 'Follower') ? 'Remove' : 'Unfollow'} 
             </button>
         </div>

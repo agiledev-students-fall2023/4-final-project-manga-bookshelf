@@ -1,0 +1,39 @@
+{
+    "userProfileImages": {
+      "Killua": "killua.jpg",
+      "Gon": "killua.jpg",
+      "Hisoka": "killua.jpg",
+      "Illumi": "killua.jpg",
+      "Chrollo": "killua.jpg",
+      "User1": "killua.jpg",
+      "User2": "killua.jpg"
+    },
+    "sampleComments": [
+      {
+        "name": "Killua",
+        "comment": "I love HUNTERxHUNTER",
+        "topic": "HUNTERxHUNTER"
+      },
+      {
+        "name": "Gon",
+        "comment": "I agree with Killua. It's awesome!",
+        "topic": "HUNTERxHUNTER"
+      },
+      {
+        "name": "Hisoka",
+        "comment": "I have a different opinion.",
+        "topic": "HUNTERxHUNTER"
+      },
+      {
+        "name": "Illumi",
+        "comment": "What's your opinion, Hisoka?",
+        "topic": "HUNTERxHUNTER"
+      },
+      {
+        "name": "Chrollo",
+        "comment": "Hisoka, Shut up.",
+        "topic": "HUNTERxHUNTER"
+      }
+    ]
+  }
+  

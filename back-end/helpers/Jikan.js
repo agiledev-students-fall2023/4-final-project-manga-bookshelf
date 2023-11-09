@@ -61,7 +61,7 @@ async function getMangaInfoById(MangaId){
 // Output: Array of Manga objects
 async function getMangaInfoByGenres(GenreName) {
     // const result = await client.manga.getRecommendations
-    
+
 }
 
 // Get manga recommendations

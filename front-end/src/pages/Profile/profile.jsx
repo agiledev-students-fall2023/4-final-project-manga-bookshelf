@@ -1,110 +1,96 @@
 import { Form } from "react-router-dom";
-import Works from "../Works/Works" // for each manga 
-import MangaList from "../../components/Elements/MangaList"
-import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
-import MangaRow from '../../components/Layout/MangaRow/MangaRow'
-import Star from "../../components/Elements/Star/Star";
-import sampleMangaList from "../../assets/sampleMangaList.json"
+import { useState, useEffect } from "react";
+import MangaRow from "../../components/Layout/MangaRow/MangaRow";
 
-import "./profile.css"
-const titles = ["Currently Reading", "Done", "Want to Read"]
+import "./profile.css";
+const titles = ["Currently Reading", "Done", "Want to Read"];
 
-function profile() {
-    const contact = {
-        name: "Naruto Uzumaki",
-        avatar: "https://placekitten.com/g/200/200",
-        twitter: "your_handle",
-        bio: "I love ramen! ",
-        favorite: true,
-    };
+function Profile() {
+  const [profileLists, setProfileLists] = useState([]);
+  const [profile, setProfile] = useState({});
 
-    const mangas = [
-    {
-    name: "SpyxFamily",
-    list: "Currently Reading",
-    img: `${process.env.PUBLIC_URL}/spyfamily.jpg`,
-    },
-    {
-    name: "Jujutsu Kaisen",
-    list: "Currently Reading",
-    img: `${process.env.PUBLIC_URL}/JujutsuKaisen.jpg`,
-    },
-    {
-    name: "One Piece",
-    list: "Want to Read",
-    img: `${process.env.PUBLIC_URL}/onepiece.jpg`,
-    },
-    {
-    name: "Naruto",
-    list: "Done",
-    img: `${process.env.PUBLIC_URL}/naurto2.jpg`,
-    },
-    ]
+  //get a list of the users profile lists (mock data)
+  useEffect(() => {
+    async function getProfileLists() {
+      const response = await fetch("http://localhost:8080/getProfileLists");
+      const data = await response.json();
+      setProfileLists([data.result]);
+    }
+    async function getProfile() {
+      const response = await fetch("http://localhost:8080/getProfile");
+      const data = await response.json();
+      setProfile(data);
+      
+    }
+    getProfileLists();
+    getProfile();
+  }, []);
 
-    return (
-        <main className="profile-main">
-            <div className="profile-contact">
-                <div className='profile-image'>
-                    <img
-                        key={contact.avatar}
-                        src={contact.avatar || null}
-                        alt="No Img Detected"
-                    />
-                </div>
+  const groupListsByTitle = (title) => {
+    const filteredLists = profileLists.map((profile) => ({
+      result: profile.result.filter((item) => item.list === title),
+    }));
 
-                <div className='profile-bio'>
-                    <h1>
-                        {contact.name ? (
-                            <>
-                                {contact.name}
-                            </>
-                        ) : (
-                            <i>No Name</i>
-                        )}{" "}
-                        {/* <Star contact={contact} /> */}
-                    </h1>
-                    
-                    {contact.twitter && (
-                        <p className='profile-link'>
-                            <a href={`https://twitter.com/${contact.twitter}`}>
-                                {contact.twitter}
-                            </a>
-                        </p>
-                    )}
+    return filteredLists;
+  };
 
-                    <div className='follow-section'>
-                        <Form action="follower" className='follower-button'>
-                            <button type="submit">Follower</button>
-                        </Form>
-                        <Form action="following" className="following-button">
-                            <button type="submit">Following</button>
-                        </Form>
-                    </div>
+  return (
+    <main className="profile-main">
+      <div className="profile-contact">
+        <div className="profile-image">
+          <img
+            key={profile.avatar}
+            src={profile.avatar || null}
+            alt="No Img Detected"
+          />
+        </div>
 
-                    {contact.bio && <p>{contact.bio}</p>}
-                </div>  
+        <div className="profile-bio">
+          <h1>
+            {profile.name ? <>{profile.name}</> : <i>No Name</i>}{" "}
+            {/* <Star contact={contact} /> */}
+          </h1>
 
-                <div className = "edit-section">
-                    <Form action="edit">
-                        <button type="submit">Edit Profile</button>
-                    </Form>
-                    {/* <Form
-                        method="post"
-                        action="destroy"
-                    >
-                        <button type="submit">Delete</button>
-                    </Form> */}
-                </div>
-            </div>
+          {profile.twitter && (
+            <p className="profile-link">
+              <a href={`https://twitter.com/${profile.twitter}`}>
+                {profile.twitter}
+              </a>
+            </p>
+          )}
+
+          <div className="follow-section">
+            <Form action="follower" className="follower-button">
+              <button type="submit">Follower</button>
+            </Form>
+            <Form action="following" className="following-button">
+              <button type="submit">Following</button>
+            </Form>
+          </div>
+
+          {profile.bio && <p>{profile.bio}</p>}
+        </div>
+
+        <div className="edit-section">
+          <Form action="edit">
+            <button type="submit">Edit Profile</button>
+          </Form>
+           </div>
+           </div>
 
             <section className="myList">
                 {titles.map(t => (
-                <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
+                <MangaRow title={t} MangaList={[]}/>
             ))}
             </section>
 
-    </main>
-    );
-}
-export default profile 
 
+      <section className="myList">
+        {titles.map((t) => (
+          <MangaRow title={t} MangaList={groupListsByTitle(t)} />
+        ))}
+      </section>
+    </main>
+  );
+}
+export default Profile;
