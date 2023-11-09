@@ -9,6 +9,8 @@ import * as User from "./helpers/User.js"
 import forumData from './public/MockComments.json' assert { type: 'json' };
 
 //Start Server and specify port 
+import sampleProfileList from "./public/sampleProfileList.json" assert { type: 'json' }
+import sampleProfileData from "./public/sampleProfileData.json" assert { type: 'json' }
 const app = express()
 
 //Define middleware here
@@ -25,6 +27,7 @@ const __dirname = path.dirname(__filename);
 const BASE_ROUTE_AUTH = "auth"
 const BASE_ROUTE_MANGA = "manga" 
 const BASE_ROUTE_USER = "user"
+const BASE_ROUTE_COMMENT = "comment"
 
 //Sample route 
 app.get("/", (req,res)=>{
@@ -61,6 +64,16 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
     const payload = await Jikan.getMangaRecommendations(req.params.num)
     res.json({result: payload})  
 })
+
+//get the profile lists 
+app.get(`/getProfileLists`, async (req,res) => {
+    res.json(sampleProfileList);
+})
+
+app.get('/getProfile', async (req, res) => {
+    res.json(sampleProfileData);
+})
+
 //Write more routes here: 
 
 app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
