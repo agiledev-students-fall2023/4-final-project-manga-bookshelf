@@ -5,6 +5,8 @@ import url from 'url';
 import path from 'path';
 import cors from "cors" 
 import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
+import * as User from "./helpers/User.js"
+
 //Start Server and specify port 
 import sampleProfileList from "./public/sampleProfileList.json" assert { type: 'json' }
 const app = express()
@@ -22,6 +24,7 @@ const __dirname = path.dirname(__filename);
 //define the constant routes 
 const BASE_ROUTE_AUTH = "auth"
 const BASE_ROUTE_MANGA = "manga" 
+const BASE_ROUTE_USER = "user"
 
 //Sample route 
 app.get("/", (req,res)=>{
@@ -40,6 +43,9 @@ app.get(`/${BASE_ROUTE_AUTH}`, (req, res) => {
 
 app.get(`/${BASE_ROUTE_MANGA}`, (req, res) => {
     res.json({ content: "use this route format to send some json" })
+})
+app.get(`/${BASE_ROUTE_COMMENT}`, (req, res) => {
+    res.json({ content: "Why not send some json again again" })
 })
 
 app.get(`/${BASE_ROUTE_MANGA}/search/:entry`, async (req, res) => {
@@ -65,5 +71,15 @@ app.get(`/getProfileLists`, async (req,res) => {
 })
 
 //Write more routes here: 
+
+app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
+    const followers = await User.getUserFollower(req.params.id)
+    res.json({result: followers})
+})
+
+app.get(`/${BASE_ROUTE_USER}/:id/following`, async (req, res) => {
+    const following = await User.getUserFollowing(req.params.id)
+    res.json({result: following})
+})
         
 export default app; 
