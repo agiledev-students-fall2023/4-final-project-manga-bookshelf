@@ -4,13 +4,12 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        5,
-        11,
-        13
+        7,
+        13,
+        11
       ],
       "followers": [
         2,
-        3,
         5,
         11,
         13
@@ -38,8 +37,7 @@
         4,
         7,
         10,
-        13,
-        1
+        13
       ],
       "followers": [],
       "bio": "This is a bio for Jogn."
