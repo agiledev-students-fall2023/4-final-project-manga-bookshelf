@@ -3,15 +3,14 @@ import fs from 'fs';
 /* Need to modify getUserData() and saveUserData() to fetch data from database */
 async function getUserData() {
     try {
-        // const data = await fs.promises.readFile('./public/userMockData.json')
-        const data = fs.readFileSync('./public/userMockData.json')
+        const data = await fs.promises.readFile('./public/userMockData.json')
         return JSON.parse(data)
     } catch (err) {
         console.error("Could not load users mock data:", err)
         throw err
     }
 }
-
+/* write is sync to avoid write conflict */
 async function saveUserData(data) {
     try {
         const dataString = typeof data === 'string' ? data : JSON.stringify(data, null, 2)
@@ -36,7 +35,8 @@ async function followUser(userId, followId) {
     }
 
     if (user.following.includes(parseInt(followId, 10))) {
-        return res.status(400).send({ message: 'Already following user.' });
+        return
+        // return res.status(400).send({ message: 'Already following user.' });
     }
 
     user.following.push(parseInt(followId, 10))
@@ -58,7 +58,8 @@ async function unfollowUser(userId, unfollowId) {
     }
 
     if (!user.following.includes(parseInt(unfollowId, 10))) {
-        return res.status(400).send({ message: 'Not following user.' });
+        return
+        // return res.status(400).send({ message: 'Not following user.' });
     }
 
     user.following = user.following.filter(id => id !== parseInt(unfollowId, 10))
@@ -80,7 +81,8 @@ async function removeUser(userId, removeId) {
     }
 
     if (!user.followers.includes(parseInt(removeId, 10))) {
-        return res.status(400).send({ message: 'User is not following you.' });
+        return
+        // return res.status(400).send({ message: 'User is not following you.' });
     }
 
     user.following = user.following.filter(id => id !== parseInt(removeId, 10))
@@ -118,11 +120,21 @@ async function getUserFollowing(userId) {
     return following
 }
 
+async function getUserInfo(userId) {
+    const data = await getUserData()
+    const user = data.users.find(user => user.id === userId)
+    if (!user) {
+        return res.status(404).send({ message: 'User not found.' });
+    }
+
+    return user
+}
+
 export {
-    getUserData,
     getUserFollower,
     getUserFollowing,
     followUser,
     unfollowUser,
-    removeUser
+    removeUser, 
+    getUserInfo
 }

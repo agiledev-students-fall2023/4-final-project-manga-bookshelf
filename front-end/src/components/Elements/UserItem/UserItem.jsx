@@ -16,6 +16,9 @@ function UserItem({ title, user, onUnfollowClick }) {
             if (followerString === profileId) {
                 setIsFollowed(true)
             }
+            else {
+                setIsFollowed(false)
+            }
         })
     }
 
@@ -41,6 +44,7 @@ function UserItem({ title, user, onUnfollowClick }) {
         axios.post(actionUrl, payload)
             .then(response => {
                 setIsFollowed(!isFollowed)
+                // renderFollowButton()
             })
             .catch(err => {
                 console.error(`Error in ${isFollowed ? 'unfollow' : 'follow'} request: `, err)

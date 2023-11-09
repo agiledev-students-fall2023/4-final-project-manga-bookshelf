@@ -104,11 +104,13 @@ app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
   });
 
 //get the profile lists 
+app.get(`/${BASE_ROUTE_USER}/:id/profileInfo`, async (req, res) => {
+    const userInfo = await User.getUserInfo(req.params.id)
+    res.json({result: userInfo})
+})
+
 app.get('/getProfileLists', (req,res) => {
     res.json(sampleProfileList);
 })
 
-app.get('/getProfile', (req, res) => {
-    res.json(sampleProfileData);
-})
 export default app; 
