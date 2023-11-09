@@ -1,15 +1,32 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom"
 import Works from "../Works/Works" // for each manga 
+import { useState, useEffect } from "react"
 import MangaList from "../../components/Elements/MangaList"
 import MangaIcon from '../../components/Elements/MangaIcon/MangaIcon'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
 import Star from "../../components/Elements/Star/Star";
-import sampleMangaList from "../../assets/sampleMangaList.json"
 
 import "./profile.css"
 const titles = ["Currently Reading", "Done", "Want to Read"]
 
-function profile() {
+function Profile() {
+    const [profileLists, setProfileLists] = useState([])
+
+  //get a list of the users profile lists (mock data)
+  useEffect(() => {
+    async function getProfileLists() {
+      const response = await fetch("http://localhost:8080/getProfileLists");
+      const data = await response.json()
+      console.log(data)
+      setProfileLists([data.result]);
+    }
+    getProfileLists()
+  }, [])
+
+  function sortListsByTitle(title) {
+
+  }
+
     const contact = {
         name: "Naruto Uzumaki",
         avatar: "https://placekitten.com/g/200/200",
@@ -17,29 +34,6 @@ function profile() {
         bio: "I love ramen! ",
         favorite: true,
     };
-
-    const mangas = [
-    {
-    name: "SpyxFamily",
-    list: "Currently Reading",
-    img: `${process.env.PUBLIC_URL}/spyfamily.jpg`,
-    },
-    {
-    name: "Jujutsu Kaisen",
-    list: "Currently Reading",
-    img: `${process.env.PUBLIC_URL}/JujutsuKaisen.jpg`,
-    },
-    {
-    name: "One Piece",
-    list: "Want to Read",
-    img: `${process.env.PUBLIC_URL}/onepiece.jpg`,
-    },
-    {
-    name: "Naruto",
-    list: "Done",
-    img: `${process.env.PUBLIC_URL}/naurto2.jpg`,
-    },
-    ]
 
     return (
         <main className="profile-main">
@@ -97,14 +91,14 @@ function profile() {
                 </div>
             </div>
 
-            <section className="myList">
-                {titles.map(t => (
-            <MangaRow title={t} MangaList={[sampleMangaList.result]} />
-            ))}
+            <section className="myList">                
+            {titles.map(t => (
+    <MangaRow title={t} MangaList={profileLists} />
+))}
             </section>
 
     </main>
     );
 }
-export default profile 
+export default Profile 
 
