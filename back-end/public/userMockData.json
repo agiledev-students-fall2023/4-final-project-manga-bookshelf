@@ -4,17 +4,15 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        2,
-        5,
-        7,
-        9
+        2
       ],
       "followers": [
         2,
         3,
         11,
         13
-      ]
+      ],
+      "bio": "This is a bio for Alice."
     },
     {
       "id": "2",
@@ -29,7 +27,8 @@
       ],
       "followers": [
         1
-      ]
+      ],
+      "bio": "This is a bio for Bob."
     },
     {
       "id": "3",
@@ -41,7 +40,8 @@
         10,
         13
       ],
-      "followers": []
+      "followers": [],
+      "bio": "This is a bio for Jogn."
     },
     {
       "id": "4",
@@ -50,7 +50,8 @@
       "followers": [
         2,
         3
-      ]
+      ],
+      "bio": "This is a bio for Aiut."
     },
     {
       "id": "5",
@@ -58,9 +59,8 @@
       "following": [
         6
       ],
-      "followers": [
-        1
-      ]
+      "followers": [],
+      "bio": "This is a bio for Bgrtb."
     },
     {
       "id": "6",
@@ -70,7 +70,8 @@
         5,
         8,
         9
-      ]
+      ],
+      "bio": "This is a bio for Zijf."
     },
     {
       "id": "7",
@@ -80,10 +81,10 @@
         9
       ],
       "followers": [
-        1,
         2,
         3
-      ]
+      ],
+      "bio": "This is a bio for Padfi."
     },
     {
       "id": "8",
@@ -91,7 +92,8 @@
       "following": [
         6
       ],
-      "followers": []
+      "followers": [],
+      "bio": "This is a bio for Odsaf."
     },
     {
       "id": "9",
@@ -100,10 +102,10 @@
         6
       ],
       "followers": [
-        1,
         2,
         7
-      ]
+      ],
+      "bio": "This is a bio for Ldsaf."
     },
     {
       "id": "10",
@@ -112,7 +114,8 @@
       "followers": [
         2,
         3
-      ]
+      ],
+      "bio": "This is a bio for JKfdas."
     },
     {
       "id": "11",
@@ -120,13 +123,15 @@
       "following": [
         1
       ],
-      "followers": []
+      "followers": [],
+      "bio": "This is a bio for aasf."
     },
     {
       "id": "12",
       "name": "erwt",
       "following": [],
-      "followers": []
+      "followers": [],
+      "bio": "This is a bio for erwt."
     },
     {
       "id": "13",
@@ -137,19 +142,22 @@
       "followers": [
         2,
         3
-      ]
+      ],
+      "bio": "This is a bio for weinanshike."
     },
     {
       "id": "14",
       "name": "hetrh",
       "following": [],
-      "followers": []
+      "followers": [],
+      "bio": "This is a bio for hetrh."
     },
     {
       "id": "15",
       "name": "iot",
       "following": [],
-      "followers": []
+      "followers": [],
+      "bio": "This is a bio for iot."
     }
   ]
 }
