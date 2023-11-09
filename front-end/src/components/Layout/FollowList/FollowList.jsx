@@ -3,7 +3,7 @@ import UserItem from '../../Elements/UserItem/UserItem'
 
 import "./FollowList.css"
 
-function FollowList({ title, users }) {
+function FollowList({ title, users, onUnfollowClick }) {
     return (
         <div className='follow-list'>
             <h2>{title}</h2>
@@ -11,7 +11,7 @@ function FollowList({ title, users }) {
                 <ul>
                     {users.map(user => (
                         <li key={user.id}>
-                            <UserItem title = {title} user={user}/>
+                            <UserItem title = {title} user={user} onUnfollowClick={onUnfollowClick}/>
                         </li>
                     ))}
                 </ul>

@@ -75,14 +75,15 @@ function Profile() {
           <Form action="edit">
             <button type="submit">Edit Profile</button>
           </Form>
-          {/* <Form
-                        method="post"
-                        action="destroy"
-                    >
-                        <button type="submit">Delete</button>
-                    </Form> */}
-        </div>
-      </div>
+           </div>
+           </div>
+
+            <section className="myList">
+                {titles.map(t => (
+                <MangaRow title={t} MangaList={[]}/>
+            ))}
+            </section>
+
 
       <section className="myList">
         {titles.map((t) => (

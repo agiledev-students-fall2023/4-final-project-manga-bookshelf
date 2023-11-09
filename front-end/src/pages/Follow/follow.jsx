@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useCallback } from 'react'
 import FollowList from '../../components/Layout/FollowList/FollowList'
 import { useNavigate, useParams } from 'react-router-dom'
 import { BsArrowLeft } from 'react-icons/bs'
@@ -39,20 +39,30 @@ function Follow({ title }) {
         navigate(`/profile/${profileId}`)
     }
 
+    const fetchFollowers = useCallback(async () => {
+        const response = await fetch(`http://localhost:8080/user/${profileId}/followers`);
+        const data = await response.json();
+        setFollowers(data.result);
+    }, [profileId]);
+
+    const fetchFollowing = useCallback(async () => {
+        const response = await fetch(`http://localhost:8080/user/${profileId}/following`);
+        const data = await response.json();
+        setFollowers(data.result);
+    }, [profileId]);
+
     useEffect(() => {
-        const fetchFollowers = async() => {
-            const response = await fetch(`http://localhost:8080/user/${profileId}/followers`)
-            const data = await response.json()
-            setFollowers(data.result)
-        }
-        const fetchFollowing = async() => {
-            const response = await fetch(`http://localhost:8080/user/${profileId}/following`)
-            const data = await response.json()
-            setFollowers(data.result)
-        }
         if (title === 'Follower') fetchFollowers()
         else if (title === 'Following') fetchFollowing()
-    }, [profileId, title])
+    }, [title, fetchFollowers, fetchFollowing])
+
+    const refetchFollowData = () => {
+        if (title === 'Follower') {
+            fetchFollowers();
+        } else if (title === 'Following') {
+            fetchFollowing();
+        }
+    };
 
     return (
         <div className="follow-main">
@@ -60,7 +70,7 @@ function Follow({ title }) {
                 <BsArrowLeft className='return-arrow'/>
                 Return to Profile Page
             </button>
-            <FollowList title={title} users={followers}/>
+            <FollowList title={title} users={followers} onUnfollowClick={refetchFollowData}/>
             
         </div>
     )

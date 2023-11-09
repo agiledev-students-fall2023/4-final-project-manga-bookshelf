@@ -1,19 +1,171 @@
 {
-    "users": [
-      { "id": "1", "name": "Alice", "following": [3, 5, 7, 9, 11], "followers": [2, 3, 7, 10, 13] },
-      { "id": "2", "name": "Bob", "following": [], "followers": [1] },
-      { "id": "3", "name": "Jogn", "following": [], "followers": [] },
-      { "id": "4", "name": "Aiut", "following": [], "followers": [2, 3] },
-      { "id": "5", "name": "Bgrtb", "following": [], "followers": [1] },
-      { "id": "6", "name": "Zijf", "following": [], "followers": [5, 8, 9] },
-      { "id": "7", "name": "Padfi", "following": [], "followers": [2, 3] },
-      { "id": "8", "name": "Odsaf", "following": [], "followers": [1] },
-      { "id": "9", "name": "Ldsaf", "following": [], "followers": [2, 7] },
-      { "id": "10", "name": "JKfdas", "following": [], "followers": [2, 3] },
-      { "id": "11", "name": "aasf", "following": [], "followers": [1] },
-      { "id": "12", "name": "erwt", "following": [], "followers": [] },
-      { "id": "13", "name": "weinanshike", "following": [], "followers": [2, 3] },
-      { "id": "14", "name": "hetrh", "following": [], "followers": [1] },
-      { "id": "15", "name": "iot", "following": [], "followers": [] }
-    ]
+  "users": [
+    {
+      "id": "1",
+      "name": "Alice",
+      "following": [
+        3,
+        7,
+        11,
+        13
+      ],
+      "followers": [
+        2,
+        3,
+        5,
+        11,
+        13
+      ],
+      "bio": "This is a bio for Alice."
+    },
+    {
+      "id": "2",
+      "name": "Bob",
+      "following": [
+        4,
+        7,
+        9,
+        10,
+        13,
+        1
+      ],
+      "followers": [],
+      "bio": "This is a bio for Bob."
+    },
+    {
+      "id": "3",
+      "name": "Jogn",
+      "following": [
+        4,
+        7,
+        10,
+        13,
+        1
+      ],
+      "followers": [
+        1
+      ],
+      "bio": "This is a bio for Jogn."
+    },
+    {
+      "id": "4",
+      "name": "Aiut",
+      "following": [],
+      "followers": [
+        2,
+        3
+      ],
+      "bio": "This is a bio for Aiut."
+    },
+    {
+      "id": "5",
+      "name": "Bgrtb",
+      "following": [
+        6,
+        1
+      ],
+      "followers": [],
+      "bio": "This is a bio for Bgrtb."
+    },
+    {
+      "id": "6",
+      "name": "Zijf",
+      "following": [],
+      "followers": [
+        5,
+        8,
+        9
+      ],
+      "bio": "This is a bio for Zijf."
+    },
+    {
+      "id": "7",
+      "name": "Padfi",
+      "following": [
+        9
+      ],
+      "followers": [
+        2,
+        3,
+        1
+      ],
+      "bio": "This is a bio for Padfi."
+    },
+    {
+      "id": "8",
+      "name": "Odsaf",
+      "following": [
+        6
+      ],
+      "followers": [],
+      "bio": "This is a bio for Odsaf."
+    },
+    {
+      "id": "9",
+      "name": "Ldsaf",
+      "following": [
+        6
+      ],
+      "followers": [
+        2,
+        7
+      ],
+      "bio": "This is a bio for Ldsaf."
+    },
+    {
+      "id": "10",
+      "name": "JKfdas",
+      "following": [],
+      "followers": [
+        2,
+        3
+      ],
+      "bio": "This is a bio for JKfdas."
+    },
+    {
+      "id": "11",
+      "name": "aasf",
+      "following": [
+        1
+      ],
+      "followers": [
+        1
+      ],
+      "bio": "This is a bio for aasf."
+    },
+    {
+      "id": "12",
+      "name": "erwt",
+      "following": [],
+      "followers": [],
+      "bio": "This is a bio for erwt."
+    },
+    {
+      "id": "13",
+      "name": "weinanshike",
+      "following": [
+        1
+      ],
+      "followers": [
+        2,
+        3,
+        1
+      ],
+      "bio": "This is a bio for weinanshike."
+    },
+    {
+      "id": "14",
+      "name": "hetrh",
+      "following": [],
+      "followers": [],
+      "bio": "This is a bio for hetrh."
+    },
+    {
+      "id": "15",
+      "name": "iot",
+      "following": [],
+      "followers": [],
+      "bio": "This is a bio for iot."
+    }
+  ]
 }
