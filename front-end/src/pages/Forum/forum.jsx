@@ -14,7 +14,7 @@ function Forum() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/MockComments');
+        const response = await fetch('http://localhost:8080/comment/MockComments');
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
