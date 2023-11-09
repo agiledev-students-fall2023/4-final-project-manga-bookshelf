@@ -8,11 +8,39 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ForumIcon from '@mui/icons-material/Forum';
+import Turnstone from 'turnstone'
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
     
     const [isOpen, setOpen] = useState(false); 
+    const [searchBox, setSearchBox] = useState([]) 
+    //Define constant styles to use Turnstone 
+
+    const maxItems = 10
+
+    const listbox = [
+        {
+            id: 'mangas',
+            name: 'Mangas',
+            ratio: 6,
+            displayField: 'manga',
+            data: (query) =>
+                fetch(`localhost:8080/search/${query}`)
+                    .then(res => res.json()),
+            searchType: 'startswith'
+        }
+        // {
+        //     id: 'users',
+        //     name: 'Users',
+        //     ratio: 4,
+        //     displayField: 'user',
+        //     data: (query) =>
+        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
+        //             .then(res => res.json()),
+        //     searchType: 'contains'
+        // }
+    ]
 
     return (
         <>
@@ -24,22 +52,16 @@ export default function Header() {
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <form id="search-form" role="search">
-                        <input
+                        {/* <input
                             id="q"
                             aria-label="Search contacts"
                             placeholder="Search"
                             type="search"
                             name="q"
-                        />
-                        <div
-                            className="Header-search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="Header-sr-only"
-                            aria-live="polite"
-                        ></div>
+                        /> */}
+                            <Turnstone
+                                listbox={listbox}
+                            />
                     </form>
                     <form method="post">
                         <button type="submit">Submit</button>

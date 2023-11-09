@@ -1,6 +1,6 @@
 {
-    "result": {
-      "result": [
+    "result": [
+      {"result": [
         {
           "__id": 2,
           "title": "Berserk",
@@ -42,6 +42,7 @@
           "image": "https://cdn.myanimelist.net/images/manga/3/12458.jpg"
         }
       ]
-    }
+      }
+    ]
   }
   

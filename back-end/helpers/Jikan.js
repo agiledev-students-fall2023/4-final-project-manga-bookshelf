@@ -59,7 +59,7 @@ async function getMangaInfoById(MangaId){
 // This is used to populate the columns when the user clicks on it 
 // Input: String being category name
 // Output: Array of Manga objects
-async function getMangaInfoByCategory(CategoryName) {
+async function getMangaInfoByGenres(GenreName) {
     // const result = await client.manga.getRecommendations
 
 }
@@ -83,7 +83,6 @@ async function getMangaRecommendations(...num){
     }
     const payload = await client.recommendations.getMangaRecommendations(0, entries);
 
-    //written by gpt
     let transformed = [];
     // Loop through each result in the payload
     payload.forEach(result => {
@@ -111,6 +110,6 @@ async function getMangaRecommendations(...num){
 export {
     getMangaSearch,
     getMangaInfoById,
-    getMangaInfoByCategory, 
+    getMangaInfoByGenres, 
     getMangaRecommendations, 
 }

@@ -14,7 +14,7 @@ function MangaWorks(){
     return (
         <div className="home-main">
             {genres.map(t => (
-                <MangaRow title={t} MangaList={sampleMangaList["data"]}/>
+                <MangaRow title={t} MangaList={sampleMangaList["result"]}/>
             ))}
         </div>
     )
