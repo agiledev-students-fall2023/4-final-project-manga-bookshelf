@@ -61,8 +61,6 @@ export default function Header() {
                         /> */}
                             <Turnstone
                                 listbox={listbox}
-                                cancelButton={true}
-
                             />
                     </form>
                     <form method="post">

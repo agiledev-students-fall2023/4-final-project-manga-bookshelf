@@ -11,7 +11,6 @@ import "./MangaIcon.css"
 function MangaIcon({name, imgLink}) {
 
   // This will make styles more consistent
-  const fav = { favorite: false }
   const [favorite, setFavorite] = useState(false)
 
   const navigate = useNavigate()
@@ -23,13 +22,13 @@ function MangaIcon({name, imgLink}) {
 
   const handleFavorite = () => {
     setFavorite(!favorite); 
-    fav.favorite = favorite
+    console.log(favorite) 
   }
 
   return (
     <div className="MangaIcon-main">
       <div className="MangaIcon-favorite" onClick={handleFavorite}>
-        <Star contact={fav}/>
+        <Star favorite={favorite}/>
       </div>
       <img src={imgLink} onClick={handleOnClick}/>
       <span>{name}</span>

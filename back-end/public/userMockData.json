@@ -4,8 +4,7 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        3,
-        7,
+        5,
         11,
         13
       ],
@@ -42,9 +41,7 @@
         13,
         1
       ],
-      "followers": [
-        1
-      ],
+      "followers": [],
       "bio": "This is a bio for Jogn."
     },
     {
@@ -64,7 +61,9 @@
         6,
         1
       ],
-      "followers": [],
+      "followers": [
+        1
+      ],
       "bio": "This is a bio for Bgrtb."
     },
     {
@@ -86,8 +85,7 @@
       ],
       "followers": [
         2,
-        3,
-        1
+        3
       ],
       "bio": "This is a bio for Padfi."
     },

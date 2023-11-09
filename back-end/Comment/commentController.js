@@ -2,8 +2,8 @@ import app from "../app.mjs"
 
 const BASE_ROUTE_COMMENT = "comment"
 
-app.get(`/`, (req, res) => {
-    res.send("get some comments!");
+app.get(`/2`, (req, res) => {
+    res.send("does this fucking work???!");
 })
 
 /*
