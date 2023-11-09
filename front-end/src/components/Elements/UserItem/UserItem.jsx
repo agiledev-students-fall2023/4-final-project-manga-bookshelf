@@ -1,12 +1,29 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import userImage from "../../../assets/userImage.png"
 
 import "./UserItem.css"
 
 function UserItem({ title, user }) {
     const[isFollowed, setIsFollowed] = useState(false)
+    const { profileId } = useParams()
+
+    useEffect(() => {
+        const renderFollowButton = () => {
+            user.followers.forEach(follower => {
+                const followerString = follower.toString()
+                if (followerString === profileId) {
+                    console.log("there is match")
+                    setIsFollowed(true)
+                }
+            })
+        }
+        renderFollowButton()
+    })
 
     const handleFollowClick = () => {
+        console.log(user.following)
+        
         setIsFollowed(!isFollowed)
     }
 
