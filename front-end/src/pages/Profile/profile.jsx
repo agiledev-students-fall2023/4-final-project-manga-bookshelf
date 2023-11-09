@@ -7,6 +7,7 @@ const titles = ["Currently Reading", "Done", "Want to Read"];
 
 function Profile() {
   const [profileLists, setProfileLists] = useState([]);
+  const [profile, setProfile] = useState({});
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
@@ -15,7 +16,14 @@ function Profile() {
       const data = await response.json();
       setProfileLists([data.result]);
     }
+    async function getProfile() {
+      const response = await fetch("http://localhost:8080/getProfile");
+      const data = await response.json();
+      setProfile(data);
+      
+    }
     getProfileLists();
+    getProfile();
   }, []);
 
   const groupListsByTitle = (title) => {
@@ -26,35 +34,27 @@ function Profile() {
     return filteredLists;
   };
 
-  const contact = {
-    name: "Naruto Uzumaki",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    bio: "I love ramen! ",
-    favorite: true,
-  };
-
   return (
     <main className="profile-main">
       <div className="profile-contact">
         <div className="profile-image">
           <img
-            key={contact.avatar}
-            src={contact.avatar || null}
+            key={profile.avatar}
+            src={profile.avatar || null}
             alt="No Img Detected"
           />
         </div>
 
         <div className="profile-bio">
           <h1>
-            {contact.name ? <>{contact.name}</> : <i>No Name</i>}{" "}
+            {profile.name ? <>{profile.name}</> : <i>No Name</i>}{" "}
             {/* <Star contact={contact} /> */}
           </h1>
 
-          {contact.twitter && (
+          {profile.twitter && (
             <p className="profile-link">
-              <a href={`https://twitter.com/${contact.twitter}`}>
-                {contact.twitter}
+              <a href={`https://twitter.com/${profile.twitter}`}>
+                {profile.twitter}
               </a>
             </p>
           )}
@@ -68,7 +68,7 @@ function Profile() {
             </Form>
           </div>
 
-          {contact.bio && <p>{contact.bio}</p>}
+          {profile.bio && <p>{profile.bio}</p>}
         </div>
 
         <div className="edit-section">
