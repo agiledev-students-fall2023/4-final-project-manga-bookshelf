@@ -4,8 +4,9 @@
       "id": "1",
       "name": "Alice",
       "following": [
+        13,
         7,
-        13
+        5
       ],
       "followers": [
         11,
@@ -28,7 +29,8 @@
         13
       ],
       "followers": [
-        4
+        4,
+        9
       ],
       "bio": "This is a bio for Bob.",
       "avatar": "https://placekitten.com/g/200/200",
@@ -69,9 +71,11 @@
         6,
         1
       ],
-      "followers": [],
+      "followers": [
+        1
+      ],
       "bio": "This is a bio for Bgrtb.",
-      "avatar": "https://placekitten.com/g/200/200",
+      "avatar": "http://localhost:8080/puppy",
       "twitter": "your_handle"
     },
     {
@@ -100,7 +104,7 @@
         1
       ],
       "bio": "This is a bio for Padfi.",
-      "avatar": "https://placekitten.com/g/200/200",
+      "avatar": "http://localhost:8080/puppy",
       "twitter": "your_handle"
     },
     {
@@ -118,7 +122,8 @@
       "id": "9",
       "name": "Ldsaf",
       "following": [
-        6
+        6,
+        2
       ],
       "followers": [
         2,
@@ -157,7 +162,7 @@
       "following": [],
       "followers": [],
       "bio": "This is a bio for erwt.",
-      "avatar": "https://placekitten.com/g/200/200",
+      "avatar": "http://localhost:8080/puppy",
       "twitter": "your_handle"
     },
     {
