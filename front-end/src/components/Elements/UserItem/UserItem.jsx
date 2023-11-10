@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import userImage from "../../../assets/userImage.png"
 
 import "./UserItem.css"
@@ -9,6 +9,7 @@ function UserItem({ title, user, onUnfollowClick }) {
     const[isFollowed, setIsFollowed] = useState(false)
     const [loading, setLoading] = useState(false)
     const { profileId } = useParams()
+    const navigate = useNavigate()
 
     const renderFollowButton = () => {
         user.followers.forEach(follower => {
@@ -20,6 +21,10 @@ function UserItem({ title, user, onUnfollowClick }) {
                 setIsFollowed(false)
             }
         })
+    }
+
+    const navigateToProfile = () => {
+        navigate(`/profile/${user.id}`)
     }
 
     useEffect(() => {
@@ -84,9 +89,9 @@ function UserItem({ title, user, onUnfollowClick }) {
 
     return (
         <div className='user-item'>
-            <img src={userImage} alt={user.name} />
-            <span>{user.name}</span>
-
+            <img src={userImage} alt={user.name} onClick={navigateToProfile}/>
+            <span onClick={navigateToProfile}>{user.name}</span>
+            
             {title === 'Follower' && (
                 <button 
                     className={`follow-button ${isFollowed ? 'followed' : ''}`}

@@ -5,13 +5,13 @@
       "name": "Alice",
       "following": [
         7,
-        2
+        13
       ],
       "followers": [
-        2,
         11,
         5,
-        7
+        7,
+        13
       ],
       "bio": "This is a bio for Alice.",
       "avatar": "https://placekitten.com/g/200/200",
@@ -25,12 +25,10 @@
         7,
         9,
         10,
-        13,
-        1
+        13
       ],
       "followers": [
-        4,
-        1
+        4
       ],
       "bio": "This is a bio for Bob.",
       "avatar": "https://placekitten.com/g/200/200",
@@ -165,10 +163,13 @@
     {
       "id": "13",
       "name": "weinanshike",
-      "following": [],
+      "following": [
+        1
+      ],
       "followers": [
         2,
-        3
+        3,
+        1
       ],
       "bio": "This is me, the author for the page, Taoming Liu",
       "avatar": "https://placekitten.com/g/200/200",

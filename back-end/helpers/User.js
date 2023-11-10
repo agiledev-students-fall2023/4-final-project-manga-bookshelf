@@ -130,6 +130,20 @@ async function getUserInfo(userId) {
     return user
 }
 
+async function getUserCurrentReading(userId) {
+    const data = await getUserData()
+    const user = data.users.find(user => user.id === userId)
+    if (!user) {
+        return res.status(404).send({ message: 'User not found.' });
+    }
+
+    const currentReadingIds = user.currentReading;
+    // const currentReading = currentReadingIds.map(id => data.users.find(u => u.id === id.toString()));
+
+    return currentReading
+
+}
+
 export {
     getUserFollower,
     getUserFollowing,
