@@ -20,6 +20,7 @@ async function getMangaSearch(searchquery){
             popularity: manga.popularity,
             image: manga.image.jpg,
             __id: manga.id, 
+            genres: manga.genres
         }
     })
     console.log(result)
@@ -49,6 +50,7 @@ async function getMangaInfoById(MangaId){
             author: mangaObject.authors[0].name,
             authorImage: mangaObject.authors[0].url,
             authorId: mangaObject.authors[0].id,
+            genres: mangaObject.genres
         }
         console.log(result)
         return result
@@ -60,8 +62,25 @@ async function getMangaInfoById(MangaId){
 // Input: String being category name
 // Output: Array of Manga objects
 async function getMangaInfoByGenres(GenreName) {
-    // const result = await client.manga.getRecommendations
+    // Get manga recommendations based on the genre id
+    const payload = await getMangaRecommendations(30)
+    const mangaRecommendations = payload.result
 
+    const filteredManga = []
+    for (const manga of mangaRecommendations) {
+        const mangaInfo = await getMangaInfoById(manga.__id)
+        for (const genre of mangaInfo.genres) {
+            if (genre.name === GenreName) {
+                filteredManga.push({
+                    __id: mangaInfo.id,
+                    title: mangaInfo.title,
+                    image: mangaInfo.image.jpg.default
+                })
+            }
+        }
+    }
+
+    return filteredManga
 }
 
 // Get manga recommendations

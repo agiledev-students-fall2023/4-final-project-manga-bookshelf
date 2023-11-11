@@ -4,17 +4,19 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        7,
         13,
-        11
+        7,
+        5
       ],
       "followers": [
-        2,
-        5,
         11,
+        5,
+        7,
         13
       ],
-      "bio": "This is a bio for Alice."
+      "bio": "This is a bio for Alice.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "2",
@@ -24,11 +26,15 @@
         7,
         9,
         10,
-        13,
-        1
+        13
       ],
-      "followers": [],
-      "bio": "This is a bio for Bob."
+      "followers": [
+        4,
+        9
+      ],
+      "bio": "This is a bio for Bob.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "3",
@@ -40,17 +46,23 @@
         13
       ],
       "followers": [],
-      "bio": "This is a bio for Jogn."
+      "bio": "This is a bio for Jogn.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "4",
       "name": "Aiut",
-      "following": [],
+      "following": [
+        2
+      ],
       "followers": [
         2,
         3
       ],
-      "bio": "This is a bio for Aiut."
+      "bio": "This is a bio for Aiut.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "5",
@@ -62,7 +74,9 @@
       "followers": [
         1
       ],
-      "bio": "This is a bio for Bgrtb."
+      "bio": "This is a bio for Bgrtb.",
+      "avatar": "http://localhost:8080/puppy",
+      "twitter": "your_handle"
     },
     {
       "id": "6",
@@ -73,19 +87,25 @@
         8,
         9
       ],
-      "bio": "This is a bio for Zijf."
+      "bio": "This is a bio for Zijf.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "7",
       "name": "Padfi",
       "following": [
-        9
+        9,
+        1
       ],
       "followers": [
         2,
-        3
+        3,
+        1
       ],
-      "bio": "This is a bio for Padfi."
+      "bio": "This is a bio for Padfi.",
+      "avatar": "http://localhost:8080/puppy",
+      "twitter": "your_handle"
     },
     {
       "id": "8",
@@ -94,19 +114,24 @@
         6
       ],
       "followers": [],
-      "bio": "This is a bio for Odsaf."
+      "bio": "This is a bio for Odsaf.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "9",
       "name": "Ldsaf",
       "following": [
-        6
+        6,
+        2
       ],
       "followers": [
         2,
         7
       ],
-      "bio": "This is a bio for Ldsaf."
+      "bio": "This is a bio for Ldsaf.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "10",
@@ -116,7 +141,9 @@
         2,
         3
       ],
-      "bio": "This is a bio for JKfdas."
+      "bio": "This is a bio for JKfdas.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "11",
@@ -124,17 +151,19 @@
       "following": [
         1
       ],
-      "followers": [
-        1
-      ],
-      "bio": "This is a bio for aasf."
+      "followers": [],
+      "bio": "This is a bio for aasf.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "12",
       "name": "erwt",
       "following": [],
       "followers": [],
-      "bio": "This is a bio for erwt."
+      "bio": "This is a bio for erwt.",
+      "avatar": "http://localhost:8080/puppy",
+      "twitter": "your_handle"
     },
     {
       "id": "13",
@@ -147,21 +176,27 @@
         3,
         1
       ],
-      "bio": "This is a bio for weinanshike."
+      "bio": "This is me, the author for the page, Taoming Liu",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "14",
       "name": "hetrh",
       "following": [],
       "followers": [],
-      "bio": "This is a bio for hetrh."
+      "bio": "This is a bio for hetrh.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     },
     {
       "id": "15",
       "name": "iot",
       "following": [],
       "followers": [],
-      "bio": "This is a bio for iot."
+      "bio": "This is a bio for iot.",
+      "avatar": "https://placekitten.com/g/200/200",
+      "twitter": "your_handle"
     }
   ]
 }

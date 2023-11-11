@@ -64,6 +64,11 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
     res.json({result: payload})  
 })
 
+app.get(`/${BASE_ROUTE_MANGA}/recommendation/genre/:genreName`, async (req, res) => {
+    const genres = await Jikan.getMangaInfoByGenres(req.params.genreName);
+    res.json({ result: genres });
+})
+
 app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
     // try {
         const followers = await User.getUserFollower(req.params.id);
@@ -104,11 +109,13 @@ app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
   });
 
 //get the profile lists 
+app.get(`/${BASE_ROUTE_USER}/:id/profileInfo`, async (req, res) => {
+    const userInfo = await User.getUserInfo(req.params.id)
+    res.json({result: userInfo})
+})
+
 app.get('/getProfileLists', (req,res) => {
     res.json(sampleProfileList);
 })
 
-app.get('/getProfile', (req, res) => {
-    res.json(sampleProfileData);
-})
 export default app; 
