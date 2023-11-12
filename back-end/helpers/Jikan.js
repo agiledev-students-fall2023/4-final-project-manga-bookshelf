@@ -64,12 +64,15 @@ async function getMangaInfoById(MangaId){
 // Input: String being category name
 // Output: Array of Manga objects
 async function getMangaInfoByGenres(GenreName) {
-    const payload = await getMangaRecommendations(51)
+    const payload = await getMangaRecommendations(100)
     const mangaRecommendations = payload.result
 
     const filteredManga = []
     for (const manga of mangaRecommendations) {
         const mangaInfo = await getMangaInfoById(manga.__id)
+        if (filteredManga.length >= 20) {
+            return filteredManga
+        }
         for (const genre of mangaInfo.genres) {
             if (genre.name === GenreName) {
                 filteredManga.push({
