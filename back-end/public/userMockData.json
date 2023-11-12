@@ -6,7 +6,8 @@
       "following": [
         5,
         11,
-        13
+        13,
+        3
       ],
       "followers": [
         2,
@@ -41,7 +42,9 @@
         13,
         1
       ],
-      "followers": [],
+      "followers": [
+        1
+      ],
       "bio": "This is a bio for Jogn."
     },
     {
