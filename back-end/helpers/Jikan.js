@@ -23,7 +23,6 @@ async function getMangaSearch(searchquery){
             genres: manga.genres
         }
     })
-    console.log(result)
     return result 
 }
 
