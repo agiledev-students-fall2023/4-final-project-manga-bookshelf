@@ -10,6 +10,7 @@ async function getUserData() {
         throw err
     }
 }
+
 /* write is sync to avoid write conflict */
 async function saveUserData(data) {
     try {
