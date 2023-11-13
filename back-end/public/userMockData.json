@@ -5,7 +5,6 @@
       "name": "Alice",
       "following": [
         13,
-        7,
         5
       ],
       "followers": [
@@ -100,8 +99,7 @@
       ],
       "followers": [
         2,
-        3,
-        1
+        3
       ],
       "bio": "This is a bio for Padfi.",
       "avatar": "http://localhost:8080/puppy",

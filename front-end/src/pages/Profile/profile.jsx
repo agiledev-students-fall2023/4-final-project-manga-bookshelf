@@ -22,7 +22,7 @@ function Profile() {
       const response = await fetch(`http://localhost:8080/user/${profileId}/profileInfo`);
       const data = await response.json();
       // console.log(data.result)
-      setProfile(data.result);
+      setProfile(data);
     }
     getProfileLists();
     getProfile();

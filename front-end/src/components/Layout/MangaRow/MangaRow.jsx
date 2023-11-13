@@ -27,6 +27,18 @@ function MangaRow({title, MangaList}) {
 
   const { scrollContainerRef, handleScroll, scrollTo} = useSmoothHorizontalScroll();
 
+  // filter out duplicate manga
+  const uniqueMangaList = []
+  const seenIds = new Set()
+  if (MangaList[0] && MangaList[0]["result"].length !== 0) {
+    MangaList[0]["result"].forEach(ele => {
+      if (!seenIds.has(ele["__id"])) {
+          seenIds.add(ele["__id"]);
+          uniqueMangaList.push(ele);
+      }
+    });
+  }
+
   return (
     <>
       <h1>{title}</h1>
@@ -35,7 +47,7 @@ function MangaRow({title, MangaList}) {
           <>
             <HoverableIcon_left className="MangaRow-arrowLeft" fontSize="large" onClick={() => scrollTo(-500)} />
               <div className="MangaRow-main" ref={scrollContainerRef} onScroll={handleScroll}>
-                {MangaList[0]["result"].map(ele => (
+                {uniqueMangaList.map(ele => (
                   <MangaIcon key={ele["__id"]} name={ele["title"]} imgLink={ele["image"]} />
                 ))}
               </div>
