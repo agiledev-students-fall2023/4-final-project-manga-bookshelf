@@ -4,8 +4,8 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        7,
-        5
+        13,
+        7
       ],
       "followers": [
         5,
@@ -70,9 +70,7 @@
         6,
         1
       ],
-      "followers": [
-        1
-      ],
+      "followers": [],
       "bio": "This is a bio for Bgrtb.",
       "avatar": "http://localhost:8080/puppy",
       "twitter": "your_handle"
@@ -171,7 +169,8 @@
       ],
       "followers": [
         2,
-        3
+        3,
+        1
       ],
       "bio": "This is me, the author for the page, Taoming Liu",
       "avatar": "https://placekitten.com/g/200/200",
