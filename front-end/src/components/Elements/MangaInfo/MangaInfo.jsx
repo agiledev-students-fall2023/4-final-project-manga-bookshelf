@@ -5,9 +5,9 @@ import ForumPost from "../ForumPost/ForumPost"
 import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
-    const {title, authors, genres, synopsis} = mangaData
+    const {title, author, genres, synopsis} = mangaData
     const genreNames = genres.map((genre) => genre.name).join(', ')
-    const authorNames= authors.map((author) => author.node.first_name + ' ' + author.node.last_name).join(', ')
+    const authorNames= author.map((author) => author.node.first_name + ' ' + author.node.last_name).join(', ')
 
     const [chapter, setChapter] = useState('')
 

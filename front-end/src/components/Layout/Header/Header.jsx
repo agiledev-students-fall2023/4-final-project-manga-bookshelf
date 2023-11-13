@@ -57,13 +57,9 @@ export default function Header() {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         //first fetch mangas on the backend so we get id information about our manga
-        const payload1 = await fetch(`http://localhost:8080/manga/search2/${encodeURIComponent(results)}`)
+        const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
         const data1 = await payload1.json() 
-        const mangaId = data1[0].__id
-        //now find more information about the manga through its id
-        const payload2 = await fetch(`http://localhost:8080/manga/search/id/${encodeURIComponent(mangaId)}`)
-        const data2 = await payload2.json() 
-        console.log(data2) 
+        console.log(data1) 
     }
     
     return (
