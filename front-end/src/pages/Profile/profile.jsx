@@ -78,13 +78,6 @@ function Profile() {
            </div>
            </div>
 
-            <section className="myList">
-                {titles.map(t => (
-                <MangaRow title={t} MangaList={[]}/>
-            ))}
-            </section>
-
-
       <section className="myList">
         {titles.map((t) => (
           <MangaRow title={t} MangaList={groupListsByTitle(t)} />

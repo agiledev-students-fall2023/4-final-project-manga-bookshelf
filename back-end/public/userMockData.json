@@ -6,7 +6,7 @@
       "following": [
         7,
         13,
-        11
+        2
       ],
       "followers": [
         2,
@@ -27,7 +27,9 @@
         13,
         1
       ],
-      "followers": [],
+      "followers": [
+        1
+      ],
       "bio": "This is a bio for Bob."
     },
     {
@@ -123,9 +125,7 @@
       "following": [
         1
       ],
-      "followers": [
-        1
-      ],
+      "followers": [],
       "bio": "This is a bio for aasf."
     },
     {
