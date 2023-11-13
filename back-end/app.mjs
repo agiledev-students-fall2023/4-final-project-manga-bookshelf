@@ -90,16 +90,14 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/genre/:genreName`, async (req, res)
     res.json({ result: genres });
 })
 
-app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
-    const followers = await User.getUserFollower(req.params.id);
-    res.json({ result: followers });
-})
 app.get(`/${BASE_ROUTE_MANGA}/recommendation/genre/:genreName`, async (req, res) => {
     const genres = await Jikan.getMangaInfoByGenres(req.params.genreName);
     res.json({ result: genres });
 })
 
-// app.get(`/${BASE_ROUTE_USER}/:id/followers`, UserController.getUserFollower)
+// to show user's follwer and following
+app.get(`/${BASE_ROUTE_USER}/:id/followers`, UserController.getUserFollower)
+app.get(`/${BASE_ROUTE_USER}/:id/following`, UserController.getUserFollowing)
 
 // to follow a user
 app.post(`/${BASE_ROUTE_USER}/:id/follow`, async (req, res) => {
