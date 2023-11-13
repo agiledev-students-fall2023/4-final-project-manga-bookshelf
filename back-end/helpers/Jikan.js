@@ -13,18 +13,28 @@ const client = new Jikan.Client()
 // Output: Array of possible mangas
 async function getMangaSearch(searchquery){
     const result = (await client.manga.search(searchquery)).map((manga) => {
-        return {
-            title: manga.title.default,
-            authorName: manga.authors[0].name,
-            authorImage: manga.authors[0].url,
-            popularity: manga.popularity,
-            image: manga.image.jpg,
-            __id: manga.id, 
-        }
+        console.log(manga.authors[0])
+        if (manga.authors[0] !== undefined && manga.authors[0] !== undefined)
+            return {
+                title: manga.title.default,
+                authorName: manga.authors[0].name ? manga.authors : "Error",
+                authorImage: manga.authors[0].url ? manga.authors: "Error",
+                popularity: manga.popularity,
+                image: manga.image.jpg,
+                __id: manga.id, 
+            }
     })
     return result 
 }
 
+// When you search, we want the top manga search query that comes up
+// This function will search and return the top manga in the form of an object
+// Input: String being user's search query
+// Output: String being the Manga's Id
+async function getTopMangaId(searchquery){
+    const result = await client.manga.search(searchquery)
+    return result[0].id
+}
 
 // Get the manga information by the name. 
 // This is used to populate the Manga Information when you click on it 
@@ -32,7 +42,7 @@ async function getMangaSearch(searchquery){
 // Output: Array of Manga objects
 async function getMangaInfoById(MangaId){
     const mangaObject = await client.manga.get(MangaId)
-    if (mangaObject.authors.length !== 0 || mangaObject.authors !== null) { //make sure this field is defined
+    if (mangaObject && (mangaObject.authors.length !== 0 || mangaObject.authors !== null || mangaObject.authors !== undefined)) { //make sure this field is defined
         const result = {
             __id: mangaObject.id,
             url: mangaObject.url,
@@ -49,7 +59,6 @@ async function getMangaInfoById(MangaId){
             authorImage: mangaObject.authors[0].url,
             authorId: mangaObject.authors[0].id,
         }
-        console.log(result)
         return result
     }
 }
@@ -108,6 +117,7 @@ async function getMangaRecommendations(...num){
 
 export {
     getMangaSearch,
+    getTopMangaId,
     getMangaInfoById,
     getMangaInfoByGenres, 
     getMangaRecommendations, 

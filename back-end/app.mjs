@@ -65,6 +65,19 @@ app.get(`/${BASE_ROUTE_MANGA}/search/id/:id`, async (req, res) => {
     res.json({result: payload})
 })
 
+app.get(`/${BASE_ROUTE_MANGA}/search2/id/:id`, async (req, res) => {
+    const payload = await Jikan.getMangaInfoById(req.params.id);
+    res.json(payload)
+})
+
+app.get(`/${BASE_ROUTE_MANGA}/mangasearch/:entry`, async (req, res) => {
+    //get the top manga's id
+    const mangaId = await Jikan.getTopMangaId(req.params.entry) 
+    //get that manga's info using the id
+    const payload2 = await Jikan.getMangaInfoById(mangaId) 
+    res.json(payload2)
+})
+
 // Need to set up route which gives a recommendation based on a specific entry (like action, romance, etc)
 app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
     const payload = await Jikan.getMangaRecommendations(req.params.num)
@@ -72,12 +85,8 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/:num`, async (req, res) => {
 })
 
 app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
-    // try {
-        const followers = await User.getUserFollower(req.params.id);
-        res.json({ result: followers });
-    // } catch (error) {
-    //     res.status(404).send({ message: error.message });
-    // }
+    const followers = await User.getUserFollower(req.params.id);
+    res.json({ result: followers });
 })
 
 app.get(`/${BASE_ROUTE_USER}/:id/following`, async (req, res) => {
@@ -106,7 +115,6 @@ app.post(`/${BASE_ROUTE_USER}/:id/remove`, async (req, res) => {
 })
 
 app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
-
     res.json(forumData);
   });
 
