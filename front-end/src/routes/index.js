@@ -20,6 +20,7 @@ import Follow from "../pages/Follow/follow";
 import Works from "../pages/Works/Works";
 import Forum from "../pages/Forum/forum";
 import MangaWorks from "../pages/MangaWorks/MangaWorks";
+import Edit from "../pages/Edit/edit";
 import PasswordReset from "../pages/Auth/PasswordReset/PasswordReset";
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path: "profile/:profileId/following",
                 element: <Follow title='Following'/>,
+            },
+            {
+                path: "profile/:profileId/edit",
+                element: <Edit title='Edit' />,
             },
             {
                 path: "/manga",
