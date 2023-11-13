@@ -4,7 +4,7 @@ import morgan from "morgan"
 import url from 'url';
 import path from 'path';
 import cors from "cors" 
-import UserController from './User/userController.js';
+import UserController from './Controller/userController.js';
 import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
 import * as User from "./helpers/User.js"
 import forumData from './public/MockComments.json' assert { type: 'json' };
@@ -72,9 +72,10 @@ app.get(`/${BASE_ROUTE_MANGA}/search2/id/:id`, async (req, res) => {
 })
 
 app.get(`/${BASE_ROUTE_MANGA}/mangasearch/:entry`, async (req, res) => {
-    const payload = await Jikan.getMangaSearch(req.params.entry)
-    console.log(payload)
-    const payload2 = await Jikan.getMangaInfoById(payload[0].__id)
+    //get the top manga's id
+    const mangaId = await Jikan.getTopMangaId(req.params.entry) 
+    //get that manga's info using the id
+    const payload2 = await Jikan.getMangaInfoById(mangaId) 
     res.json(payload2)
 })
 
@@ -89,9 +90,16 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/genre/:genreName`, async (req, res)
     res.json({ result: genres });
 })
 
-app.get(`/${BASE_ROUTE_USER}/:id/followers`, UserController.getUserFollower)
+app.get(`/${BASE_ROUTE_USER}/:id/followers`, async (req, res) => {
+    const followers = await User.getUserFollower(req.params.id);
+    res.json({ result: followers });
+})
+app.get(`/${BASE_ROUTE_MANGA}/recommendation/genre/:genreName`, async (req, res) => {
+    const genres = await Jikan.getMangaInfoByGenres(req.params.genreName);
+    res.json({ result: genres });
+})
 
-app.get(`/${BASE_ROUTE_USER}/:id/following`, UserController.getUserFollowing)
+app.get(`/${BASE_ROUTE_USER}/:id/followers`, UserController.getUserFollower)
 
 // to follow a user
 app.post(`/${BASE_ROUTE_USER}/:id/follow`, async (req, res) => {
@@ -114,7 +122,6 @@ app.post(`/${BASE_ROUTE_USER}/:id/remove`, async (req, res) => {
 })
 
 app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
-
     res.json(forumData);
   });
 

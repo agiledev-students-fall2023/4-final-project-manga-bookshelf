@@ -5,7 +5,7 @@
       "name": "Alice",
       "following": [
         13,
-        5
+        7
       ],
       "followers": [
         11,
@@ -29,7 +29,8 @@
       ],
       "followers": [
         4,
-        9
+        9,
+        7
       ],
       "bio": "This is a bio for Bob.",
       "avatar": "https://placekitten.com/g/200/200",
@@ -70,9 +71,7 @@
         6,
         1
       ],
-      "followers": [
-        1
-      ],
+      "followers": [],
       "bio": "This is a bio for Bgrtb.",
       "avatar": "http://localhost:8080/puppy",
       "twitter": "your_handle"
@@ -95,11 +94,13 @@
       "name": "Padfi",
       "following": [
         9,
-        1
+        1,
+        2
       ],
       "followers": [
         2,
-        3
+        3,
+        1
       ],
       "bio": "This is a bio for Padfi.",
       "avatar": "http://localhost:8080/puppy",

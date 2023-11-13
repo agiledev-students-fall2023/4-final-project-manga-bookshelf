@@ -13,15 +13,15 @@ const client = new Jikan.Client()
 // Output: Array of possible mangas
 async function getMangaSearch(searchquery){
     const result = (await client.manga.search(searchquery)).map((manga) => {
-        return {
-            title: manga.title.default,
-            authorName: manga.authors[0].name,
-            authorImage: manga.authors[0].url,
-            popularity: manga.popularity,
-            image: manga.image.jpg,
-            __id: manga.id, 
-            genres: manga.genres
-        }
+        if (manga.authors[0] !== undefined && manga.authors[0] !== undefined)
+            return {
+                title: manga.title.default,
+                authorName: manga.authors[0].name ? manga.authors : "Error",
+                authorImage: manga.authors[0].url ? manga.authors: "Error",
+                popularity: manga.popularity,
+                image: manga.image.jpg,
+                __id: manga.id, 
+            }
     })
     return result 
 }
@@ -34,6 +34,14 @@ async function getTopManga(searchquery){
     return await client.manga.search(searchquery)[0]
 }
 
+// When you search, we want the top manga search query that comes up
+// This function will search and return the top manga in the form of an object
+// Input: String being user's search query
+// Output: String being the Manga's Id
+async function getTopMangaId(searchquery){
+    const result = await client.manga.search(searchquery)
+    return result[0].id
+}
 
 // Get the manga information by the name. 
 // This is used to populate the Manga Information when you click on it 
@@ -41,7 +49,7 @@ async function getTopManga(searchquery){
 // Output: Array of Manga objects
 async function getMangaInfoById(MangaId){
     const mangaObject = await client.manga.get(MangaId)
-    if (mangaObject.authors.length !== 0 || mangaObject.authors !== null) { //make sure this field is defined
+    if (mangaObject && (mangaObject.authors.length !== 0 || mangaObject.authors !== null || mangaObject.authors !== undefined)) { //make sure this field is defined
         const result = {
             __id: mangaObject.id,
             url: mangaObject.url,
@@ -61,7 +69,7 @@ async function getMangaInfoById(MangaId){
             themes: mangaObject.themes,
             demographics: mangaObject.demographics,
         }
-        // console.log(result)
+        console.log(result)
         return result
     }
 }
@@ -71,45 +79,24 @@ async function getMangaInfoById(MangaId){
 // Input: String being category name
 // Output: Array of Manga objects
 async function getMangaInfoByGenres(GenreName) {
-    const payload = await getMangaRecommendations(100)
-    const mangaRecommendations = payload.result
-
-    const filteredManga = []
-    for (const manga of mangaRecommendations) {
-        const mangaInfo = await getMangaInfoById(manga.__id)
-        if (filteredManga.length >= 20) {
-            return filteredManga
-        }
-        for (const genre of mangaInfo.genres) {
-            if (genre.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
-        for (const theme of mangaInfo.themes) {
-            if (theme.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
-        for (const demographic of mangaInfo.demographics) {
-            if (demographic.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
+    // get genreId by genreName
+    const genreData = client.genres.listManga()
+    const genre = genreData.find(genre => genre.name === GenreName)
+    // create filter
+    const filter = {
+        genres: [genre.id],
+        orderBy: "score",
     }
-
-    return filteredManga
+    // search by filter
+    const payload = await client.manga.search('', filter)
+    // return mangaInfo
+    const result = payload.slice(0, 20).map(manga => {
+        return {
+            __id: manga.id,
+            image: manga.image.jpg.default,
+            title: manga.title.default,
+    }})
+    return result
 }
 
 // Get manga recommendations
@@ -157,6 +144,7 @@ async function getMangaRecommendations(...num){
 
 export {
     getMangaSearch,
+    getTopMangaId,
     getMangaInfoById,
     getMangaInfoByGenres, 
     getMangaRecommendations, 
