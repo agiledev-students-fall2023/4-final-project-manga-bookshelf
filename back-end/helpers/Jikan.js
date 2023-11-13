@@ -139,8 +139,15 @@ async function getRecentMangas(...num) {
         orderBy: "start_date",
     }
     // search by filter
-    const response = await client.manga.search('', filter, 0, entries)
-    return response
+    const payload = await client.manga.search('', filter, 0, entries)
+    const result = payload.map(manga => {
+        return {
+            __id: manga.id,
+            image: manga.image.jpg.default,
+            title: manga.title.default,
+    }})
+
+    return result
 }
 
 // Get Upcoming Mangas
