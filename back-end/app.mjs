@@ -4,7 +4,7 @@ import morgan from "morgan"
 import url from 'url';
 import path from 'path';
 import cors from "cors" 
-import UserController from './User/userController.js';
+import UserController from './Controller/userController.js';
 import * as Jikan from "./helpers/Jikan.js" //import helper function that we want to use
 import * as User from "./helpers/User.js"
 import forumData from './public/MockComments.json' assert { type: 'json' };
