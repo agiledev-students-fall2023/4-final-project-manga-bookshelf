@@ -48,9 +48,16 @@ app.get(`/${BASE_ROUTE_MANGA}`, (req, res) => {
     res.json({ content: "use this route format to send some json" })
 })
 
+//send result back with result json 
 app.get(`/${BASE_ROUTE_MANGA}/search/:entry`, async (req, res) => {
     const payload = await Jikan.getMangaSearch(req.params.entry)
     res.json({result: payload})
+})
+
+//send result back with array
+app.get(`/${BASE_ROUTE_MANGA}/search2/:entry`, async (req, res) => {
+    const payload = await Jikan.getMangaSearch(req.params.entry)
+    res.json(payload)
 })
 
 app.get(`/${BASE_ROUTE_MANGA}/search/id/:id`, async (req, res) => {

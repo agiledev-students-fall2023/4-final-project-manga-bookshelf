@@ -22,7 +22,6 @@ async function getMangaSearch(searchquery){
             __id: manga.id, 
         }
     })
-    console.log(result)
     return result 
 }
 
