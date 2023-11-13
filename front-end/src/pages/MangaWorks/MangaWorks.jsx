@@ -7,7 +7,6 @@ import "./MangaWorks.css"
 const genres= ["Action", "Adventure", "Fantasy", "Horror", "Josei", "Romance", "Seinen", "Shoujo", "Shounen",  "Slice of Life"]
 
 function MangaWorks(){
-    // const [action, setAction] = useState([])
     const [mangaData, setMangaData] = useState({});
 
     useEffect(()=>{
