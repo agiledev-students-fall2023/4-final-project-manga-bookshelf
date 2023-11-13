@@ -1,5 +1,5 @@
 import { User } from 'jikan4.js';
-import UserService from './userService.js';
+import UserService from '../Service/userService.js';
 
 class UserController {
     async getUserData(req, res) {

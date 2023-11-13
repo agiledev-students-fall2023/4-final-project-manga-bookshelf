@@ -63,45 +63,24 @@ async function getMangaInfoById(MangaId){
 // Input: String being category name
 // Output: Array of Manga objects
 async function getMangaInfoByGenres(GenreName) {
-    const payload = await getMangaRecommendations(100)
-    const mangaRecommendations = payload.result
-
-    const filteredManga = []
-    for (const manga of mangaRecommendations) {
-        const mangaInfo = await getMangaInfoById(manga.__id)
-        if (filteredManga.length >= 20) {
-            return filteredManga
-        }
-        for (const genre of mangaInfo.genres) {
-            if (genre.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
-        for (const theme of mangaInfo.themes) {
-            if (theme.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
-        for (const demographic of mangaInfo.demographics) {
-            if (demographic.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
+    // get genreId by genreName
+    const genreData = client.genres.listManga()
+    const genre = genreData.find(genre => genre.name === GenreName)
+    // create filter
+    const filter = {
+        genres: [genre.id],
+        orderBy: "score",
     }
-
-    return filteredManga
+    // search by filter
+    const payload = await client.manga.search('', filter)
+    // return mangaInfo
+    const result = payload.slice(0, 20).map(manga => {
+        return {
+            __id: manga.id,
+            image: manga.image.jpg.default,
+            title: manga.title.default,
+    }})
+    return result
 }
 
 // Get manga recommendations
