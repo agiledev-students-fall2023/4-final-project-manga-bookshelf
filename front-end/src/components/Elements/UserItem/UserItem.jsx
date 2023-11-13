@@ -76,7 +76,8 @@ function UserItem({ title, user, onUnfollowClick }) {
 
         axios.post(actionUrl, payload)
             .then(response => {
-                setIsFollowed(false)        
+                setIsFollowed(false)     
+                renderFollowButton()   
                 onUnfollowClick()       
             })
             .catch(err => {
