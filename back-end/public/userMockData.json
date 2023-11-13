@@ -5,11 +5,7 @@
       "name": "Alice",
       "following": [
         13,
-<<<<<<< HEAD
-        2
-=======
         7
->>>>>>> master
       ],
       "followers": [
         11,
@@ -32,11 +28,6 @@
         13
       ],
       "followers": [
-<<<<<<< HEAD
-        1
-      ],
-      "bio": "This is a bio for Bob."
-=======
         4,
         9,
         7
@@ -44,7 +35,6 @@
       "bio": "This is a bio for Bob.",
       "avatar": "https://placekitten.com/g/200/200",
       "twitter": "your_handle"
->>>>>>> master
     },
     {
       "id": "3",
@@ -161,13 +151,9 @@
         1
       ],
       "followers": [],
-<<<<<<< HEAD
-      "bio": "This is a bio for aasf."
-=======
       "bio": "This is a bio for aasf.",
       "avatar": "https://placekitten.com/g/200/200",
       "twitter": "your_handle"
->>>>>>> master
     },
     {
       "id": "12",

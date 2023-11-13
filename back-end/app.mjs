@@ -99,7 +99,7 @@ app.get(`/${BASE_ROUTE_MANGA}/recommendation/genre/:genreName`, async (req, res)
     res.json({ result: genres });
 })
 
-app.get(`/${BASE_ROUTE_USER}/:id/followers`, UserController.getUserFollower)
+// app.get(`/${BASE_ROUTE_USER}/:id/followers`, UserController.getUserFollower)
 
 // to follow a user
 app.post(`/${BASE_ROUTE_USER}/:id/follow`, async (req, res) => {
