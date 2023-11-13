@@ -1,5 +1,6 @@
 import { Form } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
 
 import "./profile.css";
@@ -8,6 +9,7 @@ const titles = ["Currently Reading", "Done", "Want to Read"];
 function Profile() {
   const [profileLists, setProfileLists] = useState([]);
   const [profile, setProfile] = useState({});
+  const { profileId } = useParams()
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
@@ -17,14 +19,14 @@ function Profile() {
       setProfileLists([data.result]);
     }
     async function getProfile() {
-      const response = await fetch("http://localhost:8080/getProfile");
+      const response = await fetch(`http://localhost:8080/user/${profileId}/profileInfo`);
       const data = await response.json();
+      // console.log(data.result)
       setProfile(data);
-      
     }
     getProfileLists();
     getProfile();
-  }, []);
+  }, [profileId]);
 
   const groupListsByTitle = (title) => {
     const filteredLists = profileLists.map((profile) => ({
@@ -75,8 +77,8 @@ function Profile() {
           <Form action="edit">
             <button type="submit">Edit Profile</button>
           </Form>
-           </div>
-           </div>
+        </div>
+      </div>
 
       <section className="myList">
         {titles.map((t) => (

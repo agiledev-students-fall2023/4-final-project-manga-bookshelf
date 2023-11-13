@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Header.css"
+import styles from "./Turnstone.module.css"; //custom styles for turnstone
 import { Outlet } from "react-router-dom";
 
 import Hamburger from "hamburger-react"
@@ -8,40 +9,81 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ForumIcon from '@mui/icons-material/Forum';
+import Turnstone from 'turnstone';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
     
     const [isOpen, setOpen] = useState(false); 
+    const [results, setResults] = useState("") 
+    const [searchData, setSearchData] = useState([]) 
 
+    //Define constant styles to use Turnstone 
+    const maxItems = 6
+
+    const listbox = [
+        {
+            id: 'mangas',
+            name: 'Manga Titles',
+            ratio: 6,
+            displayField: 'title',
+            data: (query) =>
+                fetch(`http://localhost:8080/manga/search2/${encodeURIComponent(query)}`)
+                    .then(res => res.json()),
+            searchType: 'contains'
+        }
+        // {
+        //     id: 'genre',
+        //     name: 'Genres',
+        //     ratio: 2,
+        //     displayField: 'user',
+        //     data: (query) =>
+        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
+        //             .then(res => res.json()),
+        //     searchType: 'contains'
+        // }
+        // {
+        //     id: 'users',
+        //     name: 'Users',
+        //     ratio: 2,
+        //     displayField: 'user',
+        //     data: (query) =>
+        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
+        //             .then(res => res.json()),
+        //     searchType: 'contains'
+        // }
+    ]
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
+        //first fetch mangas on the backend so we get id information about our manga
+        const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
+        const data = await payload1.json() 
+        console.log(data) 
+    }
+    
     return (
         <>
             <div className="Header-sidebar">
                 <div>
-
                 <div>
                     <div className="Header-navigation-sm">
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <form id="search-form" role="search">
-                        <input
-                            id="q"
-                            aria-label="Search contacts"
-                            placeholder="Search"
-                            type="search"
-                            name="q"
+                        <Turnstone
+                            autoFocus={true}
+                            listbox={listbox}
+                            id="autocomplete"
+                            placeholder="Search"                        
+                            debounceWait={500}
+                            maxItems={maxItems}
+                            noItemsMessage="No Manga Which Matched Your Search"
+                            styles={styles}
+                            onChange={(e) => setResults(e)}     
                         />
-                        <div
-                            className="Header-search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="Header-sr-only"
-                            aria-live="polite"
-                        ></div>
                     </form>
-                    <form method="post">
+                    <form method="post" onSubmit={handleSubmit}>
                         <button type="submit">Submit</button>
                     </form>
                 </div>

@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import "./Star.css"
 
-function Star({ contact }) {
+function Star({ favorite }) {
   // yes, this is a `let` for later
-  const favorite = contact.favorite;
   return (
       <button
         className="Star-button"

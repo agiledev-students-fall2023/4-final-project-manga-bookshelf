@@ -42,13 +42,13 @@ function Follow({ title }) {
     const fetchFollowers = useCallback(async () => {
         const response = await fetch(`http://localhost:8080/user/${profileId}/followers`);
         const data = await response.json();
-        setFollowers(data.result);
+        setFollowers(data);
     }, [profileId]);
 
     const fetchFollowing = useCallback(async () => {
         const response = await fetch(`http://localhost:8080/user/${profileId}/following`);
         const data = await response.json();
-        setFollowers(data.result);
+        setFollowers(data);
     }, [profileId]);
 
     useEffect(() => {
