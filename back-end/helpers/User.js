@@ -11,26 +11,6 @@ async function getUserData() {
     }
 }
 
-/* specifically get the followers for one user based on their ID */
-async function getUserFollower(userId) {
-    try {
-        const data = await getUserData();
-        const user = data.users.find((u) => u.id === userId);
-
-        if (!user) {
-            throw new Error('User not found.');
-        }
-
-        //const followerIds = user.followers;
-        const followers = user.followers;
-
-        return followers;
-    } catch (error) {
-        console.error('Error fetching followers:', error);
-        throw error;
-    }
-}
-
 /* write is sync to avoid write conflict */
 async function saveUserData(data) {
     try {
@@ -132,6 +112,5 @@ async function getUserCurrentReading(userId) {
 export {
     followUser,
     unfollowUser,
-    removeUser,
-    getUserFollower
+    removeUser
 }
