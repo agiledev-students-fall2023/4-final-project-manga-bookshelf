@@ -26,6 +26,42 @@ chai.use(chaiHttp)
     it() is used to create a single test.
     expect() is used to make assertions about the test.
 */
+
+/*
+
+these are untested routes
+
+// to follow a user
+app.post(`/${BASE_ROUTE_USER}/:id/follow`, async (req, res) => {
+    await User.followUser(req.params.id, req.body.followingId)
+    res.send('seccess follow')
+})
+
+// to unfollow a user
+app.post(`/${BASE_ROUTE_USER}/:id/unfollow`, async (req, res) => {
+    await User.unfollowUser(req.params.id, req.body.unfollowingId)
+    res.send('success unfollow')
+})
+
+// to remove a user
+app.post(`/${BASE_ROUTE_USER}/:id/remove`, async (req, res) => {
+    // await User.removeUser(req.params.id)
+    // await User.unfollowUser(req.params.id, req.body.removingId)
+    await User.removeUser(req.params.id, req.body.removingId)
+    res.send('success remove')
+})
+
+app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
+    res.json(forumData);
+  });
+
+//get the profile lists 
+app.get(`/${BASE_ROUTE_USER}/:id/profileInfo`, UserController.getUserData)
+
+app.get('/getProfileLists', (req,res) => {
+    res.json(sampleProfileList);
+})*/
+
 describe('UserController', () => {
     describe('GET /user/:id/followers', () => {
         it('should return an array of followers', async () => {

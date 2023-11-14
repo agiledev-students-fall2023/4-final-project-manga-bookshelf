@@ -49,6 +49,7 @@ async function getTopMangaId(searchquery){
 // Output: Array of Manga objects
 async function getMangaInfoById(MangaId){
     const mangaObject = await client.manga.get(MangaId)
+
     if (mangaObject && (mangaObject.authors.length !== 0 || mangaObject.authors !== null || mangaObject.authors !== undefined)) { //make sure this field is defined
         const result = {
             __id: mangaObject.id,
@@ -79,6 +80,7 @@ async function getMangaInfoById(MangaId){
         
         return result
     }
+    
 }
 
 // Get the manga information by the category 
@@ -95,7 +97,7 @@ async function getMangaInfoByGenres(GenreName) {
         orderBy: "popularity",
     }
     // search by filter
-    const payload = await client.manga.search('', filter, 0, 20)
+    const payload = await client.manga.search('', filter, 2, 20)
     // return mangaInfo
     const result = payload.map(manga => {
         return {

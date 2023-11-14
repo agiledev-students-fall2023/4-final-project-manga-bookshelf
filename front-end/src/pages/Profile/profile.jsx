@@ -16,6 +16,7 @@ function Profile() {
     async function getProfileLists() {
       const response = await fetch("http://localhost:8080/getProfileLists");
       const data = await response.json();
+      console.log(data)
       setProfileLists([data.result]);
     }
     async function getProfile() {
