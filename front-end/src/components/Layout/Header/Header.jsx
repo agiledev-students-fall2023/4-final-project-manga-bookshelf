@@ -11,6 +11,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ForumIcon from '@mui/icons-material/Forum';
 import Turnstone from 'turnstone';
 import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
@@ -56,6 +57,7 @@ export default function Header() {
     ]
 
     const navigate = useNavigate()
+    const turnstoneRef = useRef();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
@@ -63,9 +65,9 @@ export default function Header() {
         const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
         const data1 = await payload1.json() 
         // console.log(data1) 
-        setResults("")
+        turnstoneRef.current?.clear();
+        // setResults("")
         navigate(`/manga/${data1.__id}`)
-    
     }
     
     return (
@@ -84,10 +86,12 @@ export default function Header() {
                             placeholder="Search"                        
                             debounceWait={500}
                             maxItems={maxItems}
-                            noItemsMessage="No Manga Which Matched Your Search"
+                            noItemsMessage="No Manga Matched Your Search"
                             styles={styles}
-                            value={results}
+                            typeahead= {false}
                             onChange={(e) => setResults(e)}     
+                            text = {results}
+                            ref={turnstoneRef}
                         />
                     </form>
                     <form method="post" onSubmit={handleSubmit}>
