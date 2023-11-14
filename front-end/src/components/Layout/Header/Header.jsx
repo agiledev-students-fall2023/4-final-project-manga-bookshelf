@@ -65,6 +65,7 @@ export default function Header() {
         // console.log(data1) 
         setResults("")
         navigate(`/manga/${data1.__id}`)
+        
     
     }
     
@@ -86,8 +87,9 @@ export default function Header() {
                             maxItems={maxItems}
                             noItemsMessage="No Manga Which Matched Your Search"
                             styles={styles}
-                            value={results}
+                            typeahead= {false}
                             onChange={(e) => setResults(e)}     
+                            text = {results}
                         />
                     </form>
                     <form method="post" onSubmit={handleSubmit}>

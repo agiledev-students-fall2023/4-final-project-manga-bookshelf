@@ -92,10 +92,10 @@ async function getMangaInfoByGenres(GenreName) {
     // create filter
     const filter = {
         genres: [genre.id],
-        orderBy: "score",
+        orderBy: "popularity",
     }
     // search by filter
-    const payload = await client.manga.search('', filter)
+    const payload = await client.manga.search('', filter, 2)
     // return mangaInfo
     const result = payload.slice(0, 20).map(manga => {
         return {
@@ -110,14 +110,6 @@ async function getMangaInfoByGenres(GenreName) {
 // num represent the number of entries you want to get back 
 // Input: number of recommendations you want to get back
 // Output: array of RecommendationManga objects 
-// A RecommendationManga Object look like this: 
-
-// RecommendationManga {
-//     content: 'Both stories have supernatural themes and some similar dynamics between the main characters. Alto is devoted to the one he loves in a similar way that Ten is, and even looks a bit similar!',
-//         date: 2023 - 11-05T10: 20:00.000Z,
-//             user: RecommendationUser { url: [URL], username: 'steamedpumpkin' },
-//     entries: [[MangaMeta], [MangaMeta]]
-// }
 async function getMangaRecommendations(...num){
     let entries = 10
     if (num !== undefined){
@@ -141,13 +133,6 @@ async function getMangaRecommendations(...num){
     return {"result": transformed}
 }
 
-// async function printSearch(search) {
-//     const result = await client.recommendations.getMangaRecommendations(0, 10); 
-
-//     console.log(result)
-// }
-
-// printSearch(1)
 
 export {
     getMangaSearch,

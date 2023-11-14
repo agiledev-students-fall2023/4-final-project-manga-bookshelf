@@ -8,7 +8,7 @@ function MangaInfo({mangaData}) {
     const {title, author, genres, synopsis, image} = mangaData[0] || {}
     console.log(mangaData[0])
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
-    const authorNames= author ? author.replace(/,/g,''): ''
+    const authorNames= author ? author.split(',').reverse().join(' '): ''
     const mangaImage= image && image.jpg && image.jpg.default
 
     const [chapter, setChapter] = useState('')
