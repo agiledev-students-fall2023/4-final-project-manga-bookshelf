@@ -6,8 +6,9 @@ import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
     const {title, author, genres, synopsis} = mangaData
-    const genreNames = genres.map((genre) => genre.name).join(', ')
-    const authorNames= author.map((author) => author.node.first_name + ' ' + author.node.last_name).join(', ')
+    // const genreNames = genres.map((genre) => genre.name).join(', ')
+    console.log(mangaData)
+    const authorNames= author.replace(/,/g,'')
 
     const [chapter, setChapter] = useState('')
 
@@ -39,7 +40,7 @@ function MangaInfo({mangaData}) {
                         <h3> Author: </h3>
                         <p>  {authorNames} </p>
                         <h3> Genres: </h3>
-                        <p> {genreNames} </p>
+                        <p> {genres} </p>
                         <h3> Synopsis: </h3>
                         <p> {synopsis} </p>
                     </div>

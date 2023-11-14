@@ -12,11 +12,22 @@ function MangaIcon({name, imgLink}) {
 
   // This will make styles more consistent
   const [favorite, setFavorite] = useState(false)
+  // const [mangaId, setMangaId] = useState("")
 
   const navigate = useNavigate()
 
-  const handleOnClick = () => {
-    navigate("/manga/:mangaId")
+  const handleOnClick = async (name) => {
+    try{
+      const payload = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(name)}`)
+      const data1 = await payload.json() 
+      console.log(data1) 
+
+      // setMangaId(data1.__id)
+      // console.log(mangaId)
+      navigate(`/manga/${data1.__id}`)
+    } catch (error){
+      console.error("Error fetching data:", error)
+    }
     
   }
 
@@ -30,7 +41,7 @@ function MangaIcon({name, imgLink}) {
       <div className="MangaIcon-favorite" onClick={handleFavorite}>
         <Star favorite={favorite}/>
       </div>
-      <img src={imgLink} onClick={handleOnClick}/>
+      <img src={imgLink} onClick={() => handleOnClick(name)}/>
       <span>{name}</span>
     </div>
   )
