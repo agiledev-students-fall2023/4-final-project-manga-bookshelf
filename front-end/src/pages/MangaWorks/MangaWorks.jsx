@@ -11,9 +11,13 @@ function MangaWorks(){
 
     useEffect(()=>{
         async function getMangaByGenre(genre) {
-            const response = await fetch(`http://localhost:8080/manga/recommendation/genre/${genre}`)
-            const data = await response.json()
-            setMangaData(prevState => ({ ...prevState, [genre]: data }));
+            try{
+                const response = await fetch(`http://localhost:8080/manga/recommendation/genre/${genre}`)
+                const data = await response.json()
+                setMangaData(prevState => ({ ...prevState, [genre]: data }));
+            } catch (error){
+                console.error("Error fetching data:", error)
+            }
         }
         genres.forEach(genre => getMangaByGenre(genre))
     }, [])
