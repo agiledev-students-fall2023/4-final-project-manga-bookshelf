@@ -4,7 +4,6 @@
     box-shadow: 0 0 10px #0000001a;
     border-radius: 5px;
     align-items: flex-start;
-    /* align-items:center; */
     padding-top: 30px;
 }
   
@@ -17,6 +16,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    max-width: 30%;
 }
   
 .MangaInfo-right {
@@ -38,6 +38,8 @@
     margin: 0;
     max-width: 100%;
     text-align:center;
+    word-wrap: normal;
+    padding-bottom: 10px;
 }
 
 .MangaInfo input[type="text"] {

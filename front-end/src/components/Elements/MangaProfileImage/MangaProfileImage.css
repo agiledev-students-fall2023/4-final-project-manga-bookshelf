@@ -1,19 +1,23 @@
 .MangaProfileImage-main img{
-    height: 375x;
-    width: 300px;
+    height:100%;
+    width: 100%;
     justify-content:left;
     border-radius: 5%;
     box-shadow: 10px 5px 5px #c7c7c7;
+    display: block;
 }
 
 .MangaProfileImage-favorite{
-    position:relative;
+    position: absolute;
+    top:0;
+    right:0;
     width:fit-content; 
-    left: 250px; 
-    top: 50px;
     z-index: 1; 
 }
 
 .MangaProfileImage-main{
     width:fit-content;
+    height:fit-content;
+    position:relative;
+    display: inline-block;
 }
