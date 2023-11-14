@@ -5,11 +5,11 @@ import ForumPost from "../ForumPost/ForumPost"
 import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
-    const {title, author, genres, synopsis} = mangaData[0] || {}
-    // const genreNames = genres.map((genre) => genre.name).join(', ')
+    const {title, author, genres, synopsis, image} = mangaData[0] || {}
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
-    console.log(mangaData[0])
+    // console.log(mangaData[0])
     const authorNames= author ? author.replace(/,/g,''): ''
+    const mangaImage= image && image.jpg && image.jpg.default
 
     const [chapter, setChapter] = useState('')
 
@@ -24,7 +24,7 @@ function MangaInfo({mangaData}) {
             <div className= "MangaInfo-main">
                 <div className="MangaInfo-left">
                     <h1> {title} </h1>
-                    <MangaProfileImage imgLink= {"https://cdn.myanimelist.net/images/manga/1/157897.jpg"}/>
+                    {mangaImage && <MangaProfileImage imgLink= {mangaImage}/>}
                 </div>
                 <div className= "MangaInfo-right">
                     <div className= "MangaInfo-content">

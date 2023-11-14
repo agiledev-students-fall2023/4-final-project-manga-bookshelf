@@ -2,21 +2,9 @@ import React from "react"
 import { useEffect } from "react"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-// import sampleMangaDetail from "../../assets/sampleMangaDetail.json"
 import MangaInfo from "../../components/Elements/MangaInfo/MangaInfo"
 
 import "./Works.css"
-
-
-// function Works() { 
-//     const [data, setData] = useState([])
-//     useEffect(async() => {
-  
-//             const response = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent("Kimetsu no Yaiba")}`)
-//             const data1= await response.json()
-//             setData(data1)
-//             console.log(data)
-//     },[])
 
 function Works() {
     const [data, setData] = useState([])
