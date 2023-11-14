@@ -58,8 +58,8 @@ export default function Header() {
         e.preventDefault(); 
         //first fetch mangas on the backend so we get id information about our manga
         const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
-        const data = await payload1.json() 
-        console.log(data) 
+        const data1 = await payload1.json() 
+        console.log(data1) 
     }
     
     return (

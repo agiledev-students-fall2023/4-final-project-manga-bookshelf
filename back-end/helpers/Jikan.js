@@ -29,6 +29,14 @@ async function getMangaSearch(searchquery){
 // When you search, we want the top manga search query that comes up
 // This function will search and return the top manga in the form of an object
 // Input: String being user's search query
+// Output: Manga Object
+async function getTopManga(searchquery){
+    return await client.manga.search(searchquery)[0]
+}
+
+// When you search, we want the top manga search query that comes up
+// This function will search and return the top manga in the form of an object
+// Input: String being user's search query
 // Output: String being the Manga's Id
 async function getTopMangaId(searchquery){
     const result = await client.manga.search(searchquery)
