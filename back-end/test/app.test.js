@@ -4,31 +4,62 @@ import chai from "chai"
 import chaiHttp from "chai-http" 
 import app from "../app.mjs"
 
-let should = chai.should(); 
+const { expect } = chai
 
-chai.use(chaiHttp);
 //Our parent block
 describe('Manga Routes', () => {
     /*
       * Test the /GET route
       */
     describe('/GET Manga Routes', () => {
-        it('it should GET all the books', (done) => {
-            chai.request("http://localhost:8080")
-                .get('/manga/')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('array');
-                    res.body.length.should.be.eql(0);
-                    done();
-                });
+        it('Return Object', async () => {
+            const res = await chai.request(app).get("/manga")
+            expect(res).to.have.status(200) 
+            expect(res.body).to.be.an("object") 
+           
         });
     });
 
+    describe('/GET Manga Routes', () => {
+        it('Return JSON', async () => {
+            const res = await chai.request(app).get("/manga/search/12345")
+            expect(res).to.have.status(200)
+            expect(res.body).to.be.an("object")
+
+        });
+    });
+    describe('/GET Manga Routes', () => {
+        it('Return Array', async () => {
+            const res = await chai.request(app).get("/manga/search2/12345")
+            expect(res).to.have.status(200)
+            expect(res.body).to.be.an("array")
+
+        });
+    });
+    describe('/GET Manga Routes', () => {
+        it('Return JSON', async () => {
+            const res = await chai.request(app).get("/manga/upcoming/5")
+            expect(res).to.have.status(200)
+            expect(res.body).to.be.an("object")
+        });
+    });
+    describe('/GET Manga Routes', () => {
+        it('Return JSON', async () => {
+            const res = await chai.request(app).get("/manga/recent/5")
+            expect(res).to.have.status(200)
+            expect(res.body).to.be.an("object")
+        });
+    });
 });
 
+
 describe("Auth Routes", () => {
-    describe("/GET Auth Routes", () => {
-        
-    })
+    describe('/GET Auth Routes', () => {
+        it('Return JSON', async () => {
+            const res = await chai.request(app).get("/auth")
+            expect(res).to.have.status(200)
+            expect(res.body).to.be.an("object")
+        });
+    });
 });
+
