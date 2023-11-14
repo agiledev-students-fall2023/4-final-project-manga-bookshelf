@@ -5,10 +5,11 @@ import ForumPost from "../ForumPost/ForumPost"
 import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
-    const {title, author, genres, synopsis} = mangaData
+    const {title, author, genres, synopsis} = mangaData[0] || {}
     // const genreNames = genres.map((genre) => genre.name).join(', ')
-    console.log(mangaData)
-    const authorNames= author.replace(/,/g,'')
+    const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
+    console.log(mangaData[0])
+    const authorNames= author ? author.replace(/,/g,''): ''
 
     const [chapter, setChapter] = useState('')
 
@@ -40,7 +41,7 @@ function MangaInfo({mangaData}) {
                         <h3> Author: </h3>
                         <p>  {authorNames} </p>
                         <h3> Genres: </h3>
-                        <p> {genres} </p>
+                        <p> {genresArray.join (', ')} </p>
                         <h3> Synopsis: </h3>
                         <p> {synopsis} </p>
                     </div>

@@ -27,13 +27,18 @@ function Works() {
             try {
                 const response = await fetch(`http://localhost:8080/manga/search2/id/${encodeURIComponent(mangaId)}`);
                 const data1 = await response.json()
-                setData(data1)
-                console.log(data1); // Log the updated data, not the state variable
+                setData([data1])
+                
             } catch (error) {
                 console.error('Error fetching data:', error)
             }
-        };
-        fetchData();
+        }
+
+        fetchData()
+
+        return () => {
+            console.log(data)
+        }
     }, [mangaId])
 
     return (

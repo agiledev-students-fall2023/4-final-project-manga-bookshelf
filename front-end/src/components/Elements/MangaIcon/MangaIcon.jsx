@@ -21,6 +21,7 @@ function MangaIcon({name, imgLink}) {
       const payload = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(name)}`)
       const data1 = await payload.json() 
       console.log(data1) 
+      console.log(typeof data1)
 
       // setMangaId(data1.__id)
       // console.log(mangaId)
