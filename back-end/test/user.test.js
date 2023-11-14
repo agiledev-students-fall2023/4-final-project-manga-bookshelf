@@ -3,7 +3,7 @@ import chaiHttp from "chai-http"
 import app from "../app.mjs"
 import UserService from "../Service/userService.js"
 import userMockData from "../public/userMockData.json" assert { type: "json" }
-import { getUserData, unfollowUser } from "../helpers/User.js";
+import { getUserData, unfollowUser, removeUser, getUserCurrentReading } from "../helpers/User.js";
 
 
 /* To run the test, first run:
@@ -157,5 +157,79 @@ describe('User', () => {
             }
         });
          
+    })
+
+    describe("POST /user/:id/remove", () => {
+        it('should remove a user and update the data correctly', async () => {
+            // Mock data and functions
+            const userId = 1;
+            const removeId = 2;
+            const mockData = {
+              users: [
+                { id: 1, followers: [2], following: [2] },
+                { id: 2, followers: [1], following: [1] },
+              ],
+            };
+        
+            const mockGetUserData = async () => mockData;
+            const mockSaveUserData = async (data) => {
+              // Assuming you have a way to check the saved data
+              // You can add assertions here if needed
+            };
+        
+            // Mock the saveUserData function in your module
+            const originalSaveUserData = require('../helpers/User.js').saveUserData;
+            require('../helpers/User.js').saveUserData = mockSaveUserData;
+        
+            // Call the removeUser function
+            await removeUser(userId, removeId, mockGetUserData);
+        
+            // Assert that the data was updated correctly
+            const updatedData = await mockGetUserData();
+            const user = updatedData.users.find((u) => u.id === userId);
+            const removedUser = updatedData.users.find((u) => u.id === removeId);
+        
+            expect(user.following).to.not.include(removeId);
+            expect(removedUser.followers).to.not.include(userId);
+        
+            // Restore the original saveUserData function
+            require('../helpers/User.js').saveUserData = originalSaveUserData;
+          })
+
+        it('should return an error if the user does not exist', async () => { 
+            const userId = "1"
+            const allUsers = await getUserData();
+            const res = allUsers.users.find((user) => user.id === userId)
+            expect(res).to.have.status(404)
+            expect(res.body).to.have.property('error')
+        })
+
+        it('should return an error if the removed user does not exist', async() => {
+            const removeId = "2"
+            const allUsers = await getUserData();
+            const res = allUsers.users.find((user) => user.id === removeId)
+            expect(res).to.have.status(404)
+            expect(res.body).to.have.property('error')
+        })
+    })
+
+    describe("POST /user/:id/getCurrentUserReading", () => {
+        it('should return the current reading list for a user', async () => {
+            // Mock data and functions
+            const userId = 1;
+            const data = await getUserData();
+            const user = data.find((u) => u.id === userId);
+            // Call the getUserCurrentReading function
+            const bookList = user.currentReading;
+            expect(bookList).to.be.an('object')
+          });
+        
+          it('should handle the case where the user is not found', async () => {
+            // Mock data and functions
+            const res = await chai.request(app).get('/user/999/getCurrentlyReading')
+            expect(res).to.have.status(404)
+            expect(res.body).to.have.property('error');
+          });
+
     })
 })

@@ -114,5 +114,6 @@ export {
     getUserData,
     followUser,
     unfollowUser,
-    removeUser
+    removeUser,
+    getUserCurrentReading
 }
