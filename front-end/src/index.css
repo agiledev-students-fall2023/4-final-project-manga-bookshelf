@@ -151,7 +151,13 @@ button:active {
     box-shadow: 0 0 10px #0000001a;
     border-radius: 5px;
     flex-direction:column;
+    align-items:center;
   }  
+
+  .MangaInfo-left {
+    max-width: 100%;
+    
+  }
 
 }
 
@@ -177,7 +183,12 @@ button:active {
     box-shadow: 0 0 10px #0000001a;
     border-radius: 5px;
     flex-direction:column;
+    align-items:center;
   }  
+
+  .MangaInfo-left {
+    max-width: 50%;
+  }
 
 }
 

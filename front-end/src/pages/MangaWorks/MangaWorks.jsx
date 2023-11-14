@@ -4,7 +4,7 @@ import MangaRow from "../../components/Layout/MangaRow/MangaRow"
 
 import "./MangaWorks.css"
 
-const genres= ["Action", "Adventure", "Fantasy", "Horror", "Josei", "Romance", "Seinen", "Shoujo", "Shounen",  "Slice of Life"]
+const genres= ["Action", "Adventure", "Comedy", "Drama", "Fantasy", "Horror", "Josei", "Mystery", "Romance", "Sci-Fi", "Seinen", "Shoujo", "Shounen",  "Slice of Life", "Supernatural"]
 
 function MangaWorks(){
     const [mangaData, setMangaData] = useState({});

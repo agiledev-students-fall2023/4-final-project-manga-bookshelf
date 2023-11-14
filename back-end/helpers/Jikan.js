@@ -97,7 +97,7 @@ async function getMangaInfoByGenres(GenreName) {
         orderBy: "popularity",
     }
     // search by filter
-    const payload = await client.manga.search('', filter, 0, 20)
+    const payload = await client.manga.search('', filter, 2, 20)
     // return mangaInfo
     const result = payload.map(manga => {
         return {
