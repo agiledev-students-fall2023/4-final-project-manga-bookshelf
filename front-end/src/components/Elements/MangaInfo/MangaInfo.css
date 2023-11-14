@@ -3,21 +3,27 @@
     border: 1px solid #ccc;
     box-shadow: 0 0 10px #0000001a;
     border-radius: 5px;
+    align-items: flex-start;
+    /* align-items:center; */
+    padding-top: 30px;
 }
   
 .MangaInfo-left {
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
   
 .MangaInfo-right {
     flex: 1;
-    padding: 20px;
-    padding-top: 120px;
+    padding-left: 20px;
+    padding-right: 40px;
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
 }
@@ -28,8 +34,10 @@
 }
   
 .MangaInfo-container h1 {
-    font-size: 40px;
+    font-size: 30px;
     margin: 0;
+    max-width: 100%;
+    text-align:center;
 }
 
 .MangaInfo input[type="text"] {
