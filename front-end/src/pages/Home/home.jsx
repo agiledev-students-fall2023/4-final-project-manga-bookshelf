@@ -10,19 +10,17 @@ function Home() {
 
   //get a list of recommendation (trending) 
   useEffect(() => {
-    async function getListRecentUpdate() {
-      const response = await fetch("http://localhost:8080/manga/recent/20");
-      const data = await response.json()
-      setRecentlyUpdated([data]);
+    async function getListTrendingAndRecentUpdated() {
+      const response1 = await fetch("http://localhost:8080/manga/recent/20");
+      const data1 = await response1.json()
+      setRecentlyUpdated([data1]);
+
+      const response2 = await fetch("http://localhost:8080/manga/recommendation/10");
+      const data2 = await response2.json()
+      setTrending([data2.result]);
     }
-    getListRecentUpdate()
-    async function getListRecommendation() {
-      const response = await fetch("http://localhost:8080/manga/recommendation/10");
-      const data = await response.json()
-      console.log(data)
-      setTrending([data.result]);
-    }
-    getListRecommendation()
+    getListTrendingAndRecentUpdated()
+
   }, [])
 
   // TODO: get a list of recently updated: 
