@@ -12,7 +12,6 @@ function MangaIcon({name, imgLink}) {
 
   // This will make styles more consistent
   const [favorite, setFavorite] = useState(false)
-  // const [mangaId, setMangaId] = useState("")
 
   const navigate = useNavigate()
 
@@ -20,11 +19,6 @@ function MangaIcon({name, imgLink}) {
     try{
       const payload = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(name)}`)
       const data1 = await payload.json() 
-      console.log(data1) 
-      console.log(typeof data1)
-
-      // setMangaId(data1.__id)
-      // console.log(mangaId)
       navigate(`/manga/${data1.__id}`)
     } catch (error){
       console.error("Error fetching data:", error)

@@ -6,8 +6,8 @@ import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
     const {title, author, genres, synopsis, image} = mangaData[0] || {}
+    console.log(mangaData[0])
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
-    // console.log(mangaData[0])
     const authorNames= author ? author.replace(/,/g,''): ''
     const mangaImage= image && image.jpg && image.jpg.default
 

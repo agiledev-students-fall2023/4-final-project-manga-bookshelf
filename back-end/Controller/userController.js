@@ -41,16 +41,6 @@ class UserController {
         }
     }
 
-    // async followUser(req, res) {
-    //     try {
-    //         await UserService.followUser(req.params.id, req.body.followingId);
-    //         res.status(200).json({ message: 'Successfully followed' });
-    //     } catch(err) {
-    //         res.status(401).json({ error: 'Failed to follow' });
-    //     }
-    // }
-
-
 }
 
 export default new UserController();
