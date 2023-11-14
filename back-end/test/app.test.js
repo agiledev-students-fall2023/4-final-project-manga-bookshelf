@@ -1,5 +1,4 @@
 //During the test the env variable is set to test
-process.env.NODE_ENV = 'test';
 
 import mongoose from "mongoose" 
 
@@ -12,18 +11,13 @@ let should = chai.should();
 chai.use(chaiHttp);
 //Our parent block
 describe('Manga Routes', () => {
-    beforeEach((done) => { //Before each test we empty the database
-        Book.remove({}, (err) => {
-            done();
-        });
-    });
     /*
       * Test the /GET route
       */
-    describe('/GET book', () => {
+    describe('/GET Manga Routes', () => {
         it('it should GET all the books', (done) => {
-            chai.request(server)
-                .get('/book')
+            chai.request("http://localhost:8080")
+                .get('/manga/')
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
@@ -33,4 +27,10 @@ describe('Manga Routes', () => {
         });
     });
 
+});
+
+describe("Auth Routes", () => {
+    describe("/GET Auth Routes", () => {
+        
+    })
 });
