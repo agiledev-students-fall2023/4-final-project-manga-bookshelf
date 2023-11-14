@@ -109,6 +109,84 @@ describe('UserService', () => {
             }
         })
     })
+    //test this until the database is ready 
+    /*
+    describe('saveUserData', () => {
+        it('should save user data to a file', async () => {
+            const testData = {
+                users: [
+                    {
+                        id: '101',
+                        name: 'TestUser',
+                        following: [],
+                        followers: [],
+                        bio: 'This is a test user.',
+                        avatar: 'https://placekitten.com/g/200/200',
+                        twitter: 'test_user_handle',
+                    },
+                ],
+            };
+
+            try {
+                await UserService.saveUserData(testData);
+                // Read the saved data from the file
+                const savedData = fs.readFileSync('./public/userMockData.json', 'utf-8');
+                const parsedSavedData = JSON.parse(savedData);
+
+                // Ensure that the saved data matches the testData
+                expect(parsedSavedData).to.deep.equal(testData);
+            } catch (err) {
+                // If an error occurs during the test, fail the test
+                expect.fail('saveUserData should not throw an error');
+            }
+        });
+    });
+    
+    
+
+    describe('followUser', () => {
+        it('should return a 404 error if the user is not found', async () => {
+            const userId = 'nonexistentUser';
+            const followId = '2'; 
+            try {
+                await UserService.followUser(userId, followId);
+                expect.fail('followUser should have thrown an error for non-existent user');
+            } catch (err) {
+                expect(err.status).to.equal(404);
+                expect(err.message).to.equal('User not found.');
+            }
+        });
+    
+        it('should return a 404 error if the follow target user is not found', async () => {
+            const userId = '1'; 
+            const followId = 'nonexistentFollowUser';
+            try {
+                await UserService.followUser(userId, followId);
+                expect.fail('followUser should have thrown an error for non-existent follow target user');
+            } catch (err) {
+                expect(err.status).to.equal(404);
+                expect(err.message).to.equal('User not found.');
+            }
+        });
+    
+        it('should not perform any action if the user is already following the target', async () => {
+            const userId = '1'; 
+            const followId = '2'; // user 1 is already following user 2
+            await UserService.followUser(userId, followId);
+            // Verify that the user's following list did not change
+            // This may involve fetching user data and checking that the followId is still there
+        });
+    
+        it('should successfully add the follow target to the user’s following list', async () => {
+            const userId = '1'; 
+            const followId = '3'; // Assume user 1 is not following user 3
+            await UserService.followUser(userId, followId);
+            // Verify that the user's following list now includes followId
+            // This may involve fetching user data and checking that the followId is added
+        });
+    });
+    */
+
 })
 
 
