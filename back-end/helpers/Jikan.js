@@ -85,12 +85,12 @@ async function getMangaInfoByGenres(GenreName) {
     // create filter
     const filter = {
         genres: [genre.id],
-        orderBy: "score",
+        orderBy: "popularity",
     }
     // search by filter
-    const payload = await client.manga.search('', filter)
+    const payload = await client.manga.search('', filter, 0, 20)
     // return mangaInfo
-    const result = payload.slice(0, 20).map(manga => {
+    const result = payload.map(manga => {
         return {
             __id: manga.id,
             image: manga.image.jpg.default,
@@ -134,6 +134,45 @@ async function getMangaRecommendations(...num){
     return {"result": transformed}
 }
 
+// Get Most Recent Mangas
+// Input: number of recently updated manga you want to get back
+// Output: array of Manga objects
+async function getRecentMangas(...num) {
+    // listTop (filter?: Partial<TopMangaFilter>, offset?: number, maxCount?: number)
+    let entries = 10
+    if (num !== undefined){
+        entries = num
+    }
+    const filter = {
+        orderBy: "start_date",
+    }
+    // search by filter
+    const payload = await client.manga.search('', filter, 0, entries)
+    const result = payload.map(manga => {
+        return {
+            __id: manga.id,
+            image: manga.image.jpg.default,
+            title: manga.title.default,
+    }})
+
+    return result
+}
+
+// Get Upcoming Mangas
+// Input: number of upcoming manga you want to get back
+// Output: array of Manga objects
+async function getUpcomingMangas(...num) {
+    let entries = 10
+    if (num !== undefined){
+        entries = num
+    }
+    const filter = {
+        filter: "upcoming",
+    }
+    const response = await client.manga.listTop(filter, 0, entries)
+    return response
+}
+
 // async function printSearch(search) {
 //     const result = await client.recommendations.getMangaRecommendations(0, 10); 
 
@@ -143,6 +182,8 @@ async function getMangaRecommendations(...num){
 // printSearch(1)
 
 export {
+    getUpcomingMangas,
+    getRecentMangas,
     getMangaSearch,
     getTopMangaId,
     getMangaInfoById,
