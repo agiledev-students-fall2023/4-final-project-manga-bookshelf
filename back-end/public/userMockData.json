@@ -4,12 +4,10 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        13,
-        7
+        7,
+        13
       ],
       "followers": [
-        11,
-        5,
         7,
         13
       ],
@@ -68,8 +66,7 @@
       "id": "5",
       "name": "Bgrtb",
       "following": [
-        6,
-        1
+        6
       ],
       "followers": [],
       "bio": "This is a bio for Bgrtb.",
@@ -147,9 +144,7 @@
     {
       "id": "11",
       "name": "aasf",
-      "following": [
-        1
-      ],
+      "following": [],
       "followers": [],
       "bio": "This is a bio for aasf.",
       "avatar": "https://placekitten.com/g/200/200",
