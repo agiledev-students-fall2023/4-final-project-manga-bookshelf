@@ -26,8 +26,9 @@ This project was first proposed by Christine Lei for the Agile Development and D
 ### Build and launch back end
 * Navigate to the ```back-end``` directory.
 * Run ```npm install``` to install all dependencies.
-* Run ```npm start``` to launch the beck-end server.
+* Run ```npm start``` to launch the back-end server.
 ### Build and launch front end
+* Open a new terminal
 * Navigate to the ```front-end``` directory.
 * Run ```npm install``` to install all dependencies.
 * Run ```npm start``` to launch the front-end.
