@@ -6,6 +6,7 @@ class UserService {
   // async createUser(data) {}
 
   /* Get user data from database - need to update when connect to database */
+  //finds an INDIVIDUAL USER
   async getUserData(userId) {
     const user = userMockData.users.find((user) => user.id === userId);
     if (!user) {

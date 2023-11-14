@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 /* Need to modify getUserData() and saveUserData() to fetch data from database */
+//this is getting data for all users not a specific user
 async function getUserData() {
     try {
         const data = await fs.promises.readFile('./public/userMockData.json')
@@ -110,6 +111,7 @@ async function getUserCurrentReading(userId) {
 }
 
 export {
+    getUserData,
     followUser,
     unfollowUser,
     removeUser

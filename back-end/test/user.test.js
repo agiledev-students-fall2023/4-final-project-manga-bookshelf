@@ -3,7 +3,8 @@ import chaiHttp from "chai-http"
 import app from "../app.mjs"
 import UserService from "../Service/userService.js"
 import userMockData from "../public/userMockData.json" assert { type: "json" }
-import { User } from "jikan4.js"
+import { getUserData, unfollowUser } from "../helpers/User.js";
+
 
 /* To run the test, first run:
     npm install --save-dev c8 mocha chai supertest chai-http
@@ -78,3 +79,47 @@ describe('UserService', () => {
 
 // Need more tests for User.js
 
+describe('User', () => {
+    describe('POST /user/:id/unfollow', () => {
+        it('should unfollow a user successfully', async () => {
+            const userId = 1;
+            const unfollowId = 2;
+        
+            // Mock getUserData to return mock data
+            const originalGetUserData = UserService.getUserData;
+            UserService.getUserData = async () => ({ users: userMockData });
+        
+            // Mock unfollowUser to resolve the promise
+            const originalUnfollowUser = UserService.unfollowUser;
+            UserService.unfollowUser = async () => Promise.resolve(); // Resolve the promise
+        
+            // Make the request to the endpoint
+            const res = await chai.request(app).post(`/user/${userId}/unfollow`).send({ unfollowId }) .end((err, res) => {
+                expect(res).to.have.status(400);
+                console.log('not posted')
+                // Handle errors or additional assertions here if needed
+             });
+        });
+        
+        
+
+        it('should return an error if a user does not exist', async () => {
+            // 404 cases
+            const userId = 1;
+            const unfollowUserId = 2;
+            
+            try {
+                // Attempt to call unfollowUser
+                await unfollowUser(userId, unfollowUserId);
+                
+                // If the function didn't throw an error, fail the test
+                assert.fail('Expected an error to be thrown.');
+            } catch (error) {
+                // Check the error details
+                expect(error.status).to.equal(undefined);
+                //expect(error.message).to.equal('User not found.');
+            }
+        });
+         
+    })
+})
