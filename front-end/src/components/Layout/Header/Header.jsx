@@ -10,6 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ForumIcon from '@mui/icons-material/Forum';
 import Turnstone from 'turnstone';
+import { useNavigate } from 'react-router-dom';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
@@ -54,12 +55,17 @@ export default function Header() {
         // }
     ]
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         //first fetch mangas on the backend so we get id information about our manga
         const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
         const data1 = await payload1.json() 
-        console.log(data1) 
+        // console.log(data1) 
+        setResults("")
+        navigate(`/manga/${data1.__id}`)
+    
     }
     
     return (
@@ -80,6 +86,7 @@ export default function Header() {
                             maxItems={maxItems}
                             noItemsMessage="No Manga Which Matched Your Search"
                             styles={styles}
+                            value={results}
                             onChange={(e) => setResults(e)}     
                         />
                     </form>

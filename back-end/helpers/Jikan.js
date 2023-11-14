@@ -69,7 +69,14 @@ async function getMangaInfoById(MangaId){
             themes: mangaObject.themes,
             demographics: mangaObject.demographics,
         }
+    for (const key in result) {
+        if (result[key] === null) {
+            // Set it to a default string if the property is null
+            result[key] = "No information available";
+        }
+    }
         console.log(result)
+        
         return result
     }
 }
