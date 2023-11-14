@@ -29,6 +29,14 @@ async function getMangaSearch(searchquery){
 // When you search, we want the top manga search query that comes up
 // This function will search and return the top manga in the form of an object
 // Input: String being user's search query
+// Output: Manga Object
+async function getTopManga(searchquery){
+    return await client.manga.search(searchquery)[0]
+}
+
+// When you search, we want the top manga search query that comes up
+// This function will search and return the top manga in the form of an object
+// Input: String being user's search query
 // Output: String being the Manga's Id
 async function getTopMangaId(searchquery){
     const result = await client.manga.search(searchquery)
@@ -61,7 +69,14 @@ async function getMangaInfoById(MangaId){
             themes: mangaObject.themes,
             demographics: mangaObject.demographics,
         }
+    for (const key in result) {
+        if (result[key] === null) {
+            // Set it to a default string if the property is null
+            result[key] = "No information available";
+        }
+    }
         console.log(result)
+        
         return result
     }
 }
@@ -71,59 +86,30 @@ async function getMangaInfoById(MangaId){
 // Input: String being category name
 // Output: Array of Manga objects
 async function getMangaInfoByGenres(GenreName) {
-    const payload = await getMangaRecommendations(100)
-    const mangaRecommendations = payload.result
-
-    const filteredManga = []
-    for (const manga of mangaRecommendations) {
-        const mangaInfo = await getMangaInfoById(manga.__id)
-        if (filteredManga.length >= 20) {
-            return filteredManga
-        }
-        for (const genre of mangaInfo.genres) {
-            if (genre.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
-        for (const theme of mangaInfo.themes) {
-            if (theme.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
-        for (const demographic of mangaInfo.demographics) {
-            if (demographic.name === GenreName) {
-                filteredManga.push({
-                    __id: mangaInfo.__id,
-                    title: mangaInfo.title,
-                    image: mangaInfo.image.jpg.default
-                })
-            }
-        }
+    // get genreId by genreName
+    const genreData = client.genres.listManga()
+    const genre = genreData.find(genre => genre.name === GenreName)
+    // create filter
+    const filter = {
+        genres: [genre.id],
+        orderBy: "popularity",
     }
-
-    return filteredManga
+    // search by filter
+    const payload = await client.manga.search('', filter, 0, 20)
+    // return mangaInfo
+    const result = payload.map(manga => {
+        return {
+            __id: manga.id,
+            image: manga.image.jpg.default,
+            title: manga.title.default,
+    }})
+    return result
 }
 
 // Get manga recommendations
 // num represent the number of entries you want to get back 
 // Input: number of recommendations you want to get back
 // Output: array of RecommendationManga objects 
-// A RecommendationManga Object look like this: 
-
-// RecommendationManga {
-//     content: 'Both stories have supernatural themes and some similar dynamics between the main characters. Alto is devoted to the one he loves in a similar way that Ten is, and even looks a bit similar!',
-//         date: 2023 - 11-05T10: 20:00.000Z,
-//             user: RecommendationUser { url: [URL], username: 'steamedpumpkin' },
-//     entries: [[MangaMeta], [MangaMeta]]
-// }
 async function getMangaRecommendations(...num){
     let entries = 10
     if (num !== undefined){
@@ -147,15 +133,49 @@ async function getMangaRecommendations(...num){
     return {"result": transformed}
 }
 
-// async function printSearch(search) {
-//     const result = await client.recommendations.getMangaRecommendations(0, 10); 
+// Get Most Recent Mangas
+// Input: number of recently updated manga you want to get back
+// Output: array of Manga objects
+async function getRecentMangas(...num) {
+    // listTop (filter?: Partial<TopMangaFilter>, offset?: number, maxCount?: number)
+    let entries = 10
+    if (num !== undefined){
+        entries = num
+    }
+    const filter = {
+        orderBy: "start_date",
+    }
+    // search by filter
+    const payload = await client.manga.search('', filter, 0, entries)
+    const result = payload.map(manga => {
+        return {
+            __id: manga.id,
+            image: manga.image.jpg.default,
+            title: manga.title.default,
+    }})
 
-//     console.log(result)
-// }
+    return result
+}
 
-// printSearch(1)
+// Get Upcoming Mangas
+// Input: number of upcoming manga you want to get back
+// Output: array of Manga objects
+async function getUpcomingMangas(...num) {
+    let entries = 10
+    if (num !== undefined){
+        entries = num
+    }
+    const filter = {
+        filter: "upcoming",
+    }
+    const response = await client.manga.listTop(filter, 0, entries)
+    return response
+}
+
 
 export {
+    getUpcomingMangas,
+    getRecentMangas,
     getMangaSearch,
     getTopMangaId,
     getMangaInfoById,

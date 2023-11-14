@@ -5,9 +5,11 @@ import ForumPost from "../ForumPost/ForumPost"
 import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
-    const {title, authors, genres, synopsis} = mangaData
-    const genreNames = genres.map((genre) => genre.name).join(', ')
-    const authorNames= authors.map((author) => author.node.first_name + ' ' + author.node.last_name).join(', ')
+    const {title, author, genres, synopsis, image} = mangaData[0] || {}
+    console.log(mangaData[0])
+    const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
+    const authorNames= author ? author.split(',').reverse().join(' '): ''
+    const mangaImage= image && image.jpg && image.jpg.default
 
     const [chapter, setChapter] = useState('')
 
@@ -22,7 +24,7 @@ function MangaInfo({mangaData}) {
             <div className= "MangaInfo-main">
                 <div className="MangaInfo-left">
                     <h1> {title} </h1>
-                    <MangaProfileImage imgLink= {"https://cdn.myanimelist.net/images/manga/1/157897.jpg"}/>
+                    {mangaImage && <MangaProfileImage imgLink= {mangaImage}/>}
                 </div>
                 <div className= "MangaInfo-right">
                     <div className= "MangaInfo-content">
@@ -39,7 +41,7 @@ function MangaInfo({mangaData}) {
                         <h3> Author: </h3>
                         <p>  {authorNames} </p>
                         <h3> Genres: </h3>
-                        <p> {genreNames} </p>
+                        <p> {genresArray.join (', ')} </p>
                         <h3> Synopsis: </h3>
                         <p> {synopsis} </p>
                     </div>

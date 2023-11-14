@@ -19,3 +19,17 @@ The manga bookshelf project is an application to track readers' reading progress
 
 ## Project History
 This project was first proposed by Christine Lei for the Agile Development and DevOps class at New York University. Afterwards, teams were formed and the members listed above were selected to build this project. Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) document on how to contribute to this project.
+
+## How to launch the app
+### Get the code
+* Run ```git clone https://github.com/agiledev-students-fall2023/4-final-project-manga-bookshelf.git``` to clone the repo to your local machine.
+### Build and launch back end
+* Navigate to the ```back-end``` directory.
+* Run ```npm install``` to install all dependencies.
+* Run ```npm start``` to launch the beck-end server.
+### Build and launch front end
+* Navigate to the ```front-end``` directory.
+* Run ```npm install``` to install all dependencies.
+* Run ```npm start``` to launch the front-end.
+
+Now, open your browser and navigate to ```http://localhost:3000```. You should see our app running there.

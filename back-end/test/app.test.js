@@ -1,5 +1,3 @@
-//During the test the env variable is set to test
-
 import mongoose from "mongoose" 
 
 import chai from "chai" 
