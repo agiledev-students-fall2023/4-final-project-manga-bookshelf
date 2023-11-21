@@ -2,10 +2,6 @@ import app from "../app.mjs"
 
 const BASE_ROUTE_COMMENT = "comment"
 
-app.get(`/2`, (req, res) => {
-    res.send("does this fucking work???!");
-})
-
 /*
 // load the dataabase models we want to deal with
 const { Message } = require('./models/Message')
