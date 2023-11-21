@@ -13,16 +13,17 @@
       "id": "2",
       "name": "Bob",
       "following": [
-        4,
         7,
         9,
         10,
-        13
+        13,
+        4
       ],
       "followers": [
         4,
         9,
-        7
+        7,
+        13
       ],
       "bio": "This is a bio for Bob.",
       "avatar": "https://placekitten.com/g/200/200",
@@ -49,8 +50,8 @@
         2
       ],
       "followers": [
-        2,
-        3
+        3,
+        2
       ],
       "bio": "This is a bio for Aiut.",
       "avatar": "https://placekitten.com/g/200/200",
@@ -154,7 +155,9 @@
     {
       "id": "13",
       "name": "weinanshike",
-      "following": [],
+      "following": [
+        2
+      ],
       "followers": [
         2,
         3
