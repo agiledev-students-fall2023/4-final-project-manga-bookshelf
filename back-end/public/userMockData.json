@@ -4,11 +4,9 @@
       "id": "1",
       "name": "Alice",
       "following": [
-        7,
         13
       ],
       "followers": [
-        7,
         13
       ],
       "bio": "This is a bio for Alice.",
@@ -91,13 +89,11 @@
       "name": "Padfi",
       "following": [
         9,
-        1,
         2
       ],
       "followers": [
         2,
-        3,
-        1
+        3
       ],
       "bio": "This is a bio for Padfi.",
       "avatar": "http://localhost:8080/puppy",
