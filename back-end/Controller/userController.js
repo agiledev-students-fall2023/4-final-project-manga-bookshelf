@@ -1,46 +1,33 @@
-import { User } from 'jikan4.js';
-import UserService from '../Service/userService.js';
+import express from 'express' 
+import * as User from "../helpers/User.js"
 
-class UserController {
-    async getUserData(req, res) {
-        try {
-            const userData = await UserService.getUserData(req.params.id);
-            res.status(200).json(userData);
-        } catch(err) {
-            res.status(404).json({ error: 'Cannot find user' });
-        }
-    }
+const userRouter=express.Router()
 
-    async getUserFollower(req, res) {
-        try {
-            const userData = await UserService.getUserData(req.params.id);
-            const followerIds = userData.followers;
-            const followers = []
-            for (const id of followerIds) {
-                const followData = await UserService.getUserData(id.toString());
-                followers.push(followData);
-            }
-            res.status(200).json(followers);
-        } catch(err) {
-            res.status(404).json({ error: 'Cannot find user' });
-        }
-    }
 
-    async getUserFollowing(req, res) {
-        try {
-            const userData = await UserService.getUserData(req.params.id);
-            const followingIds = userData.following;
-            const following = []
-            for (const id of followingIds) {
-                const followData = await UserService.getUserData(id.toString());
-                following.push(followData);
-            }
-            res.status(200).json(following);
-        } catch(err) {
-            res.status(404).json({ error: 'Cannot find user' });
-        }
-    }
+userRouter.get(`/:id/followers`, User.getUserFollower)
+userRouter.get(`/:id/following`, User.getUserFollowing)
 
-}
+// to follow a user
+userRouter.post(`/:id/follow`, async (req, res) => {
+    await User.followUser(req.params.id, req.body.followingId)
+    res.send('seccess follow')
+})
 
-export default new UserController();
+// to unfollow a user
+userRouter.post(`/:id/unfollow`, async (req, res) => {
+    await User.unfollowUser(req.params.id, req.body.unfollowingId)
+    res.send('success unfollow')
+})
+
+// to remove a user
+userRouter.post(`/:id/remove`, async (req, res) => {
+    // await User.removeUser(req.params.id)
+    // await User.unfollowUser(req.params.id, req.body.removingId)
+    await User.removeUser(req.params.id, req.body.removingId)
+    res.send('success remove')
+})
+
+//get the profile lists 
+userRouter.get(`/:id/profileInfo`, User.getUserData2)
+
+export default userRouter;

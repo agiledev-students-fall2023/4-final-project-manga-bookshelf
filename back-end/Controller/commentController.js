@@ -1,6 +1,6 @@
 import app from "../app.mjs"
+import express from 'express' 
 
-const BASE_ROUTE_COMMENT = "comment"
 
 /*
 // load the dataabase models we want to deal with
