@@ -1,10 +1,6 @@
 //TODO: import protect and public routes 
 //Do later when doing auth
 
-// Uncomment these later: 
-// import {useRoutes} from 'react-router-dom' 
-// import {protectedRoutes} from './protected'; 
-// import {publicroutes} from './public'; 
 import {
     createBrowserRouter,
     RouterProvider,
@@ -23,90 +19,88 @@ import MangaWorks from "../pages/MangaWorks/MangaWorks";
 import Edit from "../pages/Edit/edit";
 import PasswordReset from "../pages/Auth/PasswordReset/PasswordReset";
 
-const router = createBrowserRouter([
-    {
-        path: '/login',
-        element: <Login />,
-        errorElement: <Error />,
-    },
-    {
-        path: '/signup',
-        element: <SignUp />,
-        errorElement: <Error />,
-    },
-    {
-        path: '/',
-        element: <Header />,
-        errorElement: <Error />,
-        children: [
-            {
-                path: "/",
-                element: <Home />,
-            },
-            {
-                path: "/dashboard",
-                element: <Home/>,
-            },
-            {
-                path: "/profile/:profileId",
-                element: <Profile />,
-            },
-            {
-                path: "/forum",
-                element: <Forum />,
-            },
-            {
-                path: "profile/:profileId/follower",
-                element: <Follow title='Follower'/>,
-            },
-            {
-                path: "profile/:profileId/following",
-                element: <Follow title='Following'/>,
-            },
-            {
-                path: "profile/:profileId/edit",
-                element: <Edit title='Edit' />,
-            },
-            {
-                path: "/manga",
-                element: <MangaWorks />,
-            },
-            {
-                path: "/manga/:mangaId",
-                element: <Works />,
-            },
-            {
-                path: "/setting",
-                element: <div>Configure Buncha Settings</div>,
-            },
-        ]
-    }
-]);
+// const router = createBrowserRouter([
+//     {
+//         path: '/login',
+//         element: <Login />,
+//         errorElement: <Error />,
+//     },
+//     {
+//         path: '/signup',
+//         element: <SignUp />,
+//         errorElement: <Error />,
+//     },
+//     {
+//         path: '/',
+//         element: <Header />,
+//         errorElement: <Error />,
+//         children: [
+//             {
+//                 path: "/",
+//                 element: <Home />,
+//             },
+//             {
+//                 path: "/dashboard",
+//                 element: <Home/>,
+//             },
+//             {
+//                 path: "/profile/:profileId",
+//                 element: <Profile />,
+//             },
+//             {
+//                 path: "/forum",
+//                 element: <Forum />,
+//             },
+//             {
+//                 path: "profile/:profileId/follower",
+//                 element: <Follow title='Follower'/>,
+//             },
+//             {
+//                 path: "profile/:profileId/following",
+//                 element: <Follow title='Following'/>,
+//             },
+//             {
+//                 path: "profile/:profileId/edit",
+//                 element: <Edit title='Edit' />,
+//             },
+//             {
+//                 path: "/manga",
+//                 element: <MangaWorks />,
+//             },
+//             {
+//                 path: "/manga/:mangaId",
+//                 element: <Works />,
+//             },
+//             {
+//                 path: "/setting",
+//                 element: <div>Configure Buncha Settings</div>,
+//             },
+//         ]
+//     }
+// ]);
 
-export const AppRoutes = () => {
-    return(
-        <RouterProvider router={router} />
-    )
-}
+// export const AppRoutes = () => {
+//     return(
+//         <RouterProvider router={router} />
+//     )
+// }
 
 // From Bulletproof react: 
 
-// import { useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
-// import { Landing } from '@/features/misc';
-// import { useAuth } from '@/lib/auth';
+import { protectedRoutes } from './protected';
+import { publicRoutes } from './public';
 
-// import { protectedRoutes } from './protected';
-// import { publicRoutes } from './public';
+export const AppRoutes = () => {
+    // const auth = useAuth();
+    const commonRoutes = [{ path: '/', element: <Login /> }];
 
-// export const AppRoutes = () => {
-//     const auth = useAuth();
+    //we want auth to be implemented so that this can work. Probably need useAuth hook or something 
+    // const routes = auth.user ? protectedRoutes : publicRoutes;
+    const routes = publicRoutes;
 
-//     const commonRoutes = [{ path: '/', element: <Landing /> }];
+    const element = useRoutes([...routes, ...commonRoutes]);
 
-//     const routes = auth.user ? protectedRoutes : publicRoutes;
-
-//     const element = useRoutes([...routes, ...commonRoutes]);
-
-//     return <>{element}</>;
-// };
+    return <>{element}</>;
+};

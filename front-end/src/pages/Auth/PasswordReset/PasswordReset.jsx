@@ -29,6 +29,9 @@ function PasswordReset() {
           required
         />
         <br></br>
+        <div>
+          <a href="/auth/login">Login</a>
+        </div>
         <button type="button" onClick={() => setSentEmail(true)}>
           Verify Email!
         </button>
