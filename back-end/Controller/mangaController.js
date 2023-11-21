@@ -3,7 +3,6 @@ import * as Jikan from "../helpers/Jikan.js" //import helper function that we wa
 
 const mangaRouter=express.Router()
 
-
 //send result back with result json 
 mangaRouter.get(`/search/:entry`, async (req, res) => {
     const payload = await Jikan.getMangaSearch(req.params.entry)

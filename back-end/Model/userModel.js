@@ -19,6 +19,15 @@ const UserSchema = new mongoose.Schema({
         type:String, 
         required:true,
     },
+    profileImg:
+    {
+        data: Buffer,
+        contentType: String,
+    },
+    bio:{
+        type: String, 
+        default: ""
+    },
     role: {
         type: String,
         default: 'user',

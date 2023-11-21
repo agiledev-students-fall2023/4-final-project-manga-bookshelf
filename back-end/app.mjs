@@ -29,8 +29,8 @@ import UserModel from './Model/userModel.js';
 // console.log(`Conneting to MongoDB at ${process.env.MONGODB_URI}`)
 mongoose.connect(process.env.DATABASE_URI).then(()=>{
     console.log("connected to MongonDB Atlas")
-}).catch(() => {
-    console.log("Error")
+}).catch((err) => {
+    console.log("Error:", err)
 })
 
 //Define middleware to use here
@@ -54,22 +54,18 @@ app.get("/", (req,res)=>{
     res.send("Server is working!!"); 
 })
 
-//Sample route which sends back image 
-app.get("/puppy", (req,res) => {
-    const imagePath = path.join(__dirname, 'public/maltese_puppy.jpeg');
-    res.sendFile(imagePath);
-})
-
+//auth routes 
 import authenticationRouter from "./routes/authentication-route.js"
 import protectedRoutes from './routes/protected-routes.js';
 
 app.use("/auth", authenticationRouter())
 app.use("/protected", protectedRoutes())
 
-
 app.use(`/${BASE_ROUTE_MANGA}`, mangaRouter)
 
 app.use(`/${BASE_ROUTE_USER}`, userRouter)
+
+//other tuff
 
 app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
     res.json(forumData);
