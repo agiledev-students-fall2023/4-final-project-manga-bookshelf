@@ -70,6 +70,10 @@ export default function Header() {
         navigate(`/manga/${data1.__id}`)
     }
     
+    function logout(){
+        console.log("Log out here")
+    }
+
     return (
         <>
             <div className="Header-sidebar">

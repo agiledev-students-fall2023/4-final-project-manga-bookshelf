@@ -10,6 +10,7 @@ import Works from "../pages/Works/Works";
 import Forum from "../pages/Forum/forum";
 import MangaWorks from "../pages/MangaWorks/MangaWorks";
 import Edit from "../pages/Edit/edit";
+import Settings from "../pages/Settings/Settings"
 
 export const protectedRoutes = [
     {
@@ -55,7 +56,7 @@ export const protectedRoutes = [
             },
             {
                 path: "/setting",
-                element: <div>Configure Buncha Settings</div>,
+                element: <Settings/>,
             },
         ]
     },

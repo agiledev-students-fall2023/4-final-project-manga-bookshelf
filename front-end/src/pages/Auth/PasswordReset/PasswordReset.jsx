@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import './PasswordReset.css';
 
+import { AuthContext } from '../../../context/AuthContext'
+
 function PasswordReset() {
+  
+  const auth = useContext(AuthContext) 
+
   const [sentEmail, setSentEmail] = useState(false);
   const handleClose = () => {
     setSentEmail(false);
   };
+
+  const handleSubmit = (e) => {
+    console.log(e.target.email.value)
+  }
 
   return (
     <div className="passwordreset-container">
@@ -21,7 +30,7 @@ function PasswordReset() {
       <p>
         Enter your email address to verify your email and reset your password.
       </p>
-      <form id="forgotPasswordForm">
+      <form id="forgotPasswordForm" onsubmit={handleSubmit}>
         <input
           type="email"
           id="email"

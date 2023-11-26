@@ -8,13 +8,16 @@ export const publicRoutes = [
     {
         path: '/auth/login',
         element: <Login />,
+        errorElement: <Error />,
     },
     {
         path: '/auth/SignUp', 
         element: <SignUp/>,
+        errorElement: <Error />,
     },
     {
         path: '/auth/reset-password', 
-        element: <PasswordReset/>
+        element: <PasswordReset/>,
+        errorElement: <Error />,
     }
 ];

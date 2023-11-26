@@ -3,6 +3,10 @@ const Schema = mongoose.Schema
 
 const commentSchema = new Schema(
   {
+    username: {
+      type: String, 
+      required: true, 
+    }, 
     name: {
       type: String,
       required: true,
@@ -22,9 +26,5 @@ const commentSchema = new Schema(
 )
 
 // create mongoose Model
-const commentModel = mongoose.model('Comment', commentSchema)
+export const commentModel = mongoose.model('Comment', commentSchema)
 
-// export the model so other modules can import it
-module.exports = {
-    commentModel,
-}

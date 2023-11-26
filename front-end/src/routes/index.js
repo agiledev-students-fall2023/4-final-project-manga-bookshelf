@@ -86,21 +86,21 @@ import PasswordReset from "../pages/Auth/PasswordReset/PasswordReset";
 // }
 
 // From Bulletproof react: 
-
 import { useRoutes } from 'react-router-dom';
 
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
-    // const auth = useAuth();
+    const jwtToken = localStorage.getItem('jwtToken');
+    console.log("jwtToken:", jwtToken);
+
     const commonRoutes = [{ path: '/', element: <Login /> }];
 
-    //we want auth to be implemented so that this can work. Probably need useAuth hook or something 
-    // const routes = auth.user ? protectedRoutes : publicRoutes;
-    const routes = publicRoutes;
+    // Check to make sure we have our jwt (not set to null)
+    const routes = jwtToken !== "null" ? protectedRoutes : publicRoutes;
+    console.log("routes:", routes);
 
     const element = useRoutes([...routes, ...commonRoutes]);
-
     return <>{element}</>;
 };

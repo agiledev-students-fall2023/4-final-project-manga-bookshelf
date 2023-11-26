@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken" 
 import jwtStrategy from "../config/jwt-config.js" 
 
+import {commentModel} from "./commentModel.js"
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -28,6 +29,15 @@ const UserSchema = new mongoose.Schema({
         type: String, 
         default: ""
     },
+    favorite:{
+        type: [], 
+    },
+    currentlyReading:{
+        type: [], 
+    },
+    finishReading:{
+        type: [], 
+    }, 
     role: {
         type: String,
         default: 'user',
