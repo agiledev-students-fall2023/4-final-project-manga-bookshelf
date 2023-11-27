@@ -9,7 +9,7 @@ function Settings() {
     const handleLogout = (e) => {
         e.preventDefault() 
         auth.signout(); 
-        navigate('/auth/login')
+        navigate('/')
     }
 
     return (
