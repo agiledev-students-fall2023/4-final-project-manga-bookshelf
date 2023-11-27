@@ -1,10 +1,6 @@
 //TODO: import protect and public routes 
 //Do later when doing auth
 
-// Uncomment these later: 
-// import {useRoutes} from 'react-router-dom' 
-// import {protectedRoutes} from './protected'; 
-// import {publicroutes} from './public'; 
 import {
     createBrowserRouter,
     RouterProvider,
@@ -23,90 +19,88 @@ import MangaWorks from "../pages/MangaWorks/MangaWorks";
 import Edit from "../pages/Edit/edit";
 import PasswordReset from "../pages/Auth/PasswordReset/PasswordReset";
 
-const router = createBrowserRouter([
-    {
-        path: '/login',
-        element: <Login />,
-        errorElement: <Error />,
-    },
-    {
-        path: '/signup',
-        element: <SignUp />,
-        errorElement: <Error />,
-    },
-    {
-        path: '/',
-        element: <Header />,
-        errorElement: <Error />,
-        children: [
-            {
-                path: "/",
-                element: <Home />,
-            },
-            {
-                path: "/dashboard",
-                element: <Home/>,
-            },
-            {
-                path: "/profile/:profileId",
-                element: <Profile />,
-            },
-            {
-                path: "/forum",
-                element: <Forum />,
-            },
-            {
-                path: "profile/:profileId/follower",
-                element: <Follow title='Follower'/>,
-            },
-            {
-                path: "profile/:profileId/following",
-                element: <Follow title='Following'/>,
-            },
-            {
-                path: "profile/:profileId/edit",
-                element: <Edit title='Edit' />,
-            },
-            {
-                path: "/manga",
-                element: <MangaWorks />,
-            },
-            {
-                path: "/manga/:mangaId",
-                element: <Works />,
-            },
-            {
-                path: "/setting",
-                element: <div>Configure Buncha Settings</div>,
-            },
-        ]
-    }
-]);
-
-export const AppRoutes = () => {
-    return(
-        <RouterProvider router={router} />
-    )
-}
-
-// From Bulletproof react: 
-
-// import { useRoutes } from 'react-router-dom';
-
-// import { Landing } from '@/features/misc';
-// import { useAuth } from '@/lib/auth';
-
-// import { protectedRoutes } from './protected';
-// import { publicRoutes } from './public';
+// const router = createBrowserRouter([
+//     {
+//         path: '/login',
+//         element: <Login />,
+//         errorElement: <Error />,
+//     },
+//     {
+//         path: '/signup',
+//         element: <SignUp />,
+//         errorElement: <Error />,
+//     },
+//     {
+//         path: '/',
+//         element: <Header />,
+//         errorElement: <Error />,
+//         children: [
+//             {
+//                 path: "/",
+//                 element: <Home />,
+//             },
+//             {
+//                 path: "/dashboard",
+//                 element: <Home/>,
+//             },
+//             {
+//                 path: "/profile/:profileId",
+//                 element: <Profile />,
+//             },
+//             {
+//                 path: "/forum",
+//                 element: <Forum />,
+//             },
+//             {
+//                 path: "profile/:profileId/follower",
+//                 element: <Follow title='Follower'/>,
+//             },
+//             {
+//                 path: "profile/:profileId/following",
+//                 element: <Follow title='Following'/>,
+//             },
+//             {
+//                 path: "profile/:profileId/edit",
+//                 element: <Edit title='Edit' />,
+//             },
+//             {
+//                 path: "/manga",
+//                 element: <MangaWorks />,
+//             },
+//             {
+//                 path: "/manga/:mangaId",
+//                 element: <Works />,
+//             },
+//             {
+//                 path: "/setting",
+//                 element: <div>Configure Buncha Settings</div>,
+//             },
+//         ]
+//     }
+// ]);
 
 // export const AppRoutes = () => {
-//     const auth = useAuth();
+//     return(
+//         <RouterProvider router={router} />
+//     )
+// }
 
-//     const commonRoutes = [{ path: '/', element: <Landing /> }];
+// From Bulletproof react: 
+import { useRoutes } from 'react-router-dom';
 
-//     const routes = auth.user ? protectedRoutes : publicRoutes;
+import { protectedRoutes } from './protected';
+import { publicRoutes } from './public';
 
-//     const element = useRoutes([...routes, ...commonRoutes]);
+export const AppRoutes = () => {
+    const jwtToken = localStorage.getItem('jwtToken');
+    console.log("jwtToken:", jwtToken);
 
-//     return <>{element}</>;
-// };
+    const commonRoutes = [{ path: '/', element: <Login /> }];
+
+    // Check to make sure we have our jwt (not set to null)
+    const routes = jwtToken !== "null" ? protectedRoutes : publicRoutes;
+    console.log("routes:", routes);
+
+    const element = useRoutes([...routes, ...commonRoutes]);
+    return <>{element}</>;
+};

@@ -1,44 +1,63 @@
-// import { Suspense } from 'react';
-// import { Navigate, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 
-// import { Spinner } from '@/components/Elements';
-// import { MainLayout } from '@/components/Layout';
-// import { lazyImport } from '@/utils/lazyImport';
-
-// const { DiscussionsRoutes } = lazyImport(
-//     () => import('@/features/discussions'),
-//     'DiscussionsRoutes'
-// );
-// const { Dashboard } = lazyImport(() => import('@/features/misc'), 'Dashboard');
-// const { Profile } = lazyImport(() => import('@/features/users'), 'Profile');
-// const { Users } = lazyImport(() => import('@/features/users'), 'Users');
-
-// const App = () => {
-//     return (
-//         <MainLayout>
-//             <Suspense
-//                 fallback={
-//                     <div className="h-full w-full flex items-center justify-center">
-//                         <Spinner size="xl" />
-//                     </div>
-//                 }
-//             >
-//                 <Outlet />
-//             </Suspense>
-//         </MainLayout>
-//     );
-// };
+import Header from "../components/Layout/Header/Header";
+import Profile from "../pages/Profile/profile";
+import Error from "../pages/Error/Error";
+import Home from "../pages/Home/home"
+import Follow from "../pages/Follow/follow";
+import Works from "../pages/Works/Works";
+import Forum from "../pages/Forum/forum";
+import MangaWorks from "../pages/MangaWorks/MangaWorks";
+import Edit from "../pages/Edit/edit";
+import Settings from "../pages/Settings/Settings"
 
 export const protectedRoutes = [
     {
-        path: '/app',
-        element: <App />,
+        path: '/',
+        element: <Header />,
+        errorElement: <Error />,
         children: [
-            { path: '/discussions/*', element: <DiscussionsRoutes /> },
-            { path: '/users', element: <Users /> },
-            { path: '/profile', element: <Profile /> },
-            { path: '/', element: <Dashboard /> },
-            { path: '*', element: <Navigate to="." /> },
-        ],
+            {
+                path: "/",
+                element: <Home />,
+            },
+            {
+                path: "/dashboard",
+                element: <Home />,
+            },
+            {
+                path: "/profile/:profileId",
+                element: <Profile />,
+            },
+            {
+                path: "/forum",
+                element: <Forum />,
+            },
+            {
+                path: "profile/:profileId/follower",
+                element: <Follow title='Follower' />,
+            },
+            {
+                path: "profile/:profileId/following",
+                element: <Follow title='Following' />,
+            },
+            {
+                path: "profile/:profileId/edit",
+                element: <Edit title='Edit' />,
+            },
+            {
+                path: "/manga",
+                element: <MangaWorks />,
+            },
+            {
+                path: "/manga/:mangaId",
+                element: <Works />,
+            },
+            {
+                path: "/setting",
+                element: <Settings/>,
+            },
+        ]
     },
 ];

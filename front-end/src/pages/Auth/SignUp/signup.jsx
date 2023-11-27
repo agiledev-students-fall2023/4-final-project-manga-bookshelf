@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 import "./signup.css"; 
 
+import { AuthContext } from '../../../context/AuthContext'
+
 const SignUp = () => {
   const navigate = useNavigate();
+  const auth = useContext(AuthContext) 
+
   const [email, setEmail] = useState("");
   const [hasTypedEmail, setHasTypedEmail] = useState(false);
   const [password, setPassword] = useState("");
@@ -25,14 +30,24 @@ const SignUp = () => {
   const handleClick = (e) => {
     e.preventDefault();
 
-    if (password !== passwordConf) {
+    if (password !== passwordConf) { 
       setError("Passwords do not match");
     } else if (emailIsDisabled(email)) {
       setError("Invalid email");
     } else if (hasTypedPassword && hasTypedPasswordConf && hasTypedEmail) {
       navigate("/login");
     }
+    //this needs to be redone
   };
+
+  async function handleSignup(e){
+    e.preventDefault() 
+    console.log(e.target.username.value) 
+    console.log(e.target.email.value) 
+    console.log(e.target.password.value) 
+    await auth.signup(e.target.email.value, e.target.username.value, e.target.password.value)
+    navigate("/")
+  }
 
   return (
     <div class="signup-main">
@@ -43,9 +58,9 @@ const SignUp = () => {
           {error}
         </Alert>
       )}
-      <form>
+      <form onSubmit={handleSignup}>
         <div>
-          <label>First Name:</label>
+          <label>Username:</label>
           <input
             type="text"
             id="username"
@@ -55,21 +70,11 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter your last name"
-            required
-          />
-        </div>
-        <div>
             <label>Email:</label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               placeholder="Enter your email"
               required
               onChange={(e) => {
@@ -93,21 +98,10 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Confirm your password"
-            required
-            onChange={(e) => {
-              setPasswordConf(e.target.value);
-              setHasTypedPasswordConf(true);
-            }}
-          />
+          <a href="/auth/login">Already have acocunt? Login here</a>
         </div>
         <div>
-          <button onClick={(e) => handleClick(e)}>Sign Up!</button>
+          <button>Sign Up!</button>
         </div>
       </form>
     </div>
