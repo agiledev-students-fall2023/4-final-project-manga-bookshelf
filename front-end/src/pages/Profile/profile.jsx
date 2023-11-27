@@ -51,7 +51,6 @@ function Profile() {
         <div className="profile-bio">
           <h1>
             {profile.name ? <>{profile.name}</> : <i>No Name</i>}{" "}
-            {/* <Star contact={contact} /> */}
           </h1>
 
           {profile.twitter && (
