@@ -1,7 +1,8 @@
-import { Form } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+// import Card from '@mui/material/Card';
 
 import "./profile.css";
 const titles = ["Currently Reading", "Done", "Want to Read"];
@@ -62,21 +63,21 @@ function Profile() {
           )}
 
           <div className="follow-section">
-            <Form action="follower" className="follower-button">
+            <Link to={`/profile/${profileId}/follower`} activeClassName="current">
               <button type="submit">Follower</button>
-            </Form>
-            <Form action="following" className="following-button">
+            </Link>
+            <Link to={`/profile/${profileId}/following`} activeClassName="current">
               <button type="submit">Following</button>
-            </Form>
+            </Link>
           </div>
 
           {profile.bio && <p>{profile.bio}</p>}
         </div>
 
         <div className="edit-section">
-          <Form action="edit">
+          <Link to={`/profile/${profileId}/edit`} activeClassName="current">
             <button type="submit">Edit Profile</button>
-          </Form>
+          </Link>
         </div>
       </div>
 
