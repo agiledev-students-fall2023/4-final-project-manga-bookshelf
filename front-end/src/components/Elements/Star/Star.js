@@ -4,6 +4,7 @@ import "./Star.css"
 
 function Star({ favorite }) {
   // yes, this is a `let` for later
+
   return (
       <button
         className="Star-button"

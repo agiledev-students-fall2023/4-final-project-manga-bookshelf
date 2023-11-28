@@ -133,7 +133,7 @@ export default function Login() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Send Email
+                Verify Email
               </Button>
               <Grid container>
                 <Grid item xs>
