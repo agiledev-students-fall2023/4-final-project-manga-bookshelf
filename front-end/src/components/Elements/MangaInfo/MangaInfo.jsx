@@ -21,9 +21,9 @@ function MangaInfo({mangaData}) {
 
     return (
         <div className= "MangaInfo-container">
+            <h1> {title} </h1>
             <div className= "MangaInfo-main">
                 <div className="MangaInfo-left">
-                    <h1> {title} </h1>
                     {mangaImage && <MangaProfileImage imgLink= {mangaImage}/>}
                 </div>
                 <div className= "MangaInfo-right">
