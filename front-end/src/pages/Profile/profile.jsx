@@ -23,8 +23,8 @@ function Profile() {
     }
     setLoading(true)
     const actionUrl = isFollowed 
-      ? `${process.env.REACT_APP_BACKEND_URL}/${currentUser}/unfollow` 
-      : `${process.env.REACT_APP_BACKEND_URL}/${currentUser}/follow`
+      ? `${process.env.REACT_APP_BACKEND_URL}/user/${currentUser}/unfollow` 
+      : `${process.env.REACT_APP_BACKEND_URL}/user/${currentUser}/follow`
 
     const payload = isFollowed
       ? { unfollowingName: profileInfo.username }
