@@ -1,10 +1,3 @@
-    // {
-    //     "success": true,
-    //         "message": "User logged in successfully.",
-    //             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NWM1NzNiOTAwN2I1ZDNhN2RlM2I1YSIsInVzZXJuYW1lIjoicm9iMTIzIiwiZXhwIjoxOTI4NjEyNzkzLCJpYXQiOjE3MDEwMzUxOTN9.KJ7i5ypA9HmlAZPtfA4NhQlepHmLk7vf2OsmrcOI0PM",
-    //                 "username": "rob123"
-    // }
-
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext'
 import { useNavigate } from "react-router-dom";

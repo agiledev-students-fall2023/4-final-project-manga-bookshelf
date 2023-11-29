@@ -1,6 +1,8 @@
 import express from 'express'
 import passport from 'passport' 
 
+import UserModel from '../Model/userModel.js';
+
 const protectedRoutes = () => {
     const router = express.Router(); 
 
@@ -10,15 +12,16 @@ const protectedRoutes = () => {
             success: true, 
             message: `Success. Valid JWT for user: ${req.user.username} `, 
             user: req.user, 
+            id: req.user.id
         });
         next(); 
     })
 
-    //Give new information to the bio
+    //Give new information to the bio (JSON Stringify like {payload: "content"})
     router.post("/user/add/bio", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         //TODO: 
+        const content = req.body.payload; 
         // 0. use req.user to get the user from the database 
-
         // Change the bio 
         next();
     })
@@ -74,7 +77,7 @@ const protectedRoutes = () => {
         next();
     })
 
-    //reove currently reading 
+    //remove currently reading 
     router.post("/user/delete/currentlyreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         // TODO: 
         // 1. check to make sure the currently reading manga entry aleady exists (error if not)
@@ -143,7 +146,7 @@ const protectedRoutes = () => {
 
     //change the user to admin or user
     router.post("/user/edit/role/", passport.authenticate("jwt", { session: false }), (req, res, next) => {
-       console.log("right now it doesn't do anything") 
+        console.log("right now it doesn't do anything") 
         next();
     })
 
