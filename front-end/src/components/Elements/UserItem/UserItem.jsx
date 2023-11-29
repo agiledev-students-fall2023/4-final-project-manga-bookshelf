@@ -11,25 +11,25 @@ function UserItem({ title, user, onUnfollowClick }) {
     const { profileId } = useParams()
     const navigate = useNavigate()
 
-    const renderFollowButton = () => {
-        user.followers.forEach(follower => {
-            const followerString = follower.toString()
-            if (followerString === profileId) {
-                setIsFollowed(true)
-            }
-            else {
-                setIsFollowed(false)
-            }
-        })
-    }
+    // const renderFollowButton = () => {
+    //     user.followers.forEach(follower => {
+    //         const followerString = follower.toString()
+    //         if (followerString === profileId) {
+    //             setIsFollowed(true)
+    //         }
+    //         else {
+    //             setIsFollowed(false)
+    //         }
+    //     })
+    // }
 
     const navigateToProfile = () => {
-        navigate(`/profile/${user.id}`)
+        navigate(`/profile/${user.username}`)
     }
 
-    useEffect(() => {
-        renderFollowButton()
-    })
+    // useEffect(() => {
+    //     renderFollowButton()
+    // })
 
     const handleFollowClick = () => {
         if (loading) {
@@ -77,7 +77,7 @@ function UserItem({ title, user, onUnfollowClick }) {
         axios.post(actionUrl, payload)
             .then(response => {
                 setIsFollowed(false)     
-                renderFollowButton()   
+                // renderFollowButton()   
                 onUnfollowClick()       
             })
             .catch(err => {
@@ -91,7 +91,7 @@ function UserItem({ title, user, onUnfollowClick }) {
     return (
         <div className='user-item'>
             <img src={userImage} alt={user.name} onClick={navigateToProfile}/>
-            <span onClick={navigateToProfile}>{user.name}</span>
+            <span onClick={navigateToProfile}>{user.username}</span>
             
             {title === 'Follower' && (
                 <button 

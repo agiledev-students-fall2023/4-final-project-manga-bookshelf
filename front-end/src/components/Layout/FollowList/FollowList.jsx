@@ -10,7 +10,7 @@ function FollowList({ title, users, onUnfollowClick }) {
             <div className='follow-list-content'>
                 <ul>
                     {users.map(user => (
-                        <li key={user.id}>
+                        <li key={user._id}>
                             <UserItem title = {title} user={user} onUnfollowClick={onUnfollowClick}/>
                         </li>
                     ))}
