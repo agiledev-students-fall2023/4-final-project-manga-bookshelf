@@ -54,12 +54,15 @@
     text-align: right;
 }
 
-/* .profile-contact .follow-section .follower-button {
-    display: inline-block;
-    margin-right: auto;
-    border-width: 2px;
-    box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-} */
+.profile-contact .edit-section .follow-button.not-followed {
+    width: 100px;
+    background-color: #3992ff;
+    color: white;
+}
+
+.profile-contact .edit-section .follow-button.followed {
+    width: 100px;
+}
 
 .profile-contact .follow-section button {
     width: 100px;

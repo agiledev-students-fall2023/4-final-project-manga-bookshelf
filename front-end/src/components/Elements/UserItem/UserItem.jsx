@@ -11,25 +11,15 @@ function UserItem({ title, user, onUnfollowClick }) {
     const { profileId } = useParams()
     const navigate = useNavigate()
 
-    // const renderFollowButton = () => {
-    //     user.followers.forEach(follower => {
-    //         const followerString = follower.toString()
-    //         if (followerString === profileId) {
-    //             setIsFollowed(true)
-    //         }
-    //         else {
-    //             setIsFollowed(false)
-    //         }
-    //     })
-    // }
-
     const navigateToProfile = () => {
         navigate(`/profile/${user.username}`)
     }
 
-    // useEffect(() => {
-    //     renderFollowButton()
-    // })
+    useEffect(() => {
+        // console.log(profileId)
+        // console.log(user.following)
+        setIsFollowed(user.follower.includes(profileId));
+    }, [profileId, user.follower])
 
     const handleFollowClick = () => {
         if (loading) {
@@ -43,8 +33,8 @@ function UserItem({ title, user, onUnfollowClick }) {
             : `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/follow`
     
         const payload = isFollowed
-            ? { unfollowingId: user.id }
-            : { followingId: user.id }
+            ? { unfollowingName: user.username }
+            : { followingName: user.username }
     
         axios.post(actionUrl, payload)
             .then(response => {
@@ -68,11 +58,11 @@ function UserItem({ title, user, onUnfollowClick }) {
 
         const actionUrl = (title === 'Following')
             ? `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/unfollow`
-            : `${process.env.REACT_APP_BACKEND_URL}/${profileId}/remove`
+            : `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/remove`
 
         const payload = (title === 'Following')
-            ? { unfollowingId: user.id }
-            : { removingId: user.id }
+            ? { unfollowingName: user.username }
+            : { removingName: user.username }
 
         axios.post(actionUrl, payload)
             .then(response => {
@@ -90,7 +80,7 @@ function UserItem({ title, user, onUnfollowClick }) {
 
     return (
         <div className='user-item'>
-            <img src={userImage} alt={user.name} onClick={navigateToProfile}/>
+            <img src={userImage} alt={user.username} onClick={navigateToProfile}/>
             <span onClick={navigateToProfile}>{user.username}</span>
             
             {title === 'Follower' && (

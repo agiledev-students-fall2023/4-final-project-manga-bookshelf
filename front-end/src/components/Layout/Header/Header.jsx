@@ -98,7 +98,7 @@ export default function Header() {
                                 <a href={`/profile/${JSON.parse(localStorage.getItem('user')).username}`}> <PersonIcon />My Profile</a>
                             </li>
                             <li>
-                                <a href={`/setting`}><SettingsIcon /> Setting</a>
+                                <a href={`/setting`}><SettingsIcon />Setting</a>
                             </li>
                         </ul>
                     </nav>
