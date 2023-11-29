@@ -11,6 +11,7 @@ import cors from "cors"
 import userRouter from './Controller/userController.js'
 import mangaRouter from './Controller/mangaController.js'
 import forumData from './public/MockComments.json' assert { type: 'json' };
+import commentController from './Controller/commentController.js'
 
 import sampleProfileList from "./public/sampleProfileList.json" assert { type: 'json' }
 import sampleProfileData from "./public/sampleProfileData.json" assert { type: 'json' }
@@ -65,11 +66,17 @@ app.use(`/${BASE_ROUTE_MANGA}`, mangaRouter)
 
 app.use(`/${BASE_ROUTE_USER}`, userRouter)
 
-//other tuff
-
+//other stuff
+/*
 app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
     res.json(forumData);
   });
+*/
+// comment routes
+app.get(`/${BASE_ROUTE_COMMENT}/comments`, commentController.getAllComments);
+app.get(`/${BASE_ROUTE_COMMENT}/comments/:commentId`, commentController.getCommentById);
+app.post(`/${BASE_ROUTE_COMMENT}/comments/save`, commentController.saveComment);
+app.get(`/${BASE_ROUTE_COMMENT}/grouped`, commentController.getCommentsByTopic);
 
 app.get('/getProfileLists', (req,res) => {
     res.json(sampleProfileList);

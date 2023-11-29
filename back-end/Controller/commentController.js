@@ -1,12 +1,58 @@
 import app from "../app.mjs"
-import express from 'express' 
+import commentService from '../Service/commentService.js';
 
+const BASE_ROUTE_COMMENT = "comment"
+
+
+
+const commentController = {
+  async getAllMessages(req, res) {
+    try {
+      const comments = await commentService.getAllMessages();
+      res.json({ comments, status: 'all good' });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ error: err, status: 'failed to retrieve comments' });
+    }
+  },
+
+  async getCommentById(req, res) {
+    try {
+      const comment = await commentService.getCommentById(req.params.commentId);
+      res.json({ comment, status: 'all good' });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ error: err, status: 'failed to retrieve comment' });
+    }
+  },
+
+  async saveComment(req, res) {
+    try {
+      const comment = await commentService.saveComment(req.body);
+      res.json({ comment, status: 'all good' });
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ error: err, status: 'failed to save the comment' });
+    }
+  },
+  
+  async getCommentsByTopic(req, res) {
+    try {
+      const groupedComments = await commentService.getCommentsGroupedByTopic();
+      res.json(groupedComments);
+    } catch (err) {
+      console.error(err);
+      res.status(400).json({ error: 'Failed to retrieve comments' });
+    }
+  }
+};
+
+export default commentController;
 
 /*
 // load the dataabase models we want to deal with
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
-// const AboutMe = require('./models/aboutMeModel')
 // a route to handle fetching all messages
 app.get('/messages', async (req, res) => {
   // load all messages from database
