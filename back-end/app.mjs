@@ -1,8 +1,6 @@
 import express from 'express' 
 const app = express() //start server
 
-import dotenv from "dotenv" 
-dotenv.config() 
 import mutler from "multer" 
 import morgan from "morgan" 
 import url from 'url';
@@ -35,7 +33,7 @@ mongoose.connect(process.env.DATABASE_URI).then(()=>{
 
 //Define middleware to use here
 app.use(morgan("dev")) 
-app.use(cors()) 
+app.use(cors()) //make sure to change this to the frontend
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true})); 
 app.use("/static", express.static("public"))
