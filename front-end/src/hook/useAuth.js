@@ -16,7 +16,7 @@ export function useAuth(){
             headers:{
                 "Content-Type": "application/json", 
             },
-            body: JSON. stringify({username, password}),
+            body: JSON.stringify({username, password}),
         })
         const result = await response.json() 
         if (response.ok){

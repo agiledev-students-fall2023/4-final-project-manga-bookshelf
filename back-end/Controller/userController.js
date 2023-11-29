@@ -5,7 +5,7 @@ import UserService from '../Service/userService.js'
 const userRouter=express.Router()
 
 
-userRouter.get(`/:id/followers`, User.getUserFollower)
+userRouter.get(`/:id/follower`, User.getUserFollower)
 userRouter.get(`/:id/following`, User.getUserFollowing)
 
 // to follow a user
@@ -29,11 +29,9 @@ userRouter.post(`/:id/remove`, async (req, res) => {
 })
 
 //get the profile lists 
-userRouter.get(`/:id/profileInfo`, User.getUserData2)
-
 userRouter.get(`/:username/profile`, async (req, res) => {
     try {
-        const userData = await UserService.getUserData(req.params.username);
+        const userData = await UserService.getUserDataFromDataBase(req.params.username);
         res.status(200).json(userData);
     } catch(err) {
         res.status(404).json({ error: 'Cannot find user' });

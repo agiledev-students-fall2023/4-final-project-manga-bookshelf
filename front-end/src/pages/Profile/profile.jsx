@@ -9,7 +9,7 @@ const titles = ["Currently Reading", "Done", "Want to Read"];
 
 function Profile() {
   const [profileLists, setProfileLists] = useState([]);
-  const [profile, setProfile] = useState({});
+  const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams()
 
   //get a list of the users profile lists (mock data)
@@ -20,14 +20,15 @@ function Profile() {
       console.log(data)
       setProfileLists([data.result]);
     }
-    async function getProfile() {
-      const response = await fetch(`http://localhost:8080/user/${profileId}/profileInfo`);
+    async function getProfileInfo() {
+      const response = await fetch(`http://localhost:8080/user/${profileId}/profile`);
       const data = await response.json();
-      // console.log(data.result)
-      setProfile(data);
+      console.log(profileId)
+      console.log(data)
+      setProfileInfo(data);
     }
     getProfileLists();
-    getProfile();
+    getProfileInfo();
   }, [profileId]);
 
   const groupListsByTitle = (title) => {
@@ -43,39 +44,38 @@ function Profile() {
       <div className="profile-contact">
         <div className="profile-image">
           <img
-            key={profile.avatar}
-            src={profile.avatar || null}
+            src={profileInfo.profileImg}
             alt="No Img Detected"
           />
         </div>
 
         <div className="profile-bio">
           <h1>
-            {profile.name ? <>{profile.name}</> : <i>No Name</i>}{" "}
+            {profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
           </h1>
 
-          {profile.twitter && (
+          {profileInfo.twitter && (
             <p className="profile-link">
-              <a href={`https://twitter.com/${profile.twitter}`}>
-                {profile.twitter}
+              <a href={`https://twitter.com/${profileInfo.twitter}`}>
+                {profileInfo.twitter}
               </a>
             </p>
           )}
 
           <div className="follow-section">
-            <Link to={`/profile/${profileId}/follower`} activeClassName="current">
+            <Link to={`/profile/${profileId}/follower`} activeclassname="current">
               <button type="submit">Follower</button>
             </Link>
-            <Link to={`/profile/${profileId}/following`} activeClassName="current">
+            <Link to={`/profile/${profileId}/following`} activenlassname="current">
               <button type="submit">Following</button>
             </Link>
           </div>
 
-          {profile.bio && <p>{profile.bio}</p>}
+          {profileInfo.bio ? <p>{profileInfo.bio}</p> : <i>You don't have a bio. Add a bio now!</i>}
         </div>
 
         <div className="edit-section">
-          <Link to={`/profile/${profileId}/edit`} activeClassName="current">
+          <Link to={`/profile/${profileId}/edit`} activeclassname="current">
             <button type="submit">Edit Profile</button>
           </Link>
         </div>

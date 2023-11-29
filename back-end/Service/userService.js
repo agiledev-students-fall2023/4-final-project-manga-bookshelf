@@ -8,14 +8,14 @@ class UserService {
 
   /* Get user data from database - need to update when connect to database */
   //finds an INDIVIDUAL USER
-  // async getUserData(userId) {
-  //   const user = userMockData.users.find((user) => user.id === userId);
-  //   if (!user) {
-  //     throw new Error('User not found.');
-  //   }
-  //   return user;
-  // }
-  async getUserData(username) {
+  async getUserData(userId) {
+    const user = userMockData.users.find((user) => user.id === userId);
+    if (!user) {
+      throw new Error('User not found.');
+    }
+    return user;
+  }
+  async getUserDataFromDataBase(username) {
     const user = await UserModel.findOne({ username: username }).select('-password')
     if (!user) {
       throw new Error('User not found.');
