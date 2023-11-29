@@ -1,5 +1,6 @@
 import express from 'express' 
 import * as User from "../helpers/User.js"
+import UserService from '../Service/userService.js'
 
 const userRouter=express.Router()
 
@@ -29,5 +30,14 @@ userRouter.post(`/:id/remove`, async (req, res) => {
 
 //get the profile lists 
 userRouter.get(`/:id/profileInfo`, User.getUserData2)
+
+userRouter.get(`/:username/profile`, async (req, res) => {
+    try {
+        const userData = await UserService.getUserData(req.params.username);
+        res.status(200).json(userData);
+    } catch(err) {
+        res.status(404).json({ error: 'Cannot find user' });
+    }
+})
 
 export default userRouter;

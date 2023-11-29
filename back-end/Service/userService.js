@@ -1,5 +1,6 @@
 import userMockData from "../public/userMockData.json" assert { type: "json" };
 import fs from "fs";
+import UserModel from "../Model/userModel.js";
 
 class UserService {
   /* Create a new user, mainly for log in */
@@ -7,8 +8,15 @@ class UserService {
 
   /* Get user data from database - need to update when connect to database */
   //finds an INDIVIDUAL USER
-  async getUserData(userId) {
-    const user = userMockData.users.find((user) => user.id === userId);
+  // async getUserData(userId) {
+  //   const user = userMockData.users.find((user) => user.id === userId);
+  //   if (!user) {
+  //     throw new Error('User not found.');
+  //   }
+  //   return user;
+  // }
+  async getUserData(username) {
+    const user = await UserModel.findOne({ username: username }).select('-password')
     if (!user) {
       throw new Error('User not found.');
     }
