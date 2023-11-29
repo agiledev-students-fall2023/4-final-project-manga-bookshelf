@@ -29,8 +29,8 @@ function UserItem({ title, user, onUnfollowClick }) {
         setLoading(true)
     
         const actionUrl = isFollowed 
-            ? `http://localhost:8080/user/${profileId}/unfollow` 
-            : `http://localhost:8080/user/${profileId}/follow`
+            ? `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/unfollow` 
+            : `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/follow`
     
         const payload = isFollowed
             ? { unfollowingName: user.username }
@@ -57,8 +57,8 @@ function UserItem({ title, user, onUnfollowClick }) {
         setLoading(true)
 
         const actionUrl = (title === 'Following')
-            ? `http://localhost:8080/user/${profileId}/unfollow`
-            : `http://localhost:8080/user/${profileId}/remove`
+            ? `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/unfollow`
+            : `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/remove`
 
         const payload = (title === 'Following')
             ? { unfollowingName: user.username }

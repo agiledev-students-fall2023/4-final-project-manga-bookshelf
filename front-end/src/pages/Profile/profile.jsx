@@ -23,8 +23,8 @@ function Profile() {
     }
     setLoading(true)
     const actionUrl = isFollowed 
-      ? `http://localhost:8080/user/${currentUser}/unfollow` 
-      : `http://localhost:8080/user/${currentUser}/follow`
+      ? `${process.env.REACT_APP_BACKEND_URL}/${currentUser}/unfollow` 
+      : `${process.env.REACT_APP_BACKEND_URL}/${currentUser}/follow`
 
     const payload = isFollowed
       ? { unfollowingName: profileInfo.username }
@@ -45,12 +45,12 @@ function Profile() {
   //get a list of the users profile lists (mock data)
   useEffect(() => {
     async function getProfileLists() {
-      const response = await fetch("http://localhost:8080/getProfileLists");
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getProfileLists`);
       const data = await response.json();
       setProfileLists([data.result]);
     }
     async function getProfileInfo() {
-      const response = await fetch(`http://localhost:8080/user/${profileId}/profile`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/profile`);
       const data = await response.json();
       setProfileInfo(data);
       if (!isCurrentUser) {
