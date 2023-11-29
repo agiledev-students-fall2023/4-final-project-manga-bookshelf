@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import "./Header.css"
 import styles from "./Turnstone.module.css"; //custom styles for turnstone
 import { Outlet } from "react-router-dom";
@@ -15,7 +15,6 @@ import { useRef } from 'react';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
-    
     const [isOpen, setOpen] = useState(false); 
     const [results, setResults] = useState("") 
     const [searchData, setSearchData] = useState([]) 
@@ -34,26 +33,6 @@ export default function Header() {
                     .then(res => res.json()),
             searchType: 'contains'
         }
-        // {
-        //     id: 'genre',
-        //     name: 'Genres',
-        //     ratio: 2,
-        //     displayField: 'user',
-        //     data: (query) =>
-        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
-        //             .then(res => res.json()),
-        //     searchType: 'contains'
-        // }
-        // {
-        //     id: 'users',
-        //     name: 'Users',
-        //     ratio: 2,
-        //     displayField: 'user',
-        //     data: (query) =>
-        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
-        //             .then(res => res.json()),
-        //     searchType: 'contains'
-        // }
     ]
 
     const navigate = useNavigate()
@@ -116,7 +95,7 @@ export default function Header() {
                                 <a href={`/forum`}><ForumIcon />Forum</a>
                             </li>
                             <li>
-                                <a href={`/profile/1`}> <PersonIcon />My Profile</a>
+                                <a href={`/profile/${JSON.parse(localStorage.getItem('user')).username}`}> <PersonIcon />My Profile</a>
                             </li>
                             <li>
                                 <a href={`/setting`}><SettingsIcon /> Setting</a>

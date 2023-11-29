@@ -1,18 +1,49 @@
-import userMockData from "../public/userMockData.json" assert { type: "json" };
-import fs from "fs";
+import UserModel from "../Model/userModel.js";
 
 class UserService {
   /* Create a new user, mainly for log in */
   // async createUser(data) {}
 
-  /* Get user data from database - need to update when connect to database */
-  //finds an INDIVIDUAL USER
-  async getUserData(userId) {
-    const user = userMockData.users.find((user) => user.id === userId);
-    if (!user) {
-      throw new Error('User not found.');
+  // finds an INDIVIDUAL USER
+  async getUserData(req, res) {
+    try {
+      const userData = await UserModel.findOne({ username: req.params.username }).select('-password')
+      res.status(200).json(userData);
+    } catch(err) {
+      res.status(404).json({ error: 'Cannot find user' });
     }
-    return user;
+  }
+
+  // finds followers of a user
+  async getUserFollower(req, res) {
+    try {
+      const userData = await UserModel.findOne({ username: req.params.username }).select('follower -_id');
+      const followerNames = userData.follower;
+      const followers = []
+      for (const name of followerNames) {
+        const followData = await UserModel.findOne({ username: name.toString() }).select('-password');
+        followers.push(followData);
+      }
+      res.status(200).json(followers);
+    } catch(err) {
+      res.status(404).json({ error: 'Cannot find user' });
+    }
+  }
+
+  // finds followings of a user
+  async getUserFollowing(req, res) {
+    try {
+      const userData = await UserModel.findOne({ username: req.params.username }).select('following -_id');
+      const followingNames = userData.following;
+      const followings = []
+      for (const name of followingNames) {
+        const followData = await UserModel.findOne({ username: name.toString() }).select('-password');
+        followings.push(followData);
+      }
+      res.status(200).json(followings);
+    } catch(err) {
+      res.status(404).json({ error: 'Cannot find user' });
+    }
   }
 
   /* Update data to database. Only for backend without database */
