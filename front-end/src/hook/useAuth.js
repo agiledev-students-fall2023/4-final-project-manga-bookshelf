@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 
-const BACKEND_URL_DEV = "http://localhost:8080"
-
 export function useAuth(){
     //user contains the JWT used to authenticate
     const [user, setUser] = useState(null); 
@@ -11,7 +9,7 @@ export function useAuth(){
     async function signin(username, password){
         setErrors([]) 
         setIsLoading(true); 
-        const response = await fetch(`${BACKEND_URL_DEV}/auth/login`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
             method: "POST", 
             headers:{
                 "Content-Type": "application/json", 
@@ -32,7 +30,7 @@ export function useAuth(){
     async function signup(email, username, password) {
         setErrors("")
         setIsLoading(true);
-        const response = await fetch(`${BACKEND_URL_DEV}/auth/signup`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +49,7 @@ export function useAuth(){
     }
 
     async function signout() {
-        await fetch(`${BACKEND_URL_DEV}/auth/logout`).then(response => {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`).then(response => {
             if (response.ok) {
                 setUser(null) 
                 localStorage.setItem('jwtToken', null);

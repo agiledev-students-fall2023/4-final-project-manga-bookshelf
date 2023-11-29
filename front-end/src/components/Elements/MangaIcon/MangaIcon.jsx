@@ -17,7 +17,7 @@ function MangaIcon({name, imgLink}) {
 
   const handleOnClick = async (name) => {
     try{
-      const payload = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(name)}`)
+      const payload = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/mangasearch/${encodeURIComponent(name)}`)
       const data1 = await payload.json() 
       navigate(`/manga/${data1.__id}`)
     } catch (error){

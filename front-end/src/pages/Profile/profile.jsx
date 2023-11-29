@@ -15,13 +15,14 @@ function Profile() {
   //get a list of the users profile lists (mock data)
   useEffect(() => {
     async function getProfileLists() {
-      const response = await fetch("http://localhost:8080/getProfileLists");
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getProfileLists`);
       const data = await response.json();
       console.log(data)
       setProfileLists([data.result]);
-    }
+
     async function getProfileInfo() {
-      const response = await fetch(`http://localhost:8080/user/${profileId}/profile`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/profileInfo`);
+
       const data = await response.json();
       console.log(profileId)
       setProfileInfo(data);
