@@ -24,7 +24,6 @@ function Profile() {
       const response = await fetch(`http://localhost:8080/user/${profileId}/profile`);
       const data = await response.json();
       console.log(profileId)
-      console.log(data)
       setProfileInfo(data);
     }
     getProfileLists();
