@@ -29,7 +29,7 @@ export default function Header() {
             ratio: 6,
             displayField: 'title',
             data: (query) =>
-                fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/${encodeURIComponent(query)}`)
+                fetch(`http://localhost:8080/manga/search2/${encodeURIComponent(query)}`)
                     .then(res => res.json()),
             searchType: 'contains'
         }
@@ -41,7 +41,7 @@ export default function Header() {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         //first fetch mangas on the backend so we get id information about our manga
-        const payload1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/mangasearch/${encodeURIComponent(results)}`)
+        const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
         const data1 = await payload1.json() 
         // console.log(data1) 
         turnstoneRef.current?.clear();
@@ -98,7 +98,7 @@ export default function Header() {
                                 <a href={`/profile/${JSON.parse(localStorage.getItem('user')).username}`}> <PersonIcon />My Profile</a>
                             </li>
                             <li>
-                                <a href={`/setting`}><SettingsIcon />Setting</a>
+                                <a href={`/setting`}><SettingsIcon /> Setting</a>
                             </li>
                         </ul>
                     </nav>

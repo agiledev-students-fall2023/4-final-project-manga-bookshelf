@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
 // import Card from '@mui/material/Card';
 
@@ -12,54 +11,24 @@ function Profile() {
   const [profileLists, setProfileLists] = useState([]);
   const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams()
-  const currentUser = JSON.parse(localStorage.getItem('user')).username
-  const isCurrentUser = currentUser === profileId
-  const [isFollowed, setIsFollowed] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const handleFollowClick = () => {
-    if (loading) {
-      return
-    }
-    setLoading(true)
-    const actionUrl = isFollowed 
-      ? `${process.env.REACT_APP_BACKEND_URL}/user/${currentUser}/unfollow` 
-      : `${process.env.REACT_APP_BACKEND_URL}/user/${currentUser}/follow`
-
-    const payload = isFollowed
-      ? { unfollowingName: profileInfo.username }
-      : { followingName: profileInfo.username }
-
-    axios.post(actionUrl, payload)
-      .then(response => {
-        setIsFollowed(!isFollowed)
-      })
-      .catch(err => {
-        console.error(`Error in ${isFollowed ? 'unfollow' : 'follow'} request: `, err)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
     async function getProfileLists() {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getProfileLists`);
+      const response = await fetch("http://localhost:8080/getProfileLists");
       const data = await response.json();
+      console.log(data)
       setProfileLists([data.result]);
     }
     async function getProfileInfo() {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/profile`);
+      const response = await fetch(`http://localhost:8080/user/${profileId}/profile`);
       const data = await response.json();
+      console.log(profileId)
       setProfileInfo(data);
-      if (!isCurrentUser) {
-        setIsFollowed(data.follower.includes(JSON.parse(localStorage.getItem('user')).username));
-      }
     }
     getProfileLists();
     getProfileInfo();
-  }, [profileId, isCurrentUser]);
+  }, [profileId]);
 
   const groupListsByTitle = (title) => {
     const filteredLists = profileLists.map((profile) => ({
@@ -105,21 +74,9 @@ function Profile() {
         </div>
 
         <div className="edit-section">
-          { !isCurrentUser && (
-              <button 
-                className={`follow-button ${isFollowed ? 'followed' : 'not-followed'}`}
-                onClick={handleFollowClick}
-              >
-                { isFollowed ? 'Unfollow' : 'Follow +' }
-              </button>
-          )}
-          { isCurrentUser && (
-              <Link to={`/profile/${profileId}/edit`} activeclassname="current">
-                <button type="submit">Edit Profile</button>
-              </Link>
-            )
-          }
-
+          <Link to={`/profile/${profileId}/edit`} activeclassname="current">
+            <button type="submit">Edit Profile</button>
+          </Link>
         </div>
       </div>
 
