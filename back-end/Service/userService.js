@@ -1,19 +1,133 @@
-import userMockData from "../public/userMockData.json" assert { type: "json" };
-import fs from "fs";
+import UserModel from "../Model/userModel.js";
 
 class UserService {
   /* Create a new user, mainly for log in */
   // async createUser(data) {}
 
-  /* Get user data from database - need to update when connect to database */
-  //finds an INDIVIDUAL USER
-  async getUserData(userId) {
-    const user = userMockData.users.find((user) => user.id === userId);
-    if (!user) {
-      throw new Error('User not found.');
+  // finds an INDIVIDUAL USER
+  async getUserData(req, res) {
+    try {
+      const userData = await UserModel.findOne({
+        username: req.params.username,
+      }).select("-password");
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(404).json({ error: "Cannot find user" });
     }
-    return user;
   }
+
+  // finds followers of a user
+  async getUserFollower(req, res) {
+    try {
+      const userData = await UserModel.findOne({
+        username: req.params.username,
+      }).select("follower -_id");
+      const followerNames = userData.follower;
+      const followers = [];
+      for (const name of followerNames) {
+        const followData = await UserModel.findOne({
+          username: name.toString(),
+        }).select("-password");
+        followers.push(followData);
+      }
+      res.status(200).json(followers);
+    } catch (err) {
+      res.status(404).json({ error: "Cannot find user" });
+    }
+  }
+
+  // finds followings of a user
+  async getUserFollowing(req, res) {
+    try {
+      const userData = await UserModel.findOne({
+        username: req.params.username,
+      }).select("following -_id");
+      const followingNames = userData.following;
+      const followings = [];
+      for (const name of followingNames) {
+        const followData = await UserModel.findOne({
+          username: name.toString(),
+        }).select("-password");
+        followings.push(followData);
+      }
+      res.status(200).json(followings);
+    } catch (err) {
+      res.status(404).json({ error: "Cannot find user" });
+    }
+  }
+
+  // to follow a user
+  async followUser(req, res) {
+    try {
+      const username = req.params.username;
+      const followingName = req.body.followingName;
+      const user = await UserModel.findOneAndUpdate(
+        { username: username },
+        { $addToSet: { following: followingName } },
+        { new: true }
+      );
+      const followedUser = await UserModel.findOneAndUpdate(
+        { username: followingName },
+        { $addToSet: { follower: username } },
+        { new: true }
+      );
+      if (!user || !followedUser) {
+        throw new Error("User not found");
+      }
+      res.send('success follow')
+    } catch (err) {
+      res.status(404).json({ error: "Cannot follow user" });
+    }
+  }
+
+  // to unfollow a user
+  async unfollowUser(req, res) {
+    try {
+      const username = req.params.username;
+      const unfollowingName = req.body.unfollowingName;
+      const user = await UserModel.findOneAndUpdate(
+        { username: username },
+        { $pull: { following: unfollowingName } },
+        { new: true }
+      );
+      const unfollowedUser = await UserModel.findOneAndUpdate(
+        { username: unfollowingName },
+        { $pull: { follower: username } },
+        { new: true }
+      );
+      if (!user || !unfollowedUser) {
+        throw new Error("User not found");
+      }
+      res.send("success unfollow");
+    } catch (err) {
+      res.status(404).json({ error: "Cannot unfollow user" });
+    }
+  }
+
+  // to remove a user from follower and following list
+  async removeUser(req, res) {
+    try {
+      const username = req.params.username;
+      const removingName = req.body.removingName;
+      const user = await UserModel.findOneAndUpdate(
+        { username: username },
+        { $pull: { follower: removingName, following: removingName } },
+        { new: true }
+      );
+      const removedUser = await UserModel.findOneAndUpdate(
+        { username: removingName },
+        { $pull: { following: username, follower: username } },
+        { new: true }
+      );
+      if (!user || !removedUser) {
+        throw new Error("User not found");
+      }
+      res.send("success remove");
+    } catch (err) {
+      res.status(404).json({ error: "Cannot remove user" });
+    }
+  }
+
 
   /* Update data to database. Only for backend without database */
   /* Don't use it yet. It is not working */
