@@ -4,29 +4,18 @@ import UserService from '../Service/userService.js'
 
 const userRouter=express.Router()
 
-
+// get list of follower and following of a user
 userRouter.get(`/:username/follower`, UserService.getUserFollower)
 userRouter.get(`/:username/following`, UserService.getUserFollowing)
 
 // to follow a user
-userRouter.post(`/:id/follow`, async (req, res) => {
-    // await User.followUser(req.params.id, req.body.followingId)
-    res.send('seccess follow')
-})
+userRouter.post(`/:username/follow`, UserService.followUser)
 
 // to unfollow a user
-userRouter.post(`/:id/unfollow`, async (req, res) => {
-    // await User.unfollowUser(req.params.id, req.body.unfollowingId)
-    res.send('success unfollow')
-})
+userRouter.post(`/:username/unfollow`, UserService.unfollowUser)
 
 // to remove a user
-userRouter.post(`/:id/remove`, async (req, res) => {
-    // await User.removeUser(req.params.id)
-    // await User.unfollowUser(req.params.id, req.body.removingId)
-    // await User.removeUser(req.params.id, req.body.removingId)
-    res.send('success remove')
-})
+userRouter.post(`/:username/remove`, UserService.removeUser)
 
 //get the profile lists 
 userRouter.get(`/:username/profile`, UserService.getUserData)

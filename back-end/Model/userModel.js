@@ -2,8 +2,7 @@ import mongoose from 'mongoose'
 import bcrypt from "bcryptjs" 
 import jwt from "jsonwebtoken" 
 import jwtStrategy from "../config/jwt-config.js" 
-
-//import {commentModel} from "./commentModel.js"
+import {commentModel} from "./commentModel.js"
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -37,13 +36,20 @@ const UserSchema = new mongoose.Schema({
         default: ""
     },
     favorite:{
-        type: [], 
+        type: [mongoose.Schema.Types.Object], 
+        ref: "Manga"
     },
     currentlyReading:{
-        type: [], 
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
     },
     finishReading:{
-        type: [], 
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
+    }, 
+    browsingHistory:{
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
     }, 
     role: {
         type: String,
