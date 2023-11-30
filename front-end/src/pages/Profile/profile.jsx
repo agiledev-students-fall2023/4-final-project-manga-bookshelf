@@ -42,6 +42,8 @@ function Profile() {
       })
   }
 
+  const [currentProfileInfo, setCurrentProfileInfo] = useState([])
+
   //get a list of the users profile lists (mock data)
   useEffect(() => {
     async function getProfileLists() {
@@ -60,6 +62,23 @@ function Profile() {
     getProfileLists();
     getProfileInfo();
   }, [profileId, isCurrentUser]);
+
+  useEffect(() => {
+    async function getCurrentUser(){
+      const myHeaders = new Headers();
+
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET",
+        headers: myHeaders
+      })
+      const data3 = await response3.json()
+      setCurrentProfileInfo(data3["user"]) 
+    }
+    getCurrentUser()
+  }, [])
 
   const groupListsByTitle = (title) => {
     const filteredLists = profileLists.map((profile) => ({
@@ -81,16 +100,8 @@ function Profile() {
 
         <div className="profile-bio">
           <h1>
-            {profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
+            Welcome, {currentProfileInfo.username ? <>{currentProfileInfo.username}</> : <i>No Name</i>}{" "}
           </h1>
-
-          {profileInfo.twitter && (
-            <p className="profile-link">
-              <a href={`https://twitter.com/${profileInfo.twitter}`}>
-                {profileInfo.twitter}
-              </a>
-            </p>
-          )}
 
           <div className="follow-section">
             <Link to={`/profile/${profileId}/follower`} activeclassname="current">
@@ -101,7 +112,7 @@ function Profile() {
             </Link>
           </div>
 
-          {profileInfo.bio ? <p>{profileInfo.bio}</p> : <i>You don't have a bio. Add a bio now!</i>}
+          {currentProfileInfo.bio && <p>{currentProfileInfo.bio}</p>}
         </div>
 
         <div className="edit-section">
