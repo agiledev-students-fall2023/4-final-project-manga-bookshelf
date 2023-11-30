@@ -16,6 +16,16 @@ const protectedRoutes = () => {
         next(); 
     })
 
+    router.get("/user/get/currentuser", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        res.json({
+            success: true,
+            message: `Success. Valid JWT for user: ${req.user.username}`,
+            user: req.user,
+            id: req.user.id
+        });
+        next();
+    })
+    
     //Give new information to the bio in the format: {payload: "content"}
     router.post("/user/add/bio", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const content = req.body.payload; 
