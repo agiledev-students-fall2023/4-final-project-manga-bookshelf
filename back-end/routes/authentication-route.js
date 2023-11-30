@@ -20,7 +20,7 @@ const authenticationRouter = () => {
         }
         // try to create a new user right now 
         try{    
-            const user = await new UserModel({ username, password, email }).save(); 
+            const user = await new UserModel({ username, password }).save(); 
 
             console.error(`New user: ${user}`)
 

@@ -15,9 +15,7 @@ function Follow({ title }) {
     }
 
     const fetchFollowers = useCallback(async () => {
-
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/followers`);
-
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/follower`);
         const data = await response.json();
         setFollowers(data);
     }, [profileId]);

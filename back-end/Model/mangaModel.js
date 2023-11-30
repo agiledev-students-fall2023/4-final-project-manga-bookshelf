@@ -28,4 +28,3 @@ const mangaSchema = new Schema(
 
 // create mongoose Model
 export const mangaModel = mongoose.model('Manga', mangaSchema)
-
