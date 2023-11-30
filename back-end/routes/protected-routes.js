@@ -38,9 +38,9 @@ const protectedRoutes = () => {
             })
     })
 
-    //add favorite manga entry
+    // add favorite manga entry
     // pass in through req.body an object of the following: 
-    //{
+    // {
     //     title: asjdfkl
     //     authorName: ajksldf
     //     authorImage: ajksldf
@@ -50,16 +50,15 @@ const protectedRoutes = () => {
     router.post("/user/add/favorite", passport.authenticate("jwt", { session: false }), (req, res) => {
         const userId = req.user.id;
         const mangaObject = req.body;
-
         //find user by  id first 
         UserModel.findById(userId)
             .then(user => {
                 if (!user) {
                     return res.status(404).json({ success: false, message: "User not found" });
                 }
-
+            
                 // Check if the manga is already a favorite
-                const isAlreadyFavorite = user.favorite.some(fav => fav.__id === mangaObject.__id);
+                const isAlreadyFavorite = user.favorite.some(fav => String(fav.__id) === String(mangaObject.__id));
 
                 if (isAlreadyFavorite) {
                     return res.json({ success: false, message: "Manga already in favorites" });
@@ -85,7 +84,6 @@ const protectedRoutes = () => {
     router.delete("/user/delete/favorite/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
-
         //find user by id first 
         UserModel.findById(userId)
             .then(user => {
@@ -94,8 +92,7 @@ const protectedRoutes = () => {
                 }
 
                 // Check if the manga exists
-                const exists = user.favorite.some(fav => fav.__id === mangaId);
-
+                const exists = user.favorite.some(fav => String(fav.__id) === String(mangaId));
                 if (!exists) {
                     return res.json({ success: false, message: "Manga does not exist in favorite"});
                 }
@@ -114,8 +111,8 @@ const protectedRoutes = () => {
             });
     })
 
-    //add currently reading 
-    router.post("/user/add/currentlyreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    //add currentlyreading 
+    router.post("/user/add/currentlyreading", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         // TODO. 
         // 1. check to make sure it's not already a favorite
         // 2. if not already a favorite add it to the array. 
@@ -151,7 +148,7 @@ const protectedRoutes = () => {
             });
     })
 
-    //remove currently reading 
+    //remove currentlyreading 
     router.delete("/user/delete/currentlyreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
@@ -186,8 +183,8 @@ const protectedRoutes = () => {
     })
 
     ///
-    //add finished reading 
-    router.post("/user/add/finishedreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    //add finishedreading 
+    router.post("/user/add/finishedreading", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         // TODO. 
         // 1. check to make sure it's not already a favorite
         // 2. if not already a favorite add it to the array. 
@@ -224,7 +221,7 @@ const protectedRoutes = () => {
         next();
     })
 
-    //reove currently reading 
+    //remove finishedreading 
     router.delete("/user/delete/finishedreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
@@ -258,8 +255,8 @@ const protectedRoutes = () => {
             });
     })
 
-    //add finished reading 
-    router.post("/user/add/browsinghistory/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    //add browsinghistory 
+    router.post("/user/add/browsinghistory", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const userId = req.user.id;
         const mangaObject = req.body;
 
@@ -292,7 +289,7 @@ const protectedRoutes = () => {
             });
     })
 
-    //remove currently reading 
+    //remove browsinghistory 
     router.delete("/user/delete/browsinghistory/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id

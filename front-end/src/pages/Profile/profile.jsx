@@ -12,12 +12,13 @@ function Profile() {
   const [profile, setProfile] = useState({});
   const { profileId } = useParams()
 
+  const [currentProfileInfo, setCurrentProfileInfo] = useState([])
+
   //get a list of the users profile lists (mock data)
   useEffect(() => {
     async function getProfileLists() {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getProfileLists`);
       const data = await response.json();
-      console.log(data)
       setProfileLists([data.result]);
     }
     async function getProfile() {
@@ -29,6 +30,23 @@ function Profile() {
     getProfileLists();
     getProfile();
   }, [profileId]);
+
+  useEffect(() => {
+    async function getCurrentUser(){
+      const myHeaders = new Headers();
+
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET",
+        headers: myHeaders
+      })
+      const data3 = await response3.json()
+      setCurrentProfileInfo(data3["user"]) 
+    }
+    getCurrentUser()
+  }, [])
 
   const groupListsByTitle = (title) => {
     const filteredLists = profileLists.map((profile) => ({
@@ -51,16 +69,8 @@ function Profile() {
 
         <div className="profile-bio">
           <h1>
-            {profile.name ? <>{profile.name}</> : <i>No Name</i>}{" "}
+            Welcome, {currentProfileInfo.username ? <>{currentProfileInfo.username}</> : <i>No Name</i>}{" "}
           </h1>
-
-          {profile.twitter && (
-            <p className="profile-link">
-              <a href={`https://twitter.com/${profile.twitter}`}>
-                {profile.twitter}
-              </a>
-            </p>
-          )}
 
           <div className="follow-section">
             <Link to={`/profile/${profileId}/follower`} activeClassName="current">
@@ -71,7 +81,7 @@ function Profile() {
             </Link>
           </div>
 
-          {profile.bio && <p>{profile.bio}</p>}
+          {currentProfileInfo.bio && <p>{currentProfileInfo.bio}</p>}
         </div>
 
         <div className="edit-section">

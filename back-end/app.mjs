@@ -14,7 +14,6 @@ import sampleProfileList from "./public/sampleProfileList.json" assert { type: '
 import sampleProfileData from "./public/sampleProfileData.json" assert { type: 'json' }
 
 //use jwt strategy for auth 
-import jwt from "jsonwebtoken" 
 import passport from "passport"
 import jwtStrategy from "./config/jwt-config.js" 
 passport.use(jwtStrategy) //use this jwt strategy within passport for authentication handling
