@@ -15,13 +15,13 @@ function Follow({ title }) {
     }
 
     const fetchFollowers = useCallback(async () => {
-        const response = await fetch(`http://localhost:8080/user/${profileId}/follower`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/follower`);
         const data = await response.json();
         setFollowers(data);
     }, [profileId]);
 
     const fetchFollowing = useCallback(async () => {
-        const response = await fetch(`http://localhost:8080/user/${profileId}/following`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/following`);
         const data = await response.json();
         setFollowers(data);
     }, [profileId]);

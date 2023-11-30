@@ -13,7 +13,7 @@ function Works() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/manga/search2/id/${encodeURIComponent(mangaId)}`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/id/${encodeURIComponent(mangaId)}`);
                 const data1 = await response.json()
                 setData([data1])
                 

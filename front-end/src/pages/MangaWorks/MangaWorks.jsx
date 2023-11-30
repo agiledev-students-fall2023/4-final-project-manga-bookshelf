@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import MangaRow from "../../components/Layout/MangaRow/MangaRow"
-// import sampleMangaList from "../../assets/sampleMangaList.json"
 
 import "./MangaWorks.css"
 
@@ -12,7 +11,7 @@ function MangaWorks(){
     useEffect(()=>{
         async function getMangaByGenre(genre) {
             try{
-                const response = await fetch(`http://localhost:8080/manga/recommendation/genre/${genre}`)
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/recommendation/genre/${genre}`)
                 const data = await response.json()
                 setMangaData(prevState => ({ ...prevState, [genre]: data }));
             } catch (error){

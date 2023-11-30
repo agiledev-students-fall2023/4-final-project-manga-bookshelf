@@ -1,8 +1,6 @@
 import express from 'express' 
 const app = express() //start server
 
-import dotenv from "dotenv" 
-dotenv.config() 
 import mutler from "multer" 
 import morgan from "morgan" 
 import url from 'url';
@@ -35,19 +33,13 @@ mongoose.connect(process.env.DATABASE_URI).then(()=>{
 
 //Define middleware to use here
 app.use(morgan("dev")) 
-app.use(cors()) 
+app.use(cors()) //make sure to change this to the frontend
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true})); 
 app.use("/static", express.static("public"))
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-//define the constant routes 
-const BASE_ROUTE_AUTH = "auth"
-const BASE_ROUTE_MANGA = "manga" 
-const BASE_ROUTE_USER = "user"
-const BASE_ROUTE_COMMENT = "comment"
 
 //Sample route 
 app.get("/", (req,res)=>{
@@ -61,15 +53,13 @@ import protectedRoutes from './routes/protected-routes.js';
 app.use("/auth", authenticationRouter())
 app.use("/protected", protectedRoutes())
 
-app.use(`/${BASE_ROUTE_MANGA}`, mangaRouter)
+app.use(`/manga`, mangaRouter)
+app.use(`/user`, userRouter)
 
-app.use(`/${BASE_ROUTE_USER}`, userRouter)
-
-//other tuff
-
-app.get(`/${BASE_ROUTE_COMMENT}/MockComments`, (req, res) => {
+//other stuff (should put this in router) 
+app.get(`/comment/MockComments`, (req, res) => {
     res.json(forumData);
-  });
+});
 
 app.get('/getProfileLists', (req,res) => {
     res.json(sampleProfileList);
