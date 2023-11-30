@@ -7,14 +7,14 @@ import "./CommentForm.css"
 import CommentForm from"./CommentForm.jsx"
 
 import { useNavigate } from 'react-router-dom';
-
+//connected to backend
 function Forum() {
   const navigate = useNavigate();
   const [groupedComments, setGroupedComments] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('')
   const [feedback, setFeedback] = useState('')
-  
+  //fetch comments and group them by topic
   const fetchGroupedComments = useCallback(async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/comments`);
@@ -78,6 +78,7 @@ function Forum() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  //add comments to list
   const addCommentToList = (topic, newComment) => {
     // Check if the topic already exists in groupedComments
     if (groupedComments[topic]) {

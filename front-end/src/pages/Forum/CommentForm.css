@@ -7,7 +7,6 @@
   width: 65%; /* Increased width */
   margin: 0 auto; /* Center the form */
 }
-
 .CommentForm-form input,
 .CommentForm-form textarea {
   padding: 14px; /* Slightly increased padding */

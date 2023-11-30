@@ -1,7 +1,6 @@
 import commentModel from "../Model/commentModel.js";
 
 class commentService {
-   
   async getAllComments(req, res) {
     try {
       const comments = await commentModel.find({});
@@ -43,9 +42,7 @@ class commentService {
       res.status(400).json({ error: 'Failed to retrieve comments' });
     }
   }
-
-
-
+  //don't need this
  /*
   async getAllComments() {
     return commentModel.find({});
@@ -64,9 +61,5 @@ class commentService {
         ]);
   }
 */
-
-  
 }
-
-
 export default new commentService();

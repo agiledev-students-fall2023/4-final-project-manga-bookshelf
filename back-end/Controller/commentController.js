@@ -2,8 +2,8 @@ import app from "../app.mjs"
 import commentService from '../Service/commentService.js';
 import express from "express";
 
-const BASE_ROUTE_COMMENT = "comment"
-
+//const BASE_ROUTE_COMMENT = "comment"
+//change commentController
   const commentRouter = express.Router();
   commentRouter.get("/test", (req, res, next)=> {
     res.json({message: "hi"})
