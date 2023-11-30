@@ -31,14 +31,11 @@ function Forum() {
     fetchGroupedComments();
   }, [fetchGroupedComments]);
   
-
-  
   /*
   if (Object.keys(groupedComments).length === 0) {
     return <div>No comments available.</div>;
   }
   */
-
   /*
   const navigate = useNavigate();
   const [data, setData] = useState({ userProfileImages: {}, sampleComments: [] });

@@ -57,12 +57,12 @@ app.use("/protected", protectedRoutes())
 app.use(`/manga`, mangaRouter)
 app.use(`/user`, userRouter)
 app.use(`/comment`, commentRouter)
-
+/*
 //other sstuff (should put this in router) /*
 app.get(`/comment/MockComments`, (req, res) => {
     res.json(forumData);
 });
-
+*/
 app.get('/getProfileLists', (req,res) => {
     res.json(sampleProfileList);
 })
