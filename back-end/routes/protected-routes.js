@@ -1,6 +1,8 @@
 import express from 'express'
 import passport from 'passport' 
 
+import UserModel from '../Model/userModel.js';
+
 const protectedRoutes = () => {
     const router = express.Router(); 
 
@@ -26,6 +28,11 @@ const protectedRoutes = () => {
         next();
     })
     
+    router.get("/user/get/anotheruser/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        //call database to get another user
+        next();
+    })
+
     //Give new information to the bio in the format: {payload: "content"}
     router.post("/user/add/bio", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const content = req.body.payload; 

@@ -69,6 +69,7 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
 
   //determine if the manga is currently favorite or not 
   useEffect(() => {
+    console.log(userData)
     if (isFavorite(userData["favorite"], mangaId)){
       setFavorite(true) 
     }else{
