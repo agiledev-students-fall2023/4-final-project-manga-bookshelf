@@ -20,8 +20,15 @@ const UserSchema = new mongoose.Schema({
     },
     profileImg:
     {
-        data: Buffer,
-        contentType: String,
+        // Currently, just allow using url for profile image
+        type: String,
+        default: "https://placekitten.com/g/200/200"
+    },
+    twitter:
+    {
+        // Add social media links here
+        type: String,
+        default: "your_handle"
     },
     bio:{
         type: String, 
@@ -46,7 +53,17 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'user',
-    }
+    },
+    follower: {
+        // currently add 'bob' to default just for testing
+        type: [],
+        default: ['bob']
+    },
+    following: {
+        // currently add 'bob' to default just for testing
+        type: [],
+        default: ['bob']
+    },
 })
 
 //hash the password before the user is saved 

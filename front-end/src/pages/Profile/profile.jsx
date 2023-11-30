@@ -9,7 +9,7 @@ const titles = ["Currently Reading", "Done", "Want to Read"];
 
 function Profile() {
   const [profileLists, setProfileLists] = useState([]);
-  const [profile, setProfile] = useState({});
+  const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams()
 
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
@@ -20,15 +20,16 @@ function Profile() {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/getProfileLists`);
       const data = await response.json();
       setProfileLists([data.result]);
-    }
-    async function getProfile() {
+
+    async function getProfileInfo() {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/profileInfo`);
+
       const data = await response.json();
-      // console.log(data.result)
-      setProfile(data);
+      console.log(profileId)
+      setProfileInfo(data);
     }
     getProfileLists();
-    getProfile();
+    getProfileInfo();
   }, [profileId]);
 
   useEffect(() => {
@@ -61,8 +62,7 @@ function Profile() {
       <div className="profile-contact">
         <div className="profile-image">
           <img
-            key={profile.avatar}
-            src={profile.avatar || null}
+            src={profileInfo.profileImg}
             alt="No Img Detected"
           />
         </div>
@@ -73,10 +73,10 @@ function Profile() {
           </h1>
 
           <div className="follow-section">
-            <Link to={`/profile/${profileId}/follower`} activeClassName="current">
+            <Link to={`/profile/${profileId}/follower`} activeclassname="current">
               <button type="submit">Follower</button>
             </Link>
-            <Link to={`/profile/${profileId}/following`} activeClassName="current">
+            <Link to={`/profile/${profileId}/following`} activenlassname="current">
               <button type="submit">Following</button>
             </Link>
           </div>
@@ -85,7 +85,7 @@ function Profile() {
         </div>
 
         <div className="edit-section">
-          <Link to={`/profile/${profileId}/edit`} activeClassName="current">
+          <Link to={`/profile/${profileId}/edit`} activeclassname="current">
             <button type="submit">Edit Profile</button>
           </Link>
         </div>
