@@ -1,10 +1,10 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect,useCallback } from 'react';
 import Comments from "../../components/Elements/Comments/Comments"
 import ForumPost from "../../components/Elements/ForumPost/ForumPost"
 import MockComments from "../../"
 import "./forum.css"
 import "./CommentForm.css"
-import "./CommentForm.jsx"
+import CommentForm from"./CommentForm.jsx"
 
 import { useNavigate } from 'react-router-dom';
 
@@ -12,10 +12,12 @@ function Forum() {
   const navigate = useNavigate();
   const [groupedComments, setGroupedComments] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  const [error, setError] = useState('')
+  const [feedback, setFeedback] = useState('')
+  
   const fetchGroupedComments = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:8080/comments/grouped');
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/comments`);
       const data = await response.json();
       setGroupedComments(data);
     } catch (error) {
@@ -28,12 +30,14 @@ function Forum() {
   useEffect(() => {
     fetchGroupedComments();
   }, [fetchGroupedComments]);
-
   
 
+  
+  /*
   if (Object.keys(groupedComments).length === 0) {
     return <div>No comments available.</div>;
   }
+  */
 
   /*
   const navigate = useNavigate();
@@ -94,6 +98,7 @@ function Forum() {
   }
   
   
+  
   return (
     
     <div className='forum-main'>
@@ -106,29 +111,28 @@ function Forum() {
       />
       {/*<ForumPost username="Username goes here"/> */}
       <h2>All Threads</h2>
-      {Object.keys(groupedComments).map((topic) => (
-        <div key={topic}>
-          <h3>{topic}</h3>
-          <ul style={{ listStyleType: 'none' }}> {/* Inline style for demonstration */}
-            {groupedComments[topic].map((comment, index) => (
-              <li key={index}>
-                <div>
-                  <img
-                    src={data.userProfileImages[comment.name] || 'default.jpg'}
-                    alt={`${comment.name}'s Profile`}
-                    width="50"
-                    height="50"
-                    style={{ borderRadius: '50%' }} 
-                  />
-                </div>
-                <strong>{comment.name}:</strong> {comment.comment}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {Object.keys(groupedComments).length > 0 ? (
+        Object.keys(groupedComments).map((topic) => (
+          <div key={topic}>
+            <h3>{topic}</h3>
+            <ul style={{ listStyleType: 'none' }}> {/* Inline style for demonstration */}
+              {Array.isArray(groupedComments[topic]) ? (
+                groupedComments[topic].map((comment, index) => (
+                  <li key={index}>
+                    {/* The rest of your comment rendering */}
+                    <strong>{comment.name}:</strong> {comment.comment}
+                  </li>
+                ))
+              ) : (
+                <li>No comments for this topic.</li>
+              )}
+            </ul>
+          </div>
+        ))
+      ) : (
+        <p>No topics to display.</p>
+      )}
     </div>
-    
   );
   
 }
