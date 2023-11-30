@@ -1,18 +1,11 @@
 import app from "../app.mjs"
 import commentService from '../Service/commentService.js';
-import express from "express";
 
 const BASE_ROUTE_COMMENT = "comment"
 
-  const commentRouter = express.Router();
-  commentRouter.get("/test", (req, res, next)=> {
-    res.json({message: "hi"})
-  })
-  commentRouter.get(`/comments`, commentService.getAllComments);
-  commentRouter.get(`/comments/:commentId`, commentService.getCommentById);
-  commentRouter.post(`/comments/save`, commentService.saveComment);
-  commentRouter.get(`/grouped`, commentService.getCommentsByTopic);
-  /*
+
+
+const commentController = {
   async getAllMessages(req, res) {
     try {
       const comments = await commentService.getAllMessages();
@@ -52,10 +45,9 @@ const BASE_ROUTE_COMMENT = "comment"
       res.status(400).json({ error: 'Failed to retrieve comments' });
     }
   }
-  */
+};
 
-
-export default commentRouter;
+export default commentController;
 
 /*
 // load the dataabase models we want to deal with
