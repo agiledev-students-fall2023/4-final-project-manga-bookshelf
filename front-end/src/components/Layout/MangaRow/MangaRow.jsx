@@ -27,6 +27,7 @@ function MangaRow({title, MangaList}) {
 
   const { scrollContainerRef, handleScroll, scrollTo} = useSmoothHorizontalScroll();
   const [user, setUser] = useState({})
+  const [isLoading, setIsLoading] = useState(true) 
 
   // filter out duplicate manga
   const uniqueMangaList = []
@@ -54,9 +55,14 @@ function MangaRow({title, MangaList}) {
         })
         const data3 = await response3.json()
         setUser(data3.user)
+        setIsLoading(false) 
     }
     getData() 
   }, [])
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or any other loading indicator
+  }
 
   return (
     <>

@@ -46,7 +46,7 @@ function Home() {
     <div className="home-main">
       <MangaRow title={"Trending"} MangaList={trending}/>
       <MangaRow title={"Recently Updated"} MangaList={recentlyUpdated} />
-      <MangaRow title={"My List"} MangaList={myList} />
+      <MangaRow title={"My Favorite"} MangaList={myList} />
     </div>
   )
 }
