@@ -18,20 +18,6 @@ function Profile() {
   const [isFollowed, setIsFollowed] = useState(false)
   const [loading, setLoading] = useState(false)
   const auth = useContext(AuthContext) 
-  const navigate = useNavigate();
-
-  /*async function handleSubmit(e){
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-    });
-    const result = await auth.signin(data.get('username'), data.get('password'))
-    console.log(result) 
-    console.log(JSON.parse(localStorage.getItem('user')))
-    //navigate('/')
-};*/
 
   const handleFollowClick = () => {
     if (loading) {
@@ -59,19 +45,6 @@ function Profile() {
   }
 
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
-
-  async function handleSubmit(e){
-    //may need to make this function accessible to all files
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-    });
-    const result = await auth.signin(data.get('username'), data.get('password'))
-    console.log(result) 
-    console.log(JSON.parse(localStorage.getItem('user')))
-};
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {

@@ -1,13 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./edit.css"
 
 const Edit = () => {
+  //object format for user info
+  const [currentProfileInfo, setCurrentProfileInfo] = useState([])
+
+  useEffect(() => {
+    async function getCurrentUser(){
+      const myHeaders = new Headers();
+
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET",
+        headers: myHeaders
+      })
+      const data3 = await response3.json()
+      setCurrentProfileInfo(data3["user"]) 
+    }
+    getCurrentUser()
+  }, [])
+
+  console.log(currentProfileInfo);
+
   const [formData, setFormData] = useState({
-    name: '',
-    socialMedia: '',
-    avatar: '',
-    bio: '',
+    name: currentProfileInfo.username,
+    socialMedia: currentProfileInfo.twitter,
+    avatar: currentProfileInfo.profileImg,
+    bio: currentProfileInfo.bio,
   });
+
+  useEffect(() => {
+    setFormData({
+      name: currentProfileInfo.username || "",
+      socialMedia: currentProfileInfo.twitter || "",
+      avatar: currentProfileInfo.profileImg || "",
+      bio: currentProfileInfo.bio || "",
+    });
+  }, [currentProfileInfo]);
+  
+
+  console.log(formData)
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
