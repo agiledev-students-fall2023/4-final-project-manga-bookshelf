@@ -13,6 +13,19 @@ function MangaInfo({mangaData}) {
 
     const [chapter, setChapter] = useState('')
 
+    const addDropdown = () => {
+        const [isMenuOpen, setMenuOpen] =useState(false)
+
+        const handleAddClick = () => {
+            setMenuOpen(!isMenuOpen)
+        }
+
+        const handleAddListClick = (item) => {
+            console.log('clicked on ${item}')
+            setMenuOpen(false)
+        }
+    }
+
     const handleChapterChange = (e) =>{
         const input = e.target.value
         const validInput= input.replace(/[^0-9\b]/g,"")
@@ -25,6 +38,16 @@ function MangaInfo({mangaData}) {
             <div className= "MangaInfo-main">
                 <div className="MangaInfo-left">
                     {mangaImage && <MangaProfileImage imgLink= {mangaImage}/>}
+                    <div className= "MangaInfo-add">
+                    <button onClick={handleAddClick}>Toggle Menu</button>
+                        {isMenuOpen && (
+                            <ul className="menu">
+                            <li onClick={() => handleAddListClick('Reading')}>Reading</li>
+                            <li onClick={() => handleAddListClick('Want to Read')}>Item 2</li>
+                            <li onClick={() => handleAddListClick('Already Read')}>Item 3</li>
+                            </ul>
+                        )}
+                    </div>
                 </div>
                 <div className= "MangaInfo-right">
                     <div className= "MangaInfo-content">
