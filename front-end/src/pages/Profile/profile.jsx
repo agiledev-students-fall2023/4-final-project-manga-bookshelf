@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import { AuthContext } from '../../../context/AuthContext'
+import { useContext } from 'react';
 // import Card from '@mui/material/Card';
 
 import "./profile.css";
@@ -11,6 +13,19 @@ function Profile() {
   const [profileLists, setProfileLists] = useState([]);
   const [profile, setProfile] = useState({});
   const { profileId } = useParams()
+
+  async function handleSubmit(e){
+    //may need to make this function accessible to all files
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+    });
+    const result = await auth.signin(data.get('username'), data.get('password'))
+    console.log(result) 
+    console.log(JSON.parse(localStorage.getItem('user')))
+};
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
