@@ -1,6 +1,8 @@
 import express from 'express'
 import passport from 'passport' 
 
+import UserModel from '../Model/userModel.js';
+
 const protectedRoutes = () => {
     const router = express.Router(); 
 
