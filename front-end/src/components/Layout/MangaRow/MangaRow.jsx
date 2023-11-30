@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useEffect, useState} from 'react'
 import MangaIcon from '../../Elements/MangaIcon/MangaIcon'
 import MangaListEmpty from '../MangaListEmpty/MangaListEmpty';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight'; 
@@ -26,6 +26,8 @@ const HoverableIcon_right = styled(ArrowCircleRightIcon)({
 function MangaRow({title, MangaList}) {
 
   const { scrollContainerRef, handleScroll, scrollTo} = useSmoothHorizontalScroll();
+  const [user, setUser] = useState({})
+  const [isLoading, setIsLoading] = useState(true) 
 
   // filter out duplicate manga
   const uniqueMangaList = []
@@ -39,6 +41,29 @@ function MangaRow({title, MangaList}) {
     });
   }
 
+  //retrieve all the mangaList items from user and pass into MangaIcon
+  useEffect(() => {
+    async function getData(){
+        const myHeaders = new Headers();
+    
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+    
+        const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+          method: "GET",
+          headers: myHeaders
+        })
+        const data3 = await response3.json()
+        setUser(data3.user)
+        setIsLoading(false) 
+    }
+    getData() 
+  }, [])
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Or any other loading indicator
+  }
+
   return (
     <>
       <h1>{title}</h1>
@@ -48,7 +73,7 @@ function MangaRow({title, MangaList}) {
             <HoverableIcon_left className="MangaRow-arrowLeft" fontSize="large" onClick={() => scrollTo(-500)} />
               <div className="MangaRow-main" ref={scrollContainerRef} onScroll={handleScroll}>
                 {uniqueMangaList.map(ele => (
-                  <MangaIcon key={ele["__id"]} name={ele["title"]} imgLink={ele["image"]} />
+                  <MangaIcon key={ele["__id"]} name={ele["title"]} imgLink={ele["image"]} mangaId={ele["__id"]} userData={user} />
                 ))}
               </div>
             <HoverableIcon_right className="MangaRow-arrowRight" fontSize="large" onClick={() => scrollTo(500)} />

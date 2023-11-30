@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import "./Header.css"
 import styles from "./Turnstone.module.css"; //custom styles for turnstone
 import { Outlet } from "react-router-dom";
@@ -15,7 +15,6 @@ import { useRef } from 'react';
 //TODO: add number after the profile route and manga route 
 
 export default function Header() {
-    
     const [isOpen, setOpen] = useState(false); 
     const [results, setResults] = useState("") 
     const [searchData, setSearchData] = useState([]) 
@@ -30,30 +29,10 @@ export default function Header() {
             ratio: 6,
             displayField: 'title',
             data: (query) =>
-                fetch(`http://localhost:8080/manga/search2/${encodeURIComponent(query)}`)
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/${encodeURIComponent(query)}`)
                     .then(res => res.json()),
             searchType: 'contains'
         }
-        // {
-        //     id: 'genre',
-        //     name: 'Genres',
-        //     ratio: 2,
-        //     displayField: 'user',
-        //     data: (query) =>
-        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
-        //             .then(res => res.json()),
-        //     searchType: 'contains'
-        // }
-        // {
-        //     id: 'users',
-        //     name: 'Users',
-        //     ratio: 2,
-        //     displayField: 'user',
-        //     data: (query) =>
-        //         fetch(`/api/airports?q=${encodeURIComponent(query)}&limit=10`)
-        //             .then(res => res.json()),
-        //     searchType: 'contains'
-        // }
     ]
 
     const navigate = useNavigate()
@@ -62,7 +41,7 @@ export default function Header() {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         //first fetch mangas on the backend so we get id information about our manga
-        const payload1 = await fetch(`http://localhost:8080/manga/mangasearch/${encodeURIComponent(results)}`)
+        const payload1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/mangasearch/${encodeURIComponent(results)}`)
         const data1 = await payload1.json() 
         // console.log(data1) 
         turnstoneRef.current?.clear();
@@ -116,10 +95,10 @@ export default function Header() {
                                 <a href={`/forum`}><ForumIcon />Forum</a>
                             </li>
                             <li>
-                                <a href={`/profile/1`}> <PersonIcon />My Profile</a>
+                                <a href={`/profile/${JSON.parse(localStorage.getItem('user')).username}`}> <PersonIcon />My Profile</a>
                             </li>
                             <li>
-                                <a href={`/setting`}><SettingsIcon /> Setting</a>
+                                <a href={`/setting`}><SettingsIcon />Setting</a>
                             </li>
                         </ul>
                     </nav>

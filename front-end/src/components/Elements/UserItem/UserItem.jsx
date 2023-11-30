@@ -11,25 +11,15 @@ function UserItem({ title, user, onUnfollowClick }) {
     const { profileId } = useParams()
     const navigate = useNavigate()
 
-    const renderFollowButton = () => {
-        user.followers.forEach(follower => {
-            const followerString = follower.toString()
-            if (followerString === profileId) {
-                setIsFollowed(true)
-            }
-            else {
-                setIsFollowed(false)
-            }
-        })
-    }
-
     const navigateToProfile = () => {
-        navigate(`/profile/${user.id}`)
+        navigate(`/profile/${user.username}`)
     }
 
     useEffect(() => {
-        renderFollowButton()
-    })
+        // console.log(profileId)
+        // console.log(user.following)
+        setIsFollowed(user.follower.includes(profileId));
+    }, [profileId, user.follower])
 
     const handleFollowClick = () => {
         if (loading) {
@@ -39,12 +29,12 @@ function UserItem({ title, user, onUnfollowClick }) {
         setLoading(true)
     
         const actionUrl = isFollowed 
-            ? `http://localhost:8080/user/${profileId}/unfollow` 
-            : `http://localhost:8080/user/${profileId}/follow`
+            ? `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/unfollow` 
+            : `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/follow`
     
         const payload = isFollowed
-            ? { unfollowingId: user.id }
-            : { followingId: user.id }
+            ? { unfollowingName: user.username }
+            : { followingName: user.username }
     
         axios.post(actionUrl, payload)
             .then(response => {
@@ -67,17 +57,17 @@ function UserItem({ title, user, onUnfollowClick }) {
         setLoading(true)
 
         const actionUrl = (title === 'Following')
-            ? `http://localhost:8080/user/${profileId}/unfollow`
-            : `http://localhost:8080/user/${profileId}/remove`
+            ? `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/unfollow`
+            : `${process.env.REACT_APP_BACKEND_URL}/user/${profileId}/remove`
 
         const payload = (title === 'Following')
-            ? { unfollowingId: user.id }
-            : { removingId: user.id }
+            ? { unfollowingName: user.username }
+            : { removingName: user.username }
 
         axios.post(actionUrl, payload)
             .then(response => {
                 setIsFollowed(false)     
-                renderFollowButton()   
+                // renderFollowButton()   
                 onUnfollowClick()       
             })
             .catch(err => {
@@ -90,8 +80,8 @@ function UserItem({ title, user, onUnfollowClick }) {
 
     return (
         <div className='user-item'>
-            <img src={userImage} alt={user.name} onClick={navigateToProfile}/>
-            <span onClick={navigateToProfile}>{user.name}</span>
+            <img src={userImage} alt={user.username} onClick={navigateToProfile}/>
+            <span onClick={navigateToProfile}>{user.username}</span>
             
             {title === 'Follower' && (
                 <button 

@@ -3,8 +3,6 @@ import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken" 
 import jwtStrategy from "../config/jwt-config.js" 
 
-import {commentModel} from "./commentModel.js"
-
 const UserSchema = new mongoose.Schema({
     username: {
         type:String, 
@@ -22,26 +20,50 @@ const UserSchema = new mongoose.Schema({
     },
     profileImg:
     {
-        data: Buffer,
-        contentType: String,
+        // Currently, just allow using url for profile image
+        type: String,
+        default: "https://placekitten.com/g/200/200"
+    },
+    twitter:
+    {
+        // Add social media links here
+        type: String,
+        default: "your_handle"
     },
     bio:{
         type: String, 
         default: ""
     },
     favorite:{
-        type: [], 
+        type: [mongoose.Schema.Types.Object], 
+        ref: "Manga"
     },
     currentlyReading:{
-        type: [], 
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
     },
     finishReading:{
-        type: [], 
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
+    }, 
+    browsingHistory:{
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
     }, 
     role: {
         type: String,
         default: 'user',
-    }
+    },
+    follower: {
+        // currently add 'bob' to default just for testing
+        type: [],
+        default: ['bob']
+    },
+    following: {
+        // currently add 'bob' to default just for testing
+        type: [],
+        default: ['bob']
+    },
 })
 
 //hash the password before the user is saved 
