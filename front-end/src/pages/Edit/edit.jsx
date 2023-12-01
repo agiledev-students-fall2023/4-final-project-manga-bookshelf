@@ -14,7 +14,7 @@ const Edit = () => {
       myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
 
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/update/bio`, {
-        method: "PUT", // or "PATCH" depending on your API endpoint
+        method: "PUT",
         headers: myHeaders,
         body: JSON.stringify({ bio: formData.bio }),
       });
@@ -49,8 +49,6 @@ const Edit = () => {
     getCurrentUser()
   }, [])
 
-  console.log(currentProfileInfo);
-
   const [formData, setFormData] = useState({
     name: currentProfileInfo.username,
     socialMedia: currentProfileInfo.twitter,
@@ -68,7 +66,6 @@ const Edit = () => {
   }, [currentProfileInfo]);
   
 
-  console.log(formData)
 
 
   const handleChange = (e) => {
@@ -132,7 +129,7 @@ const Edit = () => {
       </div>
 
       <div className="edit-main">
-        <button type="button">
+        <button type="submit">
           Save Changes
         </button>
       </div>
