@@ -105,8 +105,8 @@ function Forum() {
       <button onClick={() => navigate(-1)}>Return to Previous Page</button>
       <h1>Forum</h1>
       <CommentForm
-        setError={setError}
-        setFeedback={setFeedback}
+        //setError={setError}
+        //setFeedback={setFeedback}
         addCommentToList={addCommentToList}
       />
       {/*<ForumPost username="Username goes here"/> */}
@@ -139,36 +139,4 @@ function Forum() {
 
 
 export default Forum;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -27,8 +27,12 @@ class commentService {
       const comment = await commentModel.create(req.body);
       res.json({ comment, status: 'all good' });
     } catch (err) {
+        console.error('Error saving comment:', err);
+        res.status(400).json({ message: err.message });
+    /*
       console.error(err);
       res.status(400).json({ error: err, status: 'failed to save the comment' });
+    */
     }
   }
 

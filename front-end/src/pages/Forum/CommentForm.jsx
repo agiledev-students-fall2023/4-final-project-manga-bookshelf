@@ -9,9 +9,10 @@ const CommentForm = ({ addCommentToList, setError, setFeedback }) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-
+    //testing
+    console.log('Sending data:', { name, comment, topic });
     try {
-      const response = await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/comments/save`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/comment/comments/save`, {
         name,
         comment,
         topic
