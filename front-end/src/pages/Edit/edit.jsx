@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import "./edit.css"
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Snackbar from '@mui/material/Snackbar';
+
 
 const Edit = () => {
   //object format for user info
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
-  
+  const [alertOpen, setAlertOpen] = useState(false);
+  const handleAlertClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAlertOpen(false);
+  };
+
+  const handleSuccessAlert = () => {
+    setAlertOpen(true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,6 +36,7 @@ const Edit = () => {
 
       if (response.ok) {
         // Update local state or perform any necessary actions
+        handleSuccessAlert();
         console.log("Bio updated successfully");
       } else {
         // Handle error response
@@ -80,6 +96,17 @@ const Edit = () => {
     <div className="edit-main">
       <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
+      <Snackbar
+        open={alertOpen}
+        autoHideDuration={6000}
+        onClose={handleAlertClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={handleAlertClose} severity="success">
+          <AlertTitle>Success</AlertTitle>
+          Bio updated successfully!
+        </Alert>
+      </Snackbar>
         <div>
         <label htmlFor="name">Username:</label>
         <input

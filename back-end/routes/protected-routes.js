@@ -366,6 +366,28 @@ const protectedRoutes = () => {
             });
     });
 
+    //change their social handle
+    router.put("/user/update/twitter", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        const twitter = req.body.twitter;
+        const id = req.user.id;
+    
+        UserModel.findByIdAndUpdate(id, { twitter })
+            .then(docs => {
+                console.log("Updated Twitter:", docs.twitter);
+                res.json({
+                    success: true,
+                    message: "Twitter updated",
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(500).json({
+                    success: false,
+                    message: "Failed to update Twitter",
+                });
+            });
+    });
+
     return router 
 }
 
