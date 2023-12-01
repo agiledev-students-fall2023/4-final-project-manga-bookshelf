@@ -9,7 +9,7 @@ import cors from "cors"
 import userRouter from './Controller/userController.js'
 import mangaRouter from './Controller/mangaController.js'
 import forumData from './public/MockComments.json' assert { type: 'json' };
-
+import commentRouter from './Controller/commentController.js'
 import sampleProfileList from "./public/sampleProfileList.json" assert { type: 'json' }
 import sampleProfileData from "./public/sampleProfileData.json" assert { type: 'json' }
 
@@ -54,7 +54,7 @@ app.use("/protected", protectedRoutes())
 
 app.use(`/manga`, mangaRouter)
 app.use(`/user`, userRouter)
-
+app.use(`/comment`, commentRouter)
 //other stuff (should put this in router) 
 app.get(`/comment/MockComments`, (req, res) => {
     res.json(forumData);

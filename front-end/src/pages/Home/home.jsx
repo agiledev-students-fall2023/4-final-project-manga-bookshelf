@@ -22,12 +22,10 @@ function Home() {
       const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/recommendation/10`);
       const data2 = await response2.json()
       setTrending([data2.result]);
-      console.log(trending)
 
       //remember to set headers before sending to authorized route
       const myHeaders = new Headers();
 
-      console.log(localStorage.getItem("jwtToken"))
       myHeaders.append('Content-Type', 'application/json');
       myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
 
@@ -48,7 +46,7 @@ function Home() {
     <div className="home-main">
       <MangaRow title={"Trending"} MangaList={trending}/>
       <MangaRow title={"Recently Updated"} MangaList={recentlyUpdated} />
-      <MangaRow title={"My List"} MangaList={myList} />
+      <MangaRow title={"My Favorite"} MangaList={myList} />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import express from 'express'
 import passport from 'passport' 
 
+import UserModel from '../Model/userModel.js';
+
 const protectedRoutes = () => {
     const router = express.Router(); 
 
@@ -14,6 +16,21 @@ const protectedRoutes = () => {
             message: "You have a valid JWT so you're able to access this route", 
         });
         next(); 
+    })
+
+    router.get("/user/get/currentuser", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        res.json({
+            success: true,
+            message: `Success. Valid JWT for user: ${req.user.username}`,
+            user: req.user,
+            id: req.user.id
+        });
+        next();
+    })
+    
+    router.get("/user/get/anotheruser/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        //call database to get another user
+        next();
     })
 
     //Give new information to the bio in the format: {payload: "content"}
