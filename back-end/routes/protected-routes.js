@@ -234,7 +234,6 @@ const protectedRoutes = () => {
                 console.error(err);
                 res.status(500).json({ success: false, message: "Error adding finishReading" });
             });
-        next();
     })
 
     //remove finishedreading 

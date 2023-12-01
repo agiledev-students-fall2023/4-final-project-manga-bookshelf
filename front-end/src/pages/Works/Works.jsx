@@ -10,6 +10,9 @@ function Works() {
     const [data, setData] = useState([])
     const {mangaId} = useParams()
     const [user, setUser] = useState({})
+    const [reading, setReading] = useState([])
+    const [done, setDone] = useState([])
+    const [want, setWant] = useState([])
 
     useEffect(() => {
         async function fetchData() {
@@ -38,6 +41,7 @@ function Works() {
         }
 
         fetchData()
+        console.log(user)
         
     }, [mangaId])
 
