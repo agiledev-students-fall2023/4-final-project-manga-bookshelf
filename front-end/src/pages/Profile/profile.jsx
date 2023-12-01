@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import { AuthContext } from '../../context/AuthContext';
 // import Card from '@mui/material/Card';
 
 import "./profile.css";
@@ -16,6 +17,7 @@ function Profile() {
   const isCurrentUser = currentUser === profileId
   const [isFollowed, setIsFollowed] = useState(false)
   const [loading, setLoading] = useState(false)
+  const auth = useContext(AuthContext) 
 
   const handleFollowClick = () => {
     if (loading) {
