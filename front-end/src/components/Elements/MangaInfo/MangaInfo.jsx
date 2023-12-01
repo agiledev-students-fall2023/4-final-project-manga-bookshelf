@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react"
 import MangaProfileImage from "../MangaProfileImage/MangaProfileImage"
 import ForumPost from "../ForumPost/ForumPost"
+import { isFavorite } from "../../../helper/helper"
+
 
 import "./MangaInfo.css"
 
-function MangaInfo({mangaData}) {
+function MangaInfo({mangaData, userData}) {
+    console.log(userData)
     const {title, author, genres, synopsis, image, __id} = mangaData[0] || {}
     // console.log(mangaData[0])
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
@@ -13,16 +16,15 @@ function MangaInfo({mangaData}) {
 
     const [chapter, setChapter] = useState('')
     const [isMenuOpen, setMenuOpen] =useState(false)
-    const [user, setUser] = useState({})
+
+    const [reading, setReading] = useState(false)
+    const [done, setDone] = useState(false)
+    const [want, setWant] = useState(false)
 
     const handleAddClick = () => {
         setMenuOpen(!isMenuOpen)
     }
 
-    const handleAddListClick = (item) => {
-        console.log(`clicked on ${item}`)
-        setMenuOpen(false)
-    }
 
     const handleChapterChange = (e) =>{
         const input = e.target.value
@@ -30,37 +32,199 @@ function MangaInfo({mangaData}) {
         setChapter(validInput)
     }
 
-      //retrieve all the mangaList items from user and pass into MangaIcon
-    useEffect(() => {
-        async function getData(){
-            const myHeaders = new Headers();
+
+    // const handleAddListClick = () => {
+    //     // console.log(`clicked on ${item}`)
+    //     setMenuOpen(false)
+    // }
+
+    const handleReadingClick = async () => {
+        //define headers 
+        const myHeaders = new Headers();
         
-            myHeaders.append('Content-Type', 'application/json');
-            myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
         
-            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
-            method: "GET",
-            headers: myHeaders
+        //if current manga is in reading 
+        if (reading){ 
+          try { 
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/delete/currentlyreading/${__id}`, {
+              method: "DELETE",
+              headers: myHeaders
             })
             const data3 = await response3.json()
-            setUser(data3.user)
+            console.log("here is the outcome of trying to delete")
+            console.log(data3) 
+          } catch (error) {
+            console.error("Error fetching or accessing db in delete", error)
+          }
         }
-        getData() 
-    }, [])
+        else{ // if current manga is not in reading 
+            const mangaData={
+                title: title,
+                image: mangaImage,
+                __id: __id,
+                authorName: authorNames,
+                authorImage: "N/A"
+            }
+          try {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/add/currentlyreading`, {
+              method: "POST",
+              headers: myHeaders, 
+              body: JSON.stringify(mangaData)
+            })
+            const data3 = await response3.json()
+            console.log(data3) 
+          } catch (error) {
+            console.error("Error fetching or accessing db", error)
+          }
+        }
+        console.log(userData)
+        setReading(!reading); 
+        setMenuOpen(false)
+      }
+    // //determine if the manga is currently favorite or not 
+    // useEffect(() => {
+    //     console.log(userData["currentlyReading"])
+    //     console.log(__id)
+    //     if (isFavorite(userData["currentlyReading"], __id)){
+    //         setReading(true) 
+    //     }else{
+    //         setReading(false)
+    //     }
+    //     console.log(userData)
+    // }, [])
+
+
+    const handleDoneClick = async () => {
+        //define headers 
+        const myHeaders = new Headers();
+        
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+        
+        //if current manga is in done 
+        if (done){ 
+          try { 
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/delete/finishedreading/${__id}`, {
+              method: "DELETE",
+              headers: myHeaders
+            })
+            const data3 = await response3.json()
+            console.log("here is the outcome of trying to delete")
+            console.log(data3) 
+          } catch (error) {
+            console.error("Error fetching or accessing db in delete", error)
+          }
+        }
+        else{ // if current manga is not in done 
+            const mangaData={
+                title: title,
+                image: mangaImage,
+                __id: __id,
+                authorName: authorNames,
+                authorImage: "N/A"
+            }
+          try {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/add/finishedreading`, {
+              method: "POST",
+              headers: myHeaders, 
+              body: JSON.stringify(mangaData)
+            })
+            const data3 = await response3.json()
+            console.log(data3) 
+          } catch (error) {
+            console.error("Error fetching or accessing db", error)
+          }
+        }
+        console.log(userData)
+        setDone(!done); 
+        setMenuOpen(false)
+      }
+    // //determine if the manga is currently favorite or not 
+    // useEffect(() => {
+    //     console.log(userData["currentlyReading"])
+    //     console.log(__id)
+    //     if (isFavorite(userData["currentlyReading"], __id)){
+    //         setReading(true) 
+    //     }else{
+    //         setReading(false)
+    //     }
+    //     console.log(userData)
+    // }, [])
+
+
+    const handleWantClick = async () => {
+        //define headers 
+        const myHeaders = new Headers();
+        
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+        
+        //if current manga is in want to read 
+        if (want){ 
+          try { 
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/delete/browsinghistory/${__id}`, {
+              method: "DELETE",
+              headers: myHeaders
+            })
+            const data3 = await response3.json()
+            console.log("here is the outcome of trying to delete")
+            console.log(data3) 
+          } catch (error) {
+            console.error("Error fetching or accessing db in delete", error)
+          }
+        }
+        else{ // if current manga is not in want to read 
+            const mangaData={
+                title: title,
+                image: mangaImage,
+                __id: __id,
+                authorName: authorNames,
+                authorImage: "N/A"
+            }
+          try {
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/add/browsinghistory`, {
+              method: "POST",
+              headers: myHeaders, 
+              body: JSON.stringify(mangaData)
+            })
+            const data3 = await response3.json()
+            console.log(data3) 
+          } catch (error) {
+            console.error("Error fetching or accessing db", error)
+          }
+        }
+        console.log(userData)
+        setWant(!want); 
+        setMenuOpen(false)
+      }
+    // //determine if the manga is currently favorite or not 
+    // useEffect(() => {
+    //     console.log(userData["currentlyReading"])
+    //     console.log(__id)
+    //     if (isFavorite(userData["currentlyReading"], __id)){
+    //         setReading(true) 
+    //     }else{
+    //         setReading(false)
+    //     }
+    //     console.log(userData)
+    // }, [])
+
 
     return (
         <div className= "MangaInfo-container">
             <h1> {title} </h1>
             <div className= "MangaInfo-main">
                 <div className="MangaInfo-left">
-                    {mangaImage && <MangaProfileImage name={title} imgLink= {mangaImage} mangaId={__id} userData={user}/>}
+                    {mangaImage && <MangaProfileImage name={title} imgLink= {mangaImage} mangaId={__id} userData={userData}/>}
                     <div className= "MangaInfo-add">
                         <button onClick={handleAddClick}>+ Add to List</button>
                             {isMenuOpen && (
                                 <ul className="menu">
-                                    <button onClick={() => handleAddListClick('Reading')}>Reading</button>
-                                    <button onClick={() => handleAddListClick('Want to Read')}>Want to Read</button>
-                                    <button onClick={() => handleAddListClick('Already Read')}>Already Read</button>
+                                    <button onClick={() => handleReadingClick('Reading')}>Reading</button>
+                                    <button onClick={() => handleWantClick('Want to Read')}>Want to Read</button>
+                                    <button onClick={() => handleDoneClick('Finished')}>Finished</button>
                                 </ul>
                             )}
                     </div>

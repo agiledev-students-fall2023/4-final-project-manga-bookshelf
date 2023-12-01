@@ -128,7 +128,7 @@ const protectedRoutes = () => {
     })
 
     //add currentlyreading 
-    router.post("/user/add/currentlyreading", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    router.post("/user/add/currentlyreading", passport.authenticate("jwt", { session: false }), (req, res) => {
         // TODO. 
         // 1. check to make sure it's not already a favorite
         // 2. if not already a favorite add it to the array. 
@@ -234,7 +234,6 @@ const protectedRoutes = () => {
                 console.error(err);
                 res.status(500).json({ success: false, message: "Error adding finishReading" });
             });
-        next();
     })
 
     //remove finishedreading 

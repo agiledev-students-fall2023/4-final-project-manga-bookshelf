@@ -5,8 +5,6 @@ import { isFavorite } from "../../../helper/helper"
 import "./MangaProfileImage.css"
 //TODO: import in the correct information for manga pages 
 
-// const favorite = {favorite: false}
-
 function MangaProfileImage({name, imgLink, mangaId, userData}) {
 
     const [favorite, setFavorite] = useState(false)
