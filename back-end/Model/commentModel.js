@@ -1,13 +1,17 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-
 const commentSchema = new Schema(
   {
-    username: {
-      type: String, 
-      required: true, 
-    }, 
-    name: {
+    /*
+    messageId: { //each message has unique id
+      type: String,
+      required: true,
+      unique: true,
+      
+    },
+    */
+    //change name to user 
+    name: { 
       type: String,
       required: true,
     },
@@ -26,5 +30,6 @@ const commentSchema = new Schema(
 )
 
 // create mongoose Model
-export const commentModel = mongoose.model('Comment', commentSchema)
+const commentModel = mongoose.model('Comment', commentSchema)
+export default commentModel
 
