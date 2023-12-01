@@ -60,10 +60,10 @@ class UserService {
   async changeBio(req, res) {
     try {
       const username = req.params.username;
-      const newBio = req.body.bio; // Assuming the new bio is sent in the request body
+      const newBio = req.body.bio;
       const user = await UserModel.findOneAndUpdate(
         { username: username },
-        { $set: { bio: newBio } }, // Use $set to update the bio field
+        { $set: { bio: newBio } },
         { new: true }
       );
   
