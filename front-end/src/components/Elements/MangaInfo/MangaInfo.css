@@ -23,7 +23,7 @@
     flex: 1;
     padding-left: 20px;
     padding-right: 40px;
-    padding-top: 70px;
+    /* padding-top: 70px; */
     display: flex;
     flex-direction: column;
 }
@@ -53,4 +53,41 @@
 
 .MangaInfo-chapter-tracker{
     z-index: 1;
+}
+
+.MangaInfo-add {
+    margin-top: 10px;
+    position: relative;
+    display: inline-block;
+  }
+  
+.MangaInfo-add .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px;
+    z-index: 1;
+}
+
+.MangaInfo-add .menu button {
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.MangaInfo-add button:hover{
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+.MangaInfo-add .menu button:hover {
+    background-color: #ddd;
 }
