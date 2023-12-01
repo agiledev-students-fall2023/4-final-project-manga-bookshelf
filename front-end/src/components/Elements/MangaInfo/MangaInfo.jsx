@@ -6,24 +6,21 @@ import "./MangaInfo.css"
 
 function MangaInfo({mangaData}) {
     const {title, author, genres, synopsis, image} = mangaData[0] || {}
-    console.log(mangaData[0])
+    // console.log(mangaData[0])
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
     const authorNames= author ? author.split(',').reverse().join(' '): ''
     const mangaImage= image && image.jpg && image.jpg.default
 
     const [chapter, setChapter] = useState('')
+    const [isMenuOpen, setMenuOpen] =useState(false)
 
-    const addDropdown = () => {
-        const [isMenuOpen, setMenuOpen] =useState(false)
+    const handleAddClick = () => {
+        setMenuOpen(!isMenuOpen)
+    }
 
-        const handleAddClick = () => {
-            setMenuOpen(!isMenuOpen)
-        }
-
-        const handleAddListClick = (item) => {
-            console.log('clicked on ${item}')
-            setMenuOpen(false)
-        }
+    const handleAddListClick = (item) => {
+        console.log(`clicked on ${item}`)
+        setMenuOpen(false)
     }
 
     const handleChapterChange = (e) =>{
@@ -39,14 +36,14 @@ function MangaInfo({mangaData}) {
                 <div className="MangaInfo-left">
                     {mangaImage && <MangaProfileImage imgLink= {mangaImage}/>}
                     <div className= "MangaInfo-add">
-                    <button onClick={handleAddClick}>Toggle Menu</button>
-                        {isMenuOpen && (
-                            <ul className="menu">
-                            <li onClick={() => handleAddListClick('Reading')}>Reading</li>
-                            <li onClick={() => handleAddListClick('Want to Read')}>Item 2</li>
-                            <li onClick={() => handleAddListClick('Already Read')}>Item 3</li>
-                            </ul>
-                        )}
+                        <button onClick={handleAddClick}>+ Add to List</button>
+                            {isMenuOpen && (
+                                <ul className="menu">
+                                    <button onClick={() => handleAddListClick('Reading')}>Reading</button>
+                                    <button onClick={() => handleAddListClick('Want to Read')}>Want to Read</button>
+                                    <button onClick={() => handleAddListClick('Already Read')}>Already Read</button>
+                                </ul>
+                            )}
                     </div>
                 </div>
                 <div className= "MangaInfo-right">
