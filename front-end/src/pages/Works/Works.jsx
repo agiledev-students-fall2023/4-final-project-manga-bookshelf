@@ -31,7 +31,7 @@ function Works() {
 
     return (
         <div className="Works-main">
-            <MangaInfo mangaData={data} />
+            <MangaInfo mangaData={data}/>
         </div>
     )
 }
