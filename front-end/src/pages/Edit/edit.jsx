@@ -4,6 +4,33 @@ import "./edit.css"
 const Edit = () => {
   //object format for user info
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/update/bio`, {
+        method: "PUT", // or "PATCH" depending on your API endpoint
+        headers: myHeaders,
+        body: JSON.stringify({ bio: formData.bio }),
+      });
+
+      if (response.ok) {
+        // Update local state or perform any necessary actions
+        console.log("Bio updated successfully");
+      } else {
+        // Handle error response
+        console.error("Failed to update bio:", response.statusText);
+      }
+    } catch (error) {
+      // Handle fetch error
+      console.error("Error updating bio:", error);
+    }
+  };
 
   useEffect(() => {
     async function getCurrentUser(){
@@ -55,9 +82,9 @@ const Edit = () => {
   return (
     <div className="edit-main">
       <h2>Edit Profile</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Username:</label>
         <input
           type="text"
           id="name"
