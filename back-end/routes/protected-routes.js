@@ -345,6 +345,27 @@ const protectedRoutes = () => {
         next();
     })
 
+    //change user bio
+    router.put("/user/update/bio", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        const content = req.body.bio; // Assuming the frontend sends 'bio' instead of 'payload'
+        const id = req.user.id; 
+        UserModel.findByIdAndUpdate(id, { bio: content })
+            .then(docs => {
+                console.log("Updated bio:", docs.bio);
+                res.json({
+                    success: true,
+                    message: "Bio updated",
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(500).json({
+                    success: false,
+                    message: "Failed to update bio",
+                });
+            });
+    });
+
     return router 
 }
 
