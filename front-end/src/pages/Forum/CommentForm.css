@@ -1,0 +1,47 @@
+.CommentForm-form {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #0000001a;
+    border-radius: 5px;
+    padding: 30px; /* Increased padding */
+    width: 65%; /* Increased width */
+    margin: 0 auto; /* Center the form */
+  }
+  
+  .CommentForm-form input,
+  .CommentForm-form textarea {
+    padding: 14px; /* Slightly increased padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    width: 100%; /* Full width of the form */
+    margin: 12px 0; /* Adjusted space between fields */
+  }
+  
+  .CommentForm-form button {
+    background-color: var(--button-color-primary);
+    color: white;
+    padding: 14px 22px; /* Slightly increased padding */
+    border: none;
+    border-radius: 5%;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 12px;
+  }
+  
+  .CommentForm-feedback,
+  .CommentForm-error {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .CommentForm-feedback {
+    color: green;
+  }
+  
+  .CommentForm-error {
+    color: red;
+  }
+  
+  
+  
