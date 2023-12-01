@@ -56,6 +56,27 @@ class UserService {
     }
   }
 
+  // to change bio for a user
+  async changeBio(req, res) {
+    try {
+      const username = req.params.username;
+      const newBio = req.body.bio;
+      const user = await UserModel.findOneAndUpdate(
+        { username: username },
+        { $set: { bio: newBio } },
+        { new: true }
+      );
+  
+      if (!user) {
+        throw new Error("User not found");
+      }
+  
+      res.json({ user, message: 'Bio updated successfully' });
+    } catch (err) {
+      res.status(404).json({ error: "Cannot update bio" });
+    }
+  }
+
   // to follow a user
   async followUser(req, res) {
     try {

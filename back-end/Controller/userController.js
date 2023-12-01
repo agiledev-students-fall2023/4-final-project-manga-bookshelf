@@ -20,4 +20,6 @@ userRouter.post(`/:username/remove`, UserService.removeUser)
 //get the profile lists 
 userRouter.get(`/:username/profile`, UserService.getUserData)
 
+
+
 export default userRouter;
