@@ -14,7 +14,31 @@ function Forum() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('')
   const [feedback, setFeedback] = useState('')
+  const fetchGroupedComments = useCallback(async () => {
+    setIsLoading(true); // Set loading to true at the start of the fetch
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/grouped`);
+      const groupedCommentsData = await response.json();
   
+      // Assuming the response is an array of groups with '_id' as the topic and 'comments' as the array of comments
+      const grouped = groupedCommentsData.reduce((acc, group) => {
+        acc[group._id] = group.comments; // group._id is the topic
+        return acc;
+      }, {});
+  
+      setGroupedComments(grouped);
+    } catch (error) {
+      console.error('Error fetching grouped comments:', error);
+      setError('Failed to fetch comments.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+  useEffect(() => {
+    fetchGroupedComments();
+  }, [fetchGroupedComments]);
+  
+  /*
   const fetchGroupedComments = useCallback(async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/comments`);
@@ -30,7 +54,7 @@ function Forum() {
   useEffect(() => {
     fetchGroupedComments();
   }, [fetchGroupedComments]);
-  
+  */
 
   
   /*
@@ -86,7 +110,8 @@ function Forum() {
     if (groupedComments[topic]) {
       setGroupedComments(prevGroupedComments => ({
         ...prevGroupedComments,
-        [topic]: [...prevGroupedComments[topic], newComment]
+        [topic]: prevGroupedComments[topic] ? [...prevGroupedComments[topic], newComment] : [newComment]
+        //[topic]: [...prevGroupedComments[topic], newComment]
       }));
     } else {
       // If the topic doesn't exist, create a new entry for it
@@ -105,8 +130,8 @@ function Forum() {
       <button onClick={() => navigate(-1)}>Return to Previous Page</button>
       <h1>Forum</h1>
       <CommentForm
-        //setError={setError}
-        //setFeedback={setFeedback}
+        setError={setError}
+        setFeedback={setFeedback}
         addCommentToList={addCommentToList}
       />
       {/*<ForumPost username="Username goes here"/> */}
