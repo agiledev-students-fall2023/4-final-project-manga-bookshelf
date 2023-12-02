@@ -18,7 +18,7 @@ userRouter.post(`/:username/unfollow`, UserService.unfollowUser)
 userRouter.post(`/:username/remove`, UserService.removeUser)
 
 //get the profile lists 
-userRouter.get(`/:username/profile`, UserService.getUserData)
+// userRouter.get(`/:username/profile`, UserService.getUserData)
 
 
 

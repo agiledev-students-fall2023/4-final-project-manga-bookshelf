@@ -2,6 +2,7 @@ import express from 'express'
 import passport from 'passport' 
 
 import UserModel from '../Model/userModel.js';
+import UserService from '../Service/userService.js';
 
 const protectedRoutes = () => {
     const router = express.Router(); 
@@ -28,10 +29,7 @@ const protectedRoutes = () => {
         next();
     })
     
-    router.get("/user/get/anotheruser/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
-        //call database to get another user
-        next();
-    })
+    router.get("/user/get/anotheruser/:username", passport.authenticate("jwt", { session: false }), UserService.getUserData)
 
     //Give new information to the bio in the format: {payload: "content"}
     router.post("/user/add/bio", passport.authenticate("jwt", { session: false }), (req, res, next) => {
@@ -128,7 +126,7 @@ const protectedRoutes = () => {
     })
 
     //add currentlyreading 
-    router.post("/user/add/currentlyreading", passport.authenticate("jwt", { session: false }), (req, res) => {
+    router.post("/user/add/currentlyreading", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         // TODO. 
         // 1. check to make sure it's not already a favorite
         // 2. if not already a favorite add it to the array. 
@@ -234,6 +232,7 @@ const protectedRoutes = () => {
                 console.error(err);
                 res.status(500).json({ success: false, message: "Error adding finishReading" });
             });
+        next();
     })
 
     //remove finishedreading 
@@ -343,49 +342,6 @@ const protectedRoutes = () => {
         console.log("right now it doesn't do anything") 
         next();
     })
-
-    //change user bio
-    router.put("/user/update/bio", passport.authenticate("jwt", { session: false }), (req, res, next) => {
-        const content = req.body.bio; 
-        const id = req.user.id; 
-        UserModel.findByIdAndUpdate(id, { bio: content })
-            .then(docs => {
-                console.log("Updated bio:", docs.bio);
-                res.json({
-                    success: true,
-                    message: "Bio updated",
-                });
-            })
-            .catch(err => {
-                console.error(err);
-                res.status(500).json({
-                    success: false,
-                    message: "Failed to update bio",
-                });
-            });
-    });
-
-    //change their social handle
-    router.put("/user/update/twitter", passport.authenticate("jwt", { session: false }), (req, res, next) => {
-        const twitter = req.body.twitter;
-        const id = req.user.id;
-    
-        UserModel.findByIdAndUpdate(id, { twitter })
-            .then(docs => {
-                console.log("Updated Twitter:", docs.twitter);
-                res.json({
-                    success: true,
-                    message: "Twitter updated",
-                });
-            })
-            .catch(err => {
-                console.error(err);
-                res.status(500).json({
-                    success: false,
-                    message: "Failed to update Twitter",
-                });
-            });
-    });
 
     return router 
 }
