@@ -10,6 +10,7 @@ function UserItem({ title, user, onUnfollowClick }) {
     const [loading, setLoading] = useState(false)
     const { profileId } = useParams()
     const navigate = useNavigate()
+    const isCurrentUser = JSON.parse(localStorage.getItem('user')).username === profileId
 
     const navigateToProfile = () => {
         navigate(`/profile/${user.username}`)
@@ -80,7 +81,7 @@ function UserItem({ title, user, onUnfollowClick }) {
             <img src={userImage} alt={user.username} onClick={navigateToProfile}/>
             <span onClick={navigateToProfile}>{user.username}</span>
             
-            {title === 'Follower' && (
+            {title === 'Follower' && isCurrentUser && (
                 <button 
                     className={`follow-button ${isFollowed ? 'followed' : ''}`}
                     onClick={handleFollowClick}
@@ -88,10 +89,12 @@ function UserItem({ title, user, onUnfollowClick }) {
                     {isFollowed ? 'Followed' : 'Follow +'}
                 </button>
             )}
-            
-            <button className='remove-button' onClick={handleUnfollowClick}> 
+
+            {isCurrentUser && <button className='remove-button' onClick={handleUnfollowClick}> 
                 {(title === 'Follower') ? 'Remove' : 'Unfollow'} 
-            </button>
+            </button>}
+            
+
         </div>
     )
 }
