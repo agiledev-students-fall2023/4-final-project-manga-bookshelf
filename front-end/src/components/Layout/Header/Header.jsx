@@ -127,7 +127,7 @@ export default function Header() {
                         </nav>
                     ) : <div></div>}
                 </div>
-                <h1>Manga Bookshelf for the Nerds</h1>
+                <h1>Manga Bookshelf</h1>
             </div>
             <div id="detail">
                 <Outlet />

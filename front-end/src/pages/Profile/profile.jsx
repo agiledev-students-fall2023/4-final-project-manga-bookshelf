@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
-// import Card from '@mui/material/Card';
 
 import "./profile.css";
 const titles = ["Currently Reading", "Done", "Want to Read"];
@@ -40,7 +39,15 @@ function Profile() {
       .finally(() => {
         setLoading(false)
       })
-  }
+    }
+
+    const groupListsByTitle = (title) => {
+      const filteredLists = profileLists.map((profile) => ({
+        result: profile.result.filter((item) => item.list === title),
+      }));
+  
+      return filteredLists;
+    };
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
@@ -70,13 +77,6 @@ function Profile() {
     getProfileLists();
   }, [profileId, isCurrentUser]);
 
-  const groupListsByTitle = (title) => {
-    const filteredLists = profileLists.map((profile) => ({
-      result: profile.result.filter((item) => item.list === title),
-    }));
-
-    return filteredLists;
-  };
 
   return (
     <main className="profile-main">

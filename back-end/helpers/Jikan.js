@@ -1,6 +1,5 @@
 //Github link: https://github.com/rizzzigit/jikan4.js
 //Documentation link: https://rizzzigit.github.io/jikan4.js/classes/v4.PersonMeta.html
-// TODO: Write unit tests for these functions
 
 import Jikan from 'jikan4.js'
 
@@ -75,9 +74,7 @@ async function getMangaInfoById(MangaId){
             // Set it to a default string if the property is null
             result[key] = "No information available";
         }
-    }
-        console.log(result)
-        
+    }        
         return result
     }
     
