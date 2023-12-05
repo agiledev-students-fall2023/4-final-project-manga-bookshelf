@@ -55,7 +55,7 @@ function MangaProfileImage({name, imgLink, mangaId, userData}) {
     useEffect(() => {
         if (isFavorite(userData["favorite"], mangaId)){
             setFavorite(true) 
-        }else{
+        } else{
             setFavorite(false)
         }
     }, [])

@@ -1,5 +1,6 @@
 import express from 'express'
 import passport from 'passport' 
+import cors from 'cors'
 
 import UserModel from '../Model/userModel.js';
 import UserService from '../Service/userService.js';
@@ -52,6 +53,12 @@ const protectedRoutes = () => {
             })
     })
 
+    //User Uploads a picture to their bio 
+    router.post("/user/add/profilepic", passport.authenticate("jwt", {session: false}), (res,req,next) => {
+        next(); 
+        // const picture = req.body.payload; 
+    })
+
     // add favorite manga entry
     // pass in through req.body an object of the following: 
     // {
@@ -95,7 +102,7 @@ const protectedRoutes = () => {
 
     
     //remove favorite manga entry
-    router.delete("/user/delete/favorite/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    router.delete("/user/delete/favorite/:id", passport.authenticate("jwt", { session: false }), cors(), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
         //find user by id first 
@@ -163,7 +170,7 @@ const protectedRoutes = () => {
     })
 
     //remove currentlyreading 
-    router.delete("/user/delete/currentlyreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    router.delete("/user/delete/currentlyreading/:id", passport.authenticate("jwt", { session: false }), cors(), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
 
@@ -236,7 +243,7 @@ const protectedRoutes = () => {
     })
 
     //remove finishedreading 
-    router.delete("/user/delete/finishedreading/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    router.delete("/user/delete/finishedreading/:id", passport.authenticate("jwt", { session: false }), cors(), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
 
@@ -304,7 +311,7 @@ const protectedRoutes = () => {
     })
 
     //remove browsinghistory 
-    router.delete("/user/delete/browsinghistory/:id", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+    router.delete("/user/delete/browsinghistory/:id", passport.authenticate("jwt", { session: false }), cors(), (req, res, next) => {
         const userId = req.user.id;
         const mangaId = req.params.id
 
