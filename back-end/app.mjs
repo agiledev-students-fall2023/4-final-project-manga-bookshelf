@@ -40,10 +40,12 @@ app.use(cors({
 })) 
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true})); 
-app.use("/static", express.static("public"))
+app.use(express.static("public"))
+
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "js")));
 
 //Sample route 
 app.get("/", (req,res)=>{
