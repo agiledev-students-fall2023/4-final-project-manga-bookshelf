@@ -23,8 +23,7 @@ function MangaProfileImage({name, imgLink, mangaId, userData}) {
                 method: "DELETE",
                 headers: myHeaders
                 })
-                const data3 = await response3.json()
-                console.log(data3) 
+                await response3.json()
             } catch (error) {
                 console.error("Error fetching or accessing db", error)
             }
@@ -46,7 +45,6 @@ function MangaProfileImage({name, imgLink, mangaId, userData}) {
                     body: JSON.stringify(mangaData)
                 })
                 const data3 = await response3.json()
-                console.log(data3) 
             } catch (error) {
                 console.error("Error fetching or accessing db", error)
             }
