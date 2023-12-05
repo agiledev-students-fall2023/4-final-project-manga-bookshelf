@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
-import userImage from "../../../assets/userImage.png"
+// import userImage from "../../../assets/userImage.png"
 
 import "./UserItem.css"
 
@@ -78,7 +78,7 @@ function UserItem({ title, user, onUnfollowClick }) {
 
     return (
         <div className='user-item'>
-            <img src={userImage} alt={user.username} onClick={navigateToProfile}/>
+            <img src={user.profileImg} alt={user.username} onClick={navigateToProfile}/>
             <span onClick={navigateToProfile}>{user.username}</span>
             
             {title === 'Follower' && isCurrentUser && (
