@@ -57,12 +57,12 @@ const UserSchema = new mongoose.Schema({
     follower: {
         // currently add 'bob' to default just for testing
         type: [],
-        default: ['bob']
+        default: []
     },
     following: {
         // currently add 'bob' to default just for testing
         type: [],
-        default: ['bob']
+        default: []
     },
 })
 

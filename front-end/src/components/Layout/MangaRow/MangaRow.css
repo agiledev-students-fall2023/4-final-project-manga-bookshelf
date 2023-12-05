@@ -31,7 +31,6 @@
     cursor: pointer;
     /* Change the cursor to a pointer to indicate clickable items */
     transition: 'transform 0.3s ease-in-out'; 
-
     opacity: 0.5; 
 }
 
