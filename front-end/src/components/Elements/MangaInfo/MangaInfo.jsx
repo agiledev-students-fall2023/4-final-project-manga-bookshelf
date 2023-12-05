@@ -7,9 +7,9 @@ import { isFavorite } from "../../../helper/helper"
 import "./MangaInfo.css"
 
 function MangaInfo({mangaData, userData}) {
-    console.log(userData)
+
     const {title, author, genres, synopsis, image, __id} = mangaData[0] || {}
-    // console.log(mangaData[0])
+
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
     const authorNames= author ? author.split(',').reverse().join(' '): ''
     const mangaImage= image && image.jpg && image.jpg.default
@@ -25,18 +25,11 @@ function MangaInfo({mangaData, userData}) {
         setMenuOpen(!isMenuOpen)
     }
 
-
     const handleChapterChange = (e) =>{
         const input = e.target.value
         const validInput= input.replace(/[^0-9\b]/g,"")
         setChapter(validInput)
     }
-
-
-    // const handleAddListClick = () => {
-    //     // console.log(`clicked on ${item}`)
-    //     setMenuOpen(false)
-    // }
 
     const handleReadingClick = async () => {
         //define headers 
@@ -53,8 +46,6 @@ function MangaInfo({mangaData, userData}) {
               headers: myHeaders
             })
             const data3 = await response3.json()
-            console.log("here is the outcome of trying to delete")
-            console.log(data3) 
           } catch (error) {
             console.error("Error fetching or accessing db in delete", error)
           }
@@ -74,28 +65,14 @@ function MangaInfo({mangaData, userData}) {
               body: JSON.stringify(mangaData)
             })
             const data3 = await response3.json()
-            console.log(data3) 
           } catch (error) {
             console.error("Error fetching or accessing db", error)
           }
         }
-        console.log(userData)
         setReading(!reading); 
         setMenuOpen(false)
       }
-    // //determine if the manga is currently favorite or not 
-    // useEffect(() => {
-    //     console.log(userData["currentlyReading"])
-    //     console.log(__id)
-    //     if (isFavorite(userData["currentlyReading"], __id)){
-    //         setReading(true) 
-    //     }else{
-    //         setReading(false)
-    //     }
-    //     console.log(userData)
-    // }, [])
-
-
+      
     const handleDoneClick = async () => {
         //define headers 
         const myHeaders = new Headers();
@@ -111,8 +88,6 @@ function MangaInfo({mangaData, userData}) {
               headers: myHeaders
             })
             const data3 = await response3.json()
-            console.log("here is the outcome of trying to delete")
-            console.log(data3) 
           } catch (error) {
             console.error("Error fetching or accessing db in delete", error)
           }
@@ -132,26 +107,13 @@ function MangaInfo({mangaData, userData}) {
               body: JSON.stringify(mangaData)
             })
             const data3 = await response3.json()
-            console.log(data3) 
           } catch (error) {
             console.error("Error fetching or accessing db", error)
           }
         }
-        console.log(userData)
         setDone(!done); 
         setMenuOpen(false)
       }
-    // //determine if the manga is currently favorite or not 
-    // useEffect(() => {
-    //     console.log(userData["currentlyReading"])
-    //     console.log(__id)
-    //     if (isFavorite(userData["currentlyReading"], __id)){
-    //         setReading(true) 
-    //     }else{
-    //         setReading(false)
-    //     }
-    //     console.log(userData)
-    // }, [])
 
 
     const handleWantClick = async () => {
@@ -169,8 +131,6 @@ function MangaInfo({mangaData, userData}) {
               headers: myHeaders
             })
             const data3 = await response3.json()
-            console.log("here is the outcome of trying to delete")
-            console.log(data3) 
           } catch (error) {
             console.error("Error fetching or accessing db in delete", error)
           }
@@ -190,27 +150,13 @@ function MangaInfo({mangaData, userData}) {
               body: JSON.stringify(mangaData)
             })
             const data3 = await response3.json()
-            console.log(data3) 
           } catch (error) {
             console.error("Error fetching or accessing db", error)
           }
         }
-        console.log(userData)
         setWant(!want); 
         setMenuOpen(false)
       }
-    // //determine if the manga is currently favorite or not 
-    // useEffect(() => {
-    //     console.log(userData["currentlyReading"])
-    //     console.log(__id)
-    //     if (isFavorite(userData["currentlyReading"], __id)){
-    //         setReading(true) 
-    //     }else{
-    //         setReading(false)
-    //     }
-    //     console.log(userData)
-    // }, [])
-
 
     return (
         <div className= "MangaInfo-container">

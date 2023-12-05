@@ -17,8 +17,6 @@ function UserItem({ title, user, onUnfollowClick }) {
     }
 
     useEffect(() => {
-        // console.log(profileId)
-        // console.log(user.following)
         setIsFollowed(user.follower.includes(profileId));
     }, [profileId, user.follower])
 
@@ -26,7 +24,6 @@ function UserItem({ title, user, onUnfollowClick }) {
         if (loading) {
             return
         }
-
         setLoading(true)
     
         const actionUrl = isFollowed 

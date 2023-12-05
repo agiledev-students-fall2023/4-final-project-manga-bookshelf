@@ -16,32 +16,24 @@ function Works() {
 
     useEffect(() => {
         async function fetchData() {
-            // try {
-                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/id/${encodeURIComponent(mangaId)}`)
-                const data1 = await response.json()
-                setData([data1])
-                
-                const myHeaders = new Headers();
-    
-                myHeaders.append('Content-Type', 'application/json');
-                myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/id/${encodeURIComponent(mangaId)}`)
+            const data1 = await response.json()
+            setData([data1])
             
-                const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
-                method: "GET",
-                headers: myHeaders
-                })
-                const data3 = await response3.json()
-                console.log(data3)
-                setUser(data3.user)
+            const myHeaders = new Headers();
 
-            // } catch (error) {
-            //     console.log('Error fetching manga info data:', error)
-            // }
+            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
         
+            const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+            method: "GET",
+            headers: myHeaders
+            })
+            const data3 = await response3.json()
+            setUser(data3.user)
         }
 
         fetchData()
-        console.log(user)
         
     }, [mangaId])
 
