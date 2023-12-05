@@ -1,7 +1,7 @@
 //takes in an array and current Manga Id and returns true if exists and false if not
 function isFavorite(FavoriteArray, currentId){
-    console.log("here is fav array")
-    console.log(FavoriteArray)
+    // console.log("here is fav array")
+    // console.log(FavoriteArray)
 
     if (FavoriteArray === undefined){
         console.error("Something has gone wrong") 
