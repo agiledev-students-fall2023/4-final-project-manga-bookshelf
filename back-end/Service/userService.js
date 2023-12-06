@@ -56,6 +56,27 @@ class UserService {
     }
   }
 
+  //change username
+  async changeUser(req, res) {
+    try {
+      const username = req.params.username;
+      const newUsername = req.body.username;
+      const user = await UserModel.findOneAndUpdate(
+        { username: username },
+        { $set: { username: newUsername } },
+        { new: true }
+      );
+  
+      if (!user) {
+        throw new Error("User not found");
+      }
+  
+      res.json({ user, message: 'Bio updated successfully' });
+    } catch (err) {
+      res.status(404).json({ error: "Cannot update bio" });
+    }
+  }
+
   // to change bio for a user
   async changeBio(req, res) {
     try {
@@ -76,6 +97,29 @@ class UserService {
       res.status(404).json({ error: "Cannot update bio" });
     }
   }
+
+  // to change the profile picture of a user
+  async changeProfileImage(req, res) {
+    try {
+      const username = req.params.username;
+      const newImage = req.body.image;
+  
+      const user = await UserModel.findOneAndUpdate(
+        { username: username },
+        { $set: { profileImage: newImage } }, 
+        { new: true }
+      );
+  
+      if (!user) {
+        throw new Error("User not found");
+      }
+  
+      res.json({ user, message: 'Profile image updated successfully' });
+    } catch (err) {
+      res.status(404).json({ error: "Cannot update profile image" });
+    }
+  }
+
 
   // to follow a user
   async followUser(req, res) {
