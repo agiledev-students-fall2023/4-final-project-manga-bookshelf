@@ -137,7 +137,7 @@ const Edit = () => {
         />
       </div>
       <div className="edit-main">
-        <img src={file} style={{width: "100px", height:"100px"}} alt="No picture selected"/>
+        <img src={file} alt="No picture selected"/>
       </div>
 
       <div className="edit-main">

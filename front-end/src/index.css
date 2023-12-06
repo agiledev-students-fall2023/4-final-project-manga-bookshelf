@@ -1,10 +1,16 @@
 /* Need to add more variable so css isn't a pain*/
 html {
   box-sizing: border-box;
-  --bg-color-primary: red; 
-  --bg-color--secondary:blue; 
+  --bg-color-primary: floralwhite;
+  --bg-color--secondary:cornsilk; 
+
   --button-color-primary:#3992ff;
   --star-color: yellow; 
+
+  --font-size-main-dashboard: 'Courier New', Courier, monospace;
+  --font-size-subtext-dashboard: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
+  --font-size-main-user-username: 'Courier New', Courier, monospace;
+  --font-size-subtext-user-bio: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif
 }
 
 *,
@@ -39,6 +45,7 @@ body {
   display: flex;
   height: 100%;
   width: 100%;
+  background-color: var(--bg-color-primary);
 }
 
 textarea, 
@@ -147,8 +154,38 @@ button:active {
 
 }
 
-/* for medium screenes */
 @media screen and (min-width: 768px) and (max-width: 1024px){
+  /* #root{
+    color: green; 
+  } */
+
+  #root .Header-sidebar .Header-navigation-sm {
+    display: none;
+  }
+
+
+  .ForumPost-col-lables, .ForumPost-col-entries, .ForumPost-row> input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .MangaInfo-main{
+    display: flex;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #0000001a;
+    border-radius: 5px;
+    flex-direction:column;
+    align-items:center;
+  }  
+
+  .MangaInfo-left {
+    max-width: 50%;
+  }
+
+}
+
+/* for medium screenes */
+@media screen and (min-width: 769px) and (max-width: 1024px){
   /* #root{
     color: green; 
   } */

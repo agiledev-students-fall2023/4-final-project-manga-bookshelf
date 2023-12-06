@@ -100,74 +100,56 @@ function Profile() {
   }, [profileId, isCurrentUser]);
 
   return (
-    <>
-      {!userExists ? (
-        <h1>User does not exist</h1>
-      ) : (
-        <main className="profile-main">
-          <div className="profile-contact">
-            <div className="profile-image">
-              <img src={profileInfo.profileImg} alt="No Img Detected" />
-            </div>
+    <main className="profile-main">
+      <div className="profile-contact">
+        <div className="profile-image">
+          <img
+            src={profileInfo.profileImg}
+            alt="No Img Detected"
+          />
+        </div>
 
-            <div className="profile-bio">
-              <h1>
-                Welcome,{" "}
-                {profileInfo.username ? (
-                  <>{profileInfo.username}</>
-                ) : (
-                  <i>No Name</i>
-                )}{" "}
-              </h1>
+        <div className="profile-bio">
+          <h1>
+            Welcome,{profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
+          </h1>
 
-              <div className="follow-section">
-                <Link
-                  to={`/profile/${profileId}/follower`}
-                  activeclassname="current"
-                >
-                  <button type="submit">Follower</button>
-                </Link>
-                <Link
-                  to={`/profile/${profileId}/following`}
-                  activenlassname="current"
-                >
-                  <button type="submit">Following</button>
-                </Link>
-              </div>
-
-              {profileInfo.bio && <p>{profileInfo.bio}</p>}
-            </div>
-
-            <div className="edit-section">
-              {!isCurrentUser && (
-                <button
-                  className={`follow-button ${
-                    isFollowed ? "followed" : "not-followed"
-                  }`}
-                  onClick={handleFollowClick}
-                >
-                  {isFollowed ? "Unfollow" : "Follow +"}
-                </button>
-              )}
-              {isCurrentUser && (
-                <Link
-                  to={`/profile/${profileId}/edit`}
-                  activeclassname="current"
-                >
-                  <button type="submit">Edit Profile</button>
-                </Link>
-              )}
-            </div>
+          <div className="follow-section">
+            <Link to={`/profile/${profileId}/follower`} activeclassname="current">
+              <button type="submit">Follower</button>
+            </Link>
+            <Link to={`/profile/${profileId}/following`} activenlassname="current">
+              <button type="submit">Following</button>
+            </Link>
           </div>
+            {profileInfo.bio && <p> {profileInfo.bio}</p>}
+        </div>
 
-          <section className="myList">
-            {titles.map((t) => (
-              <MangaRow title={t} MangaList={groupListsByTitle(t)} />
-            ))}
-          </section>
-        </main>
-      )}
-    </>
+        <div className="edit-section">
+          { !isCurrentUser && (
+              <button 
+                className={`follow-button ${isFollowed ? 'followed' : 'not-followed'}`}
+                onClick={handleFollowClick}
+              >
+                { isFollowed ? 'Unfollow' : 'Follow +' }
+              </button>
+          )}
+          { isCurrentUser && (
+              <Link to={`/profile/${profileId}/edit`} activeclassname="current">
+                <button type="submit">Edit Profile</button>
+              </Link>
+            )
+          }
+
+        </div>
+      </div>
+
+      <section className="myList">
+        {titles.map((t) => (
+          <MangaRow title={t} MangaList={groupListsByTitle(t)} />
+        ))}
+      </section>
+    </main>
   );
 }
 export default Profile;
