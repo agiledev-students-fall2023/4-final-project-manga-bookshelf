@@ -143,6 +143,7 @@ async function getRecentMangas(...num) {
     }
     const filter = {
         orderBy: "start_date",
+        sort: "desc",
     }
     // search by filter
     const payload = await client.manga.search('', filter, 0, entries)
