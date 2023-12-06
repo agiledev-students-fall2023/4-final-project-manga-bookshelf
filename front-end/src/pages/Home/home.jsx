@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MangaRow from '../../components/Layout/MangaRow/MangaRow'
 
 import "./home.css"
-
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 function Home() {
 
@@ -40,11 +40,9 @@ function Home() {
 
   }, [])
 
-  // TODO: get a list of things that the user has added to their profile 
-
   return (
     <div className="home-main">
-      <MangaRow title={"Trending"} MangaList={trending}/>
+      <MangaRow title={"Trending"} MangaList={trending} icon={TrendingUpIcon}/>
       <MangaRow title={"Recently Updated"} MangaList={recentlyUpdated} />
       <MangaRow title={"My Favorite"} MangaList={myList} />
     </div>

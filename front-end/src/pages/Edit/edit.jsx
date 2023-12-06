@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import "./edit.css"
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Snackbar from '@mui/material/Snackbar';
+import { BsArrowLeft } from "react-icons/bs";
 
 
 const Edit = () => {
   //object format for user info
-
+  const navigate = useNavigate();
+  const { profileId } = useParams();
   const [file, setFile] = useState(""); 
 
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
@@ -21,6 +24,10 @@ const Edit = () => {
 
   const handleSuccessAlert = () => {
     setAlertOpen(true);
+  };
+
+  const handleReturn = () => {
+    navigate(`/profile/${profileId}`);
   };
 
   const handleSubmit = async (e) => {
@@ -101,6 +108,10 @@ const Edit = () => {
 
   return (
     <div className="edit-main">
+                <button className="return-button" onClick={handleReturn}>
+            <BsArrowLeft className="return-arrow" />
+            Return to Profile Page
+          </button>
       <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
       <Snackbar
@@ -137,7 +148,7 @@ const Edit = () => {
         />
       </div>
       <div className="edit-main">
-        <img src={file} style={{width: "100px", height:"100px"}} alt="No picture selected"/>
+        <img src={file} alt="No picture selected"/>
       </div>
 
       <div className="edit-main">

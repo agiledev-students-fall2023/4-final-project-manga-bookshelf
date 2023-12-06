@@ -42,3 +42,10 @@
 .edit-main > form > div > a:active{
   color: rgb(255, 0, 0);
 }
+
+.edit-main > img{
+  width: 100px; 
+  height: 100px; 
+  border-radius: 50%; 
+  border: 5px black dotted; 
+}

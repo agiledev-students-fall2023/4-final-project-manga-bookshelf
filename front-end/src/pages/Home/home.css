@@ -1,3 +1,16 @@
+#detail {
+    background-color:var(--bg-color-primary);
+    padding: 50px;
+    padding-left: 4rem;
+    width: 75%;
+}
+
+#detail.loading {
+    opacity: 0.25;
+    transition: opacity 200ms;
+    transition-delay: 200ms;
+}
+
 .home-main{
     height: 100%; 
     overflow-y: auto; 
@@ -7,6 +20,8 @@
     /* Internet Explorer */
 }
 
+
 .home-main::-webkit-scrollbar {
     display: none;
 }
+
