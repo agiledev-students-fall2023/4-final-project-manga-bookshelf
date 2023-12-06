@@ -1,4 +1,3 @@
-import { createContext, useContext } from 'react';
-import { useAuth } from '../hook/useAuth';
+import { createContext } from 'react';
 
 export const AuthContext = createContext()

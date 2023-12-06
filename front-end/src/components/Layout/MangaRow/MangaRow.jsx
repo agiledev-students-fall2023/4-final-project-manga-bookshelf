@@ -10,14 +10,14 @@ import { styled } from "@mui/material/styles";
 import "./MangaRow.css";
 
 //Horizontal scroll menu from https://reactjsexample.com/a-custom-react-hook-for-smooth-horizontal-scrolling/
-const HoverableIcon_left = styled(ArrowCircleLeftIcon)({
+const HoverableIconLeft = styled(ArrowCircleLeftIcon)({
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "translateX(-5px)", // This moves the icon 10 pixels to the right on hover
   },
 });
 
-const HoverableIcon_right = styled(ArrowCircleRightIcon)({
+const HoverableIconRight = styled(ArrowCircleRightIcon)({
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "translateX(5px)", // This moves the icon 10 pixels to the right on hover
@@ -29,7 +29,6 @@ function MangaRow({ title, icon, MangaList }) {
     useSmoothHorizontalScroll();
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
 
   // filter out duplicate manga
   const uniqueMangaList = [];
@@ -96,7 +95,7 @@ function MangaRow({ title, icon, MangaList }) {
           <div className="MangaRow-fadeDownContent">
             {MangaList[0] && MangaList[0]["result"].length !== 0 ? (
               <>
-                <HoverableIcon_left
+                <HoverableIconLeft
                   className="MangaRow-arrowLeft"
                   fontSize="large"
                   onClick={() => scrollTo(-500)}
@@ -116,7 +115,7 @@ function MangaRow({ title, icon, MangaList }) {
                     />
                   ))}
                 </div>
-                <HoverableIcon_right
+                <HoverableIconRight
                   className="MangaRow-arrowRight"
                   fontSize="large"
                   onClick={() => scrollTo(500)}
