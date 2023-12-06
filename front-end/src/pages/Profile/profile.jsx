@@ -146,7 +146,7 @@ function Profile() {
 
       <section className="myList">
         {titles.map((t) => (
-          <MangaRow title={t} MangaList={groupListsByTitle(t)} />
+          <MangaRow key={t} title={t} MangaList={groupListsByTitle(t)} />
         ))}
       </section>
     </main>

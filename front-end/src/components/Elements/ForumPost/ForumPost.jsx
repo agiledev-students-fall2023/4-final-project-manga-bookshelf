@@ -5,21 +5,21 @@ import "./ForumPost.css"
 function ForumPost({username}){
     const user= username
     return (
-        <div class= "ForumPost-forum">
-            <form class="ForumPost-comment-entry">
-                <div class="ForumPost-row">
-                    <div class="ForumPost-col-labels">
-                        <label for="username"> Username </label>
+        <div className= "ForumPost-forum">
+            <form className="ForumPost-comment-entry">
+                <div className="ForumPost-row">
+                    <div className="ForumPost-col-labels">
+                        <label htmlFor="username"> Username </label>
                     </div>
-                    <div class="ForumPost-col-entries">
+                    <div className="ForumPost-col-entries">
                         <p>{user}</p>
                     </div>
                 </div>
-                <div class="ForumPost-row">
-                    <div class="ForumPost-col-labels">
-                        <label for="comment"> Comment </label>
+                <div className="ForumPost-row">
+                    <div className="ForumPost-col-labels">
+                        <label htmlFor="comment"> Comment </label>
                     </div>
-                    <div class="ForumPost-col-entries">
+                    <div className="ForumPost-col-entries">
                         <textarea 
                             id="comment"
                             name="comment" 
@@ -29,7 +29,7 @@ function ForumPost({username}){
                     </div>
                 </div>
                 <br></br>
-                <div class="ForumPost-row">
+                <div className="ForumPost-row">
                     <input 
                         type="submit" 
                         value="Submit"
