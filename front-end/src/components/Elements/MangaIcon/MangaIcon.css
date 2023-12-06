@@ -31,3 +31,17 @@
     font-family: var(--font-size-subtext-dashboard);
     margin-top: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .MangaIcon-main img{
+        height: 240px;
+        width: 160px;
+    }
+
+    .MangaIcon-favorite{
+        position:relative; 
+        left: 65px; 
+        top: 35px;
+        z-index: 1; 
+    }
+}
