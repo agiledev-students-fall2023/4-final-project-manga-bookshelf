@@ -15,7 +15,7 @@ let jwtOptions = {
 
 //define the method that is used by passport to verify the contents of the token 
 const jwtVerifyToken = async function (jwt_payload, next) {
-    console.log("JWT Payload received,", jwt_payload)
+    console.log("JWT received")
 
     //check if token has expired 
     const expirationDate = new Date(jwt_payload.exp * 1000)
@@ -26,7 +26,6 @@ const jwtVerifyToken = async function (jwt_payload, next) {
     //find the user in the database 
     const userId = jwt_payload.id //convert string id to objectid
     const user = await UserModel.findOne({ _id: userId }).exec()
-    console.log(user)
     if (user) {
         next(null, user)
     } else {

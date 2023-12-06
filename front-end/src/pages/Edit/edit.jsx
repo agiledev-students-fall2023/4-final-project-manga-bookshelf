@@ -7,6 +7,9 @@ import Snackbar from '@mui/material/Snackbar';
 
 const Edit = () => {
   //object format for user info
+
+  const [file, setFile] = useState(""); 
+
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
   const [alertOpen, setAlertOpen] = useState(false);
   const handleAlertClose = (event, reason) => {
@@ -82,8 +85,6 @@ const Edit = () => {
   }, [currentProfileInfo]);
   
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -91,6 +92,12 @@ const Edit = () => {
       [name]: value,
     });
   };
+
+  async function handleProfileImageChange(e){
+    console.log(e.target.files) 
+    setFile(URL.createObjectURL(e.target.files[0])) 
+    console.log(file) 
+  }
 
   return (
     <div className="edit-main">
@@ -120,27 +127,17 @@ const Edit = () => {
         </div>
 
       <div className="edit-main">
-        <label htmlFor="socialMedia">Twitter Link:</label>
+        <label htmlFor="avatar">Avatar (Profile Picture):</label>
         <input
-          type="text"
-          id="socialMedia"
-          name="socialMedia"
-          value={formData.socialMedia}
-          onChange={handleChange}
+          type="file"
+          id="avatar"
+          name="avatar"
+          onChange={handleProfileImageChange}
           required
         />
       </div>
-
       <div className="edit-main">
-        <label htmlFor="avatar">Avatar (Profile Picture):</label>
-        <input
-          type="text"
-          id="avatar"
-          name="avatar"
-          value={formData.avatar}
-          onChange={handleChange}
-          required
-        />
+        <img src={file} style={{width: "100px", height:"100px"}} alt="No picture selected"/>
       </div>
 
       <div className="edit-main">

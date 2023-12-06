@@ -41,8 +41,6 @@ const authenticationRouter = () => {
     router.post("/login", async function (req, res, next){
         const username = req.body.username; 
         const password = req.body.password; 
-        console.log("username", username)
-        console.log("password", password)
 
         if (!username || !password){
             res.status(401).json({success: false, message: "No username or password supplied"})
@@ -53,12 +51,12 @@ const authenticationRouter = () => {
         try{ 
             const user = await UserModel.findOne({ username: username }).exec(); 
             if (!user){
-                console.log("User not found") 
+                console.error("User not found") 
                 res.send("User not found")
                 next(); 
             }
             else if (!user.validPassword(password)) { 
-                console.log("Incorrect Password") 
+                console.error("Incorrect Password") 
                 res.send("In correct Password")
                 next() 
             }
@@ -73,7 +71,7 @@ const authenticationRouter = () => {
             })
             next();
         } catch (err) {
-            console.log("error looking up user:",err) 
+            console.error("error looking up user:",err) 
             next(); 
         }
     })

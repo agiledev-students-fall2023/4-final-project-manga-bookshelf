@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import testimg from "../../../assets/testimg.jpeg"
+
 import Star from '../Star/Star'
-import Works from "../../../pages/Works/Works"
 import { isFavorite } from "../../../helper/helper"
 
 import "./MangaIcon.css"
-//TODO: import in the correct information for manga pages 
 
 
 function MangaIcon({name, imgLink, mangaId, userData}) {
 
-  // This will make styles more consistent
   const [favorite, setFavorite] = useState(false)
   const [favoriteList, setFavoriteList] = useState([])
-
 
   const navigate = useNavigate()
 
@@ -23,7 +19,7 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
   }
 
   const handleFavorite = async () => {
-    //define headers 
+    //define headers to send to backend
     const myHeaders = new Headers();
     
     myHeaders.append('Content-Type', 'application/json');
@@ -37,7 +33,6 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
           headers: myHeaders
         })
         const data3 = await response3.json()
-        console.log(data3) 
       } catch (error) {
         console.error("Error fetching or accessing db", error)
       }
@@ -59,7 +54,6 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
           body: JSON.stringify(mangaData)
         })
         const data3 = await response3.json()
-        console.log(data3) 
       } catch (error) {
         console.error("Error fetching or accessing db", error)
       }
@@ -69,8 +63,6 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
 
   //determine if the manga is currently favorite or not 
   useEffect(() => {
-    console.log(userData)
-    console.log(mangaId)
     if (isFavorite(userData["favorite"], mangaId)){
       setFavorite(true) 
     }else{

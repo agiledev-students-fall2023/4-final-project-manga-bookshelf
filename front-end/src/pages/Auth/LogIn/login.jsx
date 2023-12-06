@@ -22,13 +22,7 @@ export default function Login() {
     async function handleSubmit(e){
         e.preventDefault();
         const data = new FormData(e.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
         const result = await auth.signin(data.get('username'), data.get('password'))
-        console.log(result) 
-        console.log(JSON.parse(localStorage.getItem('user')))
         navigate('/')
     };
 

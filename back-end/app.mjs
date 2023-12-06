@@ -23,7 +23,6 @@ import mongoose from "mongoose"
 import UserModel from './Model/userModel.js';
 
 // connect to the database
-// console.log(`Conneting to MongoDB at ${process.env.MONGODB_URI}`)
 mongoose.connect(process.env.DATABASE_URI).then(()=>{
     console.log("connected to MongonDB Atlas")
 }).catch((err) => {
@@ -32,13 +31,21 @@ mongoose.connect(process.env.DATABASE_URI).then(()=>{
 
 //Define middleware to use here
 app.use(morgan("dev")) 
-app.use(cors()) //make sure to change this to the frontend
+app.use(cors({
+    "origin": process.env.FRONTEND_ROUTE,
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "allowHeaders": ['Content-Type', 'Authorization'],
+    "optionsSuccessStatus": 204
+})) 
 app.use(express.json()) 
 app.use(express.urlencoded({extended:true})); 
-app.use("/static", express.static("public"))
+app.use(express.static("public"))
+
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "js")));
 
 //Sample route 
 app.get("/", (req,res)=>{
@@ -55,6 +62,7 @@ app.use("/protected", protectedRoutes())
 app.use(`/manga`, mangaRouter)
 app.use(`/user`, userRouter)
 app.use(`/comment`, commentRouter)
+
 //other stuff (should put this in router) 
 app.get(`/comment/MockComments`, (req, res) => {
     res.json(forumData);
