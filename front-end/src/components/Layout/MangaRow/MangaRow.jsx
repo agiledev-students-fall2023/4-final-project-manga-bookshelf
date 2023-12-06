@@ -24,11 +24,12 @@ const HoverableIcon_right = styled(ArrowCircleRightIcon)({
   },
 });
 
-function MangaRow({ title, MangaList }) {
+function MangaRow({ title, icon, MangaList }) {
   const { scrollContainerRef, handleScroll, scrollTo } =
     useSmoothHorizontalScroll();
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
 
   // filter out duplicate manga
   const uniqueMangaList = [];
@@ -66,7 +67,9 @@ function MangaRow({ title, MangaList }) {
     }
     getData();
   }, []);
+  
 
+  
   if (isLoading) {
     return (
       <>
@@ -88,42 +91,45 @@ function MangaRow({ title, MangaList }) {
 
   return (
     <>
-      <h1>{title}</h1>
       <div className="MangaRow-container">
-        {MangaList[0] && MangaList[0]["result"].length !== 0 ? (
-          <>
-            <HoverableIcon_left
-              className="MangaRow-arrowLeft"
-              fontSize="large"
-              onClick={() => scrollTo(-500)}
-            />
-            <div
-              className="MangaRow-main"
-              ref={scrollContainerRef}
-              onScroll={handleScroll}
-            >
-              {uniqueMangaList.map((ele) => (
-                <MangaIcon
-                  key={ele["__id"]}
-                  name={ele["title"]}
-                  imgLink={ele["image"]}
-                  mangaId={ele["__id"]}
-                  userData={user}
+        <h1 className="MangaRow-fadeDownTitle">{title}</h1>
+          <div className="MangaRow-fadeDownContent">
+            {MangaList[0] && MangaList[0]["result"].length !== 0 ? (
+              <>
+                <HoverableIcon_left
+                  className="MangaRow-arrowLeft"
+                  fontSize="large"
+                  onClick={() => scrollTo(-500)}
                 />
-              ))}
+                <div
+                  className="MangaRow-main"
+                  ref={scrollContainerRef}
+                  onScroll={handleScroll}
+                >
+                  {uniqueMangaList.map((ele) => (
+                    <MangaIcon
+                      key={ele["__id"]}
+                      name={ele["title"]}
+                      imgLink={ele["image"]}
+                      mangaId={ele["__id"]}
+                      userData={user}
+                    />
+                  ))}
+                </div>
+                <HoverableIcon_right
+                  className="MangaRow-arrowRight"
+                  fontSize="large"
+                  onClick={() => scrollTo(500)}
+                />
+              </>
+            ) : (
+              <MangaListEmpty />
+            )}
             </div>
-            <HoverableIcon_right
-              className="MangaRow-arrowRight"
-              fontSize="large"
-              onClick={() => scrollTo(500)}
-            />
-          </>
-        ) : (
-          <MangaListEmpty />
-        )}
       </div>
     </>
   );
+      
 }
 
 export default MangaRow;

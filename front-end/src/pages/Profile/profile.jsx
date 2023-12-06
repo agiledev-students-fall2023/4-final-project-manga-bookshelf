@@ -90,7 +90,7 @@ function Profile() {
 
         <div className="profile-bio">
           <h1>
-            Welcome, {profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
+            Welcome,{profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
           </h1>
 
           <div className="follow-section">
@@ -101,8 +101,7 @@ function Profile() {
               <button type="submit">Following</button>
             </Link>
           </div>
-
-          {profileInfo.bio && <p>{profileInfo.bio}</p>}
+            {profileInfo.bio && <p> {profileInfo.bio}</p>}
         </div>
 
         <div className="edit-section">

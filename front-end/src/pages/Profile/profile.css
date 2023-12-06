@@ -4,6 +4,7 @@
 }
 
 .profile-contact h1 {
+    font-family: var(--font-size-main-user-username); 
     text-align: left;
     font-size: 2rem;
     font-weight: 700;
@@ -99,6 +100,10 @@
 
 .profile-main::-webkit-scrollbar {
     display: none;
+}
+
+.profile-bio > p{
+    font-family: var(--font-size-subtext-user-bio);
 }
 
 @media screen and (max-width: 768px) {
