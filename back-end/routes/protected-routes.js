@@ -351,7 +351,7 @@ const protectedRoutes = () => {
     })
 
     //change user profile
-    router.post("/user/edit/profile/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+    router.post("/user/edit/user/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
         try {
           await UserService.changeUser(req, res);
           next();
@@ -382,6 +382,7 @@ const protectedRoutes = () => {
           res.status(500).json({ success: false, message: "Error updating profile image" });
         }
       });
+
     return router 
 }
 
