@@ -73,8 +73,8 @@ function MangaRow({ title, icon, MangaList }) {
   if (isLoading) {
     return (
       <>
-        <h1>{title}</h1>
         <div className="MangaRow-container">
+          <h1 className="MangaRow-fadeDownTitle">{title}</h1>
           <div
             className="MangaRow-main"
             ref={scrollContainerRef}

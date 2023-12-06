@@ -17,6 +17,7 @@
     justify-content: center;
     height: 100%;
     max-width: 30%;
+    min-width: 250px;
 }
   
 .MangaInfo-right {
