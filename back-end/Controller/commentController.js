@@ -14,3 +14,4 @@ commentRouter.post(`/comments/save`, commentService.saveComment);
 commentRouter.get(`/grouped`, commentService.getCommentsByTopic);
 
 export default commentRouter;
+
