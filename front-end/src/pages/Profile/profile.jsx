@@ -155,7 +155,7 @@ function Profile() {
           src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
           alt="Profile"
         />) 
-        : (
+        (
           <img src={loadingImg} alt={profileInfo.username} />
         )}
         </div>
