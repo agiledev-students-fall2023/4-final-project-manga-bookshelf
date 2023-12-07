@@ -11,24 +11,36 @@ function MangaInfo({mangaData, userData}) {
     const [reading, setReading] = useState(false)
     const [done, setDone] = useState(false)
     const [want, setWant] = useState(false)
-
     const {title, author, genres, synopsis, image, __id} = mangaData[0] || {}
     const genresArray = genres ? Object.values(genres).map(genre => genre.name) : []
     const authorNames= author ? author.split(',').reverse().join(' '): ''
     const mangaImage= image && image.jpg && image.jpg.default
 
     const [chapter, setChapter] = useState('')
+    const [oldChapter, setOldChapter]= useState('0')
     const [isMenuOpen, setMenuOpen] =useState(false)
 
+    console.log(userData)
 
     const handleAddClick = () => {
         setMenuOpen(!isMenuOpen)
     }
 
     const handleChapterChange = (e) =>{
-        const input = e.target.value
-        const validInput= input.replace(/[^0-9\b]/g,"")
-        setChapter(validInput)
+      const input = e.target.value
+      const validInput= input.replace(/[^0-9\b]/g,"")
+      setChapter(validInput)
+      console.log(input)
+
+      const updatedUserData = {
+        ...userData,
+        currentlyReading: userData.currentlyReading.map((manga) => {
+          if (manga.__id === __id) {
+            return { ...manga, chapter: validInput };
+          }
+          return manga;
+        }),
+      };
     }
 
     const handleReadingClick = async () => {
@@ -56,7 +68,8 @@ function MangaInfo({mangaData, userData}) {
               image: mangaImage,
               __id: __id,
               authorName: authorNames,
-              authorImage: "N/A"
+              authorImage: "N/A",
+              chapter: chapter
           }
         try {
           const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/add/currentlyreading`, {
@@ -69,7 +82,8 @@ function MangaInfo({mangaData, userData}) {
           console.error("Error fetching or accessing db", error)
         }
       }
-      setReading(!reading); 
+      setReading(!reading);
+      console.log(chapter) 
       setMenuOpen(false)
   
     }
@@ -99,7 +113,8 @@ function MangaInfo({mangaData, userData}) {
               image: mangaImage,
               __id: __id,
               authorName: authorNames,
-              authorImage: "N/A"
+              authorImage: "N/A",
+              chapter: chapter
           }
         try {
           const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/add/finishedreading`, {
@@ -142,7 +157,8 @@ function MangaInfo({mangaData, userData}) {
                 image: mangaImage,
                 __id: __id,
                 authorName: authorNames,
-                authorImage: "N/A"
+                authorImage: "N/A",
+                chapter: chapter
             }
           try {
             const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/add/wantreading`, {
@@ -163,18 +179,24 @@ function MangaInfo({mangaData, userData}) {
       useEffect(() => {
         if (isFavorite(userData["currentlyReading"], __id)){
           setReading(true) 
+          const entry=userData.currentlyReading.find((manga) => manga.__id === __id).chapter
+          console.log(userData.currentlyReading.find((manga) => manga.__id === __id).chapter)
+          // setOldChapter(userData.currentlyReading.chapter)
+          setChapter(entry || '')
         }else {
           setReading(false)
         }
 
         if (isFavorite(userData["wantReading"], __id)){
-          setWant(true) 
+          setWant(true)
+          setOldChapter(userData.wantReading.chapter)
         }else{
           setWant(false)
         }
 
         if (isFavorite(userData["finishReading"], __id)){
-          setDone(true) 
+          setDone(true)
+          setOldChapter(userData.finishReading.chapter)
         }else {
           setDone(false)
         }
@@ -224,16 +246,16 @@ function MangaInfo({mangaData, userData}) {
                 </div>
                 <div className= "MangaInfo-right">
                     <div className= "MangaInfo-content">
-                        {/* <div className= "MangaInfo-chapter-tracker">
+                        <div className= "MangaInfo-chapter-tracker">
                             <label> Chapter: </label>
                             <input
                                 type="text"
                                 id="chapterInput"
                                 value={chapter}
-                                placeholder="0"
+                                placeholder= {oldChapter}
                                 onChange={handleChapterChange}
                             />
-                        </div> */}
+                        </div>
                         <h3> Author: </h3>
                         <p>  {authorNames} </p>
                         <h3> Genres: </h3>
