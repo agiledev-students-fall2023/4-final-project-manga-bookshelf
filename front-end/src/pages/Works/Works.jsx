@@ -13,7 +13,9 @@ function Works() {
     const [reading, setReading] = useState([])
     const [done, setDone] = useState([])
     const [want, setWant] = useState([])
-    const [isLoading, setIsLoading] = useState(true);
+
+    const [isLoading, setIsLoading] = useState(true)
+
 
     useEffect(() => {
         async function fetchData() {
@@ -32,12 +34,15 @@ function Works() {
             })
             const data3 = await response3.json()
             setUser(data3.user)
+
             setIsLoading(false); // Set loading to false after fetching data
+
         }
 
         fetchData()
         
     }, [])
+
 
     if (isLoading) {
         return <div>Loading...</div>; // Or any other loading indicator
