@@ -1,4 +1,4 @@
-import imgLink from "./loading.png";
+import imgLink from "../../../assets/loading.png";
 import "../MangaIcon/MangaIcon.css";
 import Star from "../Star/Star";
 

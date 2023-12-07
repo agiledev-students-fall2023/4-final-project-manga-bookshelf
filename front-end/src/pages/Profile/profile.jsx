@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import loadingImg from "../../assets/loading.png";
 import { imagefrombuffer } from "imagefrombuffer"; //first import 
 
 import "./profile.css";
@@ -60,7 +61,7 @@ function Profile() {
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
-    setLoading(true) 
+    // setLoading(true) 
     async function getProfileLists() {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
@@ -92,7 +93,8 @@ function Profile() {
         return;
       }
       setProfileInfo(data);
-      console.log(profileInfo)
+      setUserData(data.profileImg)
+      console.log(data.profileImg)
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
@@ -102,6 +104,7 @@ function Profile() {
       }
     }
     getUserInfo();
+    // console.log(userData)
     getProfileLists();
   }, [profileId, isCurrentUser]);
 
@@ -119,7 +122,7 @@ function Profile() {
       })
 
       const data = await response.json() 
-      setUserData(data.user.profileImg)
+      // setUserData(data.user.profileImg)
       // const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/profileImage/`,
       //   {
       //     method: "GET",
@@ -129,18 +132,21 @@ function Profile() {
       
     }
     getUserInfo() 
-    setLoading(false) 
+    // setLoading(false) 
   }, [])
 
   return (
     <main className="profile-main">
       <div className="profile-contact">
         <div className="profile-image">
-        {userData.contentType && (
+        {userData.contentType ? (
           <img
           src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
           alt="Profile"
-        />)}
+        />) 
+        : (
+          <img src={loadingImg} alt={profileInfo.username} />
+        )}
         </div>
             
         <div className="profile-bio">
