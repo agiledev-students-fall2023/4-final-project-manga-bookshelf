@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
-import { imagefrombuffer } from "imagefrombuffer"; //first import 
 
 import "./profile.css";
 import {Buffer} from "buffer"; 
 
 const titles = ["Currently Reading", "Done", "Want to Read"];
+
+
 
 function Profile() {
   const [profileLists, setProfileLists] = useState([]);
@@ -20,6 +21,10 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [userExists, setUserExists] = useState(true);
   const [userData, setUserData] = useState({});
+
+  const [reading, setReading] = useState([])
+  const [done, setDone] = useState([])
+  const [want, setWant] = useState([])
 
   const handleFollowClick = () => {
     if (loading) {
@@ -60,14 +65,14 @@ function Profile() {
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
-    setLoading(true) 
-    async function getProfileLists() {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
-      );
-      const data = await response.json();
-      setProfileLists([data.result]);
-    }
+  //   setLoading(true) 
+  //   async function getProfileLists() {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
+  //     );
+  //     const data = await response.json();
+  //     setProfileLists([data.result]);
+  //   }
 
     async function getUserInfo() {
       const myHeaders = new Headers();
@@ -102,7 +107,7 @@ function Profile() {
       }
     }
     getUserInfo();
-    getProfileLists();
+    // getProfileLists();
   }, [profileId, isCurrentUser]);
 
   useEffect(() => {
@@ -120,15 +125,17 @@ function Profile() {
 
       const data = await response.json() 
       setUserData(data.user.profileImg)
-      // const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/profileImage/`,
-      //   {
-      //     method: "GET",
-      //     headers: myHeaders,
-      //   }
-      // );
       
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET", 
+        headers: myHeaders
+      })
+      const data3 = await response3.json()
+      setReading([{"result": data3.user.currentlyReading}])
+      setDone([{"result": data3.user.finishReading}])
+      setWant([{"result": data3.user.wantReading}])
     }
-    getUserInfo() 
+    getUserInfo()
     setLoading(false) 
   }, [])
 
@@ -179,9 +186,9 @@ function Profile() {
       </div>
 
       <section className="myList">
-        {titles.map((t) => (
-          <MangaRow key={t} title={t} MangaList={groupListsByTitle(t)} />
-        ))}
+        <MangaRow title={"Currently Reading"} MangaList={reading} />
+        <MangaRow title={"Want to Read"} MangaList={want} />
+        <MangaRow title={"Finished Reading"} MangaList={done} />
       </section>
     </main>
   );
