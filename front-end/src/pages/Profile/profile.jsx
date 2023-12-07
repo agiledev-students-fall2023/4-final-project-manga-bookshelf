@@ -89,12 +89,10 @@ function Profile() {
       }
       setProfileInfo(data);
 
-      console.log(search)
       if (search === "?success=true") {
         setShowSuccessAlert(true);
       }
 
-      console.log(profileInfo)
       setUserData(data.profileImg)
       setMyList([{"result": data.favorite}])
       setReading([{"result": data.currentlyReading}])
