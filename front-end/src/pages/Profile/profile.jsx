@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import loadingImg from "../../assets/loading.png";
+import { imagefrombuffer } from "imagefrombuffer"; //first import 
 
 import "./profile.css";
-const titles = ["Currently Reading", "Done", "Want to Read"];
+import {Buffer} from "buffer"; 
+
 
 function Profile() {
-  const [profileLists, setProfileLists] = useState([]);
   const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("user")).username;
@@ -16,6 +18,12 @@ function Profile() {
   const [isFollowed, setIsFollowed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userExists, setUserExists] = useState(true);
+  const [userData, setUserData] = useState({});
+
+  const [reading, setReading] = useState([])
+  const [done, setDone] = useState([])
+  const [want, setWant] = useState([])
+  const [myList, setMyList] = useState([]) 
 
   const handleFollowClick = () => {
     if (loading) {
@@ -46,23 +54,7 @@ function Profile() {
       });
   };
 
-  const groupListsByTitle = (title) => {
-    const filteredLists = profileLists.map((profile) => ({
-      result: profile.result.filter((item) => item.list === title),
-    }));
-
-    return filteredLists;
-  };
-
-  //get a list of the users profile lists (mock data)
   useEffect(() => {
-    async function getProfileLists() {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
-      );
-      const data = await response.json();
-      setProfileLists([data.result]);
-    }
 
     async function getUserInfo() {
       const myHeaders = new Headers();
@@ -73,7 +65,7 @@ function Profile() {
         `Bearer ${localStorage.getItem("jwtToken")}`
       );
 
-      const response = await fetch(
+    const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/protected/user/get/anotheruser/${profileId}`,
         {
           method: "GET",
@@ -87,6 +79,11 @@ function Profile() {
         return;
       }
       setProfileInfo(data);
+      setUserData(data.profileImg)
+      setMyList([{"result": data.favorite}])
+      setReading([{"result": data.currentlyReading}])
+      setWant([{"result": data.wantReading}])
+      setDone([{"result": data.finishReading}])
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
@@ -96,19 +93,46 @@ function Profile() {
       }
     }
     getUserInfo();
-    getProfileLists();
+    // getProfileLists();
   }, [profileId, isCurrentUser]);
+
+  useEffect(() => {
+    async function getUserInfo() {
+      const myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("jwtToken")}`
+      );
+
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`,{
+        method: "GET", 
+        headers: myHeaders,
+      })
+
+      const data = await response.json() 
+      
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET", 
+        headers: myHeaders
+      })
+    }
+    getUserInfo() 
+  }, [])
 
   return (
     <main className="profile-main">
       <div className="profile-contact">
         <div className="profile-image">
+        {userData.contentType ? (
           <img
-            src={profileInfo.profileImg}
-            alt="No Img Detected"
-          />
+          src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
+          alt="Profile"
+        />) 
+        : (
+          <img src={loadingImg} alt={profileInfo.username} />
+        )}
         </div>
-
+            
         <div className="profile-bio">
           <h1>
             Welcome,{profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
@@ -145,9 +169,10 @@ function Profile() {
       </div>
 
       <section className="myList">
-        {titles.map((t) => (
-          <MangaRow title={t} MangaList={groupListsByTitle(t)} />
-        ))}
+        <MangaRow title={"My Favorite"} MangaList={myList} />
+        <MangaRow title={"Currently Reading"} MangaList={reading} />
+        <MangaRow title={"Want to Read"} MangaList={want} />
+        <MangaRow title={"Finished Reading"} MangaList={done} />
       </section>
     </main>
   );

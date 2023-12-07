@@ -21,8 +21,12 @@ mangaRouter.get(`/search/id/:id`, async (req, res) => {
 })
 
 mangaRouter.get(`/search2/id/:id`, async (req, res) => {
-    const payload = await Jikan.getMangaInfoById(req.params.id);
-    res.json(payload)
+    try {
+        const payload = await Jikan.getMangaInfoById(req.params.id);
+        res.json(payload)
+    } catch (err) {
+        res.status(404).json({ error: "Cannot find manga" });
+    }
 })
 
 mangaRouter.get(`/mangasearch/:entry`, async (req, res) => {

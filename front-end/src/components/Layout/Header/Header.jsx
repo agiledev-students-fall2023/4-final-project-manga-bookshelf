@@ -18,6 +18,7 @@ export default function Header() {
     const [isOpen, setOpen] = useState(false); 
     const [results, setResults] = useState("") 
     const [searchData, setSearchData] = useState([]) 
+    const [selectedItem, setSelectedItem] = useState({})
 
     //Define constant styles to use Turnstone 
     const maxItems = 6
@@ -32,25 +33,51 @@ export default function Header() {
                 fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/${encodeURIComponent(query)}`)
                     .then(res => res.json()),
             searchType: 'contains'
+        },
+        {
+            id: 'users',
+            name: 'Users',
+            ratio: 2,
+            data: (query) =>
+                fetch(`${process.env.REACT_APP_BACKEND_URL}/user/search/${encodeURIComponent(query)}`)
+                    .then(res => res.json()),
+            searchType: 'startswith'
         }
     ]
 
     const navigate = useNavigate()
     const turnstoneRef = useRef();
 
+    // I really haven't found a good idea to handle different search for users and mangas
+    // right now, i just check the search result and see if it has username or title to figure out which search I should use
+    // it works but this is definitely not the proper way to do this
+    // -- Steven
     const handleSubmit = async (e) => {
         e.preventDefault(); 
-        //first fetch mangas on the backend so we get id information about our manga
-        const payload1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/mangasearch/${encodeURIComponent(results)}`)
-        const data1 = await payload1.json() 
-        // console.log(data1) 
-        turnstoneRef.current?.clear();
-        // setResults("")
-        navigate(`/manga/${data1.__id}`)
+        // console.log(selectedItem)
+        if ('username' in selectedItem) {
+            navigate(`/profile/${selectedItem.username}`)
+        }
+        else if ('title' in selectedItem) {
+            const payload1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/mangasearch/${encodeURIComponent(results)}`)
+            const data1 = await payload1.json() 
+            // console.log(data1) 
+            turnstoneRef.current?.clear();
+            // setResults("")
+            navigate(`/manga/${data1.__id}`)
+        }
     }
     
     function logout(){
         console.log("Log out here")
+    }
+
+    const handleSelect = (item) => {
+        // console.log(item)
+        if (item === undefined) return
+        else {
+            setSelectedItem(item)
+        }
     }
 
     return (
@@ -72,7 +99,8 @@ export default function Header() {
                             noItemsMessage="No Manga Matched Your Search"
                             styles={styles}
                             typeahead= {false}
-                            onChange={(e) => setResults(e)}     
+                            onChange={(e) => setResults(e)}    
+                            onSelect={handleSelect}
                             text = {results}
                             ref={turnstoneRef}
                         />

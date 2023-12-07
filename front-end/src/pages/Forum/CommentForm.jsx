@@ -68,7 +68,7 @@ const CommentForm = ({ addCommentToList, setError, setFeedback }) => {
        value={comment}
        onChange={(e) => setComment(e.target.value)}
      />
-     <input type="submit" disabled={!comment || !topic} value="Post Comment" />
+      <button type="submit" disabled={!comment || !topic}>Post Comment</button>
    </form>
  );
 };

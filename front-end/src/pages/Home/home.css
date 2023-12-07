@@ -3,6 +3,7 @@
     padding: 50px;
     padding-left: 4rem;
     width: 75%;
+    overflow-y: auto;
 }
 
 #detail.loading {
