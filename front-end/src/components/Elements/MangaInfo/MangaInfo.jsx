@@ -7,7 +7,6 @@ import { isFavorite } from "../../../helper/helper"
 import "./MangaInfo.css"
 
 function MangaInfo({mangaData, userData}) {
-  console.log(userData)
     const [reading, setReading] = useState(false)
     const [done, setDone] = useState(false)
     const [want, setWant] = useState(false)
