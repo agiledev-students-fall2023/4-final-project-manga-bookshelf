@@ -9,10 +9,8 @@ import { imagefrombuffer } from "imagefrombuffer"; //first import
 import "./profile.css";
 import {Buffer} from "buffer"; 
 
-const titles = ["Currently Reading", "Done", "Want to Read"];
 
 function Profile() {
-  const [profileLists, setProfileLists] = useState([]);
   const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("user")).username;
@@ -21,6 +19,11 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [userExists, setUserExists] = useState(true);
   const [userData, setUserData] = useState({});
+
+  const [reading, setReading] = useState([])
+  const [done, setDone] = useState([])
+  const [want, setWant] = useState([])
+  const [myList, setMyList] = useState([]) 
 
   const handleFollowClick = () => {
     if (loading) {
@@ -51,24 +54,7 @@ function Profile() {
       });
   };
 
-  const groupListsByTitle = (title) => {
-    const filteredLists = profileLists.map((profile) => ({
-      result: profile.result.filter((item) => item.list === title),
-    }));
-
-    return filteredLists;
-  };
-
-  //get a list of the users profile lists (mock data)
   useEffect(() => {
-    // setLoading(true) 
-    async function getProfileLists() {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
-      );
-      const data = await response.json();
-      setProfileLists([data.result]);
-    }
 
     async function getUserInfo() {
       const myHeaders = new Headers();
@@ -79,7 +65,7 @@ function Profile() {
         `Bearer ${localStorage.getItem("jwtToken")}`
       );
 
-      const response = await fetch(
+    const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/protected/user/get/anotheruser/${profileId}`,
         {
           method: "GET",
@@ -94,7 +80,11 @@ function Profile() {
       }
       setProfileInfo(data);
       setUserData(data.profileImg)
-      // console.log(data.profileImg)
+      setMyList([{"result": data.favorite}])
+      setReading([{"result": data.currentlyReading}])
+      setWant([{"result": data.wantReading}])
+      setDone([{"result": data.finishReading}])
+      console.log(profileInfo)
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
@@ -104,8 +94,7 @@ function Profile() {
       }
     }
     getUserInfo();
-    // console.log(userData)
-    getProfileLists();
+    // getProfileLists();
   }, [profileId, isCurrentUser]);
 
   useEffect(() => {
@@ -122,17 +111,13 @@ function Profile() {
       })
 
       const data = await response.json() 
-      // setUserData(data.user.profileImg)
-      // const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/profileImage/`,
-      //   {
-      //     method: "GET",
-      //     headers: myHeaders,
-      //   }
-      // );
       
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET", 
+        headers: myHeaders
+      })
     }
     getUserInfo() 
-    // setLoading(false) 
   }, [])
 
   return (
@@ -185,9 +170,10 @@ function Profile() {
       </div>
 
       <section className="myList">
-        {titles.map((t) => (
-          <MangaRow key={t} title={t} MangaList={groupListsByTitle(t)} />
-        ))}
+        <MangaRow title={"My Favorite"} MangaList={myList} />
+        <MangaRow title={"Currently Reading"} MangaList={reading} />
+        <MangaRow title={"Want to Read"} MangaList={want} />
+        <MangaRow title={"Finished Reading"} MangaList={done} />
       </section>
     </main>
   );

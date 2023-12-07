@@ -10,9 +10,7 @@ function Works() {
     const [data, setData] = useState([])
     const {mangaId} = useParams()
     const [user, setUser] = useState({})
-    const [reading, setReading] = useState([])
-    const [done, setDone] = useState([])
-    const [want, setWant] = useState([])
+    
     const [isLoading, setIsLoading] = useState(true);
     const [mangaExists, setMangaExists] = useState(true)
 
