@@ -7,7 +7,7 @@ import { isFavorite } from "../../../helper/helper"
 import "./MangaIcon.css"
 
 
-function MangaIcon({name, imgLink, mangaId, userData}) {
+function MangaIcon({name, imgLink, mangaId, userData, setFavoriteAction}) {
 
   const [favorite, setFavorite] = useState(false)
   const [favoriteList, setFavoriteList] = useState([])
@@ -59,6 +59,9 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
       }
     }
     setFavorite(!favorite); 
+    if (setFavoriteAction) {
+      setFavoriteAction(true)
+    }
   }
 
   //determine if the manga is currently favorite or not 
@@ -68,7 +71,7 @@ function MangaIcon({name, imgLink, mangaId, userData}) {
     }else{
       setFavorite(false)
     }
-  }, [])
+  }, [userData, mangaId])
 
   return (
     <div className="MangaIcon-main">
