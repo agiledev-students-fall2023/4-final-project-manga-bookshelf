@@ -35,7 +35,27 @@ function Forum() {
       return null;
     }
   };
-
+  const addCommentToList = (topic, newComment) => {
+    setGroupedComments(prevGroupedComments => {
+      // Copy the previous state
+      const updatedGroupedComments = { ...prevGroupedComments };
+  
+      // If the topic already exists, push the new comment to its comments array
+      if (updatedGroupedComments[topic]) {
+        updatedGroupedComments[topic].comments.push(newComment);
+      } else {
+        // If the topic doesn't exist, create a new entry with the new comment
+        updatedGroupedComments[topic] = {
+          _id: topic,
+          comments: [newComment]
+        };
+      }
+  
+      return updatedGroupedComments;
+    });
+  };
+  
+  
   const fetchGroupedComments = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -79,12 +99,16 @@ function Forum() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  
+  
+    
+  
 
   return (
     <div className='forum-main'>
       <button onClick={() => navigate(-1)}>Return to Previous Page</button>
       <h1>Forum</h1>
-      <CommentForm setError={setError} setFeedback={setFeedback} />
+      <CommentForm setError={setError} setFeedback={setFeedback} addCommentToList={addCommentToList } />
       <h2>All Threads</h2>
       {Object.values(groupedComments).length > 0 ? (
       Object.entries(groupedComments).map(([topic, group]) => (
