@@ -1,3 +1,9 @@
 .Settings-main{
     display:flex; 
 }
+
+@media screen and (max-width: 768px) {
+    .Settings-main button{
+        margin-top: 80px;
+    }
+}

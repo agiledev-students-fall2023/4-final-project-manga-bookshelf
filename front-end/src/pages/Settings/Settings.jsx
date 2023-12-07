@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { ThemeContext } from '../../context/ThemeContext';
 import { useNavigate } from "react-router-dom";
+import "./Settings.css"
 
 function Settings() {
    const auth = useContext(AuthContext) 
