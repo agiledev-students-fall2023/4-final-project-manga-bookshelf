@@ -7,12 +7,8 @@ import MangaRow from "../../components/Layout/MangaRow/MangaRow";
 import "./profile.css";
 import {Buffer} from "buffer"; 
 
-const titles = ["Currently Reading", "Done", "Want to Read"];
-
-
 
 function Profile() {
-  const [profileLists, setProfileLists] = useState([]);
   const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("user")).username;
@@ -25,6 +21,7 @@ function Profile() {
   const [reading, setReading] = useState([])
   const [done, setDone] = useState([])
   const [want, setWant] = useState([])
+  const [myList, setMyList] = useState([]) 
 
   const handleFollowClick = () => {
     if (loading) {
@@ -55,24 +52,7 @@ function Profile() {
       });
   };
 
-  const groupListsByTitle = (title) => {
-    const filteredLists = profileLists.map((profile) => ({
-      result: profile.result.filter((item) => item.list === title),
-    }));
-
-    return filteredLists;
-  };
-
-  //get a list of the users profile lists (mock data)
   useEffect(() => {
-  //   setLoading(true) 
-  //   async function getProfileLists() {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
-  //     );
-  //     const data = await response.json();
-  //     setProfileLists([data.result]);
-  //   }
 
     async function getUserInfo() {
       const myHeaders = new Headers();
@@ -97,6 +77,10 @@ function Profile() {
         return;
       }
       setProfileInfo(data);
+      setMyList([{"result": data.favorite}])
+      setReading([{"result": data.currentlyReading}])
+      setWant([{"result": data.wantReading}])
+      setDone([{"result": data.finishReading}])
       console.log(profileInfo)
       if (!isCurrentUser) {
         setIsFollowed(
@@ -131,9 +115,10 @@ function Profile() {
         headers: myHeaders
       })
       const data3 = await response3.json()
-      setReading([{"result": data3.user.currentlyReading}])
-      setDone([{"result": data3.user.finishReading}])
-      setWant([{"result": data3.user.wantReading}])
+      // setReading([{"result": data3.user.currentlyReading}])
+      // setDone([{"result": data3.user.finishReading}])
+      // setWant([{"result": data3.user.wantReading}])
+      // setMyList([{"result": data3.user.favorite}])
     }
     getUserInfo()
     setLoading(false) 
@@ -186,6 +171,7 @@ function Profile() {
       </div>
 
       <section className="myList">
+        <MangaRow title={"My Favorite"} MangaList={myList} />
         <MangaRow title={"Currently Reading"} MangaList={reading} />
         <MangaRow title={"Want to Read"} MangaList={want} />
         <MangaRow title={"Finished Reading"} MangaList={done} />
