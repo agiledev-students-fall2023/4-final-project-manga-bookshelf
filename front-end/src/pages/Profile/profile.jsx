@@ -84,7 +84,6 @@ function Profile() {
       setReading([{"result": data.currentlyReading}])
       setWant([{"result": data.wantReading}])
       setDone([{"result": data.finishReading}])
-      console.log(profileInfo)
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
