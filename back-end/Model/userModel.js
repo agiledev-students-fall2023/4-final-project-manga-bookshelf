@@ -20,9 +20,10 @@ const UserSchema = new mongoose.Schema({
     },
     profileImg:
     {
-        // Currently, just allow using url for profile image
-        type: String,
-        default: "https://placekitten.com/g/200/200"
+        // type: String,
+        // default: "https://placekitten.com/g/200/200"
+        data: Buffer, 
+        contentType: String, 
     },
     twitter:
     {

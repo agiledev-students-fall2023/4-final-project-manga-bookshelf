@@ -1,9 +1,26 @@
 import express from 'express'
 import passport from 'passport' 
 import cors from 'cors'
+import multer from 'multer' 
 
 import UserModel from '../Model/userModel.js';
 import UserService from '../Service/userService.js';
+
+const storage = multer.memoryStorage() 
+const upload = multer()
+
+// Set up storage for uploaded files
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, 'uploads/');
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + '-' + file.originalname);
+//   }
+// });
+
+// // Create the multer instance
+// const upload = multer({ storage: storage });
 
 const protectedRoutes = () => {
     const router = express.Router(); 
@@ -373,15 +390,51 @@ const protectedRoutes = () => {
         }
       });
     
-      // Update the route to use UserService.changeProfileImage
-      router.post("/user/edit/profileImage/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
-        try {
-          await UserService.changeProfileImage(req, res);
-          next();
-        } catch (err) {
-          console.error(err);
-          res.status(500).json({ success: false, message: "Error updating profile image" });
+
+    router.get("/user/get/profileImage", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try{
+            if (!req.user || !req.user.profileImg) {
+                return res.status(404).json({ success: false, message: 'User or profile image not found' });
+              }
+
+            res.set('Content-Type', req.user.profileImg.contentType);
+            res.send(req.user.profileImg.data);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ success: false, message: 'Error retrieving profile image', error });
         }
+    })
+
+      // Update the route to use UserService.changeProfileImage
+      router.post("/user/edit/profileImage/:id", upload.single('profileImage'), passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        // try {
+        //   console.log("Does this work?!",req.file)
+        //   await UserService.changeProfileImage(req, res);
+        //   next();
+        // } catch (err) {
+        //   console.error(err);
+        //   res.status(500).json({ success: false, message: "Error updating profile image" });
+        // }
+        const newImage = {
+            data: req.file.buffer, 
+            contentType: req.file.mimetype
+        }
+
+        await UserModel.findByIdAndUpdate(req.user.id,{ "profileImg": newImage },)
+        .then(docs => {
+            console.log("profileImage updated") 
+            res.json({
+            success: true, 
+            message: "profileImage updated" 
+            })
+        }).catch(err => {
+            console.error(err) 
+            res.status(500).json({
+            success:false, 
+            message: "failed to update profileImage", err
+            })
+        })
+
       });
 
     return router 
