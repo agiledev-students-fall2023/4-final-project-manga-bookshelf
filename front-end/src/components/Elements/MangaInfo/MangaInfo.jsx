@@ -224,7 +224,7 @@ function MangaInfo({mangaData, userData}) {
                 </div>
                 <div className= "MangaInfo-right">
                     <div className= "MangaInfo-content">
-                        <div className= "MangaInfo-chapter-tracker">
+                        {/* <div className= "MangaInfo-chapter-tracker">
                             <label> Chapter: </label>
                             <input
                                 type="text"
@@ -233,7 +233,7 @@ function MangaInfo({mangaData, userData}) {
                                 placeholder="0"
                                 onChange={handleChapterChange}
                             />
-                        </div>
+                        </div> */}
                         <h3> Author: </h3>
                         <p>  {authorNames} </p>
                         <h3> Genres: </h3>
@@ -243,10 +243,10 @@ function MangaInfo({mangaData, userData}) {
                     </div>
                 </div>
             </div>
-            <div className="MangaInfo-comments">
+            {/* <div className="MangaInfo-comments">
                 <h3> Comments: </h3>
                 <ForumPost username= "Username goes here"/>  
-            </div>
+            </div> */}
         </div>
     )
 }
