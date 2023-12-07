@@ -38,6 +38,10 @@ const UserSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.Object], 
         ref: "Manga"
     },
+    wantReading:{
+        type: [mongoose.Schema.Types.Object],
+        ref: "Manga"
+    },
     currentlyReading:{
         type: [mongoose.Schema.Types.Object],
         ref: "Manga"
