@@ -1,5 +1,6 @@
 import UserModel from "../Model/userModel.js";
 
+
 class UserService {
   /* Create a new user, mainly for log in */
   // async createUser(data) {}
@@ -102,9 +103,13 @@ class UserService {
 }
   // to change the profile picture of a user
   async changeProfileImage(req, res) {
-    const newProfileImage = req.body.profileImage;
+    console.log(req.file); 
+    const newImage = {
+      data: req.file.buffer, 
+      contentType: req.file.mimetype
+    }
 
-    await UserModel.findByIdAndUpdate(req.user.id,{ "username": newProfileImage },)
+    await UserModel.findByIdAndUpdate(req.user.id,{ "profileImg": newImage },)
       .then(docs => {
         console.log("profileImage updated") 
         res.json({
@@ -120,8 +125,6 @@ class UserService {
       })
 
 }
-
-
 
   // to follow a user
   async followUser(req, res) {
