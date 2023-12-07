@@ -4,7 +4,6 @@ import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
 import loadingImg from "../../assets/loading.png";
-import { imagefrombuffer } from "imagefrombuffer"; //first import 
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
@@ -150,12 +149,12 @@ function Profile() {
             Changes saved successfully!
           </Alert>
         </Snackbar>
-        {userData.contentType && (
+        {(userData && userData.contentType) ? (
           <img
           src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
           alt="Profile"
         />) 
-        (
+        : (
           <img src={loadingImg} alt={profileInfo.username} />
         )}
         </div>
@@ -192,7 +191,7 @@ function Profile() {
             )
           }
 
-        </div>
+        </div> 
       </div>
 
       <section className="myList">
