@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import CommentForm from "./CommentForm.jsx";
 import { useNavigate } from 'react-router-dom';
+import { Buffer } from 'buffer'; 
 
 function Forum() {
   const navigate = useNavigate();
@@ -26,7 +27,9 @@ function Forum() {
       }
 
       const data = await response.json();
-      return data; // Assuming this data contains the user profile including the image
+      // Assume the profile image is in the `profileImg` field and it's a Buffer
+      const image = `data:${data.profileImg.contentType};base64,${Buffer.from(data.profileImg.data).toString('base64')}`;
+      return { ...data, profileImg: image };
     } catch (error) {
       console.error('Error fetching user profile:', error);
       return null;
@@ -88,7 +91,7 @@ function Forum() {
         <div key={topic}>
           <h3>{group._id}</h3>
           <ul style={{ listStyleType: 'none' }}>
-            {group.comments.map((comment, index) => (
+          {group.comments.map((comment, index) => (
               <li key={index}>
                 <img src={userProfiles[comment.username]?.profileImg} alt={`${comment.username}'s profile`} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', marginRight: '10px' }}/>
                 <span className="username">{comment.username}</span>: {comment.comment}
