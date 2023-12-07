@@ -37,7 +37,9 @@ function Works() {
             })
             const data3 = await response3.json()
             setUser(data3.user)
+
             setIsLoading(false); // Set loading to false after fetching data
+
         }
 
         fetchData()
