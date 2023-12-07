@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import { imagefrombuffer } from "imagefrombuffer"; //first import 
 
 import "./profile.css";
+import {Buffer} from "buffer"; 
+
 const titles = ["Currently Reading", "Done", "Want to Read"];
 
 function Profile() {
@@ -16,6 +19,7 @@ function Profile() {
   const [isFollowed, setIsFollowed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userExists, setUserExists] = useState(true);
+  const [userData, setUserData] = useState({});
 
   const handleFollowClick = () => {
     if (loading) {
@@ -56,6 +60,7 @@ function Profile() {
 
   //get a list of the users profile lists (mock data)
   useEffect(() => {
+    setLoading(true) 
     async function getProfileLists() {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
@@ -87,6 +92,7 @@ function Profile() {
         return;
       }
       setProfileInfo(data);
+      console.log(profileInfo)
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
@@ -99,16 +105,44 @@ function Profile() {
     getProfileLists();
   }, [profileId, isCurrentUser]);
 
+  useEffect(() => {
+    async function getUserInfo() {
+      const myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        `Bearer ${localStorage.getItem("jwtToken")}`
+      );
+
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`,{
+        method: "GET", 
+        headers: myHeaders,
+      })
+
+      const data = await response.json() 
+      setUserData(data.user.profileImg)
+      // const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/profileImage/`,
+      //   {
+      //     method: "GET",
+      //     headers: myHeaders,
+      //   }
+      // );
+      
+    }
+    getUserInfo() 
+    setLoading(false) 
+  }, [])
+
   return (
     <main className="profile-main">
       <div className="profile-contact">
         <div className="profile-image">
+        {userData.contentType && (
           <img
-            src={profileInfo.profileImg}
-            alt="No Img Detected"
-          />
+          src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
+          alt="Profile"
+        />)}
         </div>
-
+            
         <div className="profile-bio">
           <h1>
             Welcome,{profileInfo.username ? <>{profileInfo.username}</> : <i>No Name</i>}{" "}
