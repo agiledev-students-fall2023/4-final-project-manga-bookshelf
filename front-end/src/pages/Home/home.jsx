@@ -9,6 +9,7 @@ function Home() {
   const [trending, setTrending] = useState([])
   const [recentlyUpdated, setRecentlyUpdated] = useState([])
   const [myList, setMyList] = useState([]) 
+  const [favoriteAction, setFavoriteAction] = useState(false);
 
   useEffect(() => {
     async function getListTrendingAndRecentUpdated() {
@@ -36,15 +37,20 @@ function Home() {
       const data3 = await response3.json()
       setMyList([{"result": data3.user.favorite}])
     }
+    console.log(favoriteAction)
+    if (favoriteAction) {
+      getListTrendingAndRecentUpdated()
+      setFavoriteAction(false)
+    }
     getListTrendingAndRecentUpdated()
 
-  }, [])
+  }, [favoriteAction])
 
   return (
     <div className="home-main">
-      <MangaRow title={"Trending"} MangaList={trending} icon={TrendingUpIcon}/>
-      <MangaRow title={"Recently Updated"} MangaList={recentlyUpdated} />
-      <MangaRow title={"My Favorite"} MangaList={myList} />
+      <MangaRow title={"Trending"} MangaList={trending} icon={TrendingUpIcon} setFavoriteAction={setFavoriteAction}/>
+      <MangaRow title={"Recently Updated"} MangaList={recentlyUpdated} setFavoriteAction={setFavoriteAction}/>
+      <MangaRow title={"My Favorite"} MangaList={myList} setFavoriteAction={setFavoriteAction}/>
     </div>
   )
 }

@@ -24,7 +24,7 @@ const HoverableIconRight = styled(ArrowCircleRightIcon)({
   },
 });
 
-function MangaRow({ title, icon, MangaList }) {
+function MangaRow({ title, icon, MangaList, setFavoriteAction }) {
   const { scrollContainerRef, handleScroll, scrollTo } =
     useSmoothHorizontalScroll();
   const [user, setUser] = useState({});
@@ -112,6 +112,7 @@ function MangaRow({ title, icon, MangaList }) {
                       imgLink={ele["image"]}
                       mangaId={ele["__id"]}
                       userData={user}
+                      setFavoriteAction={setFavoriteAction}
                     />
                   ))}
                 </div>
