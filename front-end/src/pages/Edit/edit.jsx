@@ -156,7 +156,7 @@ const Edit = () => {
         />
       </div>
       <div className="edit-main">
-        <img src={file} alt="No picture selected"/>
+        <img src={file} alt=""/>
       </div>
 
       <div className="edit-main">

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import loadingImg from "../../assets/loading.png";
 import { imagefrombuffer } from "imagefrombuffer"; //first import 
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
@@ -11,10 +12,8 @@ import Snackbar from '@mui/material/Snackbar';
 import "./profile.css";
 import {Buffer} from "buffer"; 
 
-const titles = ["Currently Reading", "Done", "Want to Read"];
 
 function Profile() {
-  const [profileLists, setProfileLists] = useState([]);
   const [profileInfo, setProfileInfo] = useState({});
   const { profileId } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("user")).username;
@@ -30,6 +29,11 @@ function Profile() {
   const handleCloseSuccessAlert = () => {
     setShowSuccessAlert(false);
   };
+
+  const [reading, setReading] = useState([])
+  const [done, setDone] = useState([])
+  const [want, setWant] = useState([])
+  const [myList, setMyList] = useState([]) 
 
   const handleFollowClick = () => {
     if (loading) {
@@ -60,24 +64,7 @@ function Profile() {
       });
   };
 
-  const groupListsByTitle = (title) => {
-    const filteredLists = profileLists.map((profile) => ({
-      result: profile.result.filter((item) => item.list === title),
-    }));
-
-    return filteredLists;
-  };
-
-  //get a list of the users profile lists (mock data)
   useEffect(() => {
-    setLoading(true) 
-    async function getProfileLists() {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/getProfileLists`
-      );
-      const data = await response.json();
-      setProfileLists([data.result]);
-    }
 
     async function getUserInfo() {
       const myHeaders = new Headers();
@@ -88,7 +75,7 @@ function Profile() {
         `Bearer ${localStorage.getItem("jwtToken")}`
       );
 
-      const response = await fetch(
+    const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/protected/user/get/anotheruser/${profileId}`,
         {
           method: "GET",
@@ -109,6 +96,11 @@ function Profile() {
       }
 
       console.log(profileInfo)
+      setUserData(data.profileImg)
+      setMyList([{"result": data.favorite}])
+      setReading([{"result": data.currentlyReading}])
+      setWant([{"result": data.wantReading}])
+      setDone([{"result": data.finishReading}])
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
@@ -118,7 +110,7 @@ function Profile() {
       }
     }
     getUserInfo();
-    getProfileLists();
+    // getProfileLists();
   }, [profileId, isCurrentUser]);
 
   useEffect(() => {
@@ -135,17 +127,13 @@ function Profile() {
       })
 
       const data = await response.json() 
-      setUserData(data.user.profileImg)
-      // const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/profileImage/`,
-      //   {
-      //     method: "GET",
-      //     headers: myHeaders,
-      //   }
-      // );
       
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
+        method: "GET", 
+        headers: myHeaders
+      })
     }
     getUserInfo() 
-    setLoading(false) 
   }, [])
 
   return (
@@ -166,7 +154,10 @@ function Profile() {
           <img
           src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
           alt="Profile"
-        />)}
+        />) 
+        : (
+          <img src={loadingImg} alt={profileInfo.username} />
+        )}
         </div>
             
         <div className="profile-bio">
@@ -205,9 +196,10 @@ function Profile() {
       </div>
 
       <section className="myList">
-        {titles.map((t) => (
-          <MangaRow title={t} MangaList={groupListsByTitle(t)} />
-        ))}
+        <MangaRow title={"Favorites"} MangaList={myList} />
+        <MangaRow title={"Currently Reading"} MangaList={reading} />
+        <MangaRow title={"Want to Read"} MangaList={want} />
+        <MangaRow title={"Finished Reading"} MangaList={done} />
       </section>
     </main>
   );

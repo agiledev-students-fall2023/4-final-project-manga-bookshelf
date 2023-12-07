@@ -9,6 +9,7 @@ export function useAuth(){
     async function signin(username, password){
         setErrors([]) 
         setIsLoading(true); 
+        console.log(`${process.env.REACT_APP_BACKEND_URL}/auth/login`)
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
             method: "POST", 
             headers:{

@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { AuthContext } from '../../context/AuthContext'
+import { ThemeContext } from '../../context/ThemeContext';
 import { useNavigate } from "react-router-dom";
 
 function Settings() {
@@ -8,12 +9,16 @@ function Settings() {
 
     const handleLogout = (e) => {
         e.preventDefault() 
+        localStorage.setItem('jwtToken', null);
+        localStorage.setItem('user', null) 
         auth.signout(); 
         navigate('/')
     }
 
     return (
-    <button onClick={handleLogout}> logout </button>
+      <div className="Settings-main">
+        <button onClick={handleLogout}> logout </button>
+      </div>
   )
 }
 

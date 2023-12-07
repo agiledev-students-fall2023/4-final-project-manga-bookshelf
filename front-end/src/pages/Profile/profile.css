@@ -1,6 +1,6 @@
 .profile-contact {
-    max-width: 40rem;
     display: flex;
+    margin-bottom: 1em; 
 }
 
 .profile-contact h1 {
@@ -104,6 +104,8 @@
 
 .profile-bio > p{
     font-family: var(--font-size-subtext-user-bio);
+    font-weight:600; 
+    font-size:large; 
 }
 
 @media screen and (max-width: 768px) {

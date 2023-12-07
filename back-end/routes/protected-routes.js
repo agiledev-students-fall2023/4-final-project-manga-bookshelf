@@ -186,39 +186,40 @@ const protectedRoutes = () => {
             });
     })
 
-    //remove currentlyreading 
-    router.delete("/user/delete/currentlyreading/:id", passport.authenticate("jwt", { session: false }), cors(), (req, res, next) => {
-        const userId = req.user.id;
-        const mangaId = req.params.id
 
-        //find user by id first 
-        UserModel.findById(userId)
-            .then(user => {
-                if (!user) {
-                    return res.status(404).json({ success: false, message: "User not found" });
-                }
+    router.delete("/user/delete/currentlyreading/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+            const userId = req.user.id;
+            const mangaId = req.params.id;
+    
+            // Find user by id first 
+            const user = await UserModel.findById(userId);
+    
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+    
+            // Check if the manga exists in currentlyReading
+            const mangaIndex = user.currentlyReading.findIndex(entry => Array.isArray(entry) ? entry[0].__id && entry[0].__id.toString() === mangaId : entry.__id && entry.__id.toString() === mangaId);
+    
+            if (mangaIndex === -1) {
+                return res.status(404).json({ success: false, message: "Manga does not exist in currentlyreading" });
+            }
+    
+            // Remove the manga from currentlyReading
+            user.currentlyReading.splice(mangaIndex, 1);
+    
+            // Save the updated user
+            await user.save();
+    
+            // Send success response
+            return res.json({ success: true, message: "currentlyreading removed Successfully" });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ success: false, message: "Error removing currentlyReading" });
+        }
+    });
 
-                // Check if the manga exists
-                const exists = user.currentlyReading.some(fav => fav.__id === mangaId);
-
-                if (!exists) {
-                    return res.json({ success: false, message: "Manga does not exist in currentlyreading" });
-                }
-
-                // Add the new favorite
-                user.currentlyReading = user.currentlyReading.filter(manga => manga.__id !== mangaId);
-
-                // Save the updated user
-                return user.save();
-            })
-            .then(() => {
-                res.json({ success: true, message: "currentlyreading removed Successfully" });
-            })
-            .catch(err => {
-                console.error(err);
-                res.status(500).json({ success: false, message: "Error removing favorites" });
-            });
-    })
 
     ///
     //add finishedreading 
@@ -256,42 +257,112 @@ const protectedRoutes = () => {
                 console.error(err);
                 res.status(500).json({ success: false, message: "Error adding finishReading" });
             });
-        next();
     })
 
-    //remove finishedreading 
-    router.delete("/user/delete/finishedreading/:id", passport.authenticate("jwt", { session: false }), cors(), (req, res, next) => {
-        const userId = req.user.id;
-        const mangaId = req.params.id
 
-        //find user by id first 
+    router.delete("/user/delete/finishedreading/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+            const userId = req.user.id;
+            const mangaId = req.params.id;
+    
+            // Find user by id first 
+            const user = await UserModel.findById(userId);
+    
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+    
+            // Check if the manga exists in currentlyReading
+            const mangaIndex = user.finishReading.findIndex(entry => Array.isArray(entry) ? entry[0].__id && entry[0].__id.toString() === mangaId : entry.__id && entry.__id.toString() === mangaId);
+    
+            if (mangaIndex === -1) {
+                return res.status(404).json({ success: false, message: "Manga does not exist in finishedreading" });
+            }
+    
+            // Remove the manga from currentlyReading
+            user.finishReading.splice(mangaIndex, 1);
+    
+            // Save the updated user
+            await user.save();
+    
+            // Send success response
+            return res.json({ success: true, message: "finishedReading removed Successfully" });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ success: false, message: "Error removing finishReading" });
+        }
+    });
+
+    //add wantreading 
+    router.post("/user/add/wantreading", passport.authenticate("jwt", { session: false }), (req, res, next) => {
+        // TODO. 
+        // 1. check to make sure it's not already a favorite
+        // 2. if not already a favorite add it to the array. 
+
+        const userId = req.user.id;
+        const mangaObject = req.body;
+
+        //find user by  id first 
         UserModel.findById(userId)
             .then(user => {
                 if (!user) {
                     return res.status(404).json({ success: false, message: "User not found" });
                 }
 
-                // Check if the manga exists
-                const exists = user.finishReading.some(fin => fin.__id === mangaId);
+                // Check if the manga is already a favorite
+                const isAlreadyFavorite = user.wantReading.some(fav => fav.__id === mangaObject.__id);
 
-                if (!exists) {
-                    return res.json({ success: false, message: "Manga does not exist in finishedreading" });
+                if (isAlreadyFavorite) {
+                    return res.json({ success: false, message: "Manga already in wantreading" });
                 }
 
                 // Add the new favorite
-                user.finishReading = user.finishReading.filter(manga => manga.__id !== mangaId);
+                user.wantReading.push(mangaObject);
 
                 // Save the updated user
                 return user.save();
             })
             .then(() => {
-                res.json({ success: true, message: "finishedreading removed Successfully" });
+                res.json({ success: true, message: "wantReading added successfully" });
             })
             .catch(err => {
                 console.error(err);
-                res.status(500).json({ success: false, message: "Error removing finishedreading" });
+                res.status(500).json({ success: false, message: "Error adding wantReading" });
             });
     })
+
+    router.delete("/user/delete/wantreading/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+            const userId = req.user.id;
+            const mangaId = req.params.id;
+    
+            // Find user by id first 
+            const user = await UserModel.findById(userId);
+    
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+    
+            // Check if the manga exists in currentlyReading
+            const mangaIndex = user.wantReading.findIndex(entry => Array.isArray(entry) ? entry[0].__id && entry[0].__id.toString() === mangaId : entry.__id && entry.__id.toString() === mangaId);
+    
+            if (mangaIndex === -1) {
+                return res.status(404).json({ success: false, message: "Manga does not exist in wantreading" });
+            }
+    
+            // Remove the manga from currentlyReading
+            user.wantReading.splice(mangaIndex, 1);
+    
+            // Save the updated user
+            await user.save();
+    
+            // Send success response
+            return res.json({ success: true, message: "wantReading removed Successfully" });
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ success: false, message: "Error removing wantReading" });
+        }
+    });
 
     //add browsinghistory 
     router.post("/user/add/browsinghistory", passport.authenticate("jwt", { session: false }), (req, res, next) => {

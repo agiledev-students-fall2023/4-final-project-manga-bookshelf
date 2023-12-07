@@ -50,8 +50,11 @@
 }
 
 .MangaRow-container > h1{
-    margin: 0; 
-    font-family: var(--font-size-main-dashboard)
+    margin: 0;
+    margin-top: 1em;
+    font-family: var(--font-size-main-dashboard);
+    border-bottom: 3px grey solid;
+    border-top: 3px grey solid;
 }
 
 /* Keyframes for the fade-down effect */
