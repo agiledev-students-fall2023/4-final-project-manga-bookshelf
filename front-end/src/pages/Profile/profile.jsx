@@ -65,7 +65,7 @@ function Profile() {
         `Bearer ${localStorage.getItem("jwtToken")}`
       );
 
-      const response = await fetch(
+    const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/protected/user/get/anotheruser/${profileId}`,
         {
           method: "GET",
@@ -79,6 +79,7 @@ function Profile() {
         return;
       }
       setProfileInfo(data);
+      setUserData(data.profileImg)
       setMyList([{"result": data.favorite}])
       setReading([{"result": data.currentlyReading}])
       setWant([{"result": data.wantReading}])
@@ -110,20 +111,13 @@ function Profile() {
       })
 
       const data = await response.json() 
-      setUserData(data.user.profileImg)
       
       const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
         method: "GET", 
         headers: myHeaders
       })
-      const data3 = await response3.json()
-      // setReading([{"result": data3.user.currentlyReading}])
-      // setDone([{"result": data3.user.finishReading}])
-      // setWant([{"result": data3.user.wantReading}])
-      // setMyList([{"result": data3.user.favorite}])
     }
     getUserInfo() 
-    // setLoading(false) 
   }, [])
 
   return (
