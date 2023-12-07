@@ -123,7 +123,7 @@ function MangaRow({ title, icon, MangaList, setFavoriteAction }) {
                 />
               </>
             ) : (
-              <MangaListEmpty />
+              <MangaListEmpty/>
             )}
             </div>
       </div>
