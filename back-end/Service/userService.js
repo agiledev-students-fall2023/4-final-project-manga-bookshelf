@@ -150,21 +150,22 @@ class UserService {
   }
 
 
-  /* Update data to database. Only for backend without database */
-  /* Don't use it yet. It is not working */
-  // async updateUserData(userData) {
-  //   try {
-  //     userMockData.users.push(userData);
-  //     const dataString =
-  //       typeof userMockData === "string"
-  //         ? userMockData
-  //         : JSON.stringify(userMockData, null, 2);
-  //     await fs.promises.writeFile("./public/userMockData.json", dataString);
-  //   } catch (err) {
-  //     console.error("Could not save users mock data:", err);
-  //     throw err;
-  //   }
-  // }
+  // search for users
+  async searchUser(req, res) {
+    try {
+      const username = req.params.username;
+      const regex = new RegExp("^" + username, "i");
+      const user = await UserModel.find({
+        username: { $regex: regex},
+      }).select("username -_id");
+      if (!user) {
+        throw new Error("User not found");
+      }
+      res.json(user);
+    } catch (err) {
+      res.status(404).json({ error: "Cannot find user" });
+    }
+  }
 }
 
 export default new UserService();
