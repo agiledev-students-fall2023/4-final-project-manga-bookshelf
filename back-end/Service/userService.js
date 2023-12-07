@@ -58,67 +58,69 @@ class UserService {
 
   //change username
   async changeUser(req, res) {
-    try {
-      const username = req.params.username;
       const newUsername = req.body.username;
-      const user = await UserModel.findOneAndUpdate(
-        { username: username },
-        { $set: { username: newUsername } },
-        { new: true }
-      );
-  
-      if (!user) {
-        throw new Error("User not found");
-      }
-  
-      res.json({ user, message: 'Bio updated successfully' });
-    } catch (err) {
-      res.status(404).json({ error: "Cannot update bio" });
-    }
+
+      await UserModel.findByIdAndUpdate(req.user.id,{ "username": newUsername },)
+        .then(docs => {
+          console.log("username updated") 
+          res.json({
+            success: true, 
+            message: "username updated" 
+          })
+        }).catch(err => {
+          console.error(err) 
+          res.status(500).json({
+            success:false, 
+            message: "failed to update username", err
+          })
+        })
+
+
   }
 
   // to change bio for a user
-  async changeBio(req, res) {
-    try {
-      const username = req.params.username;
-      const newBio = req.body.bio;
-      const user = await UserModel.findOneAndUpdate(
-        { username: username },
-        { $set: { bio: newBio } },
-        { new: true }
-      );
-  
-      if (!user) {
-        throw new Error("User not found");
-      }
-  
-      res.json({ user, message: 'Bio updated successfully' });
-    } catch (err) {
-      res.status(404).json({ error: "Cannot update bio" });
-    }
-  }
 
+  async changeBio(req, res) {
+    const newBio = req.body.bio;
+
+    await UserModel.findByIdAndUpdate(req.user.id,{ "bio": newBio },)
+      .then(docs => {
+        console.log("bio updated") 
+        res.json({
+          success: true, 
+          message: "bio updated" 
+        })
+      }).catch(err => {
+        console.error(err) 
+        res.status(500).json({
+          success:false, 
+          message: "failed to update bio", err
+        })
+      })
+
+
+}
   // to change the profile picture of a user
   async changeProfileImage(req, res) {
-    try {
-      const username = req.params.username;
-      const newImage = req.body.image;
-  
-      const user = await UserModel.findOneAndUpdate(
-        { username: username },
-        { $set: { profileImage: newImage } }, 
-        { new: true }
-      );
-  
-      if (!user) {
-        throw new Error("User not found");
-      }
-  
-      res.json({ user, message: 'Profile image updated successfully' });
-    } catch (err) {
-      res.status(404).json({ error: "Cannot update profile image" });
-    }
-  }
+    const newProfileImage = req.body.profileImage;
+
+    await UserModel.findByIdAndUpdate(req.user.id,{ "username": newProfileImage },)
+      .then(docs => {
+        console.log("profileImage updated") 
+        res.json({
+          success: true, 
+          message: "profileImage updated" 
+        })
+      }).catch(err => {
+        console.error(err) 
+        res.status(500).json({
+          success:false, 
+          message: "failed to update profileImage", err
+        })
+      })
+
+}
+
 
 
   // to follow a user

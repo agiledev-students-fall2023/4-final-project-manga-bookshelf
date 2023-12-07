@@ -351,9 +351,10 @@ const protectedRoutes = () => {
     })
 
     //change user profile
-    router.post("/user/edit/user/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+    router.post("/user/edit/username/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
         try {
-          await UserService.changeUser(req, res);
+          const response = await UserService.changeUser(req, res);
+
           next();
         } catch (err) {
           console.error(err);
