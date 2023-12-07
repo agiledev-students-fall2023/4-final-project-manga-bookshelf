@@ -11,7 +11,7 @@ const Edit = () => {
   //object format for user info
   const navigate = useNavigate();
   const { profileId } = useParams();
-  const [file, setFile] = useState(""); 
+  const [file, setFile] = useState(null); 
 
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
   const [alertOpen, setAlertOpen] = useState(false);
@@ -23,18 +23,24 @@ const Edit = () => {
   //HERE!
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const myHeaders = new Headers(); 
-
       myHeaders.append('Content-Type', 'application/json');
       myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
 
+      const myHeader2 = new Headers(); 
+      myHeader2.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
+
       const formDataForSubmission = new FormData();
+
       formDataForSubmission.append('username', formData.name);
       formDataForSubmission.append('bio', formData.bio);
       formDataForSubmission.append('avatar', formData.avatar);
-      console.log(formData.name) 
+      formDataForSubmission.append('profileImage', file) 
+
+      console.log(formDataForSubmission) 
+
       const response1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/edit/username/${profileId}`, {
         method: "POST", 
         headers: myHeaders, 
@@ -52,14 +58,12 @@ const Edit = () => {
       console.log(data2) 
 
       const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/edit/profileImage/${profileId}`, {
-        method: "POST", 
-        headers: myHeaders, 
-        body: JSON.stringify({"profileImage": formData.profileImage})
-      })
+        method: "POST",
+        headers: myHeader2,
+        body: formDataForSubmission  // Use the FormData object directly
+      });
       const data3 = await response3.json() 
       console.log(data3)
-
-      // Make separate requests for changing user, bio, and profile image
   
       // Handle success, maybe show a success message
       console.log('Profile updated successfully');
@@ -114,18 +118,17 @@ const Edit = () => {
     });
   };
 
-  async function handleProfileImageChange(e){
-    console.log(e.target.files) 
-    setFile(URL.createObjectURL(e.target.files[0])) 
-    console.log(file) 
+  function handleProfileImageChange(e){
+    setFile(e.target.files[0]) 
   }
+
 
   return (
     <div className="edit-main">
-                <button className="return-button" onClick={handleReturn}>
-            <BsArrowLeft className="return-arrow" />
-            Return to Profile Page
-          </button>
+      <button className="return-button" onClick={handleReturn}>
+        <BsArrowLeft className="return-arrow" />
+        Return to Profile Page
+      </button>
       <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <div>
