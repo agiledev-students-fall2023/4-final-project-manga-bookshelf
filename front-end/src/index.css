@@ -1,8 +1,8 @@
 /* Need to add more variable so css isn't a pain*/
 html {
   box-sizing: border-box;
-  --bg-color-primary: floralwhite;
-  --bg-color--secondary:cornsilk; 
+  --bg-color-primary: white;
+  --bg-color--secondary:white; 
 
   --button-color-primary:#3992ff;
   --star-color: yellow; 
@@ -11,6 +11,19 @@ html {
   --font-size-subtext-dashboard: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
   --font-size-main-user-username: 'Courier New', Courier, monospace;
   --font-size-subtext-user-bio: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif
+
+  /* Light Mode */
+  --bg--light: var(--_hue) 30% 94%;
+  --txt--light: var(--_hue) 40% 5%;
+  --accent--light: var(--_hue) 55% 50%;
+  --accent1--light: 10 80% 60%;
+  --muted--light: var(--_hue) 30% 99%;
+  /* Dark Mode */
+  --bg--dark: var(--_hue) 15% 10%;
+  --txt--dark: var(--_hue) 30% 88%;
+  --accent--dark: var(--_hue) 50% 50%;
+  --accent1--dark: 10 55% 50%;
+  --muted--dark: var(--_hue) 20% 4%;
 }
 
 *,
