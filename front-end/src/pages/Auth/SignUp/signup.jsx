@@ -70,7 +70,8 @@ export default function Signup() {
                 label="Email"
                 type="email"
                 id="email"
-                autoComplete="current-password"
+                autoComplete="email"
+                autoFocus
               />
               <TextField
                 margin="normal"
@@ -80,7 +81,6 @@ export default function Signup() {
                 label="Username"
                 name="username"
                 autoComplete="username"
-                autoFocus
               />
               <TextField
                 margin="normal"

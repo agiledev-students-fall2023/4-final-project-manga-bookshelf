@@ -350,6 +350,40 @@ const protectedRoutes = () => {
         next();
     })
 
+    //change user profile
+    router.post("/user/edit/username/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+          const response = await UserService.changeUser(req, res);
+
+          next();
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ success: false, message: "Error updating user" });
+        }
+      });
+    
+      // Update the route to use UserService.changeBio
+      router.post("/user/edit/bio/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+          await UserService.changeBio(req, res);
+          next();
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ success: false, message: "Error updating bio" });
+        }
+      });
+    
+      // Update the route to use UserService.changeProfileImage
+      router.post("/user/edit/profileImage/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+          await UserService.changeProfileImage(req, res);
+          next();
+        } catch (err) {
+          console.error(err);
+          res.status(500).json({ success: false, message: "Error updating profile image" });
+        }
+      });
+
     return router 
 }
 
