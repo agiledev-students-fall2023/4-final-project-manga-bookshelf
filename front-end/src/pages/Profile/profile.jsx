@@ -169,7 +169,7 @@ function Profile() {
       </div>
 
       <section className="myList">
-        <MangaRow title={"My Favorite"} MangaList={myList} />
+        <MangaRow title={"Favorites"} MangaList={myList} />
         <MangaRow title={"Currently Reading"} MangaList={reading} />
         <MangaRow title={"Want to Read"} MangaList={want} />
         <MangaRow title={"Finished Reading"} MangaList={done} />

@@ -6,6 +6,7 @@ import { isFavorite } from "../../../helper/helper"
 
 import "./MangaInfo.css"
 
+
 function MangaInfo({mangaData, userData}) {
     const [reading, setReading] = useState(false)
     const [done, setDone] = useState(false)
@@ -70,6 +71,7 @@ function MangaInfo({mangaData, userData}) {
       }
       setReading(!reading); 
       setMenuOpen(false)
+  
     }
       
     const handleDoneClick = async () => {
@@ -189,16 +191,40 @@ function MangaInfo({mangaData, userData}) {
                         <button onClick={handleAddClick}>+ Add to List</button>
                             {isMenuOpen && (
                                 <ul className="menu">
-                                    <button onClick={() => handleReadingClick('Reading')}>Reading</button>
-                                    <button onClick={() => handleWantClick('Want to Read')}>Want to Read</button>
-                                    <button onClick={() => handleDoneClick('Finished')}>Finished</button>
+                                    <button 
+                                      onClick={() => handleReadingClick('Reading')} 
+                                      value={reading ? "false" : "true"}
+                                      style={{
+                                        color: reading ? '#F13918' : 'default', // Change color based on state
+                                      }}
+                                      >
+                                      {reading ? "- Reading" : "+ Reading"}
+                                    </button>
+                                    <button 
+                                      onClick={() => handleWantClick('Want to Read')}
+                                      value={want ? "false" : "true"}
+                                      style={{
+                                        color: want ? '#F13918' : 'default', // Change color based on  state
+                                      }}
+                                      >
+                                      {want ? "- Want to Read" : "+ Want to Read"}
+                                    </button>
+                                    <button 
+                                      onClick={() => handleDoneClick('Finished')}
+                                      value={done ? "false" : "true"}
+                                      style={{
+                                        color: done ? '#F13918' : 'default', // Change color based on state
+                                      }}
+                                      >
+                                      {done ? "- Finished" : "+ Finished"}
+                                    </button>
                                 </ul>
                             )}
                     </div>
                 </div>
                 <div className= "MangaInfo-right">
                     <div className= "MangaInfo-content">
-                        <div className= "MangaInfo-chapter-tracker">
+                        {/* <div className= "MangaInfo-chapter-tracker">
                             <label> Chapter: </label>
                             <input
                                 type="text"
@@ -207,7 +233,7 @@ function MangaInfo({mangaData, userData}) {
                                 placeholder="0"
                                 onChange={handleChapterChange}
                             />
-                        </div>
+                        </div> */}
                         <h3> Author: </h3>
                         <p>  {authorNames} </p>
                         <h3> Genres: </h3>
@@ -217,10 +243,10 @@ function MangaInfo({mangaData, userData}) {
                     </div>
                 </div>
             </div>
-            <div className="MangaInfo-comments">
+            {/* <div className="MangaInfo-comments">
                 <h3> Comments: </h3>
                 <ForumPost username= "Username goes here"/>  
-            </div>
+            </div> */}
         </div>
     )
 }
