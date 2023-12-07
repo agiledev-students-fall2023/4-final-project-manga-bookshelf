@@ -18,8 +18,6 @@ function Settings() {
     return (
       <div className="Settings-main">
         <button onClick={handleLogout}> logout </button>
-
-        Change Color Template: <select>sef</select>
       </div>
   )
 }
