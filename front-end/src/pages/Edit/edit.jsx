@@ -15,46 +15,58 @@ const Edit = () => {
 
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
   const [alertOpen, setAlertOpen] = useState(false);
-  const handleAlertClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setAlertOpen(false);
-  };
-
-  const handleSuccessAlert = () => {
-    setAlertOpen(true);
-  };
 
   const handleReturn = () => {
     navigate(`/profile/${profileId}`);
   };
 
+  //HERE!
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const myHeaders = new Headers();
+      const myHeaders = new Headers(); 
+
       myHeaders.append('Content-Type', 'application/json');
       myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
 
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/update/bio`, {
-        method: "PUT",
-        headers: myHeaders,
-        body: JSON.stringify({ bio: formData.bio }),
-      });
+      const formDataForSubmission = new FormData();
+      formDataForSubmission.append('username', formData.name);
+      formDataForSubmission.append('bio', formData.bio);
+      formDataForSubmission.append('avatar', formData.avatar);
+      console.log(formData.name) 
+      const response1 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/edit/username/${profileId}`, {
+        method: "POST", 
+        headers: myHeaders, 
+        body: JSON.stringify({"username": formData.name})
+      })
+      const data1 = await response1.json() 
+      console.log(data1) 
 
-      if (response.ok) {
-        // Update local state or perform any necessary actions
-        handleSuccessAlert();
-        console.log("Bio updated successfully");
-      } else {
-        // Handle error response
-        console.error("Failed to update bio:", response.statusText);
-      }
+      const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/edit/bio/${profileId}`, {
+        method: "POST", 
+        headers: myHeaders, 
+        body: JSON.stringify({"bio": formData.bio})
+      })
+      const data2 = await response2.json() 
+      console.log(data2) 
+
+      const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/edit/profileImage/${profileId}`, {
+        method: "POST", 
+        headers: myHeaders, 
+        body: JSON.stringify({"profileImage": formData.profileImage})
+      })
+      const data3 = await response3.json() 
+      console.log(data3)
+
+      // Make separate requests for changing user, bio, and profile image
+  
+      // Handle success, maybe show a success message
+      console.log('Profile updated successfully');
+      navigate(`/profile/${formData.name}`)
     } catch (error) {
-      // Handle fetch error
-      console.error("Error updating bio:", error);
+      // Handle errors, maybe show an error message
+      console.error('Error updating profile:', error);
     }
   };
 
@@ -70,6 +82,7 @@ const Edit = () => {
         headers: myHeaders
       })
       const data3 = await response3.json()
+      console.log(profileId)
       setCurrentProfileInfo(data3["user"]) 
     }
     getCurrentUser()
@@ -92,6 +105,7 @@ const Edit = () => {
   }, [currentProfileInfo]);
   
 
+  //only is for the form. not for DB
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -114,17 +128,6 @@ const Edit = () => {
           </button>
       <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
-      <Snackbar
-        open={alertOpen}
-        autoHideDuration={6000}
-        onClose={handleAlertClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      >
-        <Alert onClose={handleAlertClose} severity="success">
-          <AlertTitle>Success</AlertTitle>
-          Bio updated successfully!
-        </Alert>
-      </Snackbar>
         <div>
         <label htmlFor="name">Username:</label>
         <input
