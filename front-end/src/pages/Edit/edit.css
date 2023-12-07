@@ -49,3 +49,9 @@
   border-radius: 50%; 
   border: 5px black dotted; 
 }
+
+@media screen and (max-width: 768px) {
+  .edit-main {
+    margin-top: 60px;
+  }
+}

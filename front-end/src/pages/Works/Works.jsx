@@ -13,13 +13,16 @@ function Works() {
     const [reading, setReading] = useState([])
     const [done, setDone] = useState([])
     const [want, setWant] = useState([])
-
-    const [isLoading, setIsLoading] = useState(true)
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [mangaExists, setMangaExists] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/manga/search2/id/${encodeURIComponent(mangaId)}`)
+            if (!response.ok) {
+                setMangaExists(false)
+                return
+            }
             const data1 = await response.json()
             setData([data1])
             
@@ -43,6 +46,9 @@ function Works() {
         
     }, [])
 
+    if (!mangaExists) {
+        return <div>Manga does not exist</div>
+    }
 
     if (isLoading) {
         return <div>Loading...</div>; // Or any other loading indicator
