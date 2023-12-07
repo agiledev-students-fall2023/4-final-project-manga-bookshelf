@@ -37,7 +37,6 @@ function Home() {
       const data3 = await response3.json()
       setMyList([{"result": data3.user.favorite}])
     }
-    console.log(favoriteAction)
     if (favoriteAction) {
       getListTrendingAndRecentUpdated()
       setFavoriteAction(false)
