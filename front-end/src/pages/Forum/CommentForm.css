@@ -19,15 +19,29 @@
 }
 
 .CommentForm-form button {
-  background-color: var(--button-color-primary);
-  color: white;
-  padding: 10px 20px; /* Decreased padding */
+  align-items: flex-start;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  color: #3992ff;
+  padding: 14px 22px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
-  margin-top: 10px; /* Adjusted top margin */
+  margin-top: 12px;
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Add transform to the transition */
 }
+
+.CommentForm-form button:hover {
+  text-shadow: 0.2px 0.5px rgb(65, 181, 243);
+  color: rgb(65, 181, 243);
+  box-shadow: none;
+  cursor: pointer;
+}
+
 
 .CommentForm-feedback,
 .CommentForm-error {
