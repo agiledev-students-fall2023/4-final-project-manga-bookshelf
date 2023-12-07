@@ -1,39 +1,35 @@
-.forum-main ul {
-    list-style: none; 
-    padding: 0;
+.forum-main {
+  padding: 10px;
+  max-height: calc(100vh - 120px);  /* Adjust this value based on your layout needs */
+  overflow-y: auto; /* Adds a scrollbar when content overflows */
+  background-color: #FFFFE0; 
 }
 
-#detail {
-  padding: 50px;
+
+.forum-main ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0; /* Ensure no default margin is pushing content down */
 }
 
 .forum-main li {
   display: flex;
   align-items: center;
-}
-
-.forum-main {
-  padding: 10px;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.forum-main h1 {
-  text-align: center;
+  margin-bottom: 15px; /* Adjust as needed */
+  /* other styles */
 }
 
 .forum-main img {
   margin-right: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  /* other styles */
 }
 
-.forum-main{
-  height: 100%;
-  overflow-y: auto;
+/* Add styles for username span if needed */
+.forum-main .username {
+  /* styles */
 }
 
-@media screen and (max-width: 768px) {
-  .forum-main {
-    margin-top: 60px;
-  }
-}

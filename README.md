@@ -1,5 +1,8 @@
 # Manga Bookshelf Project
 
+## Live Link
+View our frontend [here](https://dolphin-app-k989q.ondigitalocean.app/)
+
 ## Project Description
 The manga bookshelf project is an application to track readers' reading progress for manga and share what they've read or are reading with other users on the platform through their profile pages after logging in. The vision for the future revolves around features like:
 - user logins and profiles with three lists divided into "reading", "finished", and "want to read"

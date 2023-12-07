@@ -13,7 +13,9 @@ function Works() {
     const [reading, setReading] = useState([])
     const [done, setDone] = useState([])
     const [want, setWant] = useState([])
+
     const [isLoading, setIsLoading] = useState(true)
+
 
     useEffect(() => {
         async function fetchData() {
@@ -27,20 +29,23 @@ function Works() {
             myHeaders.append('Authorization', `Bearer ${localStorage.getItem("jwtToken")}`);
         
             const response3 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/currentuser/`, {
-            method: "GET",
-            headers: myHeaders
+                method: "GET",
+                headers: myHeaders
             })
             const data3 = await response3.json()
             setUser(data3.user)
-            setIsLoading(false)
+
+            setIsLoading(false); // Set loading to false after fetching data
+
         }
 
         fetchData()
         
     }, [])
 
-    if(isLoading){
-        return <div> Loading... </div>
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Or any other loading indicator
     }
 
     return (

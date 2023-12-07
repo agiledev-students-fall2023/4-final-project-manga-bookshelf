@@ -15,6 +15,10 @@
     scrollbar-width: none;
 }
 
+.MangaRow-fadeDownContent {
+    border-radius:5%; 
+}
+
 /* Remove scrollbar but keep functionality */
 .MangaRow-main::-webkit-scrollbar {
     display: none;
@@ -44,3 +48,33 @@
     right: -5px;
     /* Align to the right side of the MangaRow-container */
 }
+
+.MangaRow-container > h1{
+    margin: 0; 
+    font-family: var(--font-size-main-dashboard)
+}
+
+/* Keyframes for the fade-down effect */
+@keyframes fadeInLeftToRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animation for the title */
+.MangaRow-fadeDownTitle {
+    animation: fadeInLeftToRight 1s ease-in;
+}
+
+/* Animation for the content */
+/* .MangaRow-fadeDownContent {
+    animation: fadeInLeftToRight 0.5s ease-in;
+    animation-delay: 0.5s;
+} */
+

@@ -1,32 +1,66 @@
-import React, { useState , useEffect,useCallback } from 'react';
-import Comments from "../../components/Elements/Comments/Comments"
-import ForumPost from "../../components/Elements/ForumPost/ForumPost"
-import MockComments from "../../"
-import "./forum.css"
-import "./CommentForm.css"
-import CommentForm from"./CommentForm.jsx"
-
+import React, { useState, useEffect, useCallback } from 'react';
+import CommentForm from "./CommentForm.jsx";
 import { useNavigate } from 'react-router-dom';
 
 function Forum() {
   const navigate = useNavigate();
   const [groupedComments, setGroupedComments] = useState({});
+  const [userProfiles, setUserProfiles] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('')
-  const [feedback, setFeedback] = useState('')
-  const fetchGroupedComments = useCallback(async () => {
-    setIsLoading(true); // Set loading to true at the start of the fetch
+  const [error, setError] = useState('');
+  const [feedback, setFeedback] = useState('');
+
+  const fetchUserProfile = async (username) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${localStorage.getItem("jwtToken")}`);
+
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/grouped`);
-      const groupedCommentsData = await response.json();
-  
-      // Assuming the response is an array of groups with '_id' as the topic and 'comments' as the array of comments
-      const grouped = groupedCommentsData.reduce((acc, group) => {
-        acc[group._id] = group.comments; // group._id is the topic
-        return acc;
-      }, {});
-  
-      setGroupedComments(grouped);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/protected/user/get/anotheruser/${username}`, {
+        method: "GET",
+        headers: myHeaders,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch profile for user ${username}`);
+      }
+
+      const data = await response.json();
+      return data; // Assuming this data contains the user profile including the image
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
+    }
+  };
+
+  const fetchGroupedComments = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/grouped`, {
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch grouped comments');
+      }
+      const data = await response.json();
+      setGroupedComments(data);
+
+      // Fetch user profiles for each unique username in comments
+      const uniqueUsernames = new Set();
+      Object.values(data).forEach(group => {
+        group.comments.forEach(comment => {
+          uniqueUsernames.add(comment.username);
+        });
+      });
+
+      const profiles = {};
+      for (const username of uniqueUsernames) {
+        profiles[username] = await fetchUserProfile(username);
+      }
+      setUserProfiles(profiles);
+
     } catch (error) {
       console.error('Error fetching grouped comments:', error);
       setError('Failed to fetch comments.');
@@ -34,123 +68,32 @@ function Forum() {
       setIsLoading(false);
     }
   }, []);
-  useEffect(() => {
-    fetchGroupedComments();
-  }, [fetchGroupedComments]);
-  
-  /*
-  const fetchGroupedComments = useCallback(async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/comments`);
-      const data = await response.json();
-      setGroupedComments(data);
-    } catch (error) {
-      console.error('Error fetching grouped comments:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
 
   useEffect(() => {
     fetchGroupedComments();
   }, [fetchGroupedComments]);
-  */
 
-  
-  /*
-  if (Object.keys(groupedComments).length === 0) {
-    return <div>No comments available.</div>;
-  }
-  */
-
-  /*
-  const navigate = useNavigate();
-  const [data, setData] = useState({ userProfileImages: {}, sampleComments: [] });
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/comment/MockComments`);
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const groupCommentsByTopic = () => {
-    const groupedComments = {};
-
-    data.sampleComments.forEach((comment) => {
-      const topic = comment.topic || 'Other';
-
-      if (!groupedComments[topic]) {
-        groupedComments[topic] = [];
-      }
-
-      groupedComments[topic].push(comment);
-    });
-
-    return groupedComments;
-  };
-
-  const groupedComments = groupCommentsByTopic();
-  */
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const addCommentToList = (topic, newComment) => {
-    // Check if the topic already exists in groupedComments
-    if (groupedComments[topic]) {
-      setGroupedComments(prevGroupedComments => ({
-        ...prevGroupedComments,
-        [topic]: prevGroupedComments[topic] ? [...prevGroupedComments[topic], newComment] : [newComment]
-        //[topic]: [...prevGroupedComments[topic], newComment]
-      }));
-    } else {
-      // If the topic doesn't exist, create a new entry for it
-      setGroupedComments(prevGroupedComments => ({
-        ...prevGroupedComments,
-        [topic]: [newComment]
-      }));
-    }
-  }
-  
-  
-  
+
   return (
-    
     <div className='forum-main'>
       <button onClick={() => navigate(-1)}>Return to Previous Page</button>
       <h1>Forum</h1>
-      <CommentForm
-        setError={setError}
-        setFeedback={setFeedback}
-        addCommentToList={addCommentToList}
-      />
-      {/*<ForumPost username="Username goes here"/> */}
+      <CommentForm setError={setError} setFeedback={setFeedback} />
       <h2>All Threads</h2>
-      {Object.keys(groupedComments).length > 0 ? (
-        Object.keys(groupedComments).map((topic) => (
-          <div key={topic}>
-            <h3>{topic}</h3>
-            <ul style={{ listStyleType: 'none' }}> {/* Inline style for demonstration */}
-              {Array.isArray(groupedComments[topic]) ? (
-                groupedComments[topic].map((comment, index) => (
-                  <li key={index}>
-                    {/* The rest of your comment rendering */}
-                    <strong>{comment.name}:</strong> {comment.comment}
-                  </li>
-                ))
-              ) : (
-                <li>No comments for this topic.</li>
-              )}
+      {Object.values(groupedComments).length > 0 ? (
+      Object.entries(groupedComments).map(([topic, group]) => (
+        <div key={topic}>
+          <h3>{group._id}</h3>
+          <ul style={{ listStyleType: 'none' }}>
+            {group.comments.map((comment, index) => (
+              <li key={index}>
+                <img src={userProfiles[comment.username]?.profileImg} alt={`${comment.username}'s profile`} style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', marginRight: '10px' }}/>
+                <span className="username">{comment.username}</span>: {comment.comment}
+              </li>
+              ))}
             </ul>
           </div>
         ))
@@ -159,9 +102,8 @@ function Forum() {
       )}
     </div>
   );
-  
 }
 
-
 export default Forum;
+
 

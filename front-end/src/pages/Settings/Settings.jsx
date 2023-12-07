@@ -8,6 +8,8 @@ function Settings() {
 
     const handleLogout = (e) => {
         e.preventDefault() 
+        localStorage.setItem('jwtToken', null);
+        localStorage.setItem('user', null) 
         auth.signout(); 
         navigate('/')
     }

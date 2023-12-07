@@ -118,16 +118,16 @@ export default function Header() {
                                 <a href={`/forum`}><ForumIcon />Forum</a>
                                 </li>
                                 <li>
-                                    <a href={`/profile/1`}> <PersonIcon />My Profile</a>
+                                    <a href={`/profile/${JSON.parse(localStorage.getItem('user')).username}`}> <PersonIcon />My Profile</a>
                                 </li>
                                 <li>
-                                    <a href={`/setting`}><SettingsIcon /> Setting</a>
+                                    <a href={`/setting`}><SettingsIcon />Setting</a>
                                 </li>
                             </ul>
                         </nav>
                     ) : <div></div>}
                 </div>
-                <h1>Manga Bookshelf for the Nerds</h1>
+                <h1>Manga Bookshelf</h1>
             </div>
             <div id="detail">
                 <Outlet />

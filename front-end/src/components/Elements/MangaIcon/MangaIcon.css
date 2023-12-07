@@ -26,3 +26,8 @@
     top: 40px;
     z-index: 1; 
 }
+
+.MangaIcon-main > span {
+    font-family: var(--font-size-subtext-dashboard);
+    margin-top: 10px;
+}
