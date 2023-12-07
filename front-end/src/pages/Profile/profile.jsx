@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
+import loadingImg from "../../assets/loading.png";
+import { imagefrombuffer } from "imagefrombuffer"; //first import 
 
 import "./profile.css";
 import {Buffer} from "buffer"; 
@@ -120,19 +122,22 @@ function Profile() {
       // setWant([{"result": data3.user.wantReading}])
       // setMyList([{"result": data3.user.favorite}])
     }
-    getUserInfo()
-    setLoading(false) 
+    getUserInfo() 
+    // setLoading(false) 
   }, [])
 
   return (
     <main className="profile-main">
       <div className="profile-contact">
         <div className="profile-image">
-        {userData.contentType && (
+        {userData.contentType ? (
           <img
           src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
           alt="Profile"
-        />)}
+        />) 
+        : (
+          <img src={loadingImg} alt={profileInfo.username} />
+        )}
         </div>
             
         <div className="profile-bio">
