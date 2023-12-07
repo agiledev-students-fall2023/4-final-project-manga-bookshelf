@@ -94,7 +94,7 @@ function Profile() {
       }
       setProfileInfo(data);
       setUserData(data.profileImg)
-      console.log(data.profileImg)
+      // console.log(data.profileImg)
       if (!isCurrentUser) {
         setIsFollowed(
           data.follower.includes(
