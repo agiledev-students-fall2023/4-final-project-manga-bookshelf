@@ -6,8 +6,8 @@ import { isFavorite } from "../../../helper/helper"
 
 import "./MangaInfo.css"
 
+
 function MangaInfo({mangaData, userData}) {
-  console.log(userData)
     const [reading, setReading] = useState(false)
     const [done, setDone] = useState(false)
     const [want, setWant] = useState(false)
@@ -71,6 +71,7 @@ function MangaInfo({mangaData, userData}) {
       }
       setReading(!reading); 
       setMenuOpen(false)
+  
     }
       
     const handleDoneClick = async () => {
@@ -190,9 +191,33 @@ function MangaInfo({mangaData, userData}) {
                         <button onClick={handleAddClick}>+ Add to List</button>
                             {isMenuOpen && (
                                 <ul className="menu">
-                                    <button onClick={() => handleReadingClick('Reading')}>Reading</button>
-                                    <button onClick={() => handleWantClick('Want to Read')}>Want to Read</button>
-                                    <button onClick={() => handleDoneClick('Finished')}>Finished</button>
+                                    <button 
+                                      onClick={() => handleReadingClick('Reading')} 
+                                      value={reading ? "false" : "true"}
+                                      style={{
+                                        color: reading ? '#F13918' : 'default', // Change color based on state
+                                      }}
+                                      >
+                                      {reading ? "- Reading" : "+ Reading"}
+                                    </button>
+                                    <button 
+                                      onClick={() => handleWantClick('Want to Read')}
+                                      value={want ? "false" : "true"}
+                                      style={{
+                                        color: want ? '#F13918' : 'default', // Change color based on  state
+                                      }}
+                                      >
+                                      {want ? "- Want to Read" : "+ Want to Read"}
+                                    </button>
+                                    <button 
+                                      onClick={() => handleDoneClick('Finished')}
+                                      value={done ? "false" : "true"}
+                                      style={{
+                                        color: done ? '#F13918' : 'default', // Change color based on state
+                                      }}
+                                      >
+                                      {done ? "- Finished" : "+ Finished"}
+                                    </button>
                                 </ul>
                             )}
                     </div>
