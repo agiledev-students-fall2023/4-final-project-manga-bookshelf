@@ -1,17 +1,23 @@
 /* Need to add more variable so css isn't a pain*/
 html {
   box-sizing: border-box;
+
   --bg-color-primary: white;
   --bg-color--secondary:white; 
 
   --button-color-primary:#3992ff;
+  --button-color-background: white; 
+  --button-color-onhover: #e3e3e3; 
   --star-color: yellow; 
 
   --font-size-main-dashboard: 'Courier New', Courier, monospace;
   --font-size-subtext-dashboard: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
   --font-size-main-user-username: 'Courier New', Courier, monospace;
-  --font-size-subtext-user-bio: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif
+  --font-size-subtext-user-bio: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif;
 
+  --hover-transition: 0.5s; 
+
+  --border-color-primary: #e3e3e3; 
   /* Light Mode */
   --bg--light: var(--_hue) 30% 94%;
   --txt--light: var(--_hue) 40% 5%;
@@ -74,7 +80,6 @@ button {
   margin: 0;
 }
 
-
 /* WARNING! do not change below. It might break styling elsewhere */
 
 button {
@@ -87,6 +92,12 @@ button {
 button:active {
   box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.4);
   transform: translateY(1px);
+}
+
+button:hover{
+    background-color: var(--button-color-onhover);
+    transition: var(--hover-transition);
+    cursor: pointer; 
 }
 
 /* for mobile screens */

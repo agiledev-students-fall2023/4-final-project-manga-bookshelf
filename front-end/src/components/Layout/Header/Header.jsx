@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useState } from 'react'
 import "./Header.css"
 import styles from "./Turnstone.module.css"; //custom styles for turnstone
 import { Outlet } from "react-router-dom";
@@ -9,6 +9,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ForumIcon from '@mui/icons-material/Forum';
+import SearchIcon from '@mui/icons-material/Search';
 import Turnstone from 'turnstone';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
@@ -17,7 +18,6 @@ import { useRef } from 'react';
 export default function Header() {
     const [isOpen, setOpen] = useState(false); 
     const [results, setResults] = useState("") 
-    const [searchData, setSearchData] = useState([]) 
     const [selectedItem, setSelectedItem] = useState({})
 
     //Define constant styles to use Turnstone 
@@ -67,10 +67,7 @@ export default function Header() {
             navigate(`/manga/${data1.__id}`)
         }
     }
-    
-    function logout(){
-        console.log("Log out here")
-    }
+
 
     const handleSelect = (item) => {
         // console.log(item)
@@ -106,7 +103,7 @@ export default function Header() {
                         />
                     </form>
                     <form method="post" onSubmit={handleSubmit}>
-                        <button type="submit">Submit</button>
+                        <button id="Header-search-button" type="submit"><SearchIcon/></button>
                     </form>
                 </div>
 

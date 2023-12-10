@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'; 
 import CommentForm from "./CommentForm.jsx";
 import { useNavigate } from 'react-router-dom';
 import { Buffer } from 'buffer'; 
+
+import "./forum.css"
 
 function Forum() {
   const navigate = useNavigate();
@@ -106,7 +109,7 @@ function Forum() {
 
   return (
     <div className='forum-main'>
-      <button onClick={() => navigate(-1)}>Return to Previous Page</button>
+      <button onClick={() => navigate(-1)}><KeyboardReturnIcon/>Return to Previous Page</button>
       <h1>Forum</h1>
       <CommentForm setError={setError} setFeedback={setFeedback} addCommentToList={addCommentToList } />
       <h2>All Threads</h2>
