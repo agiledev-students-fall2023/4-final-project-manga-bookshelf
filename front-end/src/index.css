@@ -17,7 +17,10 @@ html {
 
   --hover-transition: 0.5s; 
 
+  /* Forum */
   --border-color-primary: #e3e3e3; 
+  --border-color-forum: #ccc;
+
   /* Light Mode */
   --bg--light: var(--_hue) 30% 94%;
   --txt--light: var(--_hue) 40% 5%;

@@ -6,6 +6,8 @@ import { Buffer } from 'buffer';
 
 import "./forum.css"
 
+import Forumpost from '../../components/Layout/ForumPost/Forumpost.jsx';
+
 function Forum() {
   const navigate = useNavigate();
   const [groupedComments, setGroupedComments] = useState({});
@@ -112,7 +114,7 @@ function Forum() {
       <button onClick={() => navigate(-1)}><KeyboardReturnIcon/>Return to Previous Page</button>
       <h1>Forum</h1>
       <CommentForm setError={setError} setFeedback={setFeedback} addCommentToList={addCommentToList } />
-      <h2>All Threads</h2>
+      {/* <h2>All Threads</h2>
       {Object.values(groupedComments).length > 0 ? (
       Object.entries(groupedComments).map(([topic, group]) => (
         <div key={topic}>
@@ -129,7 +131,16 @@ function Forum() {
         ))
       ) : (
         <p>No topics to display.</p>
-      )}
+      )} */}
+      <Forumpost likes={0} title={"test"} author={"robert"} commentNumber={1}/>
+      <Forumpost likes={0} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
     </div>
   );
 }
