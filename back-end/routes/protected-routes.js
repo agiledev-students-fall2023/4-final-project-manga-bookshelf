@@ -9,19 +9,6 @@ import UserService from '../Service/userService.js';
 const storage = multer.memoryStorage() 
 const upload = multer()
 
-// Set up storage for uploaded files
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'uploads/');
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + '-' + file.originalname);
-//   }
-// });
-
-// // Create the multer instance
-// const upload = multer({ storage: storage });
-
 const protectedRoutes = () => {
     const router = express.Router(); 
 
@@ -507,6 +494,63 @@ const protectedRoutes = () => {
         })
 
       });
+
+    //get the information for all of the forum
+    router.get("/forum/get/forumpost", passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+        try {
+            const posts = await ForumPost.find({});
+            res.json(posts);
+        } catch (err) {
+            next(err);
+        }
+    })
+
+    router.get("/forum/get/forumpostId", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try{
+            const posts = await ForumPost.find({}).select("_id");
+            res.json(posts);
+        } catch(err){
+            next(err); 
+        }
+    })
+
+    
+    //get information of one forum 
+    router.get("/forum/get/forumpost/single/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+            const post = await ForumPost.findById(req.params.id);
+            if (!post) {
+                return res.status(404).json({ message: 'Post not found' });
+            }
+            res.json(post);
+        } catch (err) {
+            next(err);
+        }
+    })
+
+    //post the information to database 
+    //content is in the format: 
+    // {
+    //     creator: "username",
+    //     title: "title",
+    //     body: "body",
+    //     likes: 0,
+    //     comments: []
+    // }
+    router.post("/forum/add/forumpost",passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+            const content = req.body.payload;
+            const newPost = new ForumPost(content);
+            const savedPost = await newPost.save();
+            res.json(savedPost);
+        } catch (err) {
+            next(err);
+        }
+    })
+
+    
+
+
 
     return router 
 }
