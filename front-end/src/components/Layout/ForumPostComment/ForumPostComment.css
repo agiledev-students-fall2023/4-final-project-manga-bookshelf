@@ -1,0 +1,19 @@
+.ForumPostComment-main{
+    display: flex;
+    position: relative; 
+    flex-direction: column;
+    border: 3px var(--border-color-forum) solid;
+    margin: 1em;
+    padding: 1em; 
+    box-shadow: 0 0 10px #0000001a;
+}
+
+.ForumPostComment-body > p {
+    overflow-wrap: break-word;
+    width: 75%;
+}
+
+.ForumPostComment-main .ForumPostComment-body{
+    display: flex; 
+    flex-direction: row; 
+}

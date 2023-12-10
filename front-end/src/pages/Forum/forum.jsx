@@ -7,6 +7,9 @@ import { Buffer } from 'buffer';
 import "./forum.css"
 
 import Forumpost from '../../components/Layout/ForumPost/Forumpost.jsx';
+import ForumPostComment from '../../components/Layout/ForumPostComment/ForumPostComment.jsx';
+import ForumPostUser from '../../components/Layout/ForumPostUser/ForumPostUser.jsx';
+import ForumUser from '../ForumUser/ForumUser.jsx';
 
 function Forum() {
   const navigate = useNavigate();
@@ -107,8 +110,6 @@ function Forum() {
   
   
     
-  
-
   return (
     <div className='forum-main'>
       <button onClick={() => navigate(-1)}><KeyboardReturnIcon/>Return to Previous Page</button>
@@ -132,15 +133,10 @@ function Forum() {
       ) : (
         <p>No topics to display.</p>
       )} */}
-      <Forumpost likes={0} title={"test"} author={"robert"} commentNumber={1}/>
+      <Forumpost likes={0} title={"Page for main page"} author={"robert"} commentNumber={1} />
       <Forumpost likes={0} title={"test"} author={"robert"} commentNumber={1} />
       <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} />
+
     </div>
   );
 }

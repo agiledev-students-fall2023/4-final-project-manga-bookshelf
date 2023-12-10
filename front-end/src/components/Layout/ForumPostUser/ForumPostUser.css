@@ -1,0 +1,21 @@
+.ForumPostUser-main{
+    display: flex;
+    flex-direction: column;
+    border: 3px var(--border-color-forum) solid;
+    margin: 1em;
+    box-shadow: 0 0 10px #0000001a;
+}
+
+.ForumPostUser-main > h1{
+    margin: 1%; 
+}
+
+.ForumPostUser-main .ForumPostUser-body{
+    display: flex; 
+    flex-direction: row; 
+}
+
+.ForumPostUser-main .ForumPostUser-footer{
+    display: flex; 
+    justify-content: space-between; 
+}

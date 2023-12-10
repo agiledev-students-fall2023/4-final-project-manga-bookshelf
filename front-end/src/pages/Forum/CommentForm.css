@@ -1,5 +1,5 @@
 .CommentForm-form {
-  background-color: #f2f2f2;
+  background-color: var(--bg-color-forum-primary);
   border: 1px solid var(--border-color-forum);
   box-shadow: 0 0 10px #0000001a;
   border-radius: 5px;

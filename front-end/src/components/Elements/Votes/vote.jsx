@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'; 
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'; 
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
 import "./Vote.css"
 
@@ -41,16 +45,20 @@ function Vote({votes, changeVotes, liked, disliked, changeLiked, changeDislike})
 
   return (
     <div className="vote-main">
-      <div className="vote-incr" style={{ color: liked ? 'orange' : 'black' }}>
-        <ArrowUpwardIcon onClick={handleLike} />
+      <div className="vote-incr">
+        {/* Conditional rendering for like icon */}
+        {liked ? <ThumbUpAltIcon onClick={handleLike} />
+          : <ThumbUpOffAltIcon onClick={handleLike} />}
       </div>
       {/* Updated span tag with expanded condition */}
       <span style={{ color: votes > 0 ? 'green' : votes === 0 ? 'black' : 'red' }}>{votes}</span>
-      <div className="vote-decr" style={{ color: disliked ? 'orange' : 'black' }}>
-        <ArrowDownwardIcon onClick={handleDislike} />
+      <div className="vote-decr">
+        {/* Conditional rendering for dislike icon */}
+        {disliked ? <ThumbDownAltIcon onClick={handleDislike} />
+          : <ThumbDownOffAltIcon onClick={handleDislike} />}
       </div>
     </div>
-  )
+  );
 }
 
 export default Vote
