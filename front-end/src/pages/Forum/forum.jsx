@@ -56,9 +56,6 @@ function Forum() {
       {forumPost.map(post => 
           <ForumPost likes={post["likes"]} title={post["title"]} author={post["creator"]} commentNumber={post["comments"].length} forumId={post._id}/>
       )}
-      {/* <Forumpost likes={0} title={"Page for main page"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={0} title={"test"} author={"robert"} commentNumber={1} />
-      <Forumpost likes={2} title={"test"} author={"robert"} commentNumber={1} /> */}
 
     </div>
   );
