@@ -1,9 +1,9 @@
 import React from 'react'
 
-import "./Forumbody.css"
+import "./ForumBody.css"
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
-function Forumbody({title, author, comments}) {
+function ForumBody({title, author, comments}) {
   return (
     <div className="forumbody-main">
       <h1>{title}</h1>
@@ -13,4 +13,4 @@ function Forumbody({title, author, comments}) {
   )
 }
 
-export default Forumbody
+export default ForumBody

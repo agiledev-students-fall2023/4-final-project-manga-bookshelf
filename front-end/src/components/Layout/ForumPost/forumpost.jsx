@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import Forumbody from '../../Elements/ForumBody/Forumbody'
+import ForumBody from '../../Elements/ForumBody/ForumBody'
 import Vote from '../../Elements/Votes/Vote'
 
-import "./Forumpost.css"
+import "./ForumPost.css"
 
-function Forumpost({likes, title, author, commentNumber, forumId}) {
+function ForumPost({likes, title, author, commentNumber, forumId}) {
   
   const navigate = useNavigate(Navigate)
 
@@ -25,10 +25,10 @@ function Forumpost({likes, title, author, commentNumber, forumId}) {
     <div className="forumpost-main">
       <Vote votes={like} changeVotes={setLike} liked={alreadyLike} disliked={alreadyDislike} changeLiked={setAlreadyLike} changeDislike={setAlreadyDislike}/>
       <div className="forumpost-body" onClick={handleClick}>
-        <Forumbody title={title} author={author} comments={commentNumber}/>
+        <ForumBody title={title} author={author} comments={commentNumber}/>
       </div>
     </div>
   )
 }
 
-export default Forumpost
+export default ForumPost
