@@ -1,0 +1,14 @@
+.vote-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em; 
+}
+
+.vote-main .vote-incr{
+    cursor: pointer; 
+}
+
+.vote-main .vote-decr {
+    cursor: pointer;
+}

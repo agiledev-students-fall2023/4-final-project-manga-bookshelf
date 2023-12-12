@@ -1,6 +1,3 @@
-import { Suspense } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-
 import Header from "../components/Layout/Header/Header";
 import Profile from "../pages/Profile/profile";
 import Error from "../pages/Error/Error";
@@ -11,6 +8,7 @@ import Forum from "../pages/Forum/forum";
 import MangaWorks from "../pages/MangaWorks/MangaWorks";
 import Edit from "../pages/Edit/edit";
 import Settings from "../pages/Settings/Settings"
+import ForumUser from '../pages/ForumUser/ForumUser';
 
 export const protectedRoutes = [
     {
@@ -33,6 +31,10 @@ export const protectedRoutes = [
             {
                 path: "/forum",
                 element: <Forum />,
+            },
+            {
+                path: "/forum/:forumId",
+                element: <ForumUser />
             },
             {
                 path: "profile/:profileId/follower",

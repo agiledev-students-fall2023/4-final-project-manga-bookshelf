@@ -1,6 +1,6 @@
 .Header-sidebar {
     background-color: var(--bg-color--secondary);
-    border-right: solid 3px #e3e3e3;
+    border-right: solid 3px var(--border-color-primary);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,7 +19,7 @@
     justify-content: center;
     margin: 0;
     padding: 1rem 2rem;
-    border-top: 1px solid #e3e3e3;
+    border-top: 1px solid var(--border-color-primary);
     order: 1;
     line-height: 1;
 }
@@ -37,7 +37,7 @@
     gap: 0.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 3px solid #e3e3e3;
+    border-bottom: 3px solid var(--border-color-primary);
 }
 
 .Header-sidebar>div form {
@@ -112,7 +112,7 @@ i {
 }
 
 .Header-sidebar nav a:hover {
-    background: #e3e3e3;
+    background: var(--button-color-onhover);
 }
 
 .Header-sidebar nav a.active {
@@ -193,4 +193,9 @@ i {
     cursor: pointer;
     background-color: #deebe2;
     padding: 5px;
+}
+
+#Header-search-button{
+    display: flex; 
+    align-items:center; 
 }

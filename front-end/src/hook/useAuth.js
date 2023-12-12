@@ -22,6 +22,7 @@ export function useAuth(){
             setUser(result)
             localStorage.setItem('jwtToken', result.token);
             localStorage.setItem('user', JSON.stringify(result))
+            localStorage.setItem('userId', result.userId)
         }
         else{
             setErrors("Something went wrong") 
@@ -43,6 +44,7 @@ export function useAuth(){
             setUser(result)
             localStorage.setItem('jwtToken', result.token);
             localStorage.setItem('user', JSON.stringify(result)) 
+            localStorage.setItem('userId', result.userId)
         }
         else {
             setErrors("Something went wrong")
@@ -54,7 +56,8 @@ export function useAuth(){
             if (response.ok) {
                 setUser(null) 
                 localStorage.setItem('jwtToken', null);
-                localStorage.setItem('user', null) 
+                localStorage.setItem('user', null);
+                localStorage.setItem('userId', null);
             }
         })
     }
