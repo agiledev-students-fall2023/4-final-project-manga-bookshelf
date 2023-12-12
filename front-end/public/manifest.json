@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Manga BookShelf",
+  "name": "Manga BookShelf",
   "icons": [
     {
       "src": "favicon.ico",
@@ -16,6 +16,11 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src":"kawaii.jpeg", 
+      "type":"image/jpeg",
+      "sizes":"512x512"
     }
   ],
   "start_url": ".",
