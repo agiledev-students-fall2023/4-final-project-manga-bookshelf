@@ -1,6 +1,6 @@
 import React from 'react'
 
-import "./forumbody.css"
+import "./ForumBody.css"
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 
 function ForumBody({title, author, comments}) {

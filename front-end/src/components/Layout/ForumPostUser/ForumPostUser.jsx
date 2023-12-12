@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Vote from '../../Elements/Votes/vote.jsx'
+import Vote from '../../Elements/Votes/Vote.jsx'
 import "./ForumPostUser.css" 
 
 function ForumPostUser({ likes, title, content, author }) {

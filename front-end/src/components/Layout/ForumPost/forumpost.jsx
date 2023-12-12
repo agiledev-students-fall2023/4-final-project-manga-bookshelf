@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import ForumBody from '../../Elements/ForumBody/forumbody.jsx'
-import Vote from '../../Elements/Votes/vote.jsx'
+import ForumBody from '../../Elements/ForumBody/ForumBody.jsx'
+import Vote from '../../Elements/Votes/Vote.jsx'
 
-import "./forumpost.css"
+import "./ForumPost.css"
 
 function ForumPost({likes, title, author, commentNumber, forumId}) {
   
