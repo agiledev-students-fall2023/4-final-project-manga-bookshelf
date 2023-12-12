@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'; 
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'; 
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
