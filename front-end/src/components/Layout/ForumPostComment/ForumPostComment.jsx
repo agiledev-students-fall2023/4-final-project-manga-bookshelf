@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Vote from '../../Elements/Votes/Vote'
+import Vote from '../../Elements/Votes/vote.jsx'
 
 import "./ForumPostComment.css"
 

@@ -4,7 +4,7 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 
-import "./Vote.css"
+import "./vote.css"
 
 // liked and disliked of whether the user liked or disliked the post 
 function Vote({votes, changeVotes, liked, disliked, changeLiked, changeDislike}) {
