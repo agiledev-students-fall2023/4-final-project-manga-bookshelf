@@ -20,7 +20,7 @@ function ForumPostUser({ likes, title, content, author }) {
         </div>
         <div className="ForumPostUser-footer">
             <span> posted by: {author}<img></img></span>
-            <span>x Days ago</span>
+            {/* <span>x Days ago</span> */}
         </div>
     </div>
   )
