@@ -296,7 +296,7 @@ function MangaInfo({mangaData, userData}) {
           </div>
           <div className="MangaInfo-comments">
               <h3> Comments: </h3>
-              <ForumPost username= "Username goes here"/>  
+              <ForumPost username={userData.username}/>  
           </div>
       </div>
   )
