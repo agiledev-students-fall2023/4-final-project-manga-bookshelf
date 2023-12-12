@@ -6,7 +6,7 @@ import { Buffer } from 'buffer';
 
 import "./forum.css"
 
-import ForumPost from '../../components/Layout/ForumPost/forumpost.jsx';
+import ForumPost from '../../components/Layout/ForumPost/ForumPost.jsx';
 import ForumPostComment from '../../components/Layout/ForumPostComment/ForumPostComment.jsx';
 import ForumPostUser from '../../components/Layout/ForumPostUser/ForumPostUser.jsx';
 import ForumUser from '../ForumUser/ForumUser.jsx';
