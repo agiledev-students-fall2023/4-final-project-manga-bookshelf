@@ -13,6 +13,9 @@ const postSchema = new Schema(
             type: String,
             required: true,
         },
+        creatorId:{
+            type: String,
+        },
         title: {
             type: String,
             required: true,

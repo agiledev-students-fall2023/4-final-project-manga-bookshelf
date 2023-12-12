@@ -42,6 +42,7 @@ const authenticationRouter = () => {
         const username = req.body.username; 
         const password = req.body.password; 
 
+        console.log(username, password) 
         if (!username || !password){
             res.status(401).json({success: false, message: "No username or password supplied"})
             next(); 
@@ -68,6 +69,7 @@ const authenticationRouter = () => {
                 message: "User logged in successfully.", 
                 token: token, 
                 username: user.username, 
+                userId: user._id, 
             })
             next();
         } catch (err) {

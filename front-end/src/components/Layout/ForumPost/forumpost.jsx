@@ -5,12 +5,12 @@ import Vote from '../../Elements/Votes/Vote'
 
 import "./Forumpost.css"
 
-function Forumpost({likes, title, author, commentNumber}) {
+function Forumpost({likes, title, author, commentNumber, forumId}) {
   
   const navigate = useNavigate(Navigate)
 
   const handleClick = () => {
-    navigate("/forum/1")
+    navigate(`/forum/${forumId}`)
   }
 
   useEffect(() => {

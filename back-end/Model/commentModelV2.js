@@ -4,7 +4,8 @@ const commentSchemaV2 = new Schema(
     {
         //change name to user 
         usernameId:{
-            type: String
+            type: String,
+            required: true, 
         }, 
         username: {
             type: String,
@@ -13,6 +14,10 @@ const commentSchemaV2 = new Schema(
         comment: {
             type: String,
             required: true,
+        },
+        likes:{
+            type: Number,
+            default: 0,
         },
     },
     {

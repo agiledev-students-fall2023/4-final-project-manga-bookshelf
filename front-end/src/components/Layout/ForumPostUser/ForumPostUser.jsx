@@ -1,17 +1,25 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Vote from '../../Elements/Votes/Vote'
 import "./ForumPostUser.css" 
 
-function ForumPostUser() {
+function ForumPostUser({ likes, title, content, author }) {
+  const [like, setLike] = useState(0)
+  const [alreadyLike, setAlreadyLike] = useState(false)
+  const [alreadyDislike, setAlreadyDislike] = useState(false) 
+
+  useEffect(() => {
+    setLike(likes)
+  }, [])
+
   return (
     <div className="ForumPostUser-main">
-        <h1>Title</h1> 
+        <h1>{title}</h1> 
         <div className="ForumPostUser-body">
-            <Vote/>
-            <p>Here is some paragraph that is required here that I don' tknow what to say so I'm saying a bunch of thingie</p>
+            <Vote votes={like} changeVotes={setLike} liked={alreadyLike} disliked={alreadyDislike} changeLiked={setAlreadyLike} changeDislike={setAlreadyDislike} />
+            <p>{content}</p>
         </div>
         <div className="ForumPostUser-footer">
-            <span> posted by: <img></img></span>
+            <span> posted by: {author}<img></img></span>
             <span>x Days ago</span>
         </div>
     </div>
@@ -19,3 +27,4 @@ function ForumPostUser() {
 }
 
 export default ForumPostUser
+

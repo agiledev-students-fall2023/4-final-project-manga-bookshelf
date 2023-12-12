@@ -20,22 +20,11 @@ const forumRouter = () => {
     router.get("/forumpost/get", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
         try {
             const posts = await postModel.find({});
-            res.json(posts);
+            res.json({success: true, data: posts});
         } catch (err) {
             next(err);
         }
     })
-
-    // //get information of one forum
-    // router.get("/forumpost/get/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
-    //     try {
-    //         const posts = await ForumPost.find({}).select("_id");
-    //         res.json(posts);
-    //     } catch (err) {
-    //         next(err);
-    //     }
-    // })
-
 
     //get information of one forum 
     router.get("/forumpost/get/single/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
@@ -50,10 +39,11 @@ const forumRouter = () => {
         }
     })
 
-    //post the information to database 
-    //content is in the format: 
+    // post the information to database 
+    // content is in the format: 
     // {
     //     creator: "username",
+    //     creatorId: "usernameid",
     //     title: "title",
     //     body: "body",
     //     likes: 0,
@@ -133,7 +123,7 @@ const forumRouter = () => {
             const post = await postModel.findById(req.params.forumId);
             post.comments.push(savedComment._id);
             await post.save();
-            res.json(savedComment);
+            res.json({success:true,message:"Comment added"});
         } catch (err) {
             next(err);
         }
