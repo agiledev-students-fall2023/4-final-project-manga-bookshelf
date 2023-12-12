@@ -48,7 +48,7 @@ function ForumPostComment({CommentId}) {
           <Vote votes={like} changeVotes={setLike} liked={alreadyLike} disliked={alreadyDislike} changeLiked={setAlreadyLike} changeDislike={setAlreadyDislike} />
           <p>{commentData.comment}</p>
         </div>
-        <span>Posted on: x Days ago</span>
+        {/* <span>Posted on: x Days ago</span> */}
       </div>
     )
 }

@@ -2,25 +2,29 @@
     background-color: var(--bg-color-forum-primary);
     border: 1px solid var(--border-color-forum);
     box-shadow: 0 0 10px #0000001a;
-    border-radius: 5px;
-    padding: 15px;
+    border-radius: 15px;
+    padding: 40px 40px 15px 40px;
     /* Decreased padding */
-    width: 50%;
+    width: 90%;
     /* Decreased width to make form narrower */
     margin: 0 auto 20px auto;
     /* Center the form and add space at the bottom */
 }
 
-.PostForum-form input,
+.PostForum-form input {
+    height: 50px;
+}
 .PostForum-form textarea {
     padding: 10px;
     /* Decreased padding */
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     resize: vertical;
     width: calc(100% - 22px);
     /* Adjust width to account for padding */
     margin: 8px 0;
+    box-shadow: none;
+    height: 120px
     /* Decreased space between fields */
 }
 
@@ -37,7 +41,7 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    margin-top: 12px;
+    /* margin-top: 12px; */
     transition: background-color 0.3s ease, transform 0.1s ease;
     /* Add transform to the transition */
 }
