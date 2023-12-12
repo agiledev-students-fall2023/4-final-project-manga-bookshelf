@@ -55,6 +55,10 @@ const UserSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.Object],
         ref: "Manga"
     }, 
+    // mnagaTracker:{
+    //     type: [mongoose.Schema.Types.Object],
+    //     ref: "object"
+    // }, 
     role: {
         type: String,
         default: 'user',

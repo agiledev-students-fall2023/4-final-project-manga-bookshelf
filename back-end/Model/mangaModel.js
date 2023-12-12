@@ -22,6 +22,10 @@ const mangaSchema = new Schema(
         __id: {
             type: String, 
             required: true, 
+        },
+        chapter: {
+            type: String, 
+            required: false, 
         }
     }
 )
