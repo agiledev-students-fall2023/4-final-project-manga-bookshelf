@@ -364,6 +364,48 @@ const protectedRoutes = () => {
         }
     });
 
+    router.put("/user/update/chapter/:id", passport.authenticate("jwt", { session: false }), async (req, res, next) => {
+        try {
+            const userId = req.user.id;
+            const mangaId = req.params.id;
+            const { chapter } = req.body;
+    
+            console.log("Received PUT request to update chapter. Manga ID:", mangaId, "Chapter:", chapter);
+    
+            // Find user by id first 
+            const user = await UserModel.findById(userId);
+    
+            if (!user) {
+                console.log("User not found");
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+    
+            // Check if the manga exists in currentlyReading
+            const mangaEntry = user.currentlyReading.find(entry => entry.__id.toString() === mangaId);
+            console.log(mangaEntry)
+    
+            if (!mangaEntry) {
+                console.log("Manga not found in currentlyReading");
+                return res.status(404).json({ success: false, message: "Manga does not exist in currentlyreading" });
+            }
+    
+            // Update the chapter in currentlyReading
+            mangaEntry.chapter = chapter;
+    
+            console.log(mangaEntry)
+            // Save the updated user
+            await user.save();
+    
+            console.log("Chapter updated successfully");
+            // Send success response
+            return res.json({ success: true, message: "Chapter updated successfully" });
+            
+        } catch (err) {
+            console.error("Error updating chapter:", err);
+            return res.status(500).json({ success: false, message: "Error updating chapter" });
+        }
+    });
+
     //add browsinghistory 
     router.post("/user/add/browsinghistory", passport.authenticate("jwt", { session: false }), (req, res, next) => {
         const userId = req.user.id;
