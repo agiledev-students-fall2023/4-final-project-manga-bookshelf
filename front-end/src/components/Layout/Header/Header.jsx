@@ -152,7 +152,7 @@ export default function Header() {
                         </nav>
                     ) : <div></div>}
                 </div>
-                <h1>Manga Bookshelf</h1>
+                <h1><img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5zdAaFVsGNacayufT9toiM64TxnGQyDpi2A&usqp=CAU"} />Manga Bookshelf</h1>
             </div>
             <div id="detail">
                 <Outlet />

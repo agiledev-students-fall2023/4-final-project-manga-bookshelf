@@ -12,7 +12,8 @@ const Edit = () => {
   const navigate = useNavigate();
   const { profileId } = useParams();
   const [file, setFile] = useState(null); 
-
+  const [imagePreview, setImagePreview] = useState(null);
+  const [uploaded, setUploaded] = useState(false);
 
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
 
@@ -121,7 +122,11 @@ const Edit = () => {
   };
 
   function handleProfileImageChange(e){
-    setFile(e.target.files[0]) 
+    if (e.target.file[0]){
+      setFile(e.target.files[0]) 
+      setImagePreview(URL.createObjectURL(e.target.files[0]));
+      setUploaded(true)
+    }
   }
 
 
@@ -156,7 +161,7 @@ const Edit = () => {
         />
       </div>
       <div className="edit-main">
-        <img src={file} alt=""/>
+        {uploaded && <img src={imagePreview} alt="No Image Uploaded"/>}
       </div>
 
       <div className="edit-main">
