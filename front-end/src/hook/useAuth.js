@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 
 export function useAuth(){
-    //user contains the JWT used to authenticate
     const [user, setUser] = useState(null); 
     const [errors, setErrors] = useState(null); 
     const [isLoading, setIsLoading] = useState(false); 
