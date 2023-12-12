@@ -6,7 +6,7 @@ import { Buffer } from 'buffer';
 
 import "./forum.css"
 
-import Forumpost from '../../components/Layout/ForumPost/Forumpost.jsx';
+import ForumPost from '../../components/Layout/ForumPost/ForumPost.jsx';
 import ForumPostComment from '../../components/Layout/ForumPostComment/ForumPostComment.jsx';
 import ForumPostUser from '../../components/Layout/ForumPostUser/ForumPostUser.jsx';
 import ForumUser from '../ForumUser/ForumUser.jsx';
@@ -54,7 +54,7 @@ function Forum() {
       <h1>Forum</h1>
       <PostForum />
       {forumPost.map(post => 
-          <Forumpost likes={post["likes"]} title={post["title"]} author={post["creator"]} commentNumber={post["comments"].length} forumId={post._id}/>
+          <ForumPost likes={post["likes"]} title={post["title"]} author={post["creator"]} commentNumber={post["comments"].length} forumId={post._id}/>
       )}
       {/* <Forumpost likes={0} title={"Page for main page"} author={"robert"} commentNumber={1} />
       <Forumpost likes={0} title={"test"} author={"robert"} commentNumber={1} />
