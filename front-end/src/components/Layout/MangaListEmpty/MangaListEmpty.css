@@ -1,0 +1,56 @@
+.MangaListEmpty-container {
+    position: relative;
+    /* Establishes a new positioning context for absolute children */
+    width: 100%;
+    margin-top: 1em; 
+}
+
+.MangaListEmpty-main {
+    display: flex;
+    overflow-x: auto;
+    width: calc(100% - 40px);
+    /* Adjust the width to allow space for arrows */
+    margin: 0 20px;
+    /* This margin makes space for the arrows */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Remove scrollbar but keep functionality */
+.MangaListEmpty-main::-webkit-scrollbar {
+    display: none;
+}
+
+.MangaListEmpty-container>h1 {
+    margin: 0;
+    font-family: var(--font-size-main-dashboard)
+}
+
+.MangaListEmpty-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2% 0 2%;
+
+    position: relative;
+    /* Set relative positioning for overlay positioning */
+}
+
+.MangaListEmpty-icon img {
+    height: 300px;
+    width: 200px;
+    border-radius: 5%;
+    box-shadow: 10px 5px 5px #c7c7c7;
+    background-color: rgb(221, 219, 219);
+    cursor: pointer;
+    transition: transform .25s;
+    /* Animation */
+
+    filter: grayscale(1);
+    /* Apply grey blend */
+}
+
+.MangaListEmpty-icon img:hover {
+    transform: scale(0.95);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

@@ -2,7 +2,6 @@
   padding: 10px;
   max-height: calc(100vh - 120px);  /* Adjust this value based on your layout needs */
   overflow-y: auto; /* Adds a scrollbar when content overflows */
-  background-color: #FFFFE0; 
 }
 
 
@@ -28,8 +27,7 @@
   /* other styles */
 }
 
-/* Add styles for username span if needed */
-.forum-main .username {
-  /* styles */
+.forum-main > button{
+  display:flex; 
+  align-items:center; 
 }
-

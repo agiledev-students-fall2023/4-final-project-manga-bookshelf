@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import MangaRow from "../../components/Layout/MangaRow/MangaRow";
 import loadingImg from "../../assets/loading.png";
-import { imagefrombuffer } from "imagefrombuffer"; //first import 
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
 
 import "./profile.css";
 import {Buffer} from "buffer"; 
@@ -19,6 +21,13 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [userExists, setUserExists] = useState(true);
   const [userData, setUserData] = useState({});
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const location = useLocation();
+  const { pathname, search } = location
+
+  const handleCloseSuccessAlert = () => {
+    setShowSuccessAlert(false);
+  };
 
   const [reading, setReading] = useState([])
   const [done, setDone] = useState([])
@@ -79,6 +88,11 @@ function Profile() {
         return;
       }
       setProfileInfo(data);
+
+      if (search === "?success=true") {
+        setShowSuccessAlert(true);
+      }
+
       setUserData(data.profileImg)
       setMyList([{"result": data.favorite}])
       setReading([{"result": data.currentlyReading}])
@@ -123,7 +137,17 @@ function Profile() {
     <main className="profile-main">
       <div className="profile-contact">
         <div className="profile-image">
-        {userData.contentType ? (
+        <Snackbar
+          open={showSuccessAlert}
+          autoHideDuration={6000}
+          onClose={handleCloseSuccessAlert}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }} // Set anchorOrigin for top-center positioning
+        >
+          <Alert onClose={handleCloseSuccessAlert} severity="success">
+            Changes saved successfully!
+          </Alert>
+        </Snackbar>
+        {(userData && userData.contentType) ? (
           <img
           src={`data:${userData.contentType};base64,${Buffer.from(userData.data.data).toString('base64')}`}
           alt="Profile"
@@ -165,7 +189,7 @@ function Profile() {
             )
           }
 
-        </div>
+        </div> 
       </div>
 
       <section className="myList">

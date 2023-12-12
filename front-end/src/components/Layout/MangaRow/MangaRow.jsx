@@ -95,11 +95,11 @@ function MangaRow({ title, icon, MangaList, setFavoriteAction }) {
           <div className="MangaRow-fadeDownContent">
             {MangaList[0] && MangaList[0]["result"].length !== 0 ? (
               <>
-                <HoverableIconLeft
+              {(<HoverableIconLeft
                   className="MangaRow-arrowLeft"
                   fontSize="large"
                   onClick={() => scrollTo(-500)}
-                />
+                /> )}
                 <div
                   className="MangaRow-main"
                   ref={scrollContainerRef}
@@ -116,14 +116,16 @@ function MangaRow({ title, icon, MangaList, setFavoriteAction }) {
                     />
                   ))}
                 </div>
-                <HoverableIconRight
-                  className="MangaRow-arrowRight"
-                  fontSize="large"
-                  onClick={() => scrollTo(500)}
-                />
+                { (
+                  <HoverableIconRight
+                    className="MangaRow-arrowRight"
+                    fontSize="large"
+                    onClick={() => scrollTo(500)}
+                  />
+                )}
               </>
             ) : (
-              <MangaListEmpty />
+              <MangaListEmpty/>
             )}
             </div>
       </div>

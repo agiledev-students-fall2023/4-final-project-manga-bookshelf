@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 
 export function useAuth(){
-    //user contains the JWT used to authenticate
     const [user, setUser] = useState(null); 
     const [errors, setErrors] = useState(null); 
     const [isLoading, setIsLoading] = useState(false); 
@@ -22,6 +21,7 @@ export function useAuth(){
             setUser(result)
             localStorage.setItem('jwtToken', result.token);
             localStorage.setItem('user', JSON.stringify(result))
+            localStorage.setItem('userId', result.userId)
         }
         else{
             setErrors("Something went wrong") 
@@ -43,6 +43,7 @@ export function useAuth(){
             setUser(result)
             localStorage.setItem('jwtToken', result.token);
             localStorage.setItem('user', JSON.stringify(result)) 
+            localStorage.setItem('userId', result.userId)
         }
         else {
             setErrors("Something went wrong")
@@ -54,7 +55,8 @@ export function useAuth(){
             if (response.ok) {
                 setUser(null) 
                 localStorage.setItem('jwtToken', null);
-                localStorage.setItem('user', null) 
+                localStorage.setItem('user', null);
+                localStorage.setItem('userId', null);
             }
         })
     }

@@ -30,7 +30,7 @@
     /* Positioned absolute relative to MangaRow-container */
     top: 50%;
     /* Center vertically */
-    z-index: 10;
+    z-index: 1;
     /* Ensure the icons are above other content */
     cursor: pointer;
     /* Change the cursor to a pointer to indicate clickable items */
@@ -50,8 +50,11 @@
 }
 
 .MangaRow-container > h1{
-    margin: 0; 
-    font-family: var(--font-size-main-dashboard)
+    margin: 0;
+    margin-top: 1em;
+    font-family: var(--font-size-main-dashboard);
+    border-bottom: 3px grey solid;
+    border-top: 3px grey solid;
 }
 
 /* Keyframes for the fade-down effect */

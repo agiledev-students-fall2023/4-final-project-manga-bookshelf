@@ -13,10 +13,11 @@ const Edit = () => {
   const { profileId } = useParams();
   const [file, setFile] = useState(null); 
 
+
   const [currentProfileInfo, setCurrentProfileInfo] = useState([])
-  const [alertOpen, setAlertOpen] = useState(false);
 
   const handleReturn = () => {
+    
     navigate(`/profile/${profileId}`);
   };
 
@@ -67,7 +68,8 @@ const Edit = () => {
   
       // Handle success, maybe show a success message
       console.log('Profile updated successfully');
-      navigate(`/profile/${formData.name}`)
+      navigate(`/profile/${formData.name}?success=true`);
+      //navigate(`/profile/${formData.name}`);
     } catch (error) {
       // Handle errors, maybe show an error message
       console.error('Error updating profile:', error);
